@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +27,12 @@ export default function Navigation() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('Saisantoshmadhari@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
@@ -65,9 +72,18 @@ export default function Navigation() {
             </div>
           </a>
 
-          {/* Action Hierarchy: Primary (Say Hello) + Secondary (Resume, LinkedIn) + Utility (Theme Toggle) */}
+          {/* Action Hierarchy: Primary (Say Hello) + Copy Email Pill + Secondary (Resume, LinkedIn) + Utility (Theme Toggle) */}
           <div className="flex items-center gap-2">
             
+            {/* Quick 1-Click Copy Email Pill (Sanjay Menon feature) */}
+            <button
+              onClick={handleCopyEmail}
+              className="touch-target hidden lg:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/90 dark:bg-white/10 border border-black/10 dark:border-white/15 text-zinc-800 dark:text-zinc-200 font-mono text-xs hover:bg-zinc-100 dark:hover:bg-white/20 transition-all backdrop-blur-md shadow-sm focus-visible:ring-2 focus-visible:ring-blue-500"
+              aria-label="Copy email address to clipboard"
+            >
+              <span>{copied ? '✓ Copied!' : '📋 Copy Email'}</span>
+            </button>
+
             {/* Secondary CTA: Resume */}
             <a 
               href="/resume.pdf" 
@@ -109,6 +125,20 @@ export default function Navigation() {
             </div>
           </div>
         </div>
+
+        {/* Instant Toast Notification for Copied Email */}
+        <AnimatePresence>
+          {copied && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              className="fixed top-20 right-6 sm:right-12 z-50 px-4 py-2 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-black shadow-xl border border-white/20 text-xs font-mono font-semibold flex items-center gap-2 pointer-events-auto"
+            >
+              <span>✨ Copied Saisantoshmadhari@gmail.com to clipboard!</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* Floating Center Pill Navbar (Desktop) */}
