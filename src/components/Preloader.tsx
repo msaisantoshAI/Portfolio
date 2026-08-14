@@ -1,10 +1,12 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // 1. Progress Counter Engine
@@ -23,22 +25,40 @@ export default function Preloader() {
       });
     }, interval);
 
-    // Audio Playback Reliability Logic (Silent Fallback)
-    const videoElement = document.getElementById('preloader-video') as HTMLVideoElement;
-    if (videoElement) {
-      videoElement.muted = false;
-      videoElement.volume = 0.8;
-      videoElement.play().catch(() => {
-        // Browser blocked audio - Force muted playback to ensure video still shows
-        videoElement.muted = true;
-        videoElement.play();
-      });
+    // Audio Playback Reliability Logic
+    if (videoRef.current) {
+      // Browsers require user interaction to play unmuted video. 
+      // We try to play it unmuted first, and if blocked, fallback to muted.
+      videoRef.current.volume = 0.8;
+      videoRef.current.muted = false;
+      const playPromise = videoRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          setIsMuted(false);
+        }).catch(() => {
+          // Fallback to muted to ensure video plays
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play().catch(() => {});
+          }
+          setIsMuted(true);
+        });
+      }
     }
 
     return () => {
       clearInterval(progressTimer);
     };
   }, []);
+
+  // Allow user to click anywhere to unmute and hear the audio
+  const handleInteraction = () => {
+    if (videoRef.current && isMuted) {
+      videoRef.current.muted = false;
+      setIsMuted(false);
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -48,14 +68,16 @@ export default function Preloader() {
           initial={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           exit={{ opacity: 0, scale: 2.5, filter: "blur(20px)" }}
           transition={{ duration: 1.5, ease: [0.64, 0, 0.78, 0] }}
-          className="fixed inset-0 z-[99999] bg-[#050505] flex flex-col justify-end overflow-hidden"
+          className="fixed inset-0 z-[99999] bg-[#050505] flex flex-col justify-end overflow-hidden cursor-pointer"
+          onClick={handleInteraction}
         >
           {/* Background Cinematic Video Sequence */}
           <div className="absolute inset-0 z-0">
             <video
-              id="preloader-video"
+              ref={videoRef}
               autoPlay
               loop
+              muted
               playsInline
               className="absolute inset-0 w-full h-full object-cover opacity-80"
             >
@@ -66,9 +88,16 @@ export default function Preloader() {
           </div>
 
           {/* Loading Indicator HUD */}
-          <div className="relative z-10 p-12 w-full flex justify-between items-end">
+          <div className="relative z-10 p-8 md:p-12 w-full flex justify-between items-end pointer-events-none">
              <div className="flex flex-col">
-                <span className="text-white/50 font-mono text-xs tracking-[0.3em] uppercase mb-4">Loading Portfolio Experience</span>
+                <span className="text-white/50 font-mono text-xs tracking-[0.3em] uppercase mb-4 flex items-center gap-3">
+                  Loading Portfolio Experience
+                  {isMuted && (
+                    <span className="bg-white/10 text-white/70 px-2 py-0.5 rounded text-[10px] animate-pulse">
+                      Click anywhere to unmute
+                    </span>
+                  )}
+                </span>
                 
                 <div className="flex items-baseline space-x-2">
                    <motion.span 
