@@ -9,16 +9,16 @@ export default function Preloader() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // 1. Progress Counter Engine
-    const duration = 6000; 
-    const interval = 30;
+    // 1. Fast, smooth Progress Counter Engine (2.2s)
+    const duration = 2200; 
+    const interval = 25;
     const step = 100 / (duration / interval);
     
     const progressTimer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressTimer);
-          setTimeout(() => setIsLoading(false), 1000); 
+          setTimeout(() => setIsLoading(false), 400); 
           return 100;
         }
         return prev + step;
