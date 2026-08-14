@@ -92,16 +92,31 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right: Say Hello CTA & Theme Switcher (Zero clutter) */}
+          {/* Right: Resume CTA + LinkedIn Icon + Theme Switcher */}
           <div className="flex items-center gap-2 shrink-0">
+            
+            {/* Resume Button */}
             <a 
-              href="mailto:Saisantoshmadhari@gmail.com" 
-              className="touch-target inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-md shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="View Resume PDF (opens in new tab)" 
+              className="touch-target inline-flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-md shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="h-3.5 w-3.5" aria-hidden="true">
-                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
+              Resume
+            </a>
+
+            {/* LinkedIn Icon */}
+            <a 
+              href="https://www.linkedin.com/in/saisantoshmadhari0711/" 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="LinkedIn Profile (opens in new tab)" 
+              className="touch-target inline-flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/75 dark:bg-black/80 border border-white/15 text-white hover:text-blue-400 hover:scale-105 active:scale-95 transition-all shadow-sm backdrop-blur-md shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true">
+                <path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z" />
               </svg>
-              <span>Say Hello</span>
             </a>
 
             {/* Theme Toggle Utility */}

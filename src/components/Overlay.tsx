@@ -25,16 +25,16 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
     <div className="absolute inset-0 z-10 pointer-events-none h-full font-sans">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* --- LAYER 1: Hero Landing (Face 100% Clear Above -> Text Compact at Very Bottom) --- */}
+        {/* --- LAYER 1: Hero Landing (Face 100% Clear -> Title Larger & Shifted Down) --- */}
         <motion.div
           style={{ opacity: opacity1, y: y1, display: display1 }}
-          className="absolute inset-0 flex flex-col justify-end text-center pb-5 sm:pb-7 md:pb-9 px-4 sm:px-6"
+          className="absolute inset-0 flex flex-col justify-end text-center pb-6 sm:pb-8 md:pb-11 px-4 sm:px-6"
         >
           {/* Subtle bottom gradient to guarantee crisp contrast over torso */}
           <div className="absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" aria-hidden="true" />
 
           {/* Typography positioned down in lower negative space (Face completely clear) */}
-          <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto space-y-2 pointer-events-auto">
+          <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto space-y-3 pointer-events-auto">
             
             {/* 01. Compact Availability status */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm">
@@ -44,21 +44,16 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
               </span>
             </div>
 
-            {/* 02. Reduced, elegant Headline */}
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold tracking-tight text-white leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            {/* 02. Larger, prominent Name Title (Shifted down, no overlapping subtitle) */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold tracking-tight text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
               Sai Santosh Madhari
             </h1>
 
-            {/* 03. Reduced, compact Value Proposition */}
-            <p className="text-xs sm:text-sm md:text-base text-zinc-200 font-normal leading-relaxed max-w-[48ch] text-balance drop-shadow-[0_1px_6px_rgba(0,0,0,0.85)]">
-              I design complex enterprise systems, AI agent workflows, and thoughtful digital products that feel simple and human.
-            </p>
-
-            {/* 04 & 05. Compact Action CTAs */}
-            <div className="pt-1.5 flex flex-wrap items-center justify-center gap-2.5">
+            {/* 03. Compact Action CTAs */}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <a
                 href="#work"
-                className="touch-target inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-full bg-white text-black font-bold text-xs sm:text-sm hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.4)] focus-visible:ring-2 focus-visible:ring-white"
+                className="touch-target inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full bg-white text-black font-bold text-xs sm:text-sm hover:bg-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.4)] focus-visible:ring-2 focus-visible:ring-white"
               >
                 View my work
                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -67,7 +62,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
               </a>
               <a
                 href="#about"
-                className="touch-target inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full bg-white/10 text-white font-medium text-xs sm:text-sm hover:bg-white/20 border border-white/25 transition-all backdrop-blur-md shadow-sm focus-visible:ring-2 focus-visible:ring-white"
+                className="touch-target inline-flex items-center justify-center gap-1.5 px-4.5 py-2.5 rounded-full bg-white/10 text-white font-medium text-xs sm:text-sm hover:bg-white/20 border border-white/25 transition-all backdrop-blur-md shadow-sm focus-visible:ring-2 focus-visible:ring-white"
               >
                 About me
               </a>
@@ -77,7 +72,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
 
           {/* Minimalist Arrow Scroll Prompt */}
           <motion.div 
-            className="relative z-10 mt-2 flex flex-col items-center opacity-60"
+            className="relative z-10 mt-3 flex flex-col items-center opacity-60"
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             aria-hidden="true"

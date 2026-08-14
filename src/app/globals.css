@@ -175,3 +175,38 @@ body {
   font-size: 0.8125rem; /* 13px */
   line-height: 1.4;
 }
+
+/* ==========================================================================
+   SKY ENVIRONMENT DRIFT ANIMATIONS
+   ========================================================================== */
+
+@keyframes driftSlow {
+  0% { transform: translateX(-4%) translateY(0); }
+  50% { transform: translateX(6%) translateY(-10px); }
+  100% { transform: translateX(-4%) translateY(0); }
+}
+
+@keyframes driftMedium {
+  0% { transform: translateX(4%) translateY(0); }
+  50% { transform: translateX(-6%) translateY(12px); }
+  100% { transform: translateX(4%) translateY(0); }
+}
+
+@keyframes driftFast {
+  0% { transform: translateX(-6%) translateY(0); }
+  50% { transform: translateX(8%) translateY(-8px); }
+  100% { transform: translateX(-6%) translateY(0); }
+}
+
+.animate-drift-slow {
+  animation: driftSlow 40s ease-in-out infinite alternate;
+}
+
+.animate-drift-medium {
+  animation: driftMedium 28s ease-in-out infinite alternate;
+}
+
+.animate-drift-fast {
+  animation: driftFast 20s ease-in-out infinite alternate;
+}
+

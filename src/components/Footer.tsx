@@ -41,9 +41,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-50 dark:bg-[#03050c] border-t border-black/5 dark:border-white/5 py-24 sm:py-32 relative overflow-hidden transition-colors duration-500">
+    <footer className="bg-[#03050c] text-white border-t border-white/10 py-24 sm:py-32 relative overflow-hidden">
       {/* Cinematic Pinterest Native Video Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-20 dark:opacity-40" aria-hidden="true">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-35" aria-hidden="true">
         <video 
            autoPlay 
            loop 
@@ -54,8 +54,8 @@ export default function Footer() {
         >
            <source src="/images/footer-mp4.mp4" type="video/mp4" />
         </video>
-        {/* Aggressive vignette routing to force gradient matching */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-slate-50/30 to-slate-50 dark:from-[#03050c] dark:via-[#03050c]/30 dark:to-[#03050c] opacity-90" />
+        {/* Aggressive dark vignette matching */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#03050c] via-[#03050c]/40 to-[#03050c] opacity-90" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
@@ -66,10 +66,10 @@ export default function Footer() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center justify-center text-center space-y-6 mb-20 sm:mb-28"
         >
-          <h2 className="section-heading text-slate-900 dark:text-white/90">
+          <h2 className="section-heading text-white">
             Let&apos;s build
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 italic font-light drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 italic font-light drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               something interesting.
             </span>
           </h2>
@@ -83,27 +83,27 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end pt-8 border-t border-black/5 dark:border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end pt-8 border-t border-white/10">
           <div className="flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
               {socials.map((s) => (
                 <a
                   key={s.name}
                   href={s.url}
-                  className="touch-target w-10 h-10 rounded-full bg-white/80 dark:bg-white/10 border border-black/5 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white transition-all transform hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="touch-target w-10 h-10 rounded-full bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all transform hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500"
                   aria-label={`Open ${s.name} (external link)`}
                 >
                   {s.icon}
                 </a>
               ))}
             </div>
-            <p className="text-slate-600 dark:text-slate-400 text-xs font-mono tracking-wider uppercase">
+            <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
               Based in Hyderabad, India &bull; Available for Global &amp; Remote Roles
             </p>
           </div>
           
           <div className="flex flex-col md:items-end space-y-2">
-            <p className="text-slate-500 dark:text-slate-400 text-xs font-mono tracking-wider uppercase">
+            <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
               &copy; {new Date().getFullYear()} &mdash; Sai Santosh Madhari. All rights reserved.
             </p>
           </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
+import SkyEnvironment from '@/components/SkyEnvironment';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import MouseGlow from '@/components/MouseGlow';
@@ -34,13 +35,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scrollbar-hide" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#F7F5EC] dark:bg-[#03050c] text-zinc-900 dark:text-slate-100 flex flex-col min-h-screen overflow-x-clip cursor-none transition-colors duration-300`}>
+      <body className={`${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#2a7ae7] dark:bg-[#03050c] text-zinc-900 dark:text-slate-100 flex flex-col min-h-screen overflow-x-clip cursor-none transition-colors duration-1000`}>
         <Providers>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white rounded-br-lg">
             Skip to main content
           </a>
           <Preloader />
           <CustomCursor />
+          <SkyEnvironment />
           <MouseGlow />
           <Navigation />
           <main id="main-content" className="flex-1 relative z-10 w-full" tabIndex={-1}>
