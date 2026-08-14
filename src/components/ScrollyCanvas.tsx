@@ -142,16 +142,16 @@ export default function ScrollyCanvas() {
   });
 
   return (
-    <div ref={containerRef} className="h-[500vh] relative bg-background">
+    <div ref={containerRef} className="h-[500vh] relative bg-[#03050c]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
 
         {/* Render text overlay synced to the EXACT canvas height ref */}
         <Overlay scrollYProgress={scrollYProgress} />
 
-        {/* Loading Overlay Fades heavily out at 50% so they can see the start sooner, totally gone at 100% */}
+        {/* Loading Overlay */}
         {loadedPercent < 100 && (
-          <div className={`absolute inset-0 z-50 flex items-center justify-center pointer-events-none transition-all duration-1000 ${loadedPercent > 50 ? 'bg-slate-50/40 dark:bg-black/40 backdrop-blur-sm' : 'bg-slate-100 dark:bg-[#121212]'}`}>
-            <div className="text-slate-900 dark:text-white shrink-0 text-sm font-medium tracking-widest uppercase">
+          <div className={`absolute inset-0 z-50 flex items-center justify-center pointer-events-none transition-all duration-1000 ${loadedPercent > 50 ? 'bg-black/40 backdrop-blur-sm' : 'bg-[#03050c]'}`}>
+            <div className="text-white shrink-0 text-sm font-medium tracking-widest uppercase font-mono">
               Loading Resources {loadedPercent}%
             </div>
           </div>
