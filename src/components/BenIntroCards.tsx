@@ -8,7 +8,7 @@ export default function BenIntroCards() {
   return (
     <section className="px-5 pb-0 pt-8 sm:px-8 md:px-12 max-w-[1240px] mx-auto w-full">
       {/* Intro Surface Box with Dot Grid Background */}
-      <div className="relative mx-auto w-full overflow-hidden rounded-[28px] bg-white/88 dark:bg-[#081026]/88 p-7 sm:p-10 md:p-14 border border-white/60 dark:border-white/10 shadow-[0_16px_45px_rgba(20,60,140,0.12)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-colors duration-300">
+      <div className="relative mx-auto w-full overflow-hidden rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 p-7 sm:p-10 md:p-14 border border-black/5 dark:border-white/10 shadow-sm dark:shadow-md backdrop-blur-xl transition-colors duration-300">
         
         {/* Subtle dot matrix pattern */}
         <div 
@@ -24,28 +24,35 @@ export default function BenIntroCards() {
           {/* Status Badge */}
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-blue-700 dark:text-blue-400 text-xs font-mono font-semibold tracking-wide">
-              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
-              AVAILABLE FOR AI-UX &amp; PRODUCT DESIGN ROLES
+              <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" aria-hidden="true" />
+              AVAILABLE FOR PRODUCT &amp; AI LEAD ROLES
             </span>
           </div>
 
-          {/* Large Display Headline */}
+          {/* Large Acorn-style Display Headline */}
           <h2 className="hero-heading text-zinc-900 dark:text-white">
             Hi, I&apos;m Sai Santosh.<br />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-400 bg-clip-text text-transparent">
-              AI-UX Designer &amp; Product Builder.
+              Product Designer &amp; AI Builder.
             </span>
           </h2>
 
-          {/* Subtitle with Pill tags matching Resume */}
+          {/* Subtitle with Pill tags and controlled width */}
           <p className="body-lead text-zinc-700 dark:text-zinc-300">
-            Results-driven AI-UX Designer with <strong className="text-zinc-900 dark:text-white font-semibold">3+ years of experience</strong> architecting intuitive enterprise web &amp; mobile platforms at{' '}
+            Product Designer with a Data Science &amp; Fine Arts background. Designing enterprise systems at{' '}
             <span className="inline-block whitespace-nowrap align-middle">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-black/5 dark:bg-white/10 px-3 py-1 border border-black/10 dark:border-white/15 text-zinc-900 dark:text-white text-xs sm:text-sm font-medium shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-500" aria-hidden="true" />
                 Tata Consultancy Services
               </span>
-            </span>. Blending user-centered research with <strong className="text-blue-600 dark:text-blue-400 font-semibold">AI assistants, automation &amp; design systems</strong> to reduce confusion and build trust.
+            </span>{' '}
+            by day, building{' '}
+            <span className="inline-block whitespace-nowrap align-middle">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 dark:bg-blue-500/20 px-3 py-1 border border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium shadow-sm">
+                AI Tools &amp; Agentic Workflows
+              </span>
+            </span>{' '}
+            by night.
           </p>
 
           {/* Action CTA Buttons */}
@@ -54,7 +61,7 @@ export default function BenIntroCards() {
               href="#work"
               className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-sm md:text-base hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             >
-              Explore Case Studies
+              Check out recent work
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
@@ -63,15 +70,15 @@ export default function BenIntroCards() {
               href="#about"
               className="touch-target inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-black/15 dark:border-white/20 text-zinc-900 dark:text-white font-medium text-sm md:text-base hover:bg-black/5 dark:hover:bg-white/10 transition-all backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             >
-              About My Journey
+              Learn more about me
             </a>
           </div>
         </div>
 
-        {/* 4 Cards Deck */}
+        {/* 4 Cards Deck (Curated 4-Column Layout) */}
         <div className="mt-12 hidden lg:grid lg:grid-cols-4 gap-4 xl:gap-5 pt-2">
           
-          {/* Card 1: Enterprise Case Studies */}
+          {/* Card 1: Recent Work (Warm Orange/Amber Accent) */}
           <motion.div 
             whileHover={{ y: -6, scale: 1.015 }}
             className="h-[340px] xl:h-[360px]"
@@ -79,13 +86,13 @@ export default function BenIntroCards() {
             <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#c2410c] to-[#9a3412] text-white shadow-md flex flex-col justify-between border border-orange-400/30">
               <div className="space-y-3">
                 <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-orange-200 bg-black/25 px-3 py-1 rounded-full">
-                  Enterprise Work
+                  Case Studies
                 </span>
                 <h3 className="card-heading text-white leading-tight">
-                  TCS Platforms &amp; TMS
+                  Recent work
                 </h3>
                 <p className="text-sm font-normal text-orange-100/90 leading-relaxed">
-                  How heuristic audits &amp; dashboard redesigns reduced recurring issues by 80%+ and halved employee tickets.
+                  How I turn complex enterprise &amp; AI problems into shipped, measurable experiences.
                 </p>
               </div>
               <div>
@@ -114,19 +121,19 @@ export default function BenIntroCards() {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="relative z-10 space-y-2">
                 <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-300 bg-cyan-950/80 px-2.5 py-0.5 rounded border border-cyan-800">
-                  Featured Project
+                  Flagship Case Study
                 </span>
                 <h3 className="text-xl font-bold text-white leading-snug">
-                  Enterprise Estimation &amp; TMS
+                  eSOW Planner
                 </h3>
                 <p className="text-xs text-zinc-300 line-clamp-2">
-                  Streamlining estimation workflows &amp; resource tracking for mission-critical delivery operations.
+                  68% reduction in SOW authoring cycle for global enterprise delivery teams.
                 </p>
               </div>
             </article>
           </motion.div>
 
-          {/* Card 3: AI-UX & Human-in-the-Loop */}
+          {/* Card 3: Indie Apps & AI Tools (Purple Accent) */}
           <motion.div 
             whileHover={{ y: -6, scale: 1.015 }}
             className="h-[340px] xl:h-[360px]"
@@ -134,13 +141,13 @@ export default function BenIntroCards() {
             <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#6d28d9] to-[#581c87] text-white shadow-md flex flex-col justify-between border border-purple-400/30">
               <div className="space-y-3">
                 <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-purple-200 bg-black/25 px-3 py-1 rounded-full">
-                  AI Orchestration
+                  Process &amp; AI
                 </span>
                 <h3 className="card-heading text-white leading-tight">
-                  AI-UX Framework
+                  How I Work
                 </h3>
                 <p className="text-sm font-normal text-purple-100/90 leading-relaxed">
-                  Blending AI assistants, multi-agent state machines, and generative interfaces that build user trust.
+                  Discover &rarr; Structure &rarr; Design &rarr; Build &rarr; Validate with modern AI tooling.
                 </p>
               </div>
               <div>
@@ -154,7 +161,7 @@ export default function BenIntroCards() {
             </article>
           </motion.div>
 
-          {/* Card 4: Design Systems & Certifications */}
+          {/* Card 4: Public Workshops & Talks (Blue Accent) */}
           <motion.div 
             whileHover={{ y: -6, scale: 1.015 }}
             className="h-[340px] xl:h-[360px]"
@@ -162,13 +169,13 @@ export default function BenIntroCards() {
             <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#0369a1] to-[#075985] text-white shadow-md flex flex-col justify-between border border-sky-400/30">
               <div className="space-y-3">
                 <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-sky-200 bg-black/25 px-3 py-1 rounded-full">
-                  Credentials
+                  Community
                 </span>
                 <h3 className="card-heading text-white leading-tight">
-                  Design Systems &amp; IxDF
+                  Public talks
                 </h3>
                 <p className="text-sm font-normal text-sky-100/90 leading-relaxed">
-                  Google UX Certified &bull; IxDF AI for Designers &bull; Scalable design tokens &amp; WCAG 2.2 AA.
+                  Keynotes and campus masterclasses on design systems and AI orchestration.
                 </p>
               </div>
               <div>
@@ -176,7 +183,7 @@ export default function BenIntroCards() {
                   href="#talks"
                   className="touch-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black text-white font-semibold text-xs xl:text-sm hover:bg-zinc-900 transition-colors shadow-md focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  View Arsenal &rarr;
+                  View Workshops &rarr;
                 </a>
               </div>
             </article>

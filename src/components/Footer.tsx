@@ -18,16 +18,6 @@ export default function Footer() {
       )
     },
     { 
-      name: 'Email', 
-      url: 'mailto:madharisaisantosh@gmail.com',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-          <polyline points="22,6 12,13 2,6"></polyline>
-        </svg>
-      )
-    },
-    { 
       name: 'Instagram', 
       url: 'https://www.instagram.com/sai_santosh_madhari/',
       icon: (
@@ -37,12 +27,22 @@ export default function Footer() {
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
         </svg>
       )
+    },
+    { 
+      name: 'Email', 
+      url: 'mailto:Saisantoshmadhari@gmail.com',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      )
     }
   ];
 
   return (
     <footer className="bg-[#03050c] text-white border-t border-white/10 py-24 sm:py-32 relative overflow-hidden">
-      {/* Cinematic Native Video Background */}
+      {/* Cinematic Pinterest Native Video Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-35" aria-hidden="true">
         <video 
            autoPlay 
@@ -54,7 +54,7 @@ export default function Footer() {
         >
            <source src="/images/footer-mp4.mp4" type="video/mp4" />
         </video>
-        {/* Dark vignette matching */}
+        {/* Aggressive dark vignette matching */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#03050c] via-[#03050c]/40 to-[#03050c] opacity-90" />
       </div>
 
@@ -70,7 +70,7 @@ export default function Footer() {
             Let&apos;s build
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 italic font-light drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-              something exceptional.
+              something interesting.
             </span>
           </h2>
           <div className="pt-4">
@@ -98,13 +98,13 @@ export default function Footer() {
               ))}
             </div>
             <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
-              Madhari Sai Santosh &bull; Hyderabad, India &bull; +91 7989672240
+              Based in Hyderabad, India &bull; Available for Global &amp; Remote Roles
             </p>
           </div>
           
           <div className="flex flex-col md:items-end space-y-2">
             <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
-              &copy; {new Date().getFullYear()} &mdash; Madhari Sai Santosh. All rights reserved.
+              &copy; {new Date().getFullYear()} &mdash; Sai Santosh Madhari. All rights reserved.
             </p>
           </div>
         </div>
