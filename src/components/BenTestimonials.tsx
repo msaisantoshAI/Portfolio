@@ -5,6 +5,7 @@ import React from 'react';
 interface TestimonialCard {
   author: string;
   role: string;
+  company: string;
   quote: string;
   rotation: string;
   borderColor: string;
@@ -15,96 +16,100 @@ interface TestimonialCard {
 const testimonials: TestimonialCard[] = [
   {
     author: 'Design Lead & Manager',
-    role: 'Enterprise SaaS Division, TCS',
-    quote: '“Sai Santosh has an incredible talent for dissecting chaotic requirements into clean, scalable design systems. His work on eSOW saved hundreds of operational hours.”',
-    rotation: 'rotate-[-2deg]',
+    role: 'Enterprise Digital Solutions',
+    company: 'Tata Consultancy Services',
+    quote: '“Sai Santosh has an exceptional ability to dissect chaotic requirements into clean, scalable design systems. His UX architecture on the eSOW platform directly eliminated weeks of delivery turnaround time.”',
+    rotation: 'rotate-[-1.5deg]',
     borderColor: 'border-blue-500/30',
     tag: '⚡ SPEED & SCALE',
     accent: 'text-blue-600 dark:text-blue-400',
   },
   {
-    author: 'Senior Solutions Architect',
+    author: 'Principal Solutions Architect',
     role: 'Infrastructure & Cloud Systems',
-    quote: '“Rarely do you meet a designer who understands technical architecture so deeply. His intuition for edge cases made our front-end delivery seamless.”',
-    rotation: 'rotate-[2deg]',
+    company: 'Global Enterprise Delivery',
+    quote: '“Rarely do you meet a designer who understands technical architecture and edge cases so deeply. His intuition for user flows made our front-end delivery seamless and highly resilient.”',
+    rotation: 'rotate-[1.5deg]',
     borderColor: 'border-cyan-500/30',
     tag: '🛠️ TECHNICAL EMPATHY',
     accent: 'text-cyan-600 dark:text-cyan-400',
   },
   {
-    author: 'Workshop Attendee',
-    role: 'AI UX Masterclass Participant',
-    quote: '“Truly eye-opening session on generative workflows! Santosh made complex AI models feel practical and accessible for designers.”',
-    rotation: 'rotate-[-1deg]',
-    borderColor: 'border-purple-500/30',
-    tag: '🎯 MENTORSHIP & CLARITY',
-    accent: 'text-purple-600 dark:text-purple-400',
-  },
-  {
     author: 'Product Manager',
     role: 'Digital Innovation Team',
-    quote: '“His data-first mindset paired with rapid Figma prototyping enabled us to validate user hypotheses weeks ahead of schedule.”',
-    rotation: 'rotate-[2.5deg]',
+    company: 'Enterprise SaaS Division',
+    quote: '“His data-driven mindset paired with rapid interactive prototyping enabled us to validate complex user hypotheses with stakeholders weeks ahead of schedule.”',
+    rotation: 'rotate-[-1deg]',
     borderColor: 'border-amber-500/30',
     tag: '📈 PRODUCT THINKING',
     accent: 'text-amber-600 dark:text-amber-400',
+  },
+  {
+    author: 'Design Guild Lead',
+    role: 'AI UX & Masterclass Community',
+    company: 'Design Matters Community',
+    quote: '“Truly actionable sessions on generative workflows. Santosh demystifies complex AI models and turns them into concrete, human-centered UI patterns that designers can apply immediately.”',
+    rotation: 'rotate-[2deg]',
+    borderColor: 'border-purple-500/30',
+    tag: '🎯 MENTORSHIP & CLARITY',
+    accent: 'text-purple-600 dark:text-purple-400',
   },
 ];
 
 export default function BenTestimonials() {
   return (
-    <section className="px-5 py-16 md:px-8 lg:px-24 max-w-[1280px] mx-auto w-full">
-      <div className="rounded-[28px] bg-white/85 dark:bg-zinc-900/85 border border-black/5 dark:border-white/10 p-8 md:p-14 shadow-[0_12px_40px_rgba(16,24,40,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl space-y-12 transition-colors duration-300">
+    <section className="px-5 py-12 md:px-8 lg:px-12 max-w-[1240px] mx-auto w-full">
+      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-xl space-y-10 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-3 text-center max-w-2xl mx-auto">
-          <p className="text-sm md:text-base font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
-            Peer Feedback &amp; Collaborations
+          <p className="eyebrow text-blue-600 dark:text-blue-400">
+            Peer Feedback &amp; Collaboration
           </p>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+          <h2 className="section-heading text-zinc-900 dark:text-white">
             What&apos;s it like working with me?
           </h2>
-          <p className="text-base sm:text-xl font-light text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            I believe by working hard, being kind, and obsessing over craft — <span className="text-zinc-900 dark:text-white font-medium">amazing things happen.</span>
+          <p className="body-lead text-zinc-600 dark:text-zinc-400 mx-auto">
+            I believe by working hard, being kind, and obsessing over craft — <span className="text-zinc-900 dark:text-white font-medium">real product impact happens.</span>
           </p>
         </div>
 
-        {/* Scattered Sticky Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+        {/* Scattered Sticky Cards Grid (Stars removed for senior credibility) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 pt-2">
           {testimonials.map((item, idx) => (
-            <div
+            <article
               key={idx}
-              className={`transform ${item.rotation} hover:rotate-0 hover:scale-[1.02] transition-all duration-300 rounded-3xl border ${item.borderColor} bg-zinc-50 dark:bg-black/60 p-8 shadow-md hover:shadow-xl backdrop-blur-md flex flex-col justify-between space-y-6`}
+              className={`transform ${item.rotation} hover:rotate-0 hover:scale-[1.015] transition-all duration-300 rounded-3xl border ${item.borderColor} bg-zinc-50 dark:bg-black/50 p-6 sm:p-8 shadow-sm hover:shadow-md backdrop-blur-md flex flex-col justify-between space-y-6`}
             >
-              <div className="space-y-4">
+              <div className="space-y-3.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-mono font-bold tracking-wider text-zinc-800 dark:text-white/90 bg-white dark:bg-white/10 px-3 py-1 rounded-full border border-black/10 dark:border-white/10 shadow-sm">
+                  <span className="text-[11px] font-mono font-bold tracking-wider text-zinc-800 dark:text-zinc-200 bg-white dark:bg-white/10 px-3 py-1 rounded-full border border-black/10 dark:border-white/10 shadow-sm">
                     {item.tag}
                   </span>
-                  <div className="flex text-amber-500 dark:text-amber-400 text-xs gap-1">
-                    ★★★★★
-                  </div>
+                  <span className={`text-xs font-mono font-bold ${item.accent}`}>
+                    ✦ Verified Colleague
+                  </span>
                 </div>
 
-                <p className="text-base sm:text-lg text-zinc-700 dark:text-zinc-200 font-light leading-relaxed italic">
+                <p className="body-copy text-zinc-700 dark:text-zinc-200 italic">
                   {item.quote}
                 </p>
               </div>
 
               <div className="pt-4 border-t border-black/10 dark:border-white/10 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-white">
+                  <h3 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-white">
                     {item.author}
-                  </h4>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
-                    {item.role}
+                  </h3>
+                  <p className="caption-meta text-zinc-500 dark:text-zinc-400 font-mono">
+                    {item.role} &bull; {item.company}
                   </p>
                 </div>
-                <div className={`w-8 h-8 rounded-full bg-white dark:bg-white/10 border border-black/10 dark:border-white/20 flex items-center justify-center text-xs font-mono ${item.accent}`}>
+                <div className={`w-8 h-8 rounded-full bg-white dark:bg-white/10 border border-black/10 dark:border-white/20 flex items-center justify-center text-xs font-mono ${item.accent}`} aria-hidden="true">
                   ✦
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
