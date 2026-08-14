@@ -16,33 +16,33 @@ interface Talk {
 
 const talks: Talk[] = [
   {
-    date: 'Sep 2025',
+    date: '2024 — 2025',
     title: 'Designing with AI: Beyond Prompts into Living Interfaces',
-    event: 'Design Matters Community Session',
-    location: 'Bangalore, India',
-    description: 'Shared deep dives on how AI transforms product design workflows, moving from static mockups into continuous generative orchestration and streaming UI states.',
-    stats: '1,200+ Attendees',
-    tags: ['AI Product Design', 'Generative UI', 'Keynote'],
+    event: 'AI-UX Design & Product Session',
+    location: 'Hyderabad, India',
+    description: 'Shared deep dives on how AI assistants, automation, and cognitive models transform product design workflows, moving from static mockups into continuous generative orchestration.',
+    stats: 'Industry Session',
+    tags: ['AI-UX Design', 'Generative UI', 'IxDF Certification'],
     image: '/images/workshop_speak_1.jpg',
   },
   {
-    date: 'Jun 2024',
-    title: 'The Modern Product Designer: Bridging Design & Systems',
-    event: 'Campus Tech & Design Summit',
-    location: 'Hyderabad, India',
-    description: 'Conducted a hands-on masterclass on design systems, component tokenization, and WCAG accessibility standards for 200+ design students.',
-    stats: '250+ Students',
-    tags: ['Design Systems', 'Accessibility', 'Workshop'],
+    date: '2023 — 2024',
+    title: 'Enterprise Design Systems & Icon Architecture',
+    event: 'Design Systems Knowledge Share',
+    location: 'TCS Design Guild',
+    description: 'Building scalable icon libraries, verified WCAG 2.2 accessibility states, and unified component tokens across multi-squad enterprise delivery teams.',
+    stats: 'Design Systems',
+    tags: ['Design Systems', 'WCAG 2.2 AA', 'Iconography'],
     image: '/images/workshop_group.jpg',
   },
   {
-    date: 'Mar 2024',
-    title: 'Heuristic Audits & Enterprise SaaS Workflows',
-    event: 'TCS Design Guild Knowledge Share',
-    location: 'Internal Global Session',
-    description: 'Presented an actionable framework for auditing multi-step enterprise workflows to reduce cognitive load and cut time-to-first-value.',
-    stats: '500+ Peers',
-    tags: ['Enterprise UX', 'Heuristics', 'Guild Talk'],
+    date: '2023',
+    title: 'Heuristic Audits & Enterprise Search Usability',
+    event: 'UX Strategy Masterclass',
+    location: 'Internal Knowledge Session',
+    description: 'Presented an actionable framework for evaluating complex enterprise search and estimation platforms to reduce cognitive fatigue and drop employee support tickets.',
+    stats: 'Usability Audit',
+    tags: ['Heuristics', 'Search UX', 'User Research'],
     image: '/images/workshop_speak_2.jpg',
   },
 ];
@@ -53,18 +53,18 @@ export default function BenTalks() {
 
   return (
     <section id="talks" className="px-5 py-12 md:px-8 lg:px-12 max-w-[1240px] mx-auto w-full">
-      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-xl space-y-10 transition-colors duration-300">
+      <div className="rounded-[28px] bg-white/88 dark:bg-[#081026]/88 border border-white/60 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-[0_16px_45px_rgba(20,60,140,0.12)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-10 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-3">
           <p className="eyebrow text-blue-600 dark:text-blue-400">
-            Speaking &amp; Mentorship
+            Speaking &amp; Knowledge Sharing
           </p>
           <h2 className="section-heading text-zinc-900 dark:text-white">
-            I do public talks &amp; workshops from time to time.
+            Workshops, Guild Talks &amp; Masterclasses
           </h2>
           <p className="body-lead text-zinc-600 dark:text-zinc-400">
-            Sharing knowledge on design systems, enterprise UX heuristics, and the emerging frontier of human-in-the-loop AI interfaces.
+            Sharing practical knowledge on enterprise UX heuristics, scalable design systems, and human-in-the-loop AI orchestration.
           </p>
         </div>
 

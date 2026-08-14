@@ -21,56 +21,56 @@ interface WorkItem {
 
 const workItems: WorkItem[] = [
   {
-    year: '2024',
-    title: 'eSOW Planner',
-    category: 'Enterprise SaaS · Contract & SOW Automation',
-    tagline: 'End-to-end Enterprise Statement of Work Platform',
-    outcomeMetric: '68%',
-    outcome: 'reduction in average SOW authoring cycle time across global delivery teams',
-    problem: 'Enterprise sales & engineering teams suffered 3+ weeks turnaround due to fragmented pricing matrices, manual compliance audits, and disjointed approvals.',
-    role: 'Lead Product Designer · UX Architecture · Design System',
-    tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
+    year: '2023 — Present',
+    title: 'TM System (TMS) & Estimation Platform',
+    category: 'Enterprise SaaS · TCS Core Platform',
+    tagline: 'Resource Tracking & Streamlined Estimation Workflows',
+    outcomeMetric: '80%+',
+    outcome: 'reduction in recurring application issues and 50% decrease in employee-raised tickets',
+    problem: 'Internal customer platforms and resource allocation systems suffered from high cognitive load, redundant data entry, and fragmented estimation workflows.',
+    role: 'AI-UX Designer · Heuristic Audits · Dashboard Architecture · Design System',
+    tags: ['TCS Enterprise', 'Heuristic Audits', 'TMS System', 'Design Systems', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
     link: '/projects/esow-planner',
     isFlagship: true,
   },
   {
-    year: '2025',
-    title: 'AI Orchestration Workspace',
+    year: '2023 — 2024',
+    title: 'Enterprise Unified Search ("All Results")',
+    category: 'Enterprise Architecture · Search & Retrieval',
+    tagline: 'Structured Multi-Entity Search Hierarchy',
+    outcomeMetric: '100%',
+    outcome: 'structured hierarchy overhaul resolving search usability bottlenecks and query chaos',
+    problem: 'Enterprise users faced confusing, disjointed search result lists that lacked clear categorization, filtering facets, and visual clarity across enterprise entities.',
+    role: 'UX Designer · Information Architecture · Figma/XD Interactive Specs',
+    tags: ['Search UX', 'Information Architecture', 'Figma Prototyping', 'User Research'],
+    image: '/images/project_sas_1775675939361.png',
+    link: '/projects/esow-planner',
+  },
+  {
+    year: '2024 — Present',
+    title: 'AI-UX Agent Orchestration Canvas',
     category: 'AI Interaction Design · Generative UI',
-    tagline: 'Multi-Agent Canvas & Streaming UI Workspace',
+    tagline: 'Human-in-the-Loop Multi-Agent Interface',
     outcomeMetric: '4.2x',
-    outcome: 'faster iteration speed for designers & engineers testing autonomous LLM agent chains',
-    problem: 'Navigating non-deterministic AI outputs and complex prompt trees caused developer confusion and poor UI feedback loops.',
-    role: 'Product Designer & AI Prototyper · Interaction Model',
-    tags: ['AI Product Design', 'Generative UI', 'Agent Workflows', 'Prompt Canvas'],
+    outcome: 'faster prototyping cycles and higher trust in non-deterministic AI agent outputs',
+    problem: 'Complex multi-agent chains and generative models created black-box confusion for users requiring real-time transparency and state inspection.',
+    role: 'AI-UX Researcher & Prototyper · Prompt Canvas · Antigravity & Framer',
+    tags: ['AI-UX', 'Generative UI', 'Agent Workflows', 'Prompt Canvas', 'Cursor / Claude'],
     image: '/images/hero-video.mp4',
     link: '/projects/esow-planner',
     isFlagship: true,
   },
   {
     year: '2023',
-    title: 'SAS + HRMS Integration',
-    category: 'Critical Infrastructure · High-Density Telemetry',
-    tagline: 'Substation Automation & Field Operations Hub',
-    outcomeMetric: '52%',
-    outcome: 'reduction in incident dispatch response latency for electrical grid operators',
-    problem: 'Field engineers struggled with disparate hardware sensors and legacy workforce rosters during emergency grid faults.',
-    role: 'Product UX Designer · Information Architecture',
-    tags: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
-    image: '/images/project_sas_1775675939361.png',
-    link: '/projects/esow-planner',
-  },
-  {
-    year: '2023',
-    title: 'EMULATE Virtual Cloud',
-    category: 'Cloud Infrastructure · Sandbox Environments',
-    tagline: 'Frictionless Virtual Machine Control Center',
-    outcomeMetric: '80%',
-    outcome: 'drop in setup friction for spinning up remote engineering sandbox clusters',
-    problem: 'Developers spent hours configuring local virtualization environments and debugging permission conflicts across distributed squads.',
-    role: 'UI/UX Architect · Concept & Prototype Design',
-    tags: ['Cloud Computing', 'UI/UX Architecture', 'Concept Design'],
+    title: 'Scalable Enterprise Design System & Iconography',
+    category: 'Design Systems · Accessibility & Components',
+    tagline: 'Multi-Product Component Library & Tokens',
+    outcomeMetric: '100%',
+    outcome: 'WCAG 2.2 AA compliance and consistent interaction states across product squads',
+    problem: 'Disparate product teams created isolated UI patterns, resulting in inconsistent icon styles, missing accessibility states, and developer handoff friction.',
+    role: 'Design System Lead · Scalable Icon Library · Token Architecture',
+    tags: ['Design Systems', 'Iconography', 'WCAG 2.2 AA', 'Figma Tokens'],
     image: '/images/project_emulate_1775675955645.png',
     link: '/projects/esow-planner',
   },
@@ -79,7 +79,7 @@ const workItems: WorkItem[] = [
 export default function BenWorkTimeline() {
   return (
     <section id="work" className="px-5 py-12 md:px-8 lg:px-12 max-w-[1240px] mx-auto w-full">
-      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-xl transition-colors duration-300">
+      <div className="rounded-[28px] bg-white/88 dark:bg-[#081026]/88 border border-white/60 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-[0_16px_45px_rgba(20,60,140,0.12)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-colors duration-300">
         
         {/* Section Header */}
         <div className="mb-12 space-y-3">
@@ -91,11 +91,11 @@ export default function BenWorkTimeline() {
               Selected Case Studies
             </h2>
             <span className="text-base sm:text-xl text-zinc-500 dark:text-zinc-400 font-light">
-              (Enterprise SaaS &amp; AI Systems)
+              (Enterprise &amp; AI-UX Systems)
             </span>
           </div>
           <p className="body-lead text-zinc-600 dark:text-zinc-300">
-            Proven outcomes across enterprise contract automation, high-density telemetry, and next-generation AI workflows.
+            Measurable impact delivered across TCS enterprise platforms, search architectures, and AI agent orchestration.
           </p>
         </div>
 
@@ -106,13 +106,13 @@ export default function BenWorkTimeline() {
               key={idx} 
               className={`rounded-3xl border ${
                 item.isFlagship 
-                  ? 'border-blue-500/30 bg-blue-50/20 dark:bg-blue-950/10' 
+                  ? 'border-blue-500/30 bg-blue-50/30 dark:bg-blue-950/20' 
                   : 'border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/40'
               } p-6 sm:p-8 md:p-10 shadow-sm hover:shadow-md transition-all duration-300 group`}
             >
               <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
                 
-                {/* Visual Area (~55-60% of card) */}
+                {/* Visual Area */}
                 <div className="w-full lg:w-[56%] shrink-0">
                   <div className="relative w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 shadow-md aspect-[16/10] group-hover:border-blue-500/40 transition-all duration-500">
                     {item.image.endsWith('.mp4') ? (
@@ -144,7 +144,7 @@ export default function BenWorkTimeline() {
                   </div>
                 </div>
 
-                {/* Content Area (~40-45% of card) */}
+                {/* Content Area */}
                 <div className="w-full lg:w-[44%] flex flex-col justify-between space-y-6">
                   
                   {/* Metadata & Title */}
@@ -179,7 +179,7 @@ export default function BenWorkTimeline() {
                       </p>
                     </div>
 
-                    {/* My Role */}
+                    {/* Role */}
                     <div className="space-y-1">
                       <span className="caption-meta font-mono font-semibold uppercase text-zinc-500 dark:text-zinc-400">
                         My Contribution:

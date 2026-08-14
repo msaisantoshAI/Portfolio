@@ -14,57 +14,56 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    company: 'Tata Consultancy Services',
-    role: 'Lead Product Designer',
-    period: '2023 — Present',
+    company: 'Tata Consultancy Services (TCS)',
+    role: 'AI-UX Designer & Product Designer',
+    period: 'Oct 2022 — Present',
     location: 'Hyderabad, India',
-    description: 'Leading end-to-end UX architecture for enterprise platforms, field operations automation, and internal tooling across multi-national delivery centers.',
-    impact: 'Architected eSOW Planner, reducing SOW generation turnaround time by 68% for global delivery teams.',
-    skills: ['Enterprise SaaS', 'Design Systems', 'Workflow Automation', 'WCAG 2.2 AA'],
+    description: 'Leading UX audits, heuristic evaluations, and dashboard redesigns across enterprise customer platforms and TM Systems (TMS). Partnering cross-functionally to build scalable Design Systems and streamline estimation workflows.',
+    impact: 'Drove an 80%+ reduction in recurring application issues, decreasing employee-raised tickets by 50%, and rebuilt the Enterprise Search experience with a unified All-Results hierarchy.',
+    skills: ['Enterprise SaaS', 'Heuristic Audits', 'TMS System', 'Design Systems', 'Figma & XD', 'WCAG 2.2 AA'],
   },
   {
-    company: 'AI Product & Agentic Lab',
-    role: 'AI UX Researcher & Prototyper',
+    company: 'AI Product & Prototyping Lab',
+    role: 'AI-UX Researcher & Prototyper',
     period: '2024 — Present',
     location: 'Independent',
-    description: 'Designing and prototyping generative human-in-the-loop interfaces, agent state visualization trees, and streaming UI components.',
-    impact: 'Built Antigravity Studio and generative canvas prototypes benchmarked with active designer cohorts.',
-    skills: ['Generative UI', 'Agent Workflows', 'Claude / Gemini API', 'Rapid Prototyping'],
+    description: 'Designing human-in-the-loop AI assistants, multi-agent state machines, and generative canvas interfaces using modern LLMs (Claude, Gemini, GPT) and rapid deployment environments.',
+    impact: 'Created interactive agentic workflows and generative UI prototypes benchmarked with active designer cohorts.',
+    skills: ['AI-UX', 'Framer', 'Cursor', 'Lovable', 'Antigravity', 'Agent Workflows'],
   },
-  {
-    company: 'Substation SAS & Energy Systems',
-    role: 'Product UX Designer',
-    period: '2023 — 2024',
-    location: 'Client Engagement',
-    description: 'Unified high-density electrical grid telemetry with field engineer workforce scheduling to minimize human cognitive error in critical infrastructure.',
-    impact: 'Decreased emergency grid dispatch latency by 52% through simplified telemetry hierarchy.',
-    skills: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
-  },
+];
+
+const certifications = [
+  { name: 'Google UX Design Professional Certificate', issuer: 'Coursera' },
+  { name: 'AI for Designers', issuer: 'Interaction Design Foundation (IxDF)' },
+  { name: 'Design Psychology', issuer: 'LinkedIn Learning' },
+  { name: 'Agile User Experience Design', issuer: 'LinkedIn Learning' },
+  { name: 'Pillars of Customer Experience', issuer: 'LinkedIn Learning' },
 ];
 
 export default function SanjayExperience() {
   return (
     <section className="px-5 py-12 md:px-8 lg:px-12 max-w-[1240px] mx-auto w-full">
-      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-xl space-y-10 transition-colors duration-300">
+      <div className="rounded-[28px] bg-white/88 dark:bg-[#081026]/88 border border-white/60 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-[0_16px_45px_rgba(20,60,140,0.12)] dark:shadow-[0_16px_45px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-12 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="space-y-3">
             <p className="eyebrow text-blue-600 dark:text-blue-400">
-              Work History &amp; Leadership
+              Work History &amp; Impact
             </p>
             <h2 className="section-heading text-zinc-900 dark:text-white">
-              Experience
+              Experience &amp; Track Record
             </h2>
           </div>
           <div>
             <span className="caption-meta font-mono text-zinc-500 dark:text-zinc-400">
-              0&rarr;1 Product Design &bull; Enterprise Scale
+              3+ Years Experience &bull; Enterprise &amp; AI-UX
             </span>
           </div>
         </div>
 
-        {/* Experience List (Sanjay Menon Inspired Minimalist Grid) */}
+        {/* Experience List */}
         <div className="space-y-6">
           {experiences.map((exp, idx) => (
             <div
@@ -96,9 +95,9 @@ export default function SanjayExperience() {
                 </p>
 
                 {/* Impact Highlight Box */}
-                <div className="p-3.5 rounded-xl bg-blue-50/60 dark:bg-blue-950/20 border border-blue-200/60 dark:border-blue-800/30">
-                  <p className="text-xs sm:text-sm font-medium text-blue-950 dark:text-blue-200">
-                    <strong className="text-blue-600 dark:text-blue-400 font-bold font-mono uppercase text-xs mr-1.5">Key Impact:</strong>
+                <div className="p-3.5 rounded-xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200/70 dark:border-blue-800/40">
+                  <p className="text-xs sm:text-sm font-medium text-blue-950 dark:text-blue-200 leading-snug">
+                    <strong className="text-blue-600 dark:text-blue-400 font-bold font-mono uppercase text-xs mr-1.5">Key Outcomes:</strong>
                     {exp.impact}
                   </p>
                 </div>
@@ -117,6 +116,44 @@ export default function SanjayExperience() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Education & Certifications Row */}
+        <div className="pt-6 border-t border-black/5 dark:border-white/10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          
+          {/* Education Card */}
+          <div className="p-6 rounded-2xl bg-zinc-50/80 dark:bg-black/30 border border-black/5 dark:border-white/10 space-y-2">
+            <span className="text-xs font-mono font-bold text-indigo-600 dark:text-cyan-400 uppercase tracking-wider">
+              Formal Education
+            </span>
+            <h3 className="text-lg font-bold text-zinc-900 dark:text-white">
+              Bachelor of Fine Arts (BFA)
+            </h3>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              Applied Art &bull; Visual Communication &amp; Graphic Design
+            </p>
+            <p className="caption-meta font-mono text-zinc-500 dark:text-zinc-400">
+              August 2018 — August 2022
+            </p>
+          </div>
+
+          {/* Certifications Card */}
+          <div className="p-6 rounded-2xl bg-zinc-50/80 dark:bg-black/30 border border-black/5 dark:border-white/10 space-y-3">
+            <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+              Industry Certifications
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {certifications.map((cert, cIdx) => (
+                <div 
+                  key={cIdx}
+                  className="px-3 py-1.5 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-xs font-medium text-zinc-800 dark:text-zinc-200 shadow-sm"
+                >
+                  <strong>{cert.name}</strong> <span className="text-zinc-500 dark:text-zinc-400">({cert.issuer})</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
       </div>
