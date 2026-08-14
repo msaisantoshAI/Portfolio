@@ -3,11 +3,11 @@ export default function Contact() {
     <section id="contact" className="relative z-20 bg-[#0A0A0A] py-32 px-8 md:px-24 border-t border-white/5 overflow-hidden">
       <div className="max-w-4xl mx-auto text-center space-y-12">
         <h2 className="text-5xl md:text-8xl font-bold tracking-tighter text-white">
-          Let's build <br className="hidden md:block"/> something <span className="text-zinc-600">meaningful.</span>
+          Let&apos;s build <br className="hidden md:block"/> something <span className="text-zinc-600">meaningful.</span>
         </h2>
         
         <p className="text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          Currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          Currently open for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
         </p>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6">

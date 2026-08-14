@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import { ChevronDown, Code2, PenTool, Layout, Layers, UserCheck, Zap } from "lucide-react";
+import { ChevronDown, Code2, PenTool, Layout, UserCheck } from "lucide-react";
 
 const skillCategories = [
   {

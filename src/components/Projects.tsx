@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
-import Link from 'next/link';
+
 import TextReveal from '@/components/TextReveal';
 
 interface Project {

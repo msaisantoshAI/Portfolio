@@ -4,7 +4,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-start">
         <div className="flex-1 space-y-8 md:sticky md:top-32">
           <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            I don't just design interfaces, I design <span className="text-zinc-500 italic">solutions.</span>
+            I don&apos;t just design interfaces, I design <span className="text-zinc-500 italic">solutions.</span>
           </h3>
           <p className="text-zinc-400 text-lg leading-relaxed max-w-lg">
             With over half a decade of experience spanning enterprise SaaS and consumer apps, my process relies heavily on data-backed research, rapid iteration, and a deep understanding of human-computer interaction.
