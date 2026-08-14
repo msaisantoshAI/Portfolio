@@ -1,146 +1,160 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export default function Navigation() {
-  const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
-  const links = [
-    { name: 'Work', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
+  useEffect(() => {
+    const handleScroll = () => {
+      // Section spy
+      const sections = ['home', 'about', 'work', 'fun', 'talks', 'contact'];
+      for (const section of sections.reverse()) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 250) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Home', href: '#home', id: 'home' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Work', href: '#work', id: 'work' },
+    { name: 'Play', href: '#fun', id: 'fun' },
+    { name: 'Talks', href: '#talks', id: 'talks' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#121212]/40 backdrop-blur-3xl border-b border-white/10 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-8 h-20 flex items-center justify-between">
-        {/* Brand */}
-        <Link href="/" className="group flex items-center space-x-3">
-          <div className="relative w-10 h-10 rounded-full overflow-hidden border border-black/10 dark:border-white/10 shadow-sm group-hover:shadow-md transition-shadow">
-            <Image 
-              src="/images/headshot.png" 
-              alt="Sai Santosh" 
-              fill 
-              className="object-cover" 
-            />
-          </div>
-          <div className="flex flex-col justify-center">
-             <span className="text-white font-semibold text-sm tracking-widest uppercase mb-0.5 group-hover:opacity-80 transition-opacity">
-               Sai Santosh
-             </span>
-             <span className="text-white/50 text-xs font-light tracking-wide">
-               Product Designer
-             </span>
-          </div>
-        </Link>
+    <>
+      {/* Top Header Bar */}
+      <header className="w-full px-6 pt-6 md:px-12 md:pt-8 lg:px-24 fixed top-0 left-0 right-0 z-40 transition-all duration-300 pointer-events-none">
+        <div className="mx-auto flex w-full max-w-[1240px] items-center justify-between pointer-events-auto">
+          {/* Logo & Name */}
+          <a href="#home" className="flex items-center gap-3 group bg-black/40 dark:bg-black/60 backdrop-blur-xl px-4 py-2 rounded-full border border-white/10 shadow-lg transition-transform duration-200 hover:scale-105">
+            <div className="relative h-9 w-9 overflow-hidden rounded-full border border-white/20">
+              <Image 
+                src="/images/headshot.png" 
+                alt="Sai Santosh Madhari" 
+                fill 
+                className="object-cover" 
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-sm md:text-base font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors">
+                Sai Santosh
+              </span>
+              <span className="text-[10px] text-white/50 font-mono tracking-wider uppercase">
+                Product Designer & AI Builder
+              </span>
+            </div>
+          </a>
 
-        {/* Links & Utilities */}
-        <div className="flex items-center">
-          <nav aria-label="Main navigation" className="hidden md:flex items-center space-x-8">
-            {links.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
-                    isActive ? 'text-white' : 'text-white/50 hover:text-white'
-                  }`}
-                >
-                  {link.name}
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* Resume Download Button (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4 ml-6">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Download Resume (opens in new tab)"
-              className="flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-5 py-2 rounded-full backdrop-blur-md border border-white/10 transition-all duration-300 text-white text-sm font-semibold tracking-wide shadow-sm hover:scale-105 active:scale-95"
+          {/* Action Buttons (Say Hello + LinkedIn) */}
+          <div className="flex items-center gap-2">
+            <a 
+              href="mailto:Saisantoshmadhari@gmail.com" 
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black font-semibold text-xs md:text-sm hover:bg-white/90 hover:scale-105 active:scale-95 transition-all shadow-md"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="h-4 w-4">
+                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
               </svg>
+              Say Hello
+            </a>
+
+            <a 
+              href="https://www.linkedin.com/in/saisantoshmadhari0711/" 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="LinkedIn Profile" 
+              className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-black/60 border border-white/15 text-white hover:text-blue-400 hover:border-blue-400/50 hover:scale-105 active:scale-95 transition-all shadow-md backdrop-blur-md"
+            >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" className="h-4 w-4">
+                <path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z" />
+              </svg>
+            </a>
+
+            <a 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Resume PDF" 
+              className="hidden md:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white/10 border border-white/15 text-white font-medium text-xs hover:bg-white/20 transition-all backdrop-blur-md"
+            >
               <span>Resume</span>
             </a>
           </div>
-
-          {/* Mobile Menu Toggle & Theme Toggle for Mobile (Quick access) */}
-          <div className="md:hidden flex items-center space-x-3 ml-4">
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? "Close mobile menu" : "Open mobile menu"} 
-              className="text-white/70 hover:text-white p-2 z-[60]"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16m-7 6h7" />
-                )}
-              </svg>
-            </button>
-          </div>
         </div>
+      </header>
+
+      {/* Floating Center Pill Navbar (Desktop) */}
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+        <nav className="flex items-center rounded-full px-2 py-1.5 bg-[#0a0e17]/85 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl">
+          <div className="flex items-center gap-1">
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`relative px-4 py-1.5 text-xs md:text-sm font-medium transition-colors duration-200 rounded-full ${
+                    isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activePillNav"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full shadow-[0_0_12px_rgba(59,130,246,0.5)] -z-10"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  {item.name}
+                </a>
+              );
+            })}
+          </div>
+        </nav>
       </div>
 
-      {/* Mobile Menu Backdrop & Panel */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] md:hidden"
-            />
-            <motion.div 
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 h-screen w-4/5 max-w-sm bg-white dark:bg-[#080808] border-l border-black/5 dark:border-white/10 z-[58] md:hidden shadow-2xl p-8 pt-24"
-            >
-              <nav className="flex flex-col space-y-8">
-                {links.map((link) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-2xl font-bold tracking-tight text-white/90 hover:text-blue-500 transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-                
-                <div className="h-px w-full bg-black/5 dark:bg-white/10 my-4" />
-                
+      {/* Bottom Floating Pill Navbar (Mobile) */}
+      <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center md:hidden px-4">
+        <nav className="flex items-center rounded-full bg-[#0a0e17]/90 border border-white/15 px-3 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.6)] backdrop-blur-2xl">
+          <div className="flex items-center gap-1">
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
                 <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 rounded-2xl transition-all shadow-lg"
+                  key={item.id}
+                  href={item.href}
+                  className={`relative px-3 py-1 text-xs font-medium transition-colors duration-200 rounded-full ${
+                    isActive ? 'text-white font-semibold' : 'text-zinc-400 hover:text-zinc-200'
+                  }`}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  <span>Download Resume</span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="activePillNavMobile"
+                      className="absolute inset-0 bg-blue-600 rounded-full -z-10 shadow-md"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  {item.name}
                 </a>
-              </nav>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </header>
+              );
+            })}
+          </div>
+        </nav>
+      </div>
+    </>
   );
 }
