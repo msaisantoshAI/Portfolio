@@ -1,29 +1,31 @@
 import type { Metadata } from 'next';
 import { Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-outfit',
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-plus',
-});
-
-export const metadata: Metadata = {
-  title: 'Antigravity Portfolio',
-  description: 'AI Product Designer Portfolio',
-};
-
+import { Providers } from './providers';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import MouseGlow from '@/components/MouseGlow';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-plus',
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'Sai Santosh Madhari | Product Designer & AI Builder',
+  description: 'Product Designer with Data Science & AI background. Case studies across AI, enterprise SaaS, and design systems.',
+};
 
 export default function RootLayout({
   children,
@@ -31,9 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scrollbar-hide dark" suppressHydrationWarning>
-      <body className={`${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#03050c] flex flex-col min-h-screen overflow-x-clip text-slate-100 cursor-none`}>
-          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white rounded-br-lg">Skip to main content</a>
+    <html lang="en" className="scrollbar-hide" suppressHydrationWarning>
+      <body className={`${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#F7F5EC] dark:bg-[#03050c] text-zinc-900 dark:text-slate-100 flex flex-col min-h-screen overflow-x-clip cursor-none transition-colors duration-300`}>
+        <Providers>
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white rounded-br-lg">
+            Skip to main content
+          </a>
           <Preloader />
           <CustomCursor />
           <MouseGlow />
@@ -42,6 +47,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+        </Providers>
       </body>
     </html>
   );

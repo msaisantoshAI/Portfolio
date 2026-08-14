@@ -70,34 +70,34 @@ export default function BenOtherThings() {
 
   return (
     <section id="fun" className="px-5 py-16 md:px-8 lg:px-24 max-w-[1280px] mx-auto w-full">
-      <div className="rounded-[28px] bg-zinc-900/80 border border-white/10 p-8 md:p-14 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl space-y-12">
+      <div className="rounded-[28px] bg-white/85 dark:bg-zinc-900/85 border border-black/5 dark:border-white/10 p-8 md:p-14 shadow-[0_12px_40px_rgba(16,24,40,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-xl space-y-12 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-3">
-          <p className="text-sm md:text-base font-mono uppercase tracking-widest text-blue-400 font-semibold">
+          <p className="text-sm md:text-base font-mono uppercase tracking-widest text-blue-600 dark:text-blue-400 font-semibold">
             Side Projects &amp; Experiments
           </p>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
             Some other things I do
           </h2>
-          <p className="max-w-2xl text-base sm:text-xl font-light text-zinc-400 leading-relaxed">
-            Something I get asked a lot: <span className="italic text-zinc-300">&ldquo;Santosh, how do you explore so many new tools?&rdquo;</span><br />
+          <p className="max-w-2xl text-base sm:text-xl font-light text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Something I get asked a lot: <span className="italic text-zinc-800 dark:text-zinc-300">&ldquo;Santosh, how do you explore so many new tools?&rdquo;</span><br />
             My answer is simple: I love building and learning by shipping.
           </p>
         </div>
 
         {/* Featured Big Interactive App Card Container */}
-        <div className="rounded-3xl border border-white/10 bg-black/60 overflow-hidden shadow-2xl p-6 sm:p-10 relative">
+        <div className="rounded-3xl border border-black/5 dark:border-white/10 bg-zinc-50 dark:bg-black/60 overflow-hidden shadow-sm p-6 sm:p-10 relative">
           <div className="flex flex-col lg:flex-row items-stretch gap-8">
             
             {/* Left: App Details */}
             <div className="flex-1 flex flex-col justify-between space-y-6">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-bold text-white px-3 py-1 rounded-full bg-white/10 border border-white/10">
+                  <span className="text-xs font-mono font-bold text-zinc-800 dark:text-white px-3 py-1 rounded-full bg-white dark:bg-white/10 border border-black/10 dark:border-white/10 shadow-sm">
                     {currentApp.category}
                   </span>
-                  <span className="text-xs text-zinc-400 font-mono">
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
                     Project {activeAppIndex + 1} of {apps.length}
                   </span>
                 </div>
@@ -111,13 +111,13 @@ export default function BenOtherThings() {
                     transition={{ duration: 0.25 }}
                     className="space-y-3"
                   >
-                    <h3 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                    <h3 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight">
                       {currentApp.name}
                     </h3>
-                    <p className="text-sm sm:text-base text-blue-400 font-medium font-mono">
+                    <p className="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-medium font-mono">
                       &frasl;&frasl; {currentApp.tagline}
                     </p>
-                    <p className="text-base text-zinc-300 font-light leading-relaxed max-w-lg">
+                    <p className="text-base text-zinc-600 dark:text-zinc-300 font-light leading-relaxed max-w-lg">
                       {currentApp.description}
                     </p>
                   </motion.div>
@@ -125,12 +125,12 @@ export default function BenOtherThings() {
               </div>
 
               {/* Tags and CTA */}
-              <div className="space-y-4 pt-4 border-t border-white/10">
+              <div className="space-y-4 pt-4 border-t border-black/5 dark:border-white/10">
                 <div className="flex flex-wrap gap-2">
                   {currentApp.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="text-xs font-mono bg-white/5 border border-white/10 text-zinc-300 px-3 py-1 rounded-full"
+                      className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-3 py-1 rounded-full shadow-sm"
                     >
                       {tag}
                     </span>
@@ -140,7 +140,7 @@ export default function BenOtherThings() {
                 <div className="flex items-center gap-3">
                   <button 
                     onClick={() => setActiveAppIndex((prev) => (prev + 1) % apps.length)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black font-semibold text-xs sm:text-sm hover:bg-zinc-200 transition-all shadow-md active:scale-95"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-semibold text-xs sm:text-sm hover:opacity-90 transition-all shadow-md active:scale-95"
                   >
                     Next Project &rarr;
                   </button>
@@ -150,12 +150,12 @@ export default function BenOtherThings() {
             </div>
 
             {/* Right: Visual Artwork / Mockup Box */}
-            <div className="w-full lg:w-[48%] h-[260px] sm:h-[340px] relative rounded-2xl overflow-hidden border border-white/10 bg-zinc-950 flex items-center justify-center p-6 group">
+            <div className="w-full lg:w-[48%] h-[260px] sm:h-[340px] relative rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 flex items-center justify-center p-6 group">
               <Image
                 src="/images/gallery_whiteboard.jpg"
                 alt="Sai Santosh Creative Canvas"
                 fill
-                className="object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700"
+                className="object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between">
@@ -171,7 +171,7 @@ export default function BenOtherThings() {
           </div>
 
           {/* App Switcher Tabs Bottom Carousel */}
-          <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2.5 justify-start">
+          <div className="mt-8 pt-6 border-t border-black/5 dark:border-white/10 flex flex-wrap gap-2.5 justify-start">
             {apps.map((app, idx) => {
               const isActive = activeAppIndex === idx;
               return (
@@ -180,11 +180,11 @@ export default function BenOtherThings() {
                   onClick={() => setActiveAppIndex(idx)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-lg scale-105 ring-2 ring-blue-400'
-                      : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
+                      ? 'bg-blue-600 text-white shadow-md scale-105 ring-2 ring-blue-400'
+                      : 'bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white border border-black/10 dark:border-white/10 shadow-sm'
                   }`}
                 >
-                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-white animate-pulse' : 'bg-zinc-600'}`} />
+                  <span className={`w-2 h-2 rounded-full ${isActive ? 'bg-white animate-pulse' : 'bg-zinc-400 dark:bg-zinc-600'}`} />
                   {app.name}
                 </button>
               );
@@ -194,20 +194,20 @@ export default function BenOtherThings() {
 
         {/* Tools & AI Ecosystem Badges Grid */}
         <div className="space-y-4 pt-4">
-          <p className="text-xs font-mono uppercase tracking-widest text-zinc-400">
+          <p className="text-xs font-mono uppercase tracking-widest text-zinc-500 dark:text-zinc-400 font-semibold">
             Software Tools &amp; AI Stack I Use Daily
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {toolLogos.map((tool, idx) => (
               <div
                 key={idx}
-                className="p-3.5 rounded-xl bg-white/5 border border-white/10 hover:border-blue-400/40 hover:bg-white/10 transition-all flex items-center justify-between"
+                className="p-3.5 rounded-xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 hover:border-blue-400/50 hover:bg-zinc-100 dark:hover:bg-white/10 transition-all flex items-center justify-between shadow-sm"
               >
                 <div>
-                  <h4 className="text-sm font-semibold text-white">{tool.name}</h4>
-                  <span className="text-[10px] font-mono text-zinc-400">{tool.category}</span>
+                  <h4 className="text-sm font-semibold text-zinc-900 dark:text-white">{tool.name}</h4>
+                  <span className="text-[10px] font-mono text-zinc-500 dark:text-zinc-400">{tool.category}</span>
                 </div>
-                <span className="text-zinc-600 text-xs">&bull;</span>
+                <span className="text-zinc-400 dark:text-zinc-600 text-xs">&bull;</span>
               </div>
             ))}
           </div>

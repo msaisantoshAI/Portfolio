@@ -11,7 +11,7 @@ import BenContactLetter from '@/components/BenContactLetter';
 
 export default function Home() {
   return (
-    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-8 pb-12">
+    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-12 md:space-y-20 pb-20">
       {/* 1. HERO SCROLL CANVAS (Kept 100% intact as requested) */}
       <div id="home" className="relative">
         <ScrollyCanvas />
