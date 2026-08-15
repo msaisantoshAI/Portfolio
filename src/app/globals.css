@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Outfit:wght@400..800&family=Plus+Jakarta+Sans:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,7 +13,7 @@
   font-style: normal;
   font-weight: 400 900;
   font-display: swap;
-  src: local('Acorn'), local('Acorn-Bold'), local('Fraunces'), local('Georgia');
+  src: local('Acorn'), local('Acorn-Bold'), url('https://fonts.gstatic.com/s/fraunces/v31/6NU78FmTB5BhhWQ7KG14.woff2') format('woff2');
 }
 
 :root {
@@ -62,7 +62,7 @@
 
   /* Typography Font Stacks */
   --font-display: 'Acorn', 'Fraunces', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-plus), system-ui, -apple-system, sans-serif;
 }
 
 .dark {
@@ -106,15 +106,10 @@ body {
   min-height: 100vh;
 }
 
-/* Explicit Acorn Display Typography for all headings */
-h1, h2, h3, h4, 
-.hero-heading, 
-.section-heading, 
-.card-heading,
-[class*="font-serif"],
-[class*="font-display"] {
+/* Headings & Subheadings: Acorn Display Typography */
+h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
   font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "swsh";
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -198,7 +193,7 @@ h1, h2, h3, h4,
 
 .caption-meta {
   font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-size: 0.8125rem; /* 13px */
   line-height: 1.4;
 }
 

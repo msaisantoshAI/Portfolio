@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment, TimePhase, WeatherState } from '@/context/EnvironmentContext';
 
-// Color definitions for Rayleigh & Mie Atmospheric Scattering across 7 Solar Phases
-function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherState, isDay: boolean, cloudCover: number) {
+// Color definitions for Natural Rayleigh Atmospheric Scattering across Solar Phases
+function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherState, isDay: boolean) {
   const isStorm = weatherState === 'thunderstorm';
   const isHeavyRain = weatherState === 'heavyRain';
   const isRain = weatherState === 'rain';
-  const isOvercast = weatherState === 'cloudy' || cloudCover >= 75;
+  const isOvercast = weatherState === 'cloudy';
   const isFog = weatherState === 'fog';
   const isSnow = weatherState === 'snow';
 
@@ -17,11 +17,8 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
   if (isStorm || isHeavyRain) {
     return {
       gradient: 'linear-gradient(to top, #141c2b 0%, #1f2a3f 30%, #101622 70%, #080b12 100%)',
-      ambientGlow: 'radial-gradient(circle at 50% 40%, rgba(120, 160, 220, 0.25) 0%, transparent 60%)',
+      ambientGlow: 'radial-gradient(circle at 50% 40%, rgba(120, 160, 220, 0.2) 0%, transparent 60%)',
       sunMoon: { x: '50%', y: '25%', opacity: 0.15, isSun: false },
-      cloudTop: 'rgba(70, 85, 110, 0.95)',
-      cloudBody: 'rgba(40, 52, 70, 0.9)',
-      cloudBottom: 'rgba(20, 28, 40, 0.85)',
     };
   }
 
@@ -32,18 +29,12 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
         gradient: 'linear-gradient(to top, #090e18 0%, #131c2d 40%, #0a0f19 80%, #04070c 100%)',
         ambientGlow: 'radial-gradient(circle at 80% 20%, rgba(80, 120, 180, 0.2) 0%, transparent 60%)',
         sunMoon: { x: '80%', y: '20%', opacity: 0.2, isSun: false },
-        cloudTop: 'rgba(55, 70, 95, 0.9)',
-        cloudBody: 'rgba(30, 42, 60, 0.85)',
-        cloudBottom: 'rgba(15, 22, 34, 0.8)',
       };
     }
     return {
       gradient: 'linear-gradient(to top, #7a94a8 0%, #58758c 35%, #38536b 70%, #203548 100%)',
       ambientGlow: 'radial-gradient(circle at 35% 25%, rgba(200, 225, 255, 0.4) 0%, transparent 60%)',
       sunMoon: { x: '35%', y: '25%', opacity: 0.35, isSun: true },
-      cloudTop: 'rgba(215, 230, 245, 0.95)',
-      cloudBody: 'rgba(175, 195, 215, 0.9)',
-      cloudBottom: 'rgba(120, 145, 170, 0.8)',
     };
   }
 
@@ -55,9 +46,6 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
         : 'linear-gradient(to top, #141b24 0%, #1d2836 40%, #101620 80%, #080c12 100%)',
       ambientGlow: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 0%, transparent 70%)',
       sunMoon: { x: '50%', y: '30%', opacity: 0.25, isSun: isDay },
-      cloudTop: isDay ? 'rgba(240, 245, 250, 0.9)' : 'rgba(50, 65, 80, 0.85)',
-      cloudBody: isDay ? 'rgba(210, 225, 235, 0.85)' : 'rgba(30, 42, 55, 0.8)',
-      cloudBottom: isDay ? 'rgba(160, 180, 195, 0.75)' : 'rgba(15, 25, 35, 0.75)',
     };
   }
 
@@ -69,9 +57,6 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
         : 'linear-gradient(to top, #0c1424 0%, #16243d 40%, #0a101c 80%, #040810 100%)',
       ambientGlow: 'radial-gradient(circle at 50% 30%, rgba(220, 240, 255, 0.45) 0%, transparent 65%)',
       sunMoon: { x: '50%', y: '25%', opacity: 0.5, isSun: isDay },
-      cloudTop: 'rgba(255, 255, 255, 0.98)',
-      cloudBody: 'rgba(225, 238, 250, 0.9)',
-      cloudBottom: 'rgba(170, 195, 220, 0.8)',
     };
   }
 
@@ -82,76 +67,52 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
         gradient: 'linear-gradient(to top, #070c16 0%, #0f1828 40%, #090e19 80%, #03050a 100%)',
         ambientGlow: 'radial-gradient(circle at 80% 20%, rgba(100, 140, 200, 0.2) 0%, transparent 60%)',
         sunMoon: { x: '80%', y: '20%', opacity: 0.25, isSun: false },
-        cloudTop: 'rgba(60, 80, 110, 0.92)',
-        cloudBody: 'rgba(35, 48, 70, 0.88)',
-        cloudBottom: 'rgba(18, 25, 40, 0.82)',
       };
     }
     return {
       gradient: 'linear-gradient(to top, #a1b8cc 0%, #829eb6 35%, #567691 70%, #2f4b62 100%)',
       ambientGlow: 'radial-gradient(circle at 45% 20%, rgba(230, 245, 255, 0.5) 0%, transparent 60%)',
       sunMoon: { x: '45%', y: '20%', opacity: 0.4, isSun: true },
-      cloudTop: 'rgba(240, 248, 255, 0.95)',
-      cloudBody: 'rgba(195, 215, 235, 0.9)',
-      cloudBottom: 'rgba(145, 170, 195, 0.8)',
     };
   }
 
-  // 6. CLEAR / PARTLY CLOUDY SOLAR PHASES
+  // 6. CLEAR / PARTLY CLOUDY NATURAL SKY SOLAR PHASES
   switch (timePhase) {
     case 'dawn':
       return {
         gradient: 'linear-gradient(to top, #ff7e5f 0%, #feb47b 20%, #8b687f 45%, #3d2f57 75%, #15102a 100%)',
         ambientGlow: 'radial-gradient(circle at 20% 75%, rgba(255, 140, 90, 0.65) 0%, transparent 60%)',
         sunMoon: { x: '20%', y: '70%', opacity: 0.85, isSun: true },
-        cloudTop: 'rgba(255, 220, 190, 0.95)',
-        cloudBody: 'rgba(245, 175, 140, 0.88)',
-        cloudBottom: 'rgba(175, 110, 130, 0.75)',
       };
     case 'morning':
       return {
         gradient: 'linear-gradient(to top, #89f7fe 0%, #66a6ff 35%, #2980b9 70%, #1a4a6e 100%)',
         ambientGlow: 'radial-gradient(circle at 25% 25%, rgba(255, 255, 240, 0.7) 0%, transparent 60%)',
         sunMoon: { x: '25%', y: '25%', opacity: 0.95, isSun: true },
-        cloudTop: 'rgba(255, 255, 255, 0.98)',
-        cloudBody: 'rgba(240, 248, 255, 0.92)',
-        cloudBottom: 'rgba(180, 210, 240, 0.75)',
       };
     case 'afternoon':
       return {
         gradient: 'linear-gradient(to top, #4facfe 0%, #00f2fe 15%, #1976d2 55%, #0d47a1 85%, #062254 100%)',
         ambientGlow: 'radial-gradient(circle at 50% 15%, rgba(255, 255, 245, 0.75) 0%, transparent 65%)',
         sunMoon: { x: '50%', y: '15%', opacity: 1, isSun: true },
-        cloudTop: 'rgba(255, 255, 255, 1)',
-        cloudBody: 'rgba(242, 249, 255, 0.95)',
-        cloudBottom: 'rgba(175, 205, 235, 0.78)',
       };
     case 'goldenHour':
       return {
         gradient: 'linear-gradient(to top, #f12711 0%, #f5af19 30%, #b85d19 55%, #4a1942 80%, #12071f 100%)',
         ambientGlow: 'radial-gradient(circle at 75% 65%, rgba(255, 170, 50, 0.8) 0%, transparent 65%)',
         sunMoon: { x: '75%', y: '60%', opacity: 0.95, isSun: true },
-        cloudTop: 'rgba(255, 235, 160, 0.98)',
-        cloudBody: 'rgba(255, 185, 90, 0.9)',
-        cloudBottom: 'rgba(165, 80, 110, 0.8)',
       };
     case 'sunset':
       return {
         gradient: 'linear-gradient(to top, #ff4e50 0%, #f9d423 20%, #a83279 50%, #3b1443 75%, #0c0414 100%)',
         ambientGlow: 'radial-gradient(circle at 80% 80%, rgba(255, 90, 60, 0.75) 0%, transparent 60%)',
         sunMoon: { x: '80%', y: '78%', opacity: 0.85, isSun: true },
-        cloudTop: 'rgba(255, 170, 140, 0.95)',
-        cloudBody: 'rgba(225, 110, 120, 0.88)',
-        cloudBottom: 'rgba(100, 45, 95, 0.8)',
       };
     case 'twilight':
       return {
         gradient: 'linear-gradient(to top, #1a162b 0%, #2a2048 25%, #181938 55%, #0b0c1e 80%, #03040b 100%)',
         ambientGlow: 'radial-gradient(circle at 82% 35%, rgba(160, 130, 220, 0.4) 0%, transparent 60%)',
         sunMoon: { x: '82%', y: '35%', opacity: 0.6, isSun: false },
-        cloudTop: 'rgba(160, 140, 190, 0.9)',
-        cloudBody: 'rgba(90, 75, 130, 0.82)',
-        cloudBottom: 'rgba(40, 30, 70, 0.75)',
       };
     case 'night':
     default:
@@ -159,9 +120,6 @@ function getAtmosphericSkyConfig(timePhase: TimePhase, weatherState: WeatherStat
         gradient: 'linear-gradient(to top, #050811 0%, #0a1329 35%, #060d1e 70%, #02040a 100%)',
         ambientGlow: 'radial-gradient(circle at 82% 18%, rgba(180, 220, 255, 0.3) 0%, transparent 60%)',
         sunMoon: { x: '82%', y: '18%', opacity: 0.9, isSun: false },
-        cloudTop: 'rgba(160, 195, 240, 0.75)',
-        cloudBody: 'rgba(80, 110, 160, 0.6)',
-        cloudBottom: 'rgba(20, 35, 60, 0.55)',
       };
   }
 }
@@ -189,7 +147,6 @@ export default function AtmosphericSkyCanvas() {
   } = useEnvironment();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const cloudCanvasRef = useRef<HTMLCanvasElement>(null);
   const { scrollYProgress } = useScroll();
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -202,97 +159,10 @@ export default function AtmosphericSkyCanvas() {
   const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-30%']);
   const foliageScale = useTransform(smoothProgress, [0, 1], [1, 1.05]);
 
-  const config = getAtmosphericSkyConfig(timePhase, weatherState, isDay, cloudCover);
+  const config = getAtmosphericSkyConfig(timePhase, weatherState, isDay);
   const isNight = !isDay || timePhase === 'night' || timePhase === 'twilight';
 
-  // ---------------------------------------------------------------------------
-  // 1. CRISP VOLUMETRIC CUMULUS & CIRRUS CLOUD RENDERING ENGINE
-  // ---------------------------------------------------------------------------
-  useEffect(() => {
-    const cloudCanvas = cloudCanvasRef.current;
-    if (!cloudCanvas) return;
-    const ctx = cloudCanvas.getContext('2d');
-    if (!ctx) return;
-
-    let animId: number;
-    let width = (cloudCanvas.width = window.innerWidth);
-    let height = (cloudCanvas.height = window.innerHeight);
-
-    const handleResize = () => {
-      if (!cloudCanvas) return;
-      width = cloudCanvas.width = window.innerWidth;
-      height = cloudCanvas.height = window.innerHeight;
-    };
-    window.addEventListener('resize', handleResize);
-
-    // Create crisp procedural cloud formations
-    const cloudCount = Math.max(2, Math.round((cloudCover / 100) * 7));
-    const clouds = Array.from({ length: cloudCount }, (_, i) => {
-      const scale = 0.7 + (i % 3) * 0.35;
-      return {
-        x: (i * (width / cloudCount) + Math.random() * 100) % width,
-        y: 40 + (i * 90) % (height * 0.55),
-        speed: (0.15 + (i % 3) * 0.1) * Math.max(0.6, windSpeed / 10),
-        scale,
-        // Distinct puffy lobes for realistic 3D cumulus silhouette
-        lobes: [
-          { rx: 0, ry: 0, r: 55 * scale },
-          { rx: -38 * scale, ry: 10 * scale, r: 42 * scale },
-          { rx: 42 * scale, ry: 8 * scale, r: 46 * scale },
-          { rx: -70 * scale, ry: 18 * scale, r: 32 * scale },
-          { rx: 78 * scale, ry: 16 * scale, r: 35 * scale },
-          { rx: 15 * scale, ry: -25 * scale, r: 38 * scale },
-          { rx: -22 * scale, ry: -20 * scale, r: 34 * scale },
-        ],
-      };
-    });
-
-    const drawVolumetricLobe = (cx: number, cy: number, r: number) => {
-      const grad = ctx.createRadialGradient(cx - r * 0.25, cy - r * 0.35, r * 0.1, cx, cy, r);
-      grad.addColorStop(0, config.cloudTop);
-      grad.addColorStop(0.55, config.cloudBody);
-      grad.addColorStop(0.92, config.cloudBottom);
-      grad.addColorStop(1, 'rgba(0,0,0,0)');
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.arc(cx, cy, r, 0, Math.PI * 2);
-      ctx.fill();
-    };
-
-    const renderClouds = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      if (cloudCover > 5) {
-        for (const cloud of clouds) {
-          // Draw each volumetric lobe with sunlit highlights
-          for (const lobe of cloud.lobes) {
-            drawVolumetricLobe(cloud.x + lobe.rx, cloud.y + lobe.ry, lobe.r);
-          }
-
-          // Drift clouds smoothly with wind speed
-          cloud.x += cloud.speed;
-          if (cloud.x - 180 > width) {
-            cloud.x = -180;
-            cloud.y = 40 + Math.random() * (height * 0.5);
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(renderClouds);
-    };
-
-    renderClouds();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(animId);
-    };
-  }, [cloudCover, windSpeed, config]);
-
-  // ---------------------------------------------------------------------------
-  // 2. 60FPS PARTICLES ENGINE (Rain, Snow, Lightning)
-  // ---------------------------------------------------------------------------
+  // 60FPS Particles Engine (Rain, Snow, Lightning)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -483,13 +353,27 @@ export default function AtmosphericSkyCanvas() {
           </div>
         )}
 
-        {/* 4. Crisp Volumetric Clouds Canvas (No heavy blur) */}
-        <canvas
-          ref={cloudCanvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none z-10"
-        />
+        {/* 4. Natural Cirrus & Atmospheric Cloud Drift (When cloudCover > 20) */}
+        {cloudCover > 20 && (
+          <motion.div 
+            animate={{
+              x: ['-3%', '4%', '-3%'],
+            }}
+            transition={{
+              duration: 45 / Math.max(0.6, windSpeed / 10),
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="absolute inset-x-0 top-12 w-[130%] h-[320px] pointer-events-none opacity-45"
+            style={{
+              background: !isNight
+                ? 'radial-gradient(ellipse 65% 35% at 40% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 65%)'
+                : 'radial-gradient(ellipse 65% 35% at 40% 40%, rgba(140, 180, 240, 0.25) 0%, transparent 65%)'
+            }}
+          />
+        )}
 
-        {/* 5. Minimal Peripheral Silhouette Foliage (Subtle canopy fronds swaying at the edges) */}
+        {/* 5. Minimal Peripheral Silhouette Foliage */}
         <motion.div
           animate={isWindy ? {
             rotate: [-0.8, 0.8, -0.8],
@@ -506,7 +390,6 @@ export default function AtmosphericSkyCanvas() {
           style={{ scale: foliageScale }}
           className="absolute inset-0 pointer-events-none origin-top-left opacity-35"
         >
-          {/* Top-Left Delicate Canopy Frond */}
           <div 
             className="absolute -top-10 -left-10 w-72 h-72 pointer-events-none"
             style={{
@@ -515,8 +398,6 @@ export default function AtmosphericSkyCanvas() {
                 : 'radial-gradient(ellipse at top left, rgba(20, 45, 30, 0.45) 0%, transparent 70%)'
             }}
           />
-
-          {/* Top-Right Delicate Canopy Frond */}
           <div 
             className="absolute -top-10 -right-10 w-72 h-72 pointer-events-none"
             style={{
@@ -527,7 +408,7 @@ export default function AtmosphericSkyCanvas() {
           />
         </motion.div>
 
-        {/* Atmospheric Horizon Depth Diffusion */}
+        {/* Atmospheric Horizon Depth */}
         <div 
           className="absolute bottom-0 inset-x-0 h-[35vh] pointer-events-none"
           style={{
@@ -544,7 +425,7 @@ export default function AtmosphericSkyCanvas() {
         className="absolute inset-0 w-full h-full pointer-events-none z-20"
       />
 
-      {/* 7. Ambient Contrast Vignette guaranteeing 100% WCAG 2.2 AA Readability */}
+      {/* 7. Ambient Contrast Vignette */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-15"
         style={{
