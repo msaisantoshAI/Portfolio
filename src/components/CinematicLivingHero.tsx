@@ -4,20 +4,22 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
+import HeroBreezeCanvas from './HeroBreezeCanvas';
 
 export default function CinematicLivingHero() {
   const { timePhase, weatherState, isDay, themeMode, location, localTime, temperature, weatherDescription } = useEnvironment();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse parallax interaction
+  // Mouse parallax interaction with smooth springs
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springX = useSpring(mouseX, { stiffness: 60, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 60, damping: 20 });
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 22 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 22 });
 
-  const skyShiftX = useTransform(springX, [-0.5, 0.5], ['-1.5%', '1.5%']);
-  const skyShiftY = useTransform(springY, [-0.5, 0.5], ['-1.5%', '1.5%']);
+  const skyShiftX = useTransform(springX, [-0.5, 0.5], ['-2%', '2%']);
+  const skyShiftY = useTransform(springY, [-0.5, 0.5], ['-2%', '2%']);
+  const cloudsShiftX = useTransform(springX, [-0.5, 0.5], ['-4%', '4%']);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -35,10 +37,10 @@ export default function CinematicLivingHero() {
 
   // Scroll parallax
   const { scrollY } = useScroll();
-  const heroScrollY = useTransform(scrollY, [0, 800], [0, 180]);
-  const heroOpacity = useTransform(scrollY, [0, 600], [1, 0.2]);
+  const heroScrollY = useTransform(scrollY, [0, 900], [0, 220]);
+  const heroOpacity = useTransform(scrollY, [0, 650], [1, 0.15]);
 
-  // Determine environmental lighting states
+  // Environmental Lighting Flags
   const isNightTime = !isDay || timePhase === 'night' || themeMode === 'dark';
   const isSunsetTime = (timePhase === 'sunset' || timePhase === 'goldenHour') && themeMode !== 'dark' && themeMode !== 'light';
   const isDawnTime = timePhase === 'dawn' && themeMode === 'system';
@@ -59,27 +61,80 @@ export default function CinematicLivingHero() {
       className="relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden select-none bg-[#03050c] flex items-center justify-center font-sans"
     >
       {/* ========================================================================= */}
-      {/* 1. LIVING CINEMATIC PHOTOGRAPHIC BASE (User's Uploaded Hero Scene)         */}
+      {/* 1. CINEMATIC LIVING HERO SCENE WITH LIVE CROSSFADE & PARALLAX              */}
       {/* ========================================================================= */}
       <motion.div 
         style={{ y: heroScrollY, opacity: heroOpacity, x: skyShiftX, translateY: skyShiftY }}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full scale-[1.03]"
       >
-        <Image
-          src="/images/hero-base.jpg"
-          alt="Sai Santosh Madhari lying on grass looking up at the living sky"
-          fill
-          priority
-          sizes="100vw"
-          quality={95}
-          className="object-cover object-center sm:object-[center_35%] transition-all duration-1000"
+        
+        {/* Layer A: Daytime Hero Image (Bright Blue Sky & Daylight) */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            !isSunsetTime ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <Image
+            src="/images/hero-day.jpg"
+            alt="Sai Santosh Madhari lying on grass under the living day sky"
+            fill
+            priority
+            sizes="100vw"
+            quality={95}
+            className="object-cover object-center sm:object-[center_35%]"
+          />
+        </div>
+
+        {/* Layer B: Sunset & Golden Hour Hero Image (Warm Golden Horizon & Clouds) */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isSunsetTime ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <Image
+            src="/images/hero-sunset.jpg"
+            alt="Sai Santosh Madhari lying on grass under the golden sunset sky"
+            fill
+            priority
+            sizes="100vw"
+            quality={95}
+            className="object-cover object-center sm:object-[center_35%]"
+          />
+        </div>
+
+
+        {/* ========================================================================= */}
+        {/* 2. DYNAMIC MOVING CLOUDS & SKY DEPTH LAYERS                               */}
+        {/* ========================================================================= */}
+        
+        {/* Upper Drifting Fluffy Clouds */}
+        <motion.div 
+          style={{ x: cloudsShiftX }}
+          className="absolute inset-0 pointer-events-none opacity-30"
+        >
+          <div className="absolute top-[8%] -left-[15%] w-[70vw] max-w-[800px] h-[260px] rounded-full bg-white/40 blur-3xl animate-drift-slow" />
+          <div className="absolute top-[25%] -right-[15%] w-[75vw] max-w-[850px] h-[280px] rounded-full bg-white/30 blur-3xl animate-drift-medium" />
+        </motion.div>
+
+
+        {/* ========================================================================= */}
+        {/* 3. REAL-TIME ATMOSPHERIC LIGHTING & ILLUMINATION ENGINES                  */}
+        {/* ========================================================================= */}
+
+        {/* A. Pulsing Sunlight & Lens Flare (Day & Sunset) */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+            !isNightTime ? 'opacity-65' : 'opacity-0'
+          }`}
+          style={{
+            background: isSunsetTime 
+              ? 'radial-gradient(circle at 8% 70%, rgba(255, 200, 100, 0.55) 0%, rgba(255, 120, 30, 0.25) 35%, transparent 65%)'
+              : 'radial-gradient(circle at 10% 25%, rgba(255, 255, 230, 0.45) 0%, rgba(255, 220, 150, 0.15) 35%, transparent 65%)',
+            mixBlendMode: 'screen'
+          }}
         />
 
-        {/* ========================================================================= */}
-        {/* 2. REAL-TIME ATMOSPHERIC LIGHTING & SKY COLOR SHIFT LAYERS                */}
-        {/* ========================================================================= */}
-
-        {/* A. Nighttime Celestial Moonlight Overlay */}
+        {/* B. Nighttime Celestial Moonlight Overlay & Starry Dark Filter */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
             isNightTime ? 'opacity-85' : 'opacity-0'
@@ -101,29 +156,7 @@ export default function CinematicLivingHero() {
           }}
         />
 
-        {/* B. Sunset & Golden Hour Rich Warm Amber Lighting */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            isSunsetTime ? 'opacity-80' : 'opacity-0'
-          }`}
-          style={{
-            background: 'linear-gradient(180deg, rgba(140, 45, 60, 0.4) 0%, rgba(240, 110, 45, 0.35) 40%, rgba(255, 170, 50, 0.3) 70%, rgba(100, 30, 20, 0.4) 100%)',
-            mixBlendMode: 'color-burn'
-          }}
-        />
-
-        {/* Sunset Golden Sunlight Flare */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            isSunsetTime ? 'opacity-65' : 'opacity-0'
-          }`}
-          style={{
-            background: 'radial-gradient(circle at 10% 40%, rgba(255, 200, 100, 0.6) 0%, rgba(255, 130, 40, 0.25) 45%, transparent 75%)',
-            mixBlendMode: 'screen'
-          }}
-        />
-
-        {/* C. Dawn Morning Horizon Glow */}
+        {/* C. Dawn Morning Horizon Soft Light */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
             isDawnTime ? 'opacity-75' : 'opacity-0'
@@ -134,7 +167,7 @@ export default function CinematicLivingHero() {
           }}
         />
 
-        {/* D. Overcast / Rain Moody Cool Slate Tone */}
+        {/* D. Overcast / Rain Moody Tone */}
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
             isRainyWeather ? 'opacity-65' : 'opacity-0'
@@ -145,23 +178,23 @@ export default function CinematicLivingHero() {
           }}
         />
 
-        {/* E. Soft Animated Living Cloud Strata */}
-        <div className="absolute inset-0 pointer-events-none opacity-20">
-          <div className="absolute top-[12%] -left-[10%] w-[60vw] max-w-[650px] h-[220px] rounded-full bg-white/40 blur-3xl animate-drift-slow" />
-          <div className="absolute top-[35%] -right-[10%] w-[65vw] max-w-[700px] h-[240px] rounded-full bg-white/30 blur-3xl animate-drift-medium" />
-        </div>
-
-        {/* Subtle vignette for crisp text contrast */}
+        {/* E. Atmospheric Contrast Gradient for 100% WCAG Typography Readability */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 45%, transparent 80%)'
+            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.18) 45%, transparent 80%)'
           }}
         />
+
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* 3. HERO CONTENT LAYER (Headline, Subtitle, CTAs & Designer Identity)      */}
+      {/* 4. ANIMATED WIND BREEZE, DANDELION SPORES & AIR CURRENTS CANVAS           */}
+      {/* ========================================================================= */}
+      <HeroBreezeCanvas isNight={isNightTime} isSunset={isSunsetTime} isRainy={isRainyWeather} />
+
+      {/* ========================================================================= */}
+      {/* 5. HERO CONTENT LAYER (Headline, Subtitle, CTAs & Designer Identity)      */}
       {/* ========================================================================= */}
       <div className="relative z-20 w-full max-w-[1240px] mx-auto px-6 sm:px-8 md:px-12 flex flex-col justify-center h-full pt-16 sm:pt-20">
         
@@ -172,12 +205,12 @@ export default function CinematicLivingHero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 backdrop-blur-xl border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/45 backdrop-blur-xl border border-white/20 text-white font-mono text-[11px] uppercase tracking-wider"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>Product Designer &times; AI Builder</span>
             <span className="text-white/30">•</span>
-            <span className="text-blue-300 font-sans normal-case">
+            <span className="text-blue-300 font-sans normal-case font-medium">
               {location} &bull; {temperature !== null ? `${temperature}°C` : ''} ({localTime}) &bull; {weatherDescription}
             </span>
           </motion.div>
