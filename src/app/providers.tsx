@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from 'next-themes';
 import React, { useEffect, useState } from 'react';
+import { EnvironmentProvider } from '@/context/EnvironmentContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -15,8 +16,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={true}>
-      {children}
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+      <EnvironmentProvider>
+        {children}
+      </EnvironmentProvider>
     </ThemeProvider>
   );
 }
