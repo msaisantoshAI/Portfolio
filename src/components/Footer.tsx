@@ -40,17 +40,17 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative z-20 bg-[#060a17]/95 border-t border-white/15 text-white py-16 sm:py-20 px-6 sm:px-10 md:px-16 backdrop-blur-3xl font-sans select-none overflow-hidden">
+    <footer className="relative z-20 bg-[#060a17]/95 border-t border-white/15 text-white py-16 sm:py-20 px-4 sm:px-8 md:px-12 backdrop-blur-3xl font-sans select-none overflow-hidden">
       
       {/* Subtle atmospheric ambient glow */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-20"
+        className="absolute inset-0 pointer-events-none opacity-40"
         style={{
-          background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)'
+          background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)'
         }}
       />
 
-      <div className="max-w-[1320px] mx-auto w-full relative z-10 flex flex-col gap-12 sm:gap-16">
+      <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col gap-12 sm:gap-16">
         
         {/* Top Row: CTA & Back to Top */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pb-8 border-b border-white/10">

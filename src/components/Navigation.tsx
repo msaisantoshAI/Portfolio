@@ -40,8 +40,8 @@ export default function Navigation() {
   return (
     <>
       {/* Top Header Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 md:px-8 pt-4 sm:pt-5 pointer-events-none transition-all duration-300 font-sans">
-        <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between gap-4 pointer-events-auto">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-5 pointer-events-none transition-all duration-300 font-sans">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-4 pointer-events-auto">
           
           {/* Left: Brand Identity */}
           <a 

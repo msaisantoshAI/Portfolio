@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
+import TextMorph from '@/components/TextMorph';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,9 +17,9 @@ export default function HeroLanding() {
   });
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
-  const imageY = useTransform(smoothY, [0, 1], ['0%', '15%']);
-  const imageScale = useTransform(smoothY, [0, 1], [1, 1.08]);
-  const contentY = useTransform(smoothY, [0, 1], [0, -45]);
+  const imageY = useTransform(smoothY, [0, 1], ['0%', '18%']);
+  const imageScale = useTransform(smoothY, [0, 1], [1, 1.1]);
+  const contentY = useTransform(smoothY, [0, 1], [0, -50]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
   // Interactive 3D mouse parallax
@@ -50,7 +51,7 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 md:px-8 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-8 md:px-12 select-none"
     >
       {/* ========================================================================= */}
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
@@ -58,65 +59,57 @@ export default function HeroLanding() {
       <motion.div 
         animate={isWindy ? {
           x: [-mousePos.x * 16 - 2, -mousePos.x * 16 + 2, -mousePos.x * 16 - 2],
-          rotate: [-0.3, 0.3, -0.3],
-        } : {}}
-        transition={{ duration: 7 / Math.max(0.7, windSpeed / 10), repeat: Infinity, ease: 'easeInOut' }}
-        style={{ 
-          y: imageY, 
-          scale: imageScale,
-          x: mousePos.x * 16,
-          rotateX: -mousePos.y * 3,
-          rotateY: mousePos.x * 3,
+          y: [-mousePos.y * 16 - 1, -mousePos.y * 16 + 1, -mousePos.y * 16 - 1],
+          rotate: [-0.15, 0.15, -0.15]
+        } : {
+          x: -mousePos.x * 16,
+          y: -mousePos.y * 16,
+          rotate: 0
         }}
-        className="absolute inset-0 w-full h-full min-h-[112%] -top-4 pointer-events-none transition-transform duration-300 ease-out origin-center"
+        transition={{
+          duration: isWindy ? Math.max(3, 80 / (windSpeed || 10)) : 0.3,
+          repeat: isWindy ? Infinity : 0,
+          ease: 'easeInOut'
+        }}
+        style={{ y: imageY, scale: imageScale }}
+        className="absolute inset-0 w-full h-full pointer-events-none origin-center"
       >
         <Image
           src="/images/hero-lying.jpg"
-          alt="Sai Santosh Madhari lying on grass looking up at the sky"
+          alt="Sai Santosh Madhari lying on green grass looking up at the living sky"
           fill
           priority
-          className={`object-cover object-center sm:object-[center_35%] transition-all duration-1000 ${
-            isNight 
-              ? 'brightness-[0.62] contrast-[1.1] saturate-[0.92] hue-rotate-[10deg]' 
-              : isSunset 
-              ? 'brightness-[0.92] contrast-[1.06] saturate-[1.25] hue-rotate-[-10deg]' 
-              : isGoldenHour 
-              ? 'brightness-[1.12] contrast-[1.05] saturate-[1.3]' 
-              : isDawn 
-              ? 'brightness-[0.96] contrast-[1.04] saturate-[1.1] hue-rotate-[-5deg]' 
-              : isRaining 
-              ? 'brightness-[0.88] contrast-[1.02] saturate-[0.9]' 
-              : 'brightness-[1.18] contrast-[1.02] saturate-[1.08]'
-          }`}
+          sizes="100vw"
           quality={95}
+          className="object-cover object-center sm:object-[center_35%] filter brightness-[1.08] contrast-[1.03]"
         />
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* 2. ATMOSPHERIC ENVIRONMENTAL LIGHTING LAYERS                             */}
+      {/* 2. ATMOSPHERIC ENVIRONMENTAL LIGHTING OVERLAYS                            */}
       {/* ========================================================================= */}
-
-      {/* Daytime Sun Flare & Warm Radiant Bloom */}
+      
+      {/* Rain Atmosphere Mood */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          !isNight && !isRaining ? 'opacity-75' : 'opacity-0'
+          isRaining ? 'opacity-80' : 'opacity-0'
         }`}
         style={{
-          background: 'radial-gradient(circle at 14% 16%, rgba(255, 255, 235, 0.45) 0%, rgba(255, 220, 140, 0.2) 30%, transparent 65%)'
+          background: 'linear-gradient(to bottom, rgba(15, 23, 42, 0.45) 0%, rgba(30, 41, 59, 0.35) 50%, rgba(15, 23, 42, 0.6) 100%)'
         }}
       />
 
-      {/* Golden Hour Warm Saffron Radiance */}
+      {/* Golden Hour Amber Sunlight Bloom */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isGoldenHour ? 'opacity-85' : 'opacity-0'
+          isGoldenHour ? 'opacity-90' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(135deg, rgba(255, 170, 40, 0.4) 0%, rgba(255, 110, 50, 0.25) 45%, transparent 75%)'
+          background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.35) 0%, rgba(255, 120, 30, 0.15) 45%, transparent 75%)'
         }}
       />
 
-      {/* Sunset Twilight Crimson Tint */}
+      {/* Sunset Rich Coral/Violet Lighting */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
           isSunset ? 'opacity-85' : 'opacity-0'
@@ -159,7 +152,7 @@ export default function HeroLanding() {
       {/* ========================================================================= */}
       {/* 3. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1320px] mx-auto w-full pointer-events-auto my-auto py-6">
+      <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-6">
         <motion.div 
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"
@@ -200,14 +193,18 @@ export default function HeroLanding() {
             ))}
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle with Text Morphing */}
           <motion.p 
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.55 }}
             className="body-lead text-zinc-200 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
           >
-            Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
+            Product designer crafting digital experiences that are{' '}
+            <TextMorph
+              words={['intuitive.', 'accessible.', 'meaningful.', 'intelligent.', 'human-centered.']}
+              interval={2400}
+            />
           </motion.p>
 
           {/* View Works Button */}
@@ -231,28 +228,33 @@ export default function HeroLanding() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 4. CENTERED SCROLL TO EXPLORE WITH ANIMATED ARROW                          */}
+      {/* 4. BOTTOM HERO BAR: SCROLL TO EXPLORE WITH CENTERED ARROW                 */}
       {/* ========================================================================= */}
-      <div className="relative z-20 flex flex-col items-center justify-center pt-2 pb-1">
+      <div className="relative z-20 max-w-[1440px] mx-auto w-full flex items-center justify-between text-white/80 font-mono text-xs sm:text-sm border-t border-white/10 pt-4 pointer-events-auto">
+        <span className="hidden sm:inline-block text-zinc-300">
+          Scroll down to explore works
+        </span>
+
+        {/* Center: Animated Scroll Down Button */}
         <button
           type="button"
-          onClick={() => handleScrollTo('work')}
-          className="touch-target inline-flex flex-col items-center gap-1 text-xs font-semibold text-zinc-300 hover:text-white transition-all group cursor-pointer"
-          aria-label="Scroll to explore projects"
+          onClick={() => handleScrollTo('about')}
+          className="touch-target mx-auto sm:mx-0 flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer group"
+          aria-label="Scroll to about section"
         >
-          <span className="tracking-widest uppercase font-mono text-[10px] sm:text-xs text-zinc-300 group-hover:text-blue-400 transition-colors">
-            Scroll to explore
-          </span>
-          <motion.div 
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-md"
+          <span className="tracking-widest uppercase text-[11px] font-bold">Scroll to explore</span>
+          <motion.span
+            animate={{ y: [0, 5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center group-hover:border-blue-400"
           >
-            <svg className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-          </motion.div>
+            &darr;
+          </motion.span>
         </button>
+
+        <span className="hidden sm:inline-block text-zinc-300">
+          Sai Santosh &bull; 2026
+        </span>
       </div>
 
     </section>
