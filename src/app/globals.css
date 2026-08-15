@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Outfit:wght@400..800&family=Plus+Jakarta+Sans:wght@300..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +13,7 @@
   font-style: normal;
   font-weight: 400 900;
   font-display: swap;
-  src: local('Acorn'), local('Acorn-Bold'), local('Fraunces');
+  src: local('Acorn'), local('Acorn-Bold'), local('Fraunces'), local('Georgia');
 }
 
 :root {
@@ -59,8 +61,8 @@
   --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
 
   /* Typography Font Stacks */
-  --font-display: 'Acorn', var(--font-acorn), var(--font-outfit), Georgia, serif;
-  --font-body: var(--font-plus), system-ui, -apple-system, sans-serif;
+  --font-display: 'Acorn', 'Fraunces', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 .dark {
@@ -104,9 +106,15 @@ body {
   min-height: 100vh;
 }
 
-/* Headings & Subheadings: Acorn Display Typography */
-h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
-  font-family: var(--font-display);
+/* Explicit Acorn Display Typography for all headings */
+h1, h2, h3, h4, 
+.hero-heading, 
+.section-heading, 
+.card-heading,
+[class*="font-serif"],
+[class*="font-display"] {
+  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "swsh";
 }
 
 /* ==========================================================================
@@ -143,7 +151,7 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
    ========================================================================== */
 
 .hero-heading {
-  font-family: var(--font-display);
+  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
   font-size: clamp(2.25rem, 5.5vw, 4.25rem);
   line-height: 1.06;
   letter-spacing: -0.025em;
@@ -151,7 +159,7 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 }
 
 .section-heading {
-  font-family: var(--font-display);
+  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
   font-size: clamp(1.75rem, 3.8vw, 3rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
@@ -159,7 +167,7 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 }
 
 .card-heading {
-  font-family: var(--font-display);
+  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
   font-size: clamp(1.1875rem, 2vw, 1.625rem);
   line-height: 1.22;
   letter-spacing: -0.015em;
@@ -190,7 +198,7 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 
 .caption-meta {
   font-family: var(--font-body);
-  font-size: 0.8125rem; /* 13px */
+  font-size: 0.8125rem;
   line-height: 1.4;
 }
 
