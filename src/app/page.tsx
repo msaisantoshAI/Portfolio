@@ -1,5 +1,5 @@
 import React from 'react';
-import HeroSection from '@/components/HeroSection';
+import HeroLanding from '@/components/HeroLanding';
 import BenIntroCards from '@/components/BenIntroCards';
 import BenAboutSection from '@/components/BenAboutSection';
 import SanjayExperience from '@/components/SanjayExperience';
@@ -12,25 +12,23 @@ import BenContactLetter from '@/components/BenContactLetter';
 
 export default function Home() {
   return (
-    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-12 md:space-y-20 pb-20">
-      {/* 1. LIVING ENVIRONMENT HERO SECTION (Full Viewport Landing Page) */}
-      <HeroSection />
+    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-6 sm:space-y-10 md:space-y-14 pb-16">
+      {/* 1. HERO LANDING (Authentic photo of Sai lying on grass looking up + real-time lighting + 3D parallax) */}
+      <div id="home" className="relative">
+        <HeroLanding />
+      </div>
 
       {/* 2. INTRO BANNER & 4-CARD CURATED DECK */}
       <BenIntroCards />
 
       {/* 3. A BIT ABOUT ME SECTION */}
-      <div id="about">
-        <BenAboutSection />
-      </div>
+      <BenAboutSection />
 
       {/* 4. WORK HISTORY & EXPERIENCE (Sanjay Menon Inspired) */}
       <SanjayExperience />
 
       {/* 5. FEATURED CASE STUDIES TIMELINE (2025 -> 2023) */}
-      <div id="work">
-        <BenWorkTimeline />
-      </div>
+      <BenWorkTimeline />
 
       {/* 6. HOW I WORK (5-Stage Process & AI Playground) */}
       <BenOtherThings />
@@ -45,9 +43,7 @@ export default function Home() {
       <BenTestimonials />
 
       {/* 10. INTERESTED IN COLLABORATING? (Letter & Contact Form) */}
-      <div id="contact">
-        <BenContactLetter />
-      </div>
+      <BenContactLetter />
     </main>
   );
 }
