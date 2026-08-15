@@ -7,7 +7,7 @@ import { useEnvironment } from '@/context/EnvironmentContext';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDay, timePhase, weatherState, location } = useEnvironment();
+  const { isDay, timePhase, weatherState, location, isWindy, windSpeed } = useEnvironment();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const { scrollYProgress } = useScroll({
@@ -56,6 +56,11 @@ export default function HeroLanding() {
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
       {/* ========================================================================= */}
       <motion.div 
+        animate={isWindy ? {
+          x: [-mousePos.x * 16 - 2, -mousePos.x * 16 + 2, -mousePos.x * 16 - 2],
+          rotate: [-0.3, 0.3, -0.3],
+        } : {}}
+        transition={{ duration: 7 / Math.max(0.7, windSpeed / 10), repeat: Infinity, ease: 'easeInOut' }}
         style={{ 
           y: imageY, 
           scale: imageScale,

@@ -13,6 +13,7 @@ function getWeatherIcon(state: WeatherState, isDay: boolean): string {
     case 'cloudy':
       return '☁';
     case 'rain':
+    case 'heavyRain':
       return '🌧';
     case 'thunderstorm':
       return '⛈';
@@ -27,18 +28,23 @@ function getWeatherIcon(state: WeatherState, isDay: boolean): string {
 
 const CITY_PRESETS = [
   { name: 'Hyderabad', flag: '🇮🇳', lat: 17.385, lon: 78.4867, tz: 'Asia/Kolkata' },
-  { name: 'San Francisco', flag: '🇺🇸', lat: 37.7749, lon: -122.4194, tz: 'America/Los_Angeles' },
-  { name: 'New York', flag: '🇺🇸', lat: 40.7128, lon: -74.006, tz: 'America/New_York' },
   { name: 'London', flag: '🇬🇧', lat: 51.5074, lon: -0.1278, tz: 'Europe/London' },
+  { name: 'New York', flag: '🇺🇸', lat: 40.7128, lon: -74.006, tz: 'America/New_York' },
   { name: 'Tokyo', flag: '🇯🇵', lat: 35.6762, lon: 139.6503, tz: 'Asia/Tokyo' },
-  { name: 'Paris', flag: '🇫🇷', lat: 48.8566, lon: 2.3522, tz: 'Europe/Paris' },
   { name: 'Dubai', flag: '🇦🇪', lat: 25.2048, lon: 55.2708, tz: 'Asia/Dubai' },
+  { name: 'Toronto', flag: '🇨🇦', lat: 43.6532, lon: -79.3832, tz: 'America/Toronto' },
   { name: 'Sydney', flag: '🇦🇺', lat: -33.8688, lon: 151.2093, tz: 'Australia/Sydney' },
+  { name: 'Paris', flag: '🇫🇷', lat: 48.8566, lon: 2.3522, tz: 'Europe/Paris' },
+  { name: 'Singapore', flag: '🇸🇬', lat: 1.3521, lon: 103.8198, tz: 'Asia/Singapore' },
+  { name: 'Mumbai', flag: '🇮🇳', lat: 19.076, lon: 72.8777, tz: 'Asia/Kolkata' },
+  { name: 'Bengaluru', flag: '🇮🇳', lat: 12.9716, lon: 77.5946, tz: 'Asia/Kolkata' },
+  { name: 'Reykjavik', flag: '🇮🇸', lat: 64.1466, lon: -21.9426, tz: 'Atlantic/Reykjavik' },
 ];
 
 export default function WeatherHUD() {
   const { 
     location, 
+    country,
     localTime, 
     temperature, 
     windSpeed,
@@ -73,6 +79,7 @@ export default function WeatherHUD() {
   if (!localTime) return null;
 
   const icon = getWeatherIcon(weatherState, isDay);
+  const displayLocation = country ? `${location}, ${country}` : location;
 
   const handleSearchSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,7 +107,7 @@ export default function WeatherHUD() {
         {/* Location Pin */}
         <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
           <span className="text-blue-400 group-hover:scale-110 transition-transform">📍</span>
-          <span className="font-semibold text-white tracking-tight">{location}</span>
+          <span className="font-semibold text-white tracking-tight">{displayLocation}</span>
         </span>
 
         {/* Temperature */}
@@ -121,7 +128,7 @@ export default function WeatherHUD() {
         {/* Simulator / Live indicator */}
         {isSimulating ? (
           <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 ml-1">
-            TESTING
+            CUSTOM
           </span>
         ) : (
           themeMode === 'system' && (
@@ -141,16 +148,16 @@ export default function WeatherHUD() {
             animate={{ opacity: 1, y: -8, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.96 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute bottom-full right-0 mb-2 w-[320px] sm:w-[360px] p-4 rounded-3xl bg-[#080d1a]/95 border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl text-left overflow-hidden text-white"
+            className="absolute bottom-full right-0 mb-2 w-[320px] sm:w-[380px] p-4 rounded-3xl bg-[#080d1a]/95 border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl text-left overflow-hidden text-white"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
               <div>
                 <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-                  <span>🌍</span> World Location Switcher
+                  <span>🌍</span> Change Location
                 </h3>
                 <p className="text-[11px] text-zinc-400">
-                  {location} &bull; {temperature !== null ? `${temperature}°C, ` : ''}{weatherDescription}{windSpeed !== null ? ` • 💨 ${windSpeed} km/h` : ''} &bull; {timePhase}
+                  {displayLocation} &bull; {temperature !== null ? `${temperature}°C, ` : ''}{weatherDescription}{windSpeed !== null ? ` • 💨 ${windSpeed} km/h` : ''} &bull; {timePhase}
                 </p>
               </div>
 
@@ -173,7 +180,7 @@ export default function WeatherHUD() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Type any city (e.g. Tokyo, London, Paris)..."
+                  placeholder="Type any city, state, or country (e.g. Reykjavik, London, Tokyo)..."
                   className="w-full pl-3.5 pr-16 py-2 rounded-xl bg-white/5 border border-white/15 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
                 />
                 <button
@@ -214,7 +221,7 @@ export default function WeatherHUD() {
             </div>
 
             <div className="mt-3 pt-2.5 border-t border-white/10 text-[10px] text-zinc-400 leading-tight">
-              Selecting a location automatically syncs its real local time, sunrise/sunset, and weather atmosphere across the entire site.
+              Selecting a location automatically transforms the sky, local clock, sunrise/sunset, and weather atmosphere in real-time.
             </div>
 
           </motion.div>
