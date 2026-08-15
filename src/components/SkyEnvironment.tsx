@@ -6,50 +6,49 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment, LocationRegion, TimePhase, WeatherState } from '@/context/EnvironmentContext';
 import WeatherCanvas from './WeatherCanvas';
 
-// Real-world location & time-adaptive photographic sky mapping
+// Real-world location & time-adaptive local photographic sky mapping
 function getLocationImage(region: LocationRegion, timePhase: TimePhase, weatherState: WeatherState, isDay: boolean): string {
   // If it's actively raining or thunderstorming
   if (weatherState === 'rain' || weatherState === 'thunderstorm') {
-    if (region === 'india') return 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop';
-    if (region === 'us') return 'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=2000&auto=format&fit=crop';
-    return 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop';
+    if (region === 'india') return '/images/locations/hyderabad-rain.jpg';
+    if (region === 'us') return '/images/locations/us-day.jpg';
+    return '/images/locations/hyderabad-rain.jpg';
   }
 
   // 1. INDIA / HYDERABAD
   if (region === 'india') {
-    if (timePhase === 'dawn') return 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=2000&auto=format&fit=crop';
-    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1590447158019-883d8d5f8bc7?q=80&w=2000&auto=format&fit=crop';
-    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=2000&auto=format&fit=crop';
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return '/images/locations/hyderabad-sunset.jpg';
+    if (!isDay || timePhase === 'night') return '/images/locations/hyderabad-night.jpg';
     // Daytime
-    return 'https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?q=80&w=2000&auto=format&fit=crop';
+    return '/images/locations/hyderabad-day.jpg';
   }
 
   // 2. UNITED STATES / AMERICAS
   if (region === 'us') {
-    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop';
-    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2000&auto=format&fit=crop';
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return '/images/locations/us-sunset.jpg';
+    if (!isDay || timePhase === 'night') return '/images/locations/us-night.jpg';
     // Daytime
-    return 'https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?q=80&w=2000&auto=format&fit=crop';
+    return '/images/locations/us-day.jpg';
   }
 
   // 3. EUROPE / UK
   if (region === 'europe') {
-    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2000&auto=format&fit=crop';
-    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2000&auto=format&fit=crop';
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return '/images/locations/europe-sunset.jpg';
+    if (!isDay || timePhase === 'night') return '/images/locations/europe-night.jpg';
     // Daytime
-    return 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2000&auto=format&fit=crop';
+    return '/images/locations/europe-day.jpg';
   }
 
   // 4. ASIA / EAST ASIA
   if (region === 'asia') {
-    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2000&auto=format&fit=crop';
-    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2000&auto=format&fit=crop';
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return '/images/locations/asia-sunset.jpg';
+    if (!isDay || timePhase === 'night') return '/images/locations/asia-night.jpg';
     // Daytime
-    return 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2000&auto=format&fit=crop';
+    return '/images/locations/asia-day.jpg';
   }
 
   // 5. GLOBAL FALLBACK
-  if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop';
+  if (timePhase === 'goldenHour' || timePhase === 'sunset') return '/images/locations/hyderabad-sunset.jpg';
   if (!isDay || timePhase === 'night') return '/images/sky-night.png';
   return '/images/sky-day.png';
 }
@@ -78,7 +77,7 @@ export default function SkyEnvironment() {
 
   if (!mounted) return null;
 
-  // Manual Modes
+  // Manual Modes vs Auto Mode
   const isManualLight = themeMode === 'light';
   const isManualDark = themeMode === 'dark';
   const isAuto = themeMode === 'system';
@@ -108,15 +107,15 @@ export default function SkyEnvironment() {
             priority
             className="object-cover object-top"
             sizes="100vw"
-            quality={90}
+            quality={92}
           />
         </motion.div>
         
         {/* Soft sunlight zenith bloom */}
         <div 
-          className="absolute inset-0 opacity-45 pointer-events-none"
+          className="absolute inset-0 opacity-40 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 15% 12%, rgba(255, 255, 240, 0.4) 0%, rgba(255, 235, 170, 0.15) 30%, transparent 65%)'
+            background: 'radial-gradient(circle at 15% 12%, rgba(255, 255, 240, 0.35) 0%, rgba(255, 235, 170, 0.12) 30%, transparent 65%)'
           }}
         />
       </div>
@@ -140,7 +139,7 @@ export default function SkyEnvironment() {
             priority
             className="object-cover object-top"
             sizes="100vw"
-            quality={90}
+            quality={92}
           />
         </motion.div>
 
@@ -174,26 +173,19 @@ export default function SkyEnvironment() {
             priority
             className="object-cover object-top transition-opacity duration-1000"
             sizes="100vw"
-            quality={90}
+            quality={92}
           />
         </motion.div>
 
-        {/* Subtle atmospheric zenith depth based on day/night */}
-        {isDay ? (
-          <div 
-            className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at 20% 15%, rgba(255, 255, 240, 0.35) 0%, transparent 65%)'
-            }}
-          />
-        ) : (
-          <div 
-            className="absolute inset-0 opacity-45 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle at 80% 15%, rgba(180, 210, 255, 0.25) 0%, rgba(5, 10, 25, 0.3) 50%, transparent 80%)'
-            }}
-          />
-        )}
+        {/* Subtle contrast gradient for foreground readability without blurring image */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            background: isDay 
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.35) 100%)' 
+              : 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.6) 100%)'
+          }}
+        />
       </div>
 
 
@@ -205,16 +197,16 @@ export default function SkyEnvironment() {
       {(weatherState === 'cloudy' || weatherState === 'partlyCloudy') && (
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            weatherState === 'cloudy' ? 'opacity-35' : 'opacity-15'
-          } bg-slate-900/30`}
+            weatherState === 'cloudy' ? 'opacity-30' : 'opacity-15'
+          } bg-slate-900/20`}
         />
       )}
 
       {/* Fog / Mist Layer */}
       {weatherState === 'fog' && (
-        <div className="absolute inset-0 pointer-events-none opacity-45 bg-slate-100/30 dark:bg-slate-900/30 backdrop-blur-[1px] transition-opacity duration-1000">
-          <div className="absolute top-[25%] -left-[10%] w-[120vw] h-[250px] bg-white/25 dark:bg-white/10 blur-3xl animate-drift-slow" />
-          <div className="absolute top-[55%] -left-[10%] w-[120vw] h-[300px] bg-white/20 dark:bg-white/10 blur-3xl animate-drift-medium" />
+        <div className="absolute inset-0 pointer-events-none opacity-40 bg-slate-100/20 dark:bg-slate-900/20 transition-opacity duration-1000">
+          <div className="absolute top-[25%] -left-[10%] w-[120vw] h-[250px] bg-white/20 dark:bg-white/10 blur-2xl animate-drift-slow" />
+          <div className="absolute top-[55%] -left-[10%] w-[120vw] h-[300px] bg-white/15 dark:bg-white/10 blur-2xl animate-drift-medium" />
         </div>
       )}
 
@@ -222,7 +214,7 @@ export default function SkyEnvironment() {
       {(weatherState === 'rain' || weatherState === 'thunderstorm') && (
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            weatherState === 'thunderstorm' ? 'opacity-50' : 'opacity-30'
+            weatherState === 'thunderstorm' ? 'opacity-40' : 'opacity-25'
           } bg-slate-950/30`}
         />
       )}
