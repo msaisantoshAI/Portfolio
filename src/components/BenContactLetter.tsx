@@ -16,7 +16,7 @@ export default function BenContactLetter() {
   };
 
   return (
-    <section id="contact" className="px-5 py-12 md:px-8 lg:px-12 max-w-[1240px] mx-auto w-full">
+    <section id="contact" className="px-4 py-12 sm:px-6 md:px-8 max-w-[1320px] mx-auto w-full">
       <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-7 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-xl space-y-10 transition-colors duration-300">
         
         {/* Section Header */}

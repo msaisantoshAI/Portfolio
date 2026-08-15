@@ -42,7 +42,7 @@ const processPillars = [
 
 export default function BenOtherThings() {
   return (
-    <section id="process" className="px-4 py-8 sm:py-10 sm:px-6 md:px-12 max-w-[1240px] mx-auto w-full font-sans">
+    <section id="process" className="px-4 py-8 sm:py-10 sm:px-6 md:px-8 max-w-[1320px] mx-auto w-full font-sans">
       <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-6 sm:p-10 md:p-12 shadow-sm dark:shadow-md backdrop-blur-xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}

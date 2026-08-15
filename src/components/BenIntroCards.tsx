@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 export default function BenIntroCards() {
   return (
-    <section className="px-4 pb-0 pt-2 sm:pt-4 sm:px-6 md:px-12 max-w-[1240px] mx-auto w-full">
+    <section className="px-4 pb-0 pt-2 sm:pt-4 sm:px-6 md:px-8 max-w-[1320px] mx-auto w-full">
       {/* Intro Surface Box with Dot Grid Background */}
       <div className="relative mx-auto w-full overflow-hidden rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 p-7 sm:p-10 md:p-14 border border-black/5 dark:border-white/10 shadow-sm dark:shadow-md backdrop-blur-xl transition-colors duration-300">
         

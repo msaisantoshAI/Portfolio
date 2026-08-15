@@ -1,4 +1,5 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
@@ -6,10 +7,10 @@ export default function CustomCursor() {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   
-  // High-performance spring mechanics for the dragging glass halo
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.4 };
-  const haloX = useSpring(cursorX, springConfig);
-  const haloY = useSpring(cursorY, springConfig);
+  // Smooth spring mechanics for the subtle following ring
+  const springConfig = { damping: 28, stiffness: 260, mass: 0.35 };
+  const ringX = useSpring(cursorX, springConfig);
+  const ringY = useSpring(cursorY, springConfig);
 
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,7 +38,8 @@ export default function CustomCursor() {
         target.tagName.toLowerCase() === 'a' || 
         target.tagName.toLowerCase() === 'button' ||
         target.closest('a') !== null ||
-        target.closest('button') !== null
+        target.closest('button') !== null ||
+        target.getAttribute('role') === 'button'
       ) {
         setIsHovering(true);
       } else {
@@ -57,10 +59,10 @@ export default function CustomCursor() {
   if (!isVisible) return null;
 
   return (
-    <div className="hidden md:block">
-      {/* The precise Dot Tracking */}
+    <div className="hidden md:block pointer-events-none">
+      {/* 1. Core Dot Pointer */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400 pointer-events-none z-[99999]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -68,22 +70,22 @@ export default function CustomCursor() {
           translateY: '-50%',
         }}
       />
-      {/* The dragging Glass Refraction Halo */}
+      {/* 2. Sleek Magnetic Follow Ring */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] rounded-full mix-blend-exclusion backdrop-blur-[2px] bg-white/[0.05]"
+        className="fixed top-0 left-0 pointer-events-none z-[99998] rounded-full border border-blue-500/40 dark:border-blue-400/40 bg-blue-500/5 dark:bg-blue-400/5"
         animate={{
-          width: isHovering ? 56 : 30,
-          height: isHovering ? 56 : 30,
-          borderColor: isHovering ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.18)',
-          borderWidth: '1px'
+          width: isHovering ? 42 : 24,
+          height: isHovering ? 42 : 24,
+          borderColor: isHovering ? 'rgba(59, 130, 246, 0.7)' : 'rgba(59, 130, 246, 0.35)',
+          scale: isHovering ? 1.15 : 1,
         }}
         style={{
-          x: haloX,
-          y: haloY,
+          x: ringX,
+          y: ringY,
           translateX: '-50%',
           translateY: '-50%',
         }}
-        transition={{ type: "tween", ease: "circOut", duration: 0.25 }}
+        transition={{ type: 'tween', ease: 'easeOut', duration: 0.18 }}
       />
     </div>
   );

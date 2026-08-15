@@ -50,7 +50,7 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 md:px-12 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 md:px-8 select-none"
     >
       {/* ========================================================================= */}
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
@@ -159,7 +159,7 @@ export default function HeroLanding() {
       {/* ========================================================================= */}
       {/* 3. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1240px] mx-auto w-full pointer-events-auto my-auto py-6">
+      <div className="relative z-20 max-w-[1320px] mx-auto w-full pointer-events-auto my-auto py-6">
         <motion.div 
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"

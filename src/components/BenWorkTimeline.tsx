@@ -2,6 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface WorkItem {
   year: string;
@@ -13,6 +15,7 @@ interface WorkItem {
   role: string;
   tags: string[];
   image: string;
+  link?: string;
   isFlagship?: boolean;
 }
 
@@ -27,6 +30,7 @@ const workItems: WorkItem[] = [
     role: 'Lead Product Designer · UX Architecture · Design System',
     tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
+    link: '/projects/esow-planner',
     isFlagship: true,
   },
   {
@@ -67,112 +71,140 @@ const workItems: WorkItem[] = [
 
 export default function BenWorkTimeline() {
   return (
-    <section id="work" className="px-4 py-8 sm:py-10 sm:px-6 md:px-12 max-w-[1240px] mx-auto w-full">
-      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-6 sm:p-8 md:p-10 shadow-sm dark:shadow-md backdrop-blur-xl transition-colors duration-300">
-        
-        {/* Section Header */}
-        <div className="mb-8 space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
-            Featured Case Studies
-          </p>
-          <div className="flex flex-wrap items-baseline gap-3">
-            <h2 className="section-heading text-zinc-900 dark:text-white">
-              Selected Case Studies
-            </h2>
-            <span className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-light">
-              (Enterprise SaaS &amp; AI Systems)
-            </span>
-          </div>
+    <section id="work" className="px-4 py-10 sm:py-14 sm:px-6 md:px-8 max-w-[1320px] mx-auto w-full">
+      
+      {/* Section Header */}
+      <div className="mb-10 space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
+        <p className="eyebrow text-blue-600 dark:text-blue-400">
+          Featured Case Studies
+        </p>
+        <div className="flex flex-wrap items-baseline justify-between gap-4">
+          <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            Selected Case Studies
+          </h2>
+          <span className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-light">
+            (Scroll down to explore overlapping projects)
+          </span>
         </div>
+      </div>
 
-        {/* Compact Case Studies Grid / List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {workItems.map((item, idx) => (
-            <article 
-              key={idx} 
-              className={`rounded-2xl border ${
-                item.isFlagship 
-                  ? 'border-blue-500/30 bg-blue-50/20 dark:bg-blue-950/10' 
-                  : 'border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/40'
-              } p-5 sm:p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group`}
+      {/* Sticky Overlapping Project Cards Stack */}
+      <div className="relative flex flex-col gap-10 sm:gap-14 pb-16">
+        {workItems.map((item, idx) => {
+          const topOffset = 110 + idx * 24;
+
+          return (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              style={{
+                top: `${topOffset}px`,
+                zIndex: idx + 10,
+              }}
+              className="sticky rounded-[28px] sm:rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-8 md:p-10 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 group"
             >
-              <div className="space-y-4">
-                {/* Visual Preview */}
-                <div className="relative w-full rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 aspect-[16/10] group-hover:border-blue-500/40 transition-all duration-500">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                {/* Left Column: Case Study Details */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                  
+                  {/* Category & Year */}
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
+                      {item.category}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+                      {item.year}
+                    </span>
+                  </div>
+
+                  {/* Title & Core Problem */}
+                  <div className="space-y-3">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+                      {item.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                      {item.problem}
+                    </p>
+                  </div>
+
+                  {/* Impact Metric Highlight */}
+                  <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-4">
+                    <div className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
+                      {item.outcomeMetric}
+                    </div>
+                    <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-medium">
+                      {item.outcome}
+                    </div>
+                  </div>
+
+                  {/* Role & Tags */}
+                  <div className="space-y-3 pt-1 border-t border-black/5 dark:border-white/10">
+                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                      <strong className="text-zinc-800 dark:text-zinc-200">Role:</strong> {item.role}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.tags.map((t, i) => (
+                        <span key={i} className="text-[11px] px-2.5 py-0.5 rounded-md bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400 border border-black/5 dark:border-white/5">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA Action */}
+                  <div className="pt-2">
+                    {item.link ? (
+                      <Link
+                        href={item.link}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-md transition-transform hover:scale-105"
+                      >
+                        <span>View Deep Dive Case Study</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    ) : (
+                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                        <span>Enterprise Case Study</span>
+                        <span>&bull;</span>
+                        <span>Internal Production</span>
+                      </span>
+                    )}
+                  </div>
+
+                </div>
+
+                {/* Right Column: Visual Preview Showcase */}
+                <div className="lg:col-span-6 relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-100 dark:bg-black/60 border border-black/10 dark:border-white/10 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
                   {item.image.endsWith('.mp4') ? (
                     <video
                       src={item.image}
                       autoPlay
-                      muted
                       loop
+                      muted
                       playsInline
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                      aria-label={`${item.title} video preview`}
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <Image
                       src={item.image}
-                      alt={`${item.title} product user interface screenshot`}
+                      alt={item.title}
                       fill
-                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-[1.02] transition-transform duration-500"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   )}
-                  
-                  {/* Badge */}
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className="text-[11px] font-mono font-bold bg-black/80 text-white backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15">
-                      {item.year}
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                {/* Content */}
-                <div className="space-y-2">
-                  <span className="text-[11px] font-mono uppercase tracking-wider font-semibold text-blue-600 dark:text-blue-400 block">
-                    {item.category}
-                  </span>
-
-                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {item.title}
-                  </h3>
-
-                  {/* Impact Metric */}
-                  <div className="p-3 rounded-xl bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/40">
-                    <p className="text-xs font-medium text-emerald-950 dark:text-emerald-200">
-                      <strong className="text-sm text-emerald-700 dark:text-emerald-400 font-bold mr-1">{item.outcomeMetric}</strong>
-                      {item.outcome}
-                    </p>
-                  </div>
-
-                  <p className="text-xs text-zinc-600 dark:text-zinc-300 line-clamp-2">
-                    {item.problem}
-                  </p>
-                </div>
               </div>
-
-              {/* Tags & Coming Soon Button */}
-              <div className="pt-4 mt-4 border-t border-black/5 dark:border-white/10 flex items-center justify-between gap-2">
-                <div className="flex flex-wrap gap-1">
-                  {item.tags.slice(0, 2).map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="px-2 py-0.5 rounded-full bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10px] font-medium text-zinc-600 dark:text-zinc-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <span className="touch-target inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-zinc-100 dark:bg-white/10 text-zinc-600 dark:text-zinc-300 font-semibold text-xs border border-black/5 dark:border-white/15">
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-                  Coming Soon
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-
+            </motion.div>
+          );
+        })}
       </div>
+
     </section>
   );
 }

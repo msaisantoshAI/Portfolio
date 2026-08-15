@@ -50,7 +50,7 @@ export default function Footer() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-12 sm:gap-16">
+      <div className="max-w-[1320px] mx-auto w-full relative z-10 flex flex-col gap-12 sm:gap-16">
         
         {/* Top Row: CTA & Back to Top */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pb-8 border-b border-white/10">
