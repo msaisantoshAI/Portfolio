@@ -1,49 +1,49 @@
 import React from 'react';
 import ScrollyCanvas from '@/components/ScrollyCanvas';
-import BenIntroCards from '@/components/BenIntroCards';
-import BenAboutSection from '@/components/BenAboutSection';
-import SanjayExperience from '@/components/SanjayExperience';
-import BenWorkTimeline from '@/components/BenWorkTimeline';
-import BenOtherThings from '@/components/BenOtherThings';
-import BenWritings from '@/components/BenWritings';
-import BenTalks from '@/components/BenTalks';
-import BenTestimonials from '@/components/BenTestimonials';
-import BenContactLetter from '@/components/BenContactLetter';
+import EditorialAbout from '@/components/EditorialAbout';
+import EditorialWork from '@/components/EditorialWork';
+import EditorialProcess from '@/components/EditorialProcess';
+import EditorialExperience from '@/components/EditorialExperience';
+import EditorialAiPrototypes from '@/components/EditorialAiPrototypes';
+import EditorialArticles from '@/components/EditorialArticles';
+import EditorialTalks from '@/components/EditorialTalks';
+import EditorialTestimonials from '@/components/EditorialTestimonials';
+import EditorialContact from '@/components/EditorialContact';
 
 export default function Home() {
   return (
-    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-12 md:space-y-20 pb-20">
-      {/* 1. HERO SCROLL CANVAS (Preserved 100% with unobstructed face & lower negative space text) */}
+    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-16 sm:space-y-24 md:space-y-32 pb-24">
+      {/* 1. HERO SCROLL CANVAS (100% LOCKED: Environmental parallax, living sky, face unobstructed) */}
       <div id="home" className="relative">
         <ScrollyCanvas />
       </div>
 
-      {/* 2. INTRO BANNER & 4-CARD CURATED DECK */}
-      <BenIntroCards />
+      {/* 2. EDITORIAL ABOUT (Narrative Statement, 3 Capabilities & Restrained Metrics Row) */}
+      <EditorialAbout />
 
-      {/* 3. A BIT ABOUT ME SECTION */}
-      <BenAboutSection />
+      {/* 3. SELECTED WORK (Alternating Editorial Case Studies with Measurable Outcomes) */}
+      <EditorialWork />
 
-      {/* 4. WORK HISTORY & EXPERIENCE (Sanjay Menon Inspired) */}
-      <SanjayExperience />
+      {/* 4. PROCESS (5 Sequential Stages: Discover -> Structure -> Design -> Build -> Validate) */}
+      <EditorialProcess />
 
-      {/* 5. FEATURED CASE STUDIES TIMELINE (2025 -> 2023) */}
-      <BenWorkTimeline />
+      {/* 5. EXPERIENCE (Clean Vertical Career Timeline & Leadership History) */}
+      <EditorialExperience />
 
-      {/* 6. HOW I WORK (5-Stage Process & AI Playground) */}
-      <BenOtherThings />
+      {/* 6. PROTOTYPES & LABS (Interactive 4-Tab AI Workspace & Live State Terminal) */}
+      <EditorialAiPrototypes />
 
-      {/* 7. I WRITE. QUITE A LOT. (Articles & Case Studies) */}
-      <BenWritings />
+      {/* 7. WRITINGS (Editorial Row Layout: "I Write. Quite a Lot.") */}
+      <EditorialArticles />
 
-      {/* 8. PUBLIC TALKS & WORKSHOPS */}
-      <BenTalks />
+      {/* 8. TALKS & WORKSHOPS (Chronological Speaking Résumé) */}
+      <EditorialTalks />
 
-      {/* 9. PEER FEEDBACK & COLLABORATION */}
-      <BenTestimonials />
+      {/* 9. TESTIMONIALS (Large Quotation Typography with Carousel Controls) */}
+      <EditorialTestimonials />
 
-      {/* 10. INTERESTED IN COLLABORATING? (Letter & Contact Form) */}
-      <BenContactLetter />
+      {/* 10. CLOSING & CONTACT ("Let's Build Something Interesting" & Interactive Letter) */}
+      <EditorialContact />
     </main>
   );
 }

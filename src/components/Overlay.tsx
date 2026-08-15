@@ -9,7 +9,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
   const y1 = useTransform(scrollYProgress, [0, 0.1], [0, -180], { clamp: true });
   const display1 = useTransform(scrollYProgress, (p) => p > 0.12 ? 'none' : 'flex');
 
-  // Second Sequence: Artist & Designer (Left Negative Space - Always Dark Mode + Blue Accent)
+  // Second Sequence: Artist & Designer (Left Negative Space - Editorial Clean)
   const opacity1_5 = useTransform(scrollYProgress, [0.1, 0.18, 0.32, 0.4], [0, 1, 1, 0], { clamp: true });
   const y1_5 = useTransform(scrollYProgress, [0.1, 0.18, 0.32, 0.4], [30, 0, 0, -30], { clamp: true });
 
@@ -32,41 +32,43 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
     <div className="absolute inset-0 z-20 pointer-events-none h-full font-sans">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* --- LAYER 1: Hero Landing (Face 100% Clear -> Title Prominent & Shifted Down) --- */}
+        {/* --- LAYER 1: Hero Editorial Landing (Face 100% Unobstructed -> Headline in Lower Space) --- */}
         <motion.div
           style={{ opacity: opacity1, y: y1, display: display1 }}
           className="absolute inset-0 flex flex-col justify-end text-center pb-6 sm:pb-8 md:pb-11 px-4 sm:px-6 pointer-events-none"
         >
           {/* Subtle bottom gradient to guarantee crisp contrast over torso */}
-          <div className="absolute inset-x-0 bottom-0 h-[46%] bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" aria-hidden="true" />
+          <div className="absolute inset-x-0 bottom-0 h-[48%] bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" aria-hidden="true" />
 
-          {/* Typography positioned down in lower negative space (Face completely clear) */}
+          {/* Typography positioned down in lower negative space */}
           <div className="relative z-30 flex flex-col items-center max-w-2xl mx-auto space-y-3 pointer-events-auto">
             
-            {/* 01. Compact Availability status */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 shadow-sm">
+            {/* 01. Eyebrow Badge */}
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true" />
               <span className="text-white text-[11px] font-semibold tracking-wider uppercase font-mono">
                 Product Designer &times; AI Builder
               </span>
             </div>
 
-            {/* 02. Larger, prominent Name Title (Shifted down, clean and focused) */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold tracking-tight text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
-              Sai Santosh Madhari
-            </h1>
+            {/* 02. Editorial Headline & Subtitle */}
+            <div className="space-y-1.5">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold tracking-tight text-white leading-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+                Designing systems that feel human.
+              </h1>
+              <p className="text-xs sm:text-sm text-zinc-300 max-w-lg mx-auto font-light leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.9)]">
+                Sai Santosh Madhari &mdash; Crafting AI-native orchestration workflows, scalable design systems, and complex enterprise software.
+              </p>
+            </div>
 
-            {/* 03. Interactive Dark Mode Action CTAs */}
+            {/* 03. Interactive Action CTAs */}
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() => handleScrollTo('work')}
                 className="touch-target cursor-pointer relative z-50 inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-full bg-[#0a0f1d] hover:bg-[#131d38] text-white font-bold text-xs sm:text-sm border border-white/25 hover:border-white/50 hover:scale-105 active:scale-95 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.7)] focus-visible:ring-2 focus-visible:ring-white"
               >
-                View my work
-                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
+                View my work &rarr;
               </button>
               <button
                 type="button"
@@ -105,14 +107,14 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
 
         </motion.div>
 
-        {/* --- LAYER 1.5: Artist Sequence (Always Dark Mode + Signature Blue Accent) --- */}
+        {/* --- LAYER 1.5: Artist Sequence (Left Negative Space - Signature Blue Accent) --- */}
         <motion.div
           style={{ opacity: opacity1_5, y: y1_5 }}
           className="absolute inset-0 flex flex-col items-start justify-center p-6 sm:p-12 md:p-20 text-left pointer-events-auto"
         >
           <div className="max-w-md bg-[#0b0f1a]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5">
             <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
-              Creative Foundation
+              01 // Creative Foundation
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
               Passionate Artist,<br />
@@ -121,7 +123,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
               </span>
             </h2>
             <p className="text-xs sm:text-sm text-zinc-300 font-light leading-relaxed">
-              My foundation in fine arts and visual composition brought me seamlessly into the realm of digital product craft, information architecture, and scalable design systems.
+              My foundation in fine arts and visual composition brought me seamlessly into digital product craft, information architecture, and scalable design systems.
             </p>
           </div>
         </motion.div>
@@ -133,7 +135,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
         >
           <div className="max-w-md bg-[#0b0f1a]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5 text-right">
             <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
-              AI Orchestration
+              02 // AI Orchestration
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
               Human-in-the-Loop AI Systems.
@@ -151,7 +153,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
         >
           <div className="max-w-lg bg-[#0b0f1a]/90 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5">
             <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
-              Product Leadership
+              03 // Product Leadership
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
               Bridging design and engineering.
