@@ -13,6 +13,8 @@ export interface EnvironmentState {
   timePhase: TimePhase;
   weatherState: WeatherState;
   temperature: number | null;
+  windSpeed: number; // km/h
+  cloudCover: number; // 0-100%
   location: string;
   region: LocationRegion;
   localTime: string;
@@ -33,6 +35,8 @@ const defaultState: EnvironmentState = {
   timePhase: 'afternoon',
   weatherState: 'clear',
   temperature: null,
+  windSpeed: 12,
+  cloudCover: 20,
   location: 'Hyderabad',
   region: 'india',
   localTime: '',
@@ -54,7 +58,7 @@ export function useEnvironment() {
   return useContext(EnvironmentContext);
 }
 
-// Map WMO Weather Codes to our visual weather states
+// Map WMO Weather Codes to visual weather states
 function mapWmoCode(code: number): { state: WeatherState; description: string } {
   if (code === 0) return { state: 'clear', description: 'Clear' };
   if (code === 1) return { state: 'clear', description: 'Mainly Clear' };
@@ -73,9 +77,11 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
   const [timePhase, setTimePhase] = useState<TimePhase>('afternoon');
   const [weatherState, setWeatherState] = useState<WeatherState>('clear');
   const [temperature, setTemperature] = useState<number | null>(null);
+  const [windSpeed, setWindSpeed] = useState<number>(14);
+  const [cloudCover, setCloudCover] = useState<number>(25);
   const [location, setLocation] = useState<string>('Hyderabad');
   const [region, setRegion] = useState<LocationRegion>('india');
-  const [currentTimezone, setCurrentTimezone] = useState<string>('');
+  const [currentTimezone, setCurrentTimezone] = useState<string>('Asia/Kolkata');
   const [localTime, setLocalTime] = useState<string>('');
   const [isDay, setIsDay] = useState<boolean>(true);
   const [weatherDescription, setWeatherDescription] = useState<string>('Clear');
@@ -114,7 +120,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
   const updateTimePhase = useCallback(() => {
     const now = new Date();
     
-    // Format local time string (using custom timezone if simulating a different city)
+    // Format local time string
     const options: Intl.DateTimeFormatOptions = {
       hour: '2-digit',
       minute: '2-digit',
@@ -127,7 +133,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     const timeFormatter = new Intl.DateTimeFormat([], options);
     setLocalTime(timeFormatter.format(now));
 
-    // Get current minutes in the target timezone
+    // Get current hours in target timezone
     let targetHours = now.getHours();
     let targetMinutes = now.getMinutes();
 
@@ -138,39 +144,40 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         minute: 'numeric',
         hour12: false,
       }).formatToParts(now);
-      const hPart = parts.find((p) => p.type === 'hour')?.value;
-      const mPart = parts.find((p) => p.type === 'minute')?.value;
-      if (hPart) targetHours = parseInt(hPart, 10);
-      if (mPart) targetMinutes = parseInt(mPart, 10);
+
+      const hPart = parts.find(p => p.type === 'hour');
+      const mPart = parts.find(p => p.type === 'minute');
+      if (hPart && mPart) {
+        targetHours = parseInt(hPart.value, 10);
+        targetMinutes = parseInt(mPart.value, 10);
+      }
     }
 
-    const currentMins = targetHours * 60 + targetMinutes;
+    const currentTotalMinutes = targetHours * 60 + targetMinutes;
 
-    let computedPhase: TimePhase = 'morning';
+    let computedPhase: TimePhase = 'afternoon';
     let computedIsDay = true;
 
-    if (sunriseTime && sunsetTime) {
-      const sunriseMinutes = sunriseTime.getHours() * 60 + sunriseTime.getMinutes();
-      const sunsetMinutes = sunsetTime.getHours() * 60 + sunsetTime.getMinutes();
+    if (sunriseTime && sunsetTime && !isNaN(sunriseTime.getTime()) && !isNaN(sunsetTime.getTime())) {
+      const srMinutes = sunriseTime.getHours() * 60 + sunriseTime.getMinutes();
+      const ssMinutes = sunsetTime.getHours() * 60 + sunsetTime.getMinutes();
 
-      const dawnStart = sunriseMinutes - 45;
-      const dawnEnd = sunriseMinutes + 30;
-      const goldenHourStart = sunsetMinutes - 60;
-      const sunsetEnd = sunsetMinutes + 45;
-
-      if (currentMins >= dawnStart && currentMins < dawnEnd) {
+      if (currentTotalMinutes < srMinutes - 60) {
+        computedPhase = 'night';
+        computedIsDay = false;
+      } else if (currentTotalMinutes < srMinutes + 30) {
         computedPhase = 'dawn';
         computedIsDay = true;
-      } else if (currentMins >= dawnEnd && currentMins < 12 * 60) {
+      } else if (currentTotalMinutes < srMinutes + 240) {
         computedPhase = 'morning';
         computedIsDay = true;
-      } else if (currentMins >= 12 * 60 && currentMins < goldenHourStart) {
+      } else if (currentTotalMinutes < ssMinutes - 90) {
         computedPhase = 'afternoon';
         computedIsDay = true;
-      } else if (currentMins >= goldenHourStart && currentMins < sunsetMinutes) {
+      } else if (currentTotalMinutes < ssMinutes - 15) {
         computedPhase = 'goldenHour';
         computedIsDay = true;
-      } else if (currentMins >= sunsetMinutes && currentMins < sunsetEnd) {
+      } else if (currentTotalMinutes < ssMinutes + 45) {
         computedPhase = 'sunset';
         computedIsDay = false;
       } else {
@@ -178,6 +185,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         computedIsDay = false;
       }
     } else {
+      // Fallback heuristic based on hours (0-24)
       if (targetHours >= 5 && targetHours < 7) {
         computedPhase = 'dawn';
         computedIsDay = true;
@@ -217,13 +225,13 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     return () => clearInterval(interval);
   }, [updateTimePhase]);
 
-  // 2. Weather Engine (Fetches user location & current weather)
+  // 2. Weather Engine
   const fetchWeather = useCallback(async (customLat?: number, customLon?: number, customName?: string, customTz?: string) => {
     try {
       let lat = customLat ?? 17.385;
       let lon = customLon ?? 78.4867;
       let locName = customName ?? 'Hyderabad';
-      let tzName = customTz ?? '';
+      let tzName = customTz ?? 'Asia/Kolkata';
       let detectedRegion: LocationRegion = 'india';
 
       if (customLat === undefined) {
@@ -235,7 +243,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
               lat = geoData.latitude || lat;
               lon = geoData.longitude || lon;
               locName = geoData.city || geoData.region || geoData.country || locName;
-              tzName = geoData.timezone?.id || '';
+              tzName = geoData.timezone?.id || tzName;
 
               const locLower = `${geoData.city || ''} ${geoData.region || ''} ${geoData.country || ''}`.toLowerCase();
               const countryCode = (geoData.country_code || '').toUpperCase();
@@ -260,11 +268,11 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         const locLower = locName.toLowerCase();
         if (locLower.includes('india') || locLower.includes('hyderabad') || locLower.includes('mumbai') || locLower.includes('delhi')) {
           detectedRegion = 'india';
-        } else if (locLower.includes('francisco') || locLower.includes('york') || locLower.includes('states') || locLower.includes('usa')) {
+        } else if (locLower.includes('francisco') || locLower.includes('york') || locLower.includes('states') || locLower.includes('usa') || locLower.includes('california')) {
           detectedRegion = 'us';
-        } else if (locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin') || locLower.includes('europe')) {
+        } else if (locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin') || locLower.includes('europe') || locLower.includes('uk')) {
           detectedRegion = 'europe';
-        } else if (locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai') || locLower.includes('asia')) {
+        } else if (locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai') || locLower.includes('asia') || locLower.includes('japan')) {
           detectedRegion = 'asia';
         } else {
           detectedRegion = 'global';
@@ -275,9 +283,9 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
       setRegion(detectedRegion);
       setCurrentTimezone(tzName);
 
-      // Step B: Fetch Live Weather from Open-Meteo API
+      // Fetch Live Weather & Wind from Open-Meteo API
       const tzParam = tzName ? encodeURIComponent(tzName) : 'auto';
-      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${tzParam}`;
+      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day,wind_speed_10m,cloud_cover&daily=sunrise,sunset&timezone=${tzParam}`;
       const wRes = await fetch(weatherUrl, { cache: 'no-store' });
       
       if (wRes.ok) {
@@ -285,6 +293,8 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         if (wData && wData.current) {
           const temp = Math.round(wData.current.temperature_2m);
           setTemperature(temp);
+          setWindSpeed(Math.round(wData.current.wind_speed_10m || 14));
+          setCloudCover(wData.current.cloud_cover ?? 25);
 
           const wmo = mapWmoCode(wData.current.weather_code);
           if (!weatherOverride) {
@@ -303,7 +313,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         }
       }
     } catch {
-      // Fail silently
+      // Fail gracefully
     }
   }, [weatherOverride]);
 
@@ -314,7 +324,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     return () => clearInterval(weatherInterval);
   }, [fetchWeather]);
 
-  // Handle setting custom simulated location
+  // Handle setting custom simulated location with high-precision Open-Meteo Geocoding
   const setCustomLocation = async (cityName: string, lat?: number, lon?: number, timezone?: string) => {
     setIsSimulating(true);
     let targetLat = lat;
@@ -331,12 +341,12 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
             const result = geoData.results[0];
             targetLat = result.latitude;
             targetLon = result.longitude;
-            targetName = result.name;
+            targetName = `${result.name}${result.country ? `, ${result.country}` : ''}`;
             targetTz = result.timezone;
           }
         }
       } catch {
-        // Ignore
+        // Fallback
       }
     }
 
@@ -352,39 +362,16 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     fetchWeather();
   };
 
-  const handleSetTimePhaseOverride = (phase: TimePhase | null) => {
-    setTimePhaseOverride(phase);
-    setIsSimulating(phase !== null || weatherOverride !== null);
-    if (phase) {
-      setTimePhase(phase);
-      setIsDay(phase !== 'sunset' && phase !== 'night');
-    } else {
-      setTimePhase(rawTimePhaseRef.current);
-      setIsDay(rawTimePhaseRef.current !== 'sunset' && rawTimePhaseRef.current !== 'night');
-    }
+  const refreshWeather = () => {
+    fetchWeather();
   };
 
-  const handleSetWeatherOverride = (weather: WeatherState | null) => {
-    setWeatherOverride(weather);
-    setIsSimulating(timePhaseOverride !== null || weather !== null);
-    if (weather) {
-      setWeatherState(weather);
-      setWeatherDescription(weather.toUpperCase());
-    }
-  };
+  // Sync NextThemes dark/light mode
+  const effectiveTheme: 'light' | 'dark' = 
+    themeMode === 'light' ? 'light' :
+    themeMode === 'dark' ? 'dark' :
+    isDay ? 'light' : 'dark';
 
-  // 3. Compute Effective Theme (Syncing with next-themes)
-  let effectiveTheme: 'light' | 'dark' = 'light';
-  if (themeMode === 'light') {
-    effectiveTheme = 'light';
-  } else if (themeMode === 'dark') {
-    effectiveTheme = 'dark';
-  } else {
-    // In system mode: daytime phases -> light, evening/sunset/night -> dark
-    effectiveTheme = isDay && (timePhase === 'morning' || timePhase === 'afternoon' || timePhase === 'dawn' || timePhase === 'goldenHour') ? 'light' : 'dark';
-  }
-
-  // Update next-themes provider
   useEffect(() => {
     setTheme(effectiveTheme);
   }, [effectiveTheme, setTheme]);
@@ -396,6 +383,8 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         timePhase,
         weatherState,
         temperature,
+        windSpeed,
+        cloudCover,
         location,
         region,
         localTime,
@@ -405,10 +394,10 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         isSimulating,
         setThemeMode,
         setCustomLocation,
-        setTimePhaseOverride: handleSetTimePhaseOverride,
-        setWeatherOverride: handleSetWeatherOverride,
+        setTimePhaseOverride,
+        setWeatherOverride,
         resetToLiveLocation,
-        refreshWeather: () => fetchWeather(),
+        refreshWeather,
       }}
     >
       {children}

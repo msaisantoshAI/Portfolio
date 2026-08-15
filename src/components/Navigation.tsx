@@ -5,13 +5,14 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import ThemeSelector from '@/components/ThemeSelector';
 import WeatherHUD from '@/components/WeatherHUD';
+import WebsiteTour from '@/components/WebsiteTour';
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'work', 'ai-exploration', 'drawings', 'talks', 'contact'];
+      const sections = ['home', 'about', 'experience', 'work', 'process', 'ai-exploration', 'drawings', 'talks', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -31,10 +32,10 @@ export default function Navigation() {
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
     { name: 'About', href: '#about', id: 'about' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'Work', href: '#work', id: 'work' },
     { name: 'AI Exploration', href: '#ai-exploration', id: 'ai-exploration' },
     { name: 'Artworks', href: '#drawings', id: 'drawings' },
-    { name: 'Talks', href: '#talks', id: 'talks' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
@@ -94,10 +95,10 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right: Resume (No arrow) + LinkedIn + Theme Dropdown */}
+          {/* Right: Resume + LinkedIn + Theme Dropdown */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             
-            {/* Resume Button without arrow */}
+            {/* Resume Button */}
             <a 
               href="/resume.pdf" 
               target="_blank" 
@@ -162,6 +163,9 @@ export default function Navigation() {
           </div>
         </nav>
       </div>
+
+      {/* Floating Interactive Website Tour (Bottom Left/Right) */}
+      <WebsiteTour />
 
       {/* Floating Real-Time Location, Weather & Clock Chip (Bottom Right) */}
       <WeatherHUD />

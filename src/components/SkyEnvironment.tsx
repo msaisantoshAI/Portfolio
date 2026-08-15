@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment, TimePhase, WeatherState, LocationRegion } from '@/context/EnvironmentContext';
 import LiveClouds from '@/components/LiveClouds';
+import TreeCanopy from '@/components/TreeCanopy';
 
 // Crystal-clear sky mapping adapting purely to location & daylight time phase (NO WATER/RAIN DROPS)
 function getAutoSkyImage(
@@ -17,9 +18,9 @@ function getAutoSkyImage(
   const locLower = (location || '').toLowerCase();
   const isHyderabad = locLower.includes('hyderabad');
   const isIndia = region === 'india' || locLower.includes('india') || locLower.includes('mumbai') || locLower.includes('delhi') || isHyderabad;
-  const isUS = region === 'us' || locLower.includes('francisco') || locLower.includes('york') || locLower.includes('usa');
-  const isEurope = region === 'europe' || locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin');
-  const isAsia = region === 'asia' || locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai');
+  const isUS = region === 'us' || locLower.includes('francisco') || locLower.includes('york') || locLower.includes('usa') || locLower.includes('california');
+  const isEurope = region === 'europe' || locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin') || locLower.includes('europe');
+  const isAsia = region === 'asia' || locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai') || locLower.includes('asia');
 
   // Location-specific pure sky mapping
   if (isHyderabad) {
@@ -77,7 +78,7 @@ function getAutoSkyImage(
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
-  const { themeMode, timePhase, weatherState, isDay, location, region } = useEnvironment();
+  const { themeMode, timePhase, weatherState, isDay, location, region, windSpeed } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
   // Instantaneous spring-driven scroll tracking
@@ -89,7 +90,7 @@ export default function SkyEnvironment() {
   });
 
   // Vertical scroll translation
-  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-40%']);
+  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-38%']);
 
   useEffect(() => {
     setMounted(true);
@@ -105,11 +106,15 @@ export default function SkyEnvironment() {
   // Compute Auto Sky Image URL with location & region awareness
   const autoSkyImageUrl = getAutoSkyImage(timePhase, weatherState, isDay, location, region);
 
+  const isNight = !isDay || timePhase === 'night';
+  const isSunset = timePhase === 'sunset';
+  const isGoldenHour = timePhase === 'goldenHour';
+
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
       {/* ========================================================================= */}
-      {/* 1. MANUAL LIGHT MODE: Clean Daytime Sky Image                             */}
+      {/* 1. MANUAL LIGHT MODE: Clean Daytime Sky Image with Trees & Moving Clouds  */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -141,10 +146,13 @@ export default function SkyEnvironment() {
 
         {/* Live Clouds in Light Mode */}
         <LiveClouds weatherState="partlyCloudy" timePhase="afternoon" isDay={true} />
+
+        {/* Moving Tree Canopy */}
+        <TreeCanopy timePhase="afternoon" isDay={true} windSpeed={14} />
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: Starry Night Sky Image                               */}
+      {/* 2. MANUAL DARK MODE: Starry Night Sky Image with Trees & Stars            */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -176,10 +184,13 @@ export default function SkyEnvironment() {
 
         {/* Live Clouds in Dark Mode */}
         <LiveClouds weatherState="clear" timePhase="night" isDay={false} />
+
+        {/* Moving Tree Canopy in Night Mode */}
+        <TreeCanopy timePhase="night" isDay={false} windSpeed={10} />
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. AUTO MODE: LIVE LOCATION-SPECIFIC SKY & DYNAMIC LIVE CLOUDS            */}
+      {/* 3. AUTO MODE: LIVE LOCATION-SPECIFIC SKY + CLOUDS + SWAYING CANOPY        */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -202,8 +213,36 @@ export default function SkyEnvironment() {
           />
         </motion.div>
 
+        {/* Night Stars Atmosphere in Auto Mode */}
+        {isNight && (
+          <div className="absolute inset-0 bg-[radial-gradient(#fff_1.2px,transparent_1.2px)] [background-size:36px_36px] opacity-40 pointer-events-none" />
+        )}
+
+        {/* Golden Hour Radiance in Auto Mode */}
+        {isGoldenHour && (
+          <div 
+            className="absolute inset-0 pointer-events-none opacity-60"
+            style={{
+              background: 'radial-gradient(circle at 20% 20%, rgba(255, 180, 40, 0.45) 0%, rgba(255, 120, 50, 0.2) 40%, transparent 75%)'
+            }}
+          />
+        )}
+
+        {/* Sunset Twilight Radiance in Auto Mode */}
+        {isSunset && (
+          <div 
+            className="absolute inset-0 pointer-events-none opacity-70"
+            style={{
+              background: 'linear-gradient(to top, rgba(140, 30, 90, 0.4) 0%, rgba(255, 100, 60, 0.25) 45%, transparent 80%)'
+            }}
+          />
+        )}
+
         {/* Dynamic Live Animated Clouds matching local weather and daylight */}
         <LiveClouds weatherState={weatherState} timePhase={timePhase} isDay={isDay} />
+
+        {/* Living Swaying Tree Canopy framing the sky with scroll parallax and wind breeze */}
+        <TreeCanopy timePhase={timePhase} isDay={isDay} windSpeed={windSpeed} />
 
         {/* Dynamic atmospheric lighting gradient */}
         <div 
