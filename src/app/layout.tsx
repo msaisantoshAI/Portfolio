@@ -7,7 +7,6 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import MouseGlow from '@/components/MouseGlow';
 import CustomCursor from '@/components/CustomCursor';
-import Preloader from '@/components/Preloader';
 
 const acorn = Fraunces({
   subsets: ['latin'],
@@ -47,12 +46,11 @@ export default function RootLayout({
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-blue-600 focus:text-white rounded-br-lg">
             Skip to main content
           </a>
-          <Preloader />
           <CustomCursor />
           <SkyEnvironment />
           <MouseGlow />
           <Navigation />
-          <main id="main-content" className="flex-1 relative z-10 w-full" tabIndex={-1}>
+          <main id="main-content" className="flex-1 relative z-10 w-full animate-fade-in" tabIndex={-1}>
             {children}
           </main>
           <Footer />
