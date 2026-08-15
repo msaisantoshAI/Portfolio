@@ -28,6 +28,8 @@ export interface EnvironmentState {
   latitude: number;
   longitude: number;
   timezone: string;
+  sunPosition: { x: number; y: number };
+  moonPosition: { x: number; y: number };
   setThemeMode: (mode: ThemeMode) => void;
   setCustomLocation: (city: string, lat?: number, lon?: number, timezone?: string) => Promise<void>;
   setTimePhaseOverride: (phase: TimePhase | null) => void;
@@ -56,6 +58,8 @@ const defaultState: EnvironmentState = {
   latitude: 17.385,
   longitude: 78.4867,
   timezone: 'Asia/Kolkata',
+  sunPosition: { x: 50, y: 18 },
+  moonPosition: { x: 82, y: 22 },
   setThemeMode: () => {},
   setCustomLocation: async () => {},
   setTimePhaseOverride: () => {},
@@ -70,7 +74,7 @@ export function useEnvironment() {
   return useContext(EnvironmentContext);
 }
 
-// Map WMO Weather Codes to our visual weather states
+// Map WMO Weather Codes to visual weather states
 function mapWmoCode(code: number): { state: WeatherState; description: string; defaultCloud: number } {
   if (code === 0) return { state: 'clear', description: 'Clear Sky', defaultCloud: 5 };
   if (code === 1) return { state: 'clear', description: 'Mainly Clear', defaultCloud: 20 };
@@ -106,6 +110,8 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
   const [weatherDescription, setWeatherDescription] = useState<string>('Clear');
   const [sunriseTime, setSunriseTime] = useState<Date | null>(null);
   const [sunsetTime, setSunsetTime] = useState<Date | null>(null);
+  const [sunPosition, setSunPosition] = useState<{ x: number; y: number }>({ x: 50, y: 18 });
+  const [moonPosition, setMoonPosition] = useState<{ x: number; y: number }>({ x: 82, y: 22 });
 
   // Simulator Overrides
   const [timePhaseOverride, setTimePhaseOverride] = useState<TimePhase | null>(null);
@@ -133,7 +139,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     }
   };
 
-  // 1. Calculate Time Phase from Current Local Time & Solar Horizons
+  // 1. Calculate Astronomical Sun/Moon Trajectory & Solar Phases
   const updateTimePhase = useCallback(() => {
     const now = new Date();
     
@@ -179,15 +185,38 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
       ssMinutes = sunsetTime.getHours() * 60 + sunsetTime.getMinutes();
     }
 
-    // 7 Natural Environmental Solar Phases:
-    // Dawn: Sunrise - 50m to Sunrise + 25m
-    // Morning: Sunrise + 25m to 11:30 AM
-    // Afternoon: 11:30 AM to Sunset - 60m
-    // Golden Hour: Sunset - 60m to Sunset
-    // Sunset: Sunset to Sunset + 35m
-    // Twilight: Sunset + 35m to Sunset + 75m
-    // Night: Sunset + 75m to Sunrise - 50m
+    // ASTRONOMICAL CELESTIAL POSITION TRACKING
+    // 1. Sun Trajectory Arc (Rises in East at 12%, peaks at Solar Noon at 50%, sets in West at 88%)
+    let dayProgress = 0.5;
+    if (currentTotalMinutes >= srMinutes && currentTotalMinutes <= ssMinutes) {
+      dayProgress = (currentTotalMinutes - srMinutes) / Math.max(1, ssMinutes - srMinutes);
+    } else if (currentTotalMinutes < srMinutes) {
+      dayProgress = 0;
+    } else {
+      dayProgress = 1;
+    }
 
+    const calcSunX = Math.round(12 + dayProgress * 76);
+    const calcSunY = Math.round(78 - Math.sin(dayProgress * Math.PI) * 64);
+    setSunPosition({ x: calcSunX, y: calcSunY });
+
+    // 2. Moon Trajectory Arc (Rises in East, peaks at Midnight at zenith, sets in West at Dawn)
+    let nightProgress = 0.5;
+    if (currentTotalMinutes > ssMinutes) {
+      const totalNightMin = (1440 - ssMinutes) + srMinutes;
+      const elapsedNightMin = currentTotalMinutes - ssMinutes;
+      nightProgress = elapsedNightMin / Math.max(1, totalNightMin);
+    } else if (currentTotalMinutes < srMinutes) {
+      const totalNightMin = (1440 - ssMinutes) + srMinutes;
+      const elapsedNightMin = (1440 - ssMinutes) + currentTotalMinutes;
+      nightProgress = elapsedNightMin / Math.max(1, totalNightMin);
+    }
+
+    const calcMoonX = Math.round(15 + nightProgress * 70);
+    const calcMoonY = Math.round(74 - Math.sin(nightProgress * Math.PI) * 54);
+    setMoonPosition({ x: calcMoonX, y: calcMoonY });
+
+    // 7 Natural Environmental Solar Phases:
     const dawnStart = srMinutes - 50;
     const morningStart = srMinutes + 25;
     const afternoonStart = 11 * 60 + 30;
@@ -431,6 +460,8 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         latitude,
         longitude,
         timezone: currentTimezone,
+        sunPosition,
+        moonPosition,
         setThemeMode,
         setCustomLocation,
         setTimePhaseOverride,
