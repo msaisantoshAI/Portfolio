@@ -3,94 +3,24 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useEnvironment, TimePhase, WeatherState, LocationRegion } from '@/context/EnvironmentContext';
-import LiveClouds from '@/components/LiveClouds';
-import TreeCanopy from '@/components/TreeCanopy';
-
-// Crystal-clear sky mapping adapting purely to location & daylight time phase (NO WATER/RAIN DROPS)
-function getAutoSkyImage(
-  timePhase: TimePhase, 
-  weatherState: WeatherState, 
-  isDay: boolean,
-  location: string,
-  region: LocationRegion
-): string {
-  const locLower = (location || '').toLowerCase();
-  const isHyderabad = locLower.includes('hyderabad');
-  const isIndia = region === 'india' || locLower.includes('india') || locLower.includes('mumbai') || locLower.includes('delhi') || isHyderabad;
-  const isUS = region === 'us' || locLower.includes('francisco') || locLower.includes('york') || locLower.includes('usa') || locLower.includes('california');
-  const isEurope = region === 'europe' || locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin') || locLower.includes('europe');
-  const isAsia = region === 'asia' || locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai') || locLower.includes('asia');
-
-  // Location-specific pure sky mapping
-  if (isHyderabad) {
-    if (!isDay || timePhase === 'night') return '/images/locations/hyderabad-night.jpg';
-    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/hyderabad-sunset.jpg';
-    if (timePhase === 'dawn') return '/images/locations/sky-dawn.jpg';
-    if (timePhase === 'morning') return '/images/locations/sky-morning.jpg';
-    return '/images/locations/hyderabad-day.jpg';
-  }
-
-  if (isIndia) {
-    if (!isDay || timePhase === 'night') return '/images/locations/india-sky-night.jpg';
-    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/india-sky-sunset.jpg';
-    if (timePhase === 'dawn') return '/images/locations/sky-dawn.jpg';
-    if (timePhase === 'morning') return '/images/locations/sky-morning.jpg';
-    return '/images/locations/india-sky-day.jpg';
-  }
-
-  if (isUS) {
-    if (!isDay || timePhase === 'night') return '/images/locations/us-night.jpg';
-    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/us-sunset.jpg';
-    return '/images/locations/us-day.jpg';
-  }
-
-  if (isEurope) {
-    if (!isDay || timePhase === 'night') return '/images/locations/europe-night.jpg';
-    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/europe-sunset.jpg';
-    return '/images/locations/europe-day.jpg';
-  }
-
-  if (isAsia) {
-    if (!isDay || timePhase === 'night') return '/images/locations/asia-night.jpg';
-    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/asia-sunset.jpg';
-    return '/images/locations/asia-day.jpg';
-  }
-
-  // Global Time Phase Fallback
-  switch (timePhase) {
-    case 'dawn':
-      return '/images/locations/sky-dawn.jpg';
-    case 'morning':
-      return '/images/locations/sky-morning.jpg';
-    case 'afternoon':
-      return '/images/locations/sky-afternoon.jpg';
-    case 'goldenHour':
-      return '/images/locations/sky-golden.jpg';
-    case 'sunset':
-      return '/images/locations/sky-sunset.jpg';
-    case 'night':
-      return '/images/locations/sky-night.jpg';
-    default:
-      return isDay ? '/images/locations/sky-morning.jpg' : '/images/locations/sky-night.jpg';
-  }
-}
+import { useEnvironment } from '@/context/EnvironmentContext';
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
-  const { themeMode, timePhase, weatherState, isDay, location, region, windSpeed } = useEnvironment();
+  const { themeMode, timePhase, isDay, isWindy } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
-  // Instantaneous spring-driven scroll tracking
+  // Instantaneous spring-driven scroll tracking for smooth parallax
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 160,
+    stiffness: 140,
     damping: 22,
     mass: 0.12,
     restDelta: 0.0001
   });
 
-  // Vertical scroll translation
-  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-38%']);
+  // Vertical scroll translation (gliding through the sky & tree canopy)
+  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-42%']);
+  const canopyScale = useTransform(smoothProgress, [0, 1], [1, 1.06]);
 
   useEffect(() => {
     setMounted(true);
@@ -103,18 +33,17 @@ export default function SkyEnvironment() {
   const isManualDark = themeMode === 'dark';
   const isAuto = themeMode === 'system';
 
-  // Compute Auto Sky Image URL with location & region awareness
-  const autoSkyImageUrl = getAutoSkyImage(timePhase, weatherState, isDay, location, region);
-
+  // Environmental time phases
   const isNight = !isDay || timePhase === 'night';
-  const isSunset = timePhase === 'sunset';
+  const isDawn = timePhase === 'dawn';
   const isGoldenHour = timePhase === 'goldenHour';
+  const isSunset = timePhase === 'sunset';
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
       {/* ========================================================================= */}
-      {/* 1. MANUAL LIGHT MODE: Clean Daytime Sky Image with Trees & Moving Clouds  */}
+      {/* 1. MANUAL LIGHT MODE: Photorealistic Day Sky & Canopy Trees               */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -122,37 +51,31 @@ export default function SkyEnvironment() {
         }`}
       >
         <motion.div 
-          style={{ y: skyY }}
+          style={{ y: skyY, scale: canopyScale }}
           className="absolute inset-x-0 -top-10 w-full h-[155vh] min-h-[1200px]"
         >
           <Image
             src="/images/sky-day.png"
-            alt="Manual Daytime Sky"
+            alt="Photorealistic Daytime Sky with Trees looking up"
             fill
             priority
             className="object-cover object-top"
             sizes="100vw"
-            quality={92}
+            quality={95}
           />
         </motion.div>
         
         {/* Soft sunlight zenith warmth */}
         <div 
-          className="absolute inset-0 opacity-35 pointer-events-none"
+          className="absolute inset-0 opacity-30 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 15% 12%, rgba(255, 255, 240, 0.35) 0%, rgba(255, 235, 170, 0.1) 30%, transparent 65%)'
+            background: 'radial-gradient(circle at 18% 14%, rgba(255, 255, 240, 0.4) 0%, rgba(255, 235, 170, 0.15) 30%, transparent 65%)'
           }}
         />
-
-        {/* Live Clouds in Light Mode */}
-        <LiveClouds weatherState="partlyCloudy" timePhase="afternoon" isDay={true} />
-
-        {/* Moving Tree Canopy */}
-        <TreeCanopy timePhase="afternoon" isDay={true} windSpeed={14} />
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: Starry Night Sky Image with Trees & Stars            */}
+      {/* 2. MANUAL DARK MODE: Photorealistic Night Sky, Stars & Dark Trees         */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -160,97 +83,138 @@ export default function SkyEnvironment() {
         }`}
       >
         <motion.div 
-          style={{ y: skyY }}
+          style={{ y: skyY, scale: canopyScale }}
           className="absolute inset-x-0 -top-10 w-full h-[155vh] min-h-[1200px]"
         >
           <Image
             src="/images/sky-night.png"
-            alt="Manual Nighttime Sky"
+            alt="Photorealistic Night Sky with Stars and Trees looking up"
             fill
             priority
             className="object-cover object-top"
             sizes="100vw"
-            quality={92}
+            quality={95}
           />
         </motion.div>
 
-        {/* Soft moonlight aura */}
+        {/* Twinkling Starlight Halo */}
         <div 
-          className="absolute inset-0 opacity-35 pointer-events-none"
+          className="absolute inset-0 opacity-40 pointer-events-none"
           style={{
-            background: 'radial-gradient(circle at 82% 14%, rgba(180, 220, 255, 0.2) 0%, rgba(50, 90, 180, 0.08) 35%, transparent 65%)'
+            background: 'radial-gradient(circle at 82% 14%, rgba(180, 220, 255, 0.25) 0%, rgba(50, 90, 180, 0.1) 35%, transparent 65%)'
           }}
         />
-
-        {/* Live Clouds in Dark Mode */}
-        <LiveClouds weatherState="clear" timePhase="night" isDay={false} />
-
-        {/* Moving Tree Canopy in Night Mode */}
-        <TreeCanopy timePhase="night" isDay={false} windSpeed={10} />
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. AUTO MODE: LIVE LOCATION-SPECIFIC SKY + CLOUDS + SWAYING CANOPY        */}
+      {/* 3. AUTO MODE: REAL-TIME LIVING CANOPY & SKY (Adapted to Time & Weather)    */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
           isAuto ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
+        {/* Dynamic Wind Sway Wrapper */}
         <motion.div 
-          style={{ y: skyY }}
-          className="absolute inset-x-0 -top-10 w-full h-[155vh] min-h-[1200px]"
+          animate={isWindy ? {
+            rotate: [-0.6, 0.6, -0.6],
+            x: ['-0.8%', '0.8%', '-0.8%'],
+          } : {
+            rotate: [-0.2, 0.2, -0.2],
+            x: ['-0.3%', '0.3%', '-0.3%'],
+          }}
+          transition={{
+            duration: isWindy ? 6 : 14,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          style={{ y: skyY, scale: canopyScale }}
+          className="absolute inset-x-0 -top-10 w-full h-[155vh] min-h-[1200px] origin-top"
         >
+          {/* Base Photorealistic Tree Canopy Layer (Switches between Day & Night based on exact solar phase) */}
           <Image
-            key={autoSkyImageUrl}
-            src={autoSkyImageUrl}
-            alt={`Live ${location} sky at ${timePhase}`}
+            src={isNight ? '/images/sky-night.png' : '/images/sky-day.png'}
+            alt="Living Environment Canopy looking up at the sky"
             fill
             priority
-            className="object-cover object-top transition-opacity duration-1000"
+            className={`object-cover object-top transition-all duration-1000 ${
+              isSunset 
+                ? 'brightness-[0.92] contrast-[1.12] saturate-[1.35] hue-rotate-[-8deg]' 
+                : isGoldenHour 
+                ? 'brightness-[1.06] contrast-[1.06] saturate-[1.3]' 
+                : isDawn 
+                ? 'brightness-[0.94] contrast-[1.04] saturate-[1.12] hue-rotate-[-4deg]' 
+                : 'brightness-[1.08] contrast-[1.02]'
+            }`}
             sizes="100vw"
-            quality={92}
+            quality={95}
           />
         </motion.div>
 
-        {/* Night Stars Atmosphere in Auto Mode */}
-        {isNight && (
-          <div className="absolute inset-0 bg-[radial-gradient(#fff_1.2px,transparent_1.2px)] [background-size:36px_36px] opacity-40 pointer-events-none" />
+        {/* ------------------------------------------------------------------- */}
+        {/* ATMOSPHERIC SOLAR LIGHTING FILTERS (Day, Dawn, Golden, Sunset, Night) */}
+        {/* ------------------------------------------------------------------- */}
+
+        {/* Daytime Radiant Solar Glow */}
+        {!isNight && (
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-40"
+            style={{
+              background: 'radial-gradient(circle at 18% 14%, rgba(255, 255, 240, 0.45) 0%, rgba(255, 235, 170, 0.18) 30%, transparent 65%)'
+            }}
+          />
         )}
 
-        {/* Golden Hour Radiance in Auto Mode */}
+        {/* Golden Hour (5:00 PM - 6:00 PM) Warm Amber Sunlight */}
         {isGoldenHour && (
           <div 
-            className="absolute inset-0 pointer-events-none opacity-60"
+            className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-80"
             style={{
-              background: 'radial-gradient(circle at 20% 20%, rgba(255, 180, 40, 0.45) 0%, rgba(255, 120, 50, 0.2) 40%, transparent 75%)'
+              background: 'linear-gradient(135deg, rgba(255, 170, 40, 0.35) 0%, rgba(255, 110, 50, 0.2) 45%, transparent 75%)'
             }}
           />
         )}
 
-        {/* Sunset Twilight Radiance in Auto Mode */}
+        {/* Sunset / Twilight (6:00 PM - 7:00 PM) Crimson & Coral Horizon */}
         {isSunset && (
           <div 
-            className="absolute inset-0 pointer-events-none opacity-70"
+            className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-85"
             style={{
-              background: 'linear-gradient(to top, rgba(140, 30, 90, 0.4) 0%, rgba(255, 100, 60, 0.25) 45%, transparent 80%)'
+              background: 'linear-gradient(to top, rgba(90, 20, 110, 0.45) 0%, rgba(230, 70, 70, 0.3) 35%, rgba(255, 140, 40, 0.2) 65%, transparent 100%)'
             }}
           />
         )}
 
-        {/* Dynamic Live Animated Clouds matching local weather and daylight */}
-        <LiveClouds weatherState={weatherState} timePhase={timePhase} isDay={isDay} />
+        {/* Dawn (5:00 AM - 7:00 AM) Soft Rose & Peach Morning Light */}
+        {isDawn && (
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-75"
+            style={{
+              background: 'linear-gradient(to top, rgba(255, 120, 80, 0.3) 0%, rgba(255, 190, 130, 0.15) 35%, transparent 70%)'
+            }}
+          />
+        )}
 
-        {/* Living Swaying Tree Canopy framing the sky with scroll parallax and wind breeze */}
-        <TreeCanopy timePhase={timePhase} isDay={isDay} windSpeed={windSpeed} />
+        {/* Night (7:00 PM - 5:00 AM) Starry Cosmic Atmosphere & Moonbeam Glow */}
+        {isNight && (
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-1000 opacity-90"
+            style={{
+              background: 'radial-gradient(circle at 82% 14%, rgba(180, 220, 255, 0.25) 0%, rgba(30, 60, 140, 0.15) 35%, transparent 70%)'
+            }}
+          >
+            {/* Ambient Star Texture Points */}
+            <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px] opacity-35" />
+          </div>
+        )}
 
-        {/* Dynamic atmospheric lighting gradient */}
+        {/* Contrast Readability Gradient */}
         <div 
           className="absolute inset-0 pointer-events-none opacity-20"
           style={{
             background: isDay 
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, transparent 40%, rgba(0,0,0,0.15) 100%)' 
-              : 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.5) 100%)'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.03) 0%, transparent 40%, rgba(0,0,0,0.12) 100%)' 
+              : 'linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 40%, rgba(0,0,0,0.45) 100%)'
           }}
         />
       </div>

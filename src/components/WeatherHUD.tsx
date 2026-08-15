@@ -41,6 +41,7 @@ export default function WeatherHUD() {
     location, 
     localTime, 
     temperature, 
+    windSpeed,
     weatherState, 
     isDay, 
     weatherDescription, 
@@ -149,7 +150,7 @@ export default function WeatherHUD() {
                   <span>🌍</span> World Location Switcher
                 </h3>
                 <p className="text-[11px] text-zinc-400">
-                  {location} &bull; {temperature !== null ? `${temperature}°C, ` : ''}{weatherDescription} &bull; {timePhase}
+                  {location} &bull; {temperature !== null ? `${temperature}°C, ` : ''}{weatherDescription}{windSpeed !== null ? ` • 💨 ${windSpeed} km/h` : ''} &bull; {timePhase}
                 </p>
               </div>
 
