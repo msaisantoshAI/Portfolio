@@ -5,6 +5,7 @@ import BenAboutSection from '@/components/BenAboutSection';
 import SanjayExperience from '@/components/SanjayExperience';
 import BenWorkTimeline from '@/components/BenWorkTimeline';
 import BenOtherThings from '@/components/BenOtherThings';
+import AiExplorationSection from '@/components/AiExplorationSection';
 import BenWritings from '@/components/BenWritings';
 import BenTalks from '@/components/BenTalks';
 import BenTestimonials from '@/components/BenTestimonials';
@@ -24,25 +25,28 @@ export default function Home() {
       {/* 3. A BIT ABOUT ME SECTION */}
       <BenAboutSection />
 
-      {/* 4. WORK HISTORY & EXPERIENCE (Sanjay Menon Inspired) */}
+      {/* 4. WORK HISTORY & EXPERIENCE (Merged TCS & Tech SW) */}
       <SanjayExperience />
 
-      {/* 5. FEATURED CASE STUDIES TIMELINE (2025 -> 2023) */}
+      {/* 5. FEATURED CASE STUDIES TIMELINE */}
       <BenWorkTimeline />
 
-      {/* 6. HOW I WORK (5-Stage Process & AI Playground) */}
+      {/* 6. THE 5-STAGE PRODUCT PROCESS */}
       <BenOtherThings />
 
-      {/* 7. I WRITE. QUITE A LOT. (Articles & Case Studies) */}
+      {/* 7. AI EXPLORATION & PLAYGROUND */}
+      <AiExplorationSection />
+
+      {/* 8. ADDITIONAL WORKS: I DRAW. QUITE A LOT. (Artworks & Workshops) */}
       <BenWritings />
 
-      {/* 8. PUBLIC TALKS & WORKSHOPS */}
+      {/* 9. PUBLIC TALKS & WORKSHOPS */}
       <BenTalks />
 
-      {/* 9. PEER FEEDBACK & COLLABORATION */}
+      {/* 10. PEER FEEDBACK & COLLABORATION */}
       <BenTestimonials />
 
-      {/* 10. INTERESTED IN COLLABORATING? (Letter & Contact Form) */}
+      {/* 11. INTERESTED IN COLLABORATING? (Letter & Contact Form) */}
       <BenContactLetter />
     </main>
   );

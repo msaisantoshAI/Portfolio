@@ -25,7 +25,7 @@ export default function BenIntroCards() {
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-blue-700 dark:text-blue-400 text-xs font-mono font-semibold tracking-wide">
               <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" aria-hidden="true" />
-              AVAILABLE FOR PRODUCT &amp; AI LEAD ROLES
+              AVAILABLE FOR AI PRODUCT DESIGN ROLES
             </span>
           </div>
 
@@ -33,13 +33,13 @@ export default function BenIntroCards() {
           <h2 className="hero-heading text-zinc-900 dark:text-white">
             Hi, I&apos;m Sai Santosh.<br />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-400 bg-clip-text text-transparent">
-              Product Designer &amp; AI Builder.
+              Aspiring Product Designer &amp; AI Builder.
             </span>
           </h2>
 
           {/* Subtitle with Pill tags and controlled width */}
           <p className="body-lead text-zinc-700 dark:text-zinc-300">
-            Product Designer with a Data Science &amp; Fine Arts background. Designing enterprise systems at{' '}
+            Product Designer with a Visual Design &amp; Creative background. Designing enterprise systems at{' '}
             <span className="inline-block whitespace-nowrap align-middle">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-black/5 dark:bg-white/10 px-3 py-1 border border-black/10 dark:border-white/15 text-zinc-900 dark:text-white text-xs sm:text-sm font-medium shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-500" aria-hidden="true" />
@@ -52,7 +52,7 @@ export default function BenIntroCards() {
                 AI Tools &amp; Agentic Workflows
               </span>
             </span>{' '}
-            by night.
+            to become AI Product designer in night.
           </p>
 
           {/* Action CTA Buttons */}

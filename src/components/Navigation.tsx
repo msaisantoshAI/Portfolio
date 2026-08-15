@@ -11,7 +11,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'work', 'fun', 'talks', 'contact'];
+      const sections = ['home', 'about', 'work', 'ai-exploration', 'drawings', 'talks', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -32,18 +32,19 @@ export default function Navigation() {
     { name: 'Home', href: '#home', id: 'home' },
     { name: 'About', href: '#about', id: 'about' },
     { name: 'Work', href: '#work', id: 'work' },
-    { name: 'Process', href: '#fun', id: 'fun' },
+    { name: 'AI Exploration', href: '#ai-exploration', id: 'ai-exploration' },
+    { name: 'Artworks', href: '#drawings', id: 'drawings' },
     { name: 'Talks', href: '#talks', id: 'talks' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
     <>
-      {/* Top Header Bar (Larger, more comfortable sizing) */}
+      {/* Top Header Bar */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 sm:px-6 md:px-10 pt-4 sm:pt-5 pointer-events-none transition-all duration-300 font-sans">
         <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between gap-4 pointer-events-auto">
           
-          {/* Left: Brand Identity (Larger) */}
+          {/* Left: Brand Identity */}
           <a 
             href="#home" 
             className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-[#0a0f1d]/90 backdrop-blur-2xl px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-white/25 shadow-lg transition-transform duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
@@ -62,7 +63,7 @@ export default function Navigation() {
             </span>
           </a>
 
-          {/* Center: Desktop Navigation Pills (Larger, prominent) */}
+          {/* Center: Desktop Navigation Pills */}
           <nav 
             aria-label="Main Navigation"
             className="hidden lg:flex items-center rounded-full px-3 py-1.5 bg-[#0a0f1d]/90 border border-white/25 shadow-lg backdrop-blur-2xl"
@@ -93,10 +94,10 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right: Larger Resume CTA + Larger LinkedIn Icon + Theme Dropdown */}
+          {/* Right: Resume (No arrow) + LinkedIn + Theme Dropdown */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             
-            {/* Resume Button (Bigger) */}
+            {/* Resume Button without arrow */}
             <a 
               href="/resume.pdf" 
               target="_blank" 
@@ -104,10 +105,10 @@ export default function Navigation() {
               aria-label="View Resume PDF (opens in new tab)" 
               className="touch-target inline-flex items-center px-4.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#0a0f1d]/90 hover:bg-[#15203d] text-white font-bold text-xs sm:text-sm border border-white/25 hover:border-white/45 shadow-lg hover:scale-105 active:scale-95 transition-all shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              Resume ↗
+              Resume
             </a>
 
-            {/* LinkedIn Icon (Bigger) */}
+            {/* LinkedIn Icon */}
             <a 
               href="https://www.linkedin.com/in/saisantoshmadhari0711/" 
               target="_blank" 
@@ -135,7 +136,7 @@ export default function Navigation() {
           aria-label="Mobile Navigation"
           className="flex items-center rounded-full bg-[#0a0f1d]/90 border border-white/20 px-3 py-1.5 shadow-2xl backdrop-blur-2xl font-sans"
         >
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide py-0.5">
             {navLinks.map((item) => {
               const isActive = activeSection === item.id;
               return (

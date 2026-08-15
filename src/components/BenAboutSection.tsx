@@ -37,7 +37,7 @@ export default function BenAboutSection() {
           {/* Narrative Progression & 3-Pillar Breakdown */}
           <div className="w-full max-w-[720px] space-y-6">
             <p className="body-lead text-zinc-700 dark:text-zinc-300">
-              Starting in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, I transitioned into <strong className="text-zinc-900 dark:text-white font-semibold">Data Analytics &amp; Product UX</strong>. Today at TCS, I architect high-density enterprise SaaS systems and orchestrate <strong className="text-blue-600 dark:text-blue-400 font-semibold">human-in-the-loop AI interfaces</strong> that turn chaotic operations into calm workflows.
+              As a <strong className="text-zinc-900 dark:text-white font-semibold">Passionate Artist, Professional Designer</strong>. Starting in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, I transitioned into UX Design. Today at TCS, I work on high-density enterprise SaaS systems and orchestrate <strong className="text-blue-600 dark:text-blue-400 font-semibold">human-in-the-loop AI interfaces</strong> that turn chaotic operations into calm workflows.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">

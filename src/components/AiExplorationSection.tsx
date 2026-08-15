@@ -1,0 +1,209 @@
+'use client';
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface AIExperiment {
+  id: string;
+  name: string;
+  category: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  tags: string[];
+  image: string;
+  status: string;
+}
+
+const aiExperiments: AIExperiment[] = [
+  {
+    id: 'antigravity-studio',
+    name: 'Antigravity Studio',
+    category: 'Agentic AI Interaction',
+    tagline: 'Multi-agent orchestration & streaming UI states',
+    description: 'An interactive canvas exploring streaming UI components, agent state transitions, human verification checkpoints, and graceful error fallback models for non-deterministic AI tasks.',
+    features: [
+      'Visualized agent decision trees & branching workflows',
+      'Real-time streaming token renderers with optimistic UI',
+      'Human-in-the-loop audit checkpoints'
+    ],
+    tags: ['Generative UI', 'Agent Trees', 'Human-in-the-Loop', 'Next.js'],
+    image: '/images/gallery_whiteboard.jpg',
+    status: 'Live Prototype'
+  },
+  {
+    id: 'ai-design-system',
+    name: 'Dynamic Token Synthesizer',
+    category: 'Design Systems & AI',
+    tagline: 'AI-assisted color theory & APCA contrast matrix',
+    description: 'An algorithmic token engine that synthesizes accessible color palettes and typography scales based on ambient lighting and real-time environmental telemetry.',
+    features: [
+      'WCAG 2.2 AAA & APCA compliant contrast algorithms',
+      'Automated Figma-to-Code token sync',
+      'Context-aware dark/light theme interpolation'
+    ],
+    tags: ['Design Tokens', 'WCAG 2.2 AA', 'APCA Contrast', 'Tailwind'],
+    image: '/images/gallery-main.jpg',
+    status: 'Active Beta'
+  },
+  {
+    id: 'prompt-canvas',
+    name: 'Prompt Flow OS',
+    category: 'Productivity & Knowledge Graphs',
+    tagline: 'Spatial prompt engineering & memory matrices',
+    description: 'A spatial node-based canvas for chaining multi-modal AI agents, memory states, and knowledge graphs into human-manageable modular workflows.',
+    features: [
+      'Drag-and-drop agent chaining interface',
+      'Context window memory management',
+      'One-click export to API endpoints'
+    ],
+    tags: ['Knowledge Graphs', 'Node Interface', 'Claude 3.5 API'],
+    image: '/images/workshop_group.jpg',
+    status: 'Research Lab'
+  }
+];
+
+export default function AiExplorationSection() {
+  const [activeTab, setActiveTab] = useState(0);
+  const activeExp = aiExperiments[activeTab];
+
+  return (
+    <section id="ai-exploration" className="px-4 py-8 sm:py-10 sm:px-6 md:px-12 max-w-[1240px] mx-auto w-full font-sans">
+      <div className="rounded-[28px] bg-white/90 dark:bg-[#0b0f1a]/90 border border-black/5 dark:border-white/10 p-6 sm:p-10 md:p-12 shadow-sm dark:shadow-md backdrop-blur-xl space-y-8 transition-colors duration-300">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
+          <div className="space-y-2">
+            <p className="eyebrow text-blue-600 dark:text-blue-400 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+              <span>Experimental Laboratory</span>
+            </p>
+            <h2 className="section-heading text-zinc-900 dark:text-white">
+              AI Exploration &amp; Playground
+            </h2>
+          </div>
+          <div>
+            <span className="caption-meta font-mono text-zinc-500 dark:text-zinc-400">
+              Generative UI &bull; Multi-Agent Systems &bull; Prototypes
+            </span>
+          </div>
+        </div>
+
+        {/* Interactive Playground Container */}
+        <div className="rounded-3xl border border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/40 overflow-hidden shadow-sm p-6 sm:p-8 md:p-10 relative">
+          
+          {/* Top Tabs Switcher */}
+          <div className="flex flex-wrap gap-2 pb-6 border-b border-black/5 dark:border-white/10 mb-8">
+            {aiExperiments.map((exp, idx) => {
+              const isSelected = activeTab === idx;
+              return (
+                <button
+                  key={exp.id}
+                  onClick={() => setActiveTab(idx)}
+                  className={`touch-target flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-400'
+                      : 'bg-white dark:bg-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 border border-black/10 dark:border-white/10'
+                  }`}
+                >
+                  <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-white animate-pulse' : 'bg-blue-400'}`} />
+                  <span>{exp.name}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Experiment Showcase Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeExp.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
+            >
+              {/* Left Column: Details (7 Cols) */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-500/20">
+                      {activeExp.category}
+                    </span>
+                    <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-500/20">
+                      ✦ {activeExp.status}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                    {activeExp.name}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-mono font-semibold">
+                    &frasl;&frasl; {activeExp.tagline}
+                  </p>
+
+                  <p className="body-copy text-zinc-600 dark:text-zinc-300">
+                    {activeExp.description}
+                  </p>
+
+                  {/* Key Capabilities List */}
+                  <div className="space-y-2 pt-2">
+                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-bold block">
+                      Core Innovations:
+                    </span>
+                    <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+                      {activeExp.features.map((feat, fIdx) => (
+                        <li key={fIdx} className="flex items-start gap-2">
+                          <span className="text-blue-500 mt-0.5">✔</span>
+                          <span>{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Tags & Action */}
+                <div className="pt-4 border-t border-black/5 dark:border-white/10 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {activeExp.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-3 py-1 rounded-full shadow-sm"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                    Prototype {activeTab + 1} of {aiExperiments.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Right Column: Visual Frame (5 Cols) */}
+              <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 shadow-md group">
+                <Image
+                  src={activeExp.image}
+                  alt={`${activeExp.name} interface preview`}
+                  fill
+                  className="object-cover opacity-80 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
+                  <span className="bg-black/60 px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-md">
+                    ⚡ Live Playground Node
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

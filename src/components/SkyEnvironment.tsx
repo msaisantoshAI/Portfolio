@@ -3,15 +3,63 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useEnvironment, TimePhase, WeatherState } from '@/context/EnvironmentContext';
+import { useEnvironment, TimePhase, WeatherState, LocationRegion } from '@/context/EnvironmentContext';
 
-// Real-world time-phase and weather-adaptive crystal-clear sky mapping
-function getAutoSkyImage(timePhase: TimePhase, weatherState: WeatherState, isDay: boolean): string {
-  // If actively raining in real-world weather -> show real monsoon / rain cloud sky
+// Real-world time-phase, region, and weather-adaptive sky mapping
+function getAutoSkyImage(
+  timePhase: TimePhase, 
+  weatherState: WeatherState, 
+  isDay: boolean,
+  location: string,
+  region: LocationRegion
+): string {
+  const locLower = (location || '').toLowerCase();
+  const isHyderabad = locLower.includes('hyderabad');
+  const isIndia = region === 'india' || locLower.includes('india') || locLower.includes('mumbai') || locLower.includes('delhi') || isHyderabad;
+  const isUS = region === 'us' || locLower.includes('francisco') || locLower.includes('york') || locLower.includes('usa');
+  const isEurope = region === 'europe' || locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin');
+  const isAsia = region === 'asia' || locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai');
+
+  // Rain / Overcast condition
   if (weatherState === 'rain' || weatherState === 'thunderstorm') {
+    if (isHyderabad || isIndia) return '/images/locations/hyderabad-rain.jpg';
     return '/images/locations/sky-rain.jpg';
   }
 
+  // Location-specific sky mapping
+  if (isHyderabad) {
+    if (!isDay || timePhase === 'night') return '/images/locations/hyderabad-night.jpg';
+    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/hyderabad-sunset.jpg';
+    if (timePhase === 'dawn') return '/images/locations/sky-dawn.jpg';
+    return '/images/locations/hyderabad-day.jpg';
+  }
+
+  if (isIndia) {
+    if (!isDay || timePhase === 'night') return '/images/locations/india-sky-night.jpg';
+    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/india-sky-sunset.jpg';
+    if (timePhase === 'dawn') return '/images/locations/sky-dawn.jpg';
+    return '/images/locations/india-sky-day.jpg';
+  }
+
+  if (isUS) {
+    if (!isDay || timePhase === 'night') return '/images/locations/us-night.jpg';
+    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/us-sunset.jpg';
+    return '/images/locations/us-day.jpg';
+  }
+
+  if (isEurope) {
+    if (!isDay || timePhase === 'night') return '/images/locations/europe-night.jpg';
+    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/europe-sunset.jpg';
+    return '/images/locations/europe-day.jpg';
+  }
+
+  if (isAsia) {
+    if (!isDay || timePhase === 'night') return '/images/locations/asia-night.jpg';
+    if (timePhase === 'sunset' || timePhase === 'goldenHour') return '/images/locations/asia-sunset.jpg';
+    return '/images/locations/asia-day.jpg';
+  }
+
+  // Global Time Phase Fallback
   switch (timePhase) {
     case 'dawn':
       return '/images/locations/sky-dawn.jpg';
@@ -32,10 +80,10 @@ function getAutoSkyImage(timePhase: TimePhase, weatherState: WeatherState, isDay
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
-  const { themeMode, timePhase, weatherState, isDay, location } = useEnvironment();
+  const { themeMode, timePhase, weatherState, isDay, location, region } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
-  // Instantaneous spring-driven scroll tracking that adapts dynamically to user's scrolling speed
+  // Instantaneous spring-driven scroll tracking
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 160,
     damping: 22,
@@ -43,8 +91,8 @@ export default function SkyEnvironment() {
     restDelta: 0.0001
   });
 
-  // Vertical scroll translation (drifting through the sky proportionally to scroll speed)
-  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-42%']);
+  // Vertical scroll translation (drifting through the sky proportionally)
+  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-40%']);
 
   useEffect(() => {
     setMounted(true);
@@ -57,14 +105,14 @@ export default function SkyEnvironment() {
   const isManualDark = themeMode === 'dark';
   const isAuto = themeMode === 'system';
 
-  // Compute Auto Sky Image URL
-  const autoSkyImageUrl = getAutoSkyImage(timePhase, weatherState, isDay);
+  // Compute Auto Sky Image URL with location & region awareness
+  const autoSkyImageUrl = getAutoSkyImage(timePhase, weatherState, isDay, location, region);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
       {/* ========================================================================= */}
-      {/* 1. MANUAL LIGHT MODE: User's original chosen Day Sky Image                */}
+      {/* 1. MANUAL LIGHT MODE: Daytime Sky Image                                   */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -96,7 +144,7 @@ export default function SkyEnvironment() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: User's original chosen Night Sky Image               */}
+      {/* 2. MANUAL DARK MODE: Night Sky Image                                      */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -127,9 +175,8 @@ export default function SkyEnvironment() {
         />
       </div>
 
-
       {/* ========================================================================= */}
-      {/* 3. AUTO MODE: REAL-TIME LIVING SKY (Dawn -> Morning -> Afternoon -> Golden -> Sunset -> Night) */}
+      {/* 3. AUTO MODE: LIVE LOCATION-SPECIFIC SKY & ATMOSPHERE                     */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -152,13 +199,13 @@ export default function SkyEnvironment() {
           />
         </motion.div>
 
-        {/* Crisp gentle contrast gradient ensuring 100% WCAG 2.2 AA readability */}
+        {/* Dynamic environmental lighting gradient */}
         <div 
           className="absolute inset-0 pointer-events-none opacity-25"
           style={{
             background: isDay 
-              ? 'linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, transparent 40%, rgba(0,0,0,0.2) 100%)' 
-              : 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.45) 100%)'
+              ? 'linear-gradient(to bottom, rgba(0,0,0,0.06) 0%, transparent 40%, rgba(0,0,0,0.18) 100%)' 
+              : 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.5) 100%)'
           }}
         />
       </div>

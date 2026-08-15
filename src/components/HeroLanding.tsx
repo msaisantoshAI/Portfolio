@@ -18,7 +18,7 @@ export default function HeroLanding() {
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
   const imageY = useTransform(smoothY, [0, 1], ['0%', '15%']);
   const imageScale = useTransform(smoothY, [0, 1], [1, 1.08]);
-  const contentY = useTransform(smoothY, [0, 1], [0, -60]);
+  const contentY = useTransform(smoothY, [0, 1], [0, -50]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
   // Interactive 3D mouse parallax
@@ -30,8 +30,8 @@ export default function HeroLanding() {
     setMousePos({ x, y });
   };
 
-  const handleScrollToWork = () => {
-    const el = document.getElementById('work') || document.getElementById('about');
+  const handleScrollTo = (id: string) => {
+    const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -50,7 +50,7 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[92vh] sm:min-h-[96vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden font-sans pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-8 md:px-16 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden font-sans pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-8 md:px-14 select-none"
     >
       {/* ========================================================================= */}
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
@@ -72,16 +72,16 @@ export default function HeroLanding() {
           priority
           className={`object-cover object-center sm:object-[center_35%] transition-all duration-1000 ${
             isNight 
-              ? 'brightness-[0.55] contrast-[1.12] saturate-[0.9] hue-rotate-[10deg]' 
+              ? 'brightness-[0.62] contrast-[1.1] saturate-[0.92] hue-rotate-[10deg]' 
               : isSunset 
-              ? 'brightness-[0.88] contrast-[1.08] saturate-[1.25] hue-rotate-[-10deg]' 
+              ? 'brightness-[0.92] contrast-[1.06] saturate-[1.25] hue-rotate-[-10deg]' 
               : isGoldenHour 
-              ? 'brightness-[1.08] contrast-[1.06] saturate-[1.3]' 
+              ? 'brightness-[1.12] contrast-[1.05] saturate-[1.3]' 
               : isDawn 
-              ? 'brightness-[0.92] contrast-[1.04] saturate-[1.1] hue-rotate-[-5deg]' 
+              ? 'brightness-[0.96] contrast-[1.04] saturate-[1.1] hue-rotate-[-5deg]' 
               : isRaining 
-              ? 'brightness-[0.82] contrast-[1.02] saturate-[0.88]' 
-              : 'brightness-[1.14] contrast-[1.02] saturate-[1.08]'
+              ? 'brightness-[0.88] contrast-[1.02] saturate-[0.9]' 
+              : 'brightness-[1.18] contrast-[1.02] saturate-[1.08]'
           }`}
           quality={95}
         />
@@ -147,27 +147,27 @@ export default function HeroLanding() {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.55) 0%, rgba(5, 10, 25, 0.15) 45%, rgba(5, 10, 25, 0.65) 100%)'
+          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.5) 0%, rgba(5, 10, 25, 0.1) 45%, rgba(5, 10, 25, 0.6) 100%)'
         }}
       />
 
       {/* ========================================================================= */}
-      {/* 3. HERO CONTENT: EDITORIAL TITLE & ACCESSIBLE SUBTITLE (NO EXTRA BUTTONS)  */}
+      {/* 3. HERO CONTENT: PROPORTIONATE HEADLINE, SUBTITLE, & VIEW WORKS CTA       */}
       {/* ========================================================================= */}
       <motion.div 
         style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-20 flex flex-col items-start justify-start max-w-4xl mx-auto md:mx-0 pt-2 sm:pt-4 text-left pointer-events-auto"
+        className="relative z-20 flex flex-col items-start justify-start max-w-3xl mx-auto md:mx-0 pt-2 sm:pt-4 text-left pointer-events-auto"
       >
-        {/* Availability Badge */}
+        {/* Availability Badge: Item 5 */}
         <motion.div 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#080d1a]/85 backdrop-blur-xl border border-white/20 shadow-md mb-4 sm:mb-6"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080d1a]/85 backdrop-blur-xl border border-white/20 shadow-md mb-3 sm:mb-4"
         >
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-white text-xs sm:text-sm font-semibold tracking-wide font-sans">
-            Available for Senior UX & AI Leadership
+            Available for AI Product Design roles
           </span>
           <span className="text-white/30">&bull;</span>
           <span className="text-zinc-300 text-xs sm:text-sm font-mono">
@@ -175,17 +175,17 @@ export default function HeroLanding() {
           </span>
         </motion.div>
 
-        {/* Master Headline: "I design experiences that feel human." (Staggered Word Reveal) */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-extrabold tracking-tight text-white leading-[1.06] drop-shadow-[0_4px_28px_rgba(0,0,0,0.9)] mb-4 sm:mb-6">
+        {/* Master Headline: Reduced text scale (Item 1) */}
+        <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] mb-3 sm:mb-4">
           {titleWords.map((word, idx) => (
             <motion.span
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 + idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className={`inline-block mr-2.5 sm:mr-3.5 ${
+              transition={{ duration: 0.45, delay: 0.15 + idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
+              className={`inline-block mr-2 sm:mr-2.5 ${
                 word.includes("human") 
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 drop-shadow-[0_0_30px_rgba(100,180,255,0.6)]" 
+                  ? "text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 drop-shadow-[0_0_25px_rgba(100,180,255,0.5)]" 
                   : ""
               }`}
             >
@@ -194,15 +194,33 @@ export default function HeroLanding() {
           ))}
         </h1>
 
-        {/* Subtitle */}
+        {/* Subtitle: Reduced scale (Item 1) */}
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="text-lg sm:text-2xl md:text-2xl lg:text-[1.7rem] text-zinc-100 font-light max-w-3xl leading-relaxed drop-shadow-md"
+          transition={{ duration: 0.5, delay: 0.55 }}
+          className="text-base sm:text-lg md:text-xl text-zinc-200 font-normal max-w-2xl leading-relaxed drop-shadow-md mb-6"
         >
-          Product designer crafting digital experiences that are <span className="text-white font-medium">intuitive</span>, <span className="text-white font-medium">accessible</span>, and <span className="text-white font-medium">meaningful</span>.
+          Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
         </motion.p>
+
+        {/* View Works Button (Item 1) */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.65 }}
+        >
+          <button
+            type="button"
+            onClick={() => handleScrollTo('work')}
+            className="touch-target inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base border border-blue-400/40 shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-400"
+          >
+            View works
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </motion.div>
       </motion.div>
 
       {/* ========================================================================= */}
@@ -211,19 +229,19 @@ export default function HeroLanding() {
       <div className="relative z-20 flex flex-col items-center justify-center pt-6 pb-2">
         <button
           type="button"
-          onClick={handleScrollToWork}
-          className="touch-target inline-flex flex-col items-center gap-2 text-xs sm:text-sm font-semibold text-zinc-300 hover:text-white transition-all group cursor-pointer"
+          onClick={() => handleScrollTo('work')}
+          className="touch-target inline-flex flex-col items-center gap-1.5 text-xs sm:text-sm font-semibold text-zinc-300 hover:text-white transition-all group cursor-pointer"
           aria-label="Scroll to explore projects"
         >
-          <span className="tracking-widest uppercase font-mono text-[11px] sm:text-xs text-zinc-300 group-hover:text-blue-400 transition-colors">
+          <span className="tracking-widest uppercase font-mono text-[10px] sm:text-xs text-zinc-300 group-hover:text-blue-400 transition-colors">
             Scroll to explore
           </span>
           <motion.div 
-            animate={{ y: [0, 6, 0] }}
+            animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-md"
+            className="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-md"
           >
-            <svg className="w-4 h-4 text-blue-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5 text-blue-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </motion.div>
