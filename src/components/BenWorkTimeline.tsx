@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import CountUp from './CountUp';
+import QueryModal from './QueryModal';
 
 interface WorkItem {
   year: string;
@@ -20,6 +21,7 @@ interface WorkItem {
   tags: string[];
   image: string;
   link?: string;
+  actionText: string;
   isFlagship?: boolean;
 }
 
@@ -36,6 +38,7 @@ const workItems: WorkItem[] = [
     tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
     link: '/projects/esow-planner',
+    actionText: 'View Case Study',
     isFlagship: true,
   },
   {
@@ -50,6 +53,7 @@ const workItems: WorkItem[] = [
     role: 'Product Designer & AI Prototyper · Interaction Model',
     tags: ['AI Product Design', 'Generative UI', 'Agent Workflows', 'Prompt Canvas'],
     image: '/images/hero-video.mp4',
+    actionText: 'Explore AI Workspace',
     isFlagship: true,
   },
   {
@@ -63,6 +67,7 @@ const workItems: WorkItem[] = [
     role: 'Product UX Designer · Information Architecture',
     tags: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
     image: '/images/project_sas_1775675939361.png',
+    actionText: 'Explore System Architecture',
   },
   {
     year: '2023',
@@ -75,10 +80,13 @@ const workItems: WorkItem[] = [
     role: 'UI/UX Architect · Concept & Prototype Design',
     tags: ['Cloud Computing', 'UI/UX Architecture', 'Concept Design'],
     image: '/images/project_emulate_1775675955645.png',
+    actionText: 'Explore Cloud Sandbox',
   },
 ];
 
 export default function BenWorkTimeline() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full">
       
@@ -170,22 +178,25 @@ export default function BenWorkTimeline() {
                     </div>
                   </div>
 
-                  {/* CTA Action */}
+                  {/* Action Buttons to ALL Projects */}
                   <div className="pt-2">
                     {item.link ? (
                       <Link
                         href={item.link}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold shadow-md transition-transform hover:scale-105"
+                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
                       >
-                        <span>View Deep Dive Case Study</span>
-                        <span>&rarr;</span>
+                        <span>{item.actionText}</span>
+                        <span>↗</span>
                       </Link>
                     ) : (
-                      <span className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                        <span>Enterprise Case Study</span>
-                        <span>&bull;</span>
-                        <span>Internal Production</span>
-                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setIsModalOpen(true)}
+                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        <span>{item.actionText}</span>
+                        <span>↗</span>
+                      </button>
                     )}
                   </div>
 
@@ -220,6 +231,7 @@ export default function BenWorkTimeline() {
         })}
       </div>
 
+      <QueryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

@@ -4,7 +4,6 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
-import TextMorph from '@/components/TextMorph';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -193,18 +192,14 @@ export default function HeroLanding() {
             ))}
           </h1>
 
-          {/* Subtitle with Text Morphing */}
+          {/* Subtitle */}
           <motion.p 
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.55 }}
             className="body-lead text-zinc-200 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
           >
-            Product designer crafting digital experiences that are{' '}
-            <TextMorph
-              words={['intuitive.', 'accessible.', 'meaningful.', 'intelligent.', 'human-centered.']}
-              interval={2400}
-            />
+            Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
           </motion.p>
 
           {/* View Works Button */}

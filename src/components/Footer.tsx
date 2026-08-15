@@ -1,157 +1,165 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
 import QueryModal from './QueryModal';
 
 export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { location, localTime } = useEnvironment();
+  const { isDay, timePhase } = useEnvironment();
+  const { scrollYProgress } = useScroll();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 20,
+    mass: 0.1,
+  });
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Work', href: '#work' },
-    { name: 'Process', href: '#fun' },
-    { name: 'Talks', href: '#talks' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  // Parallax translation for the massive SANTOSH watermark
+  const watermarkX = useTransform(smoothProgress, [0.7, 1], ['-4%', '2%']);
 
-  const socials = [
-    { 
-      name: 'LinkedIn', 
-      url: 'https://www.linkedin.com/in/saisantoshmadhari0711/',
-      label: 'LinkedIn'
-    },
-    { 
-      name: 'Instagram', 
-      url: 'https://www.instagram.com/sai_santosh_madhari/',
-      label: 'Instagram'
-    },
-    { 
-      name: 'Email', 
-      url: 'mailto:Saisantoshmadhari@gmail.com',
-      label: 'Saisantoshmadhari@gmail.com'
-    }
-  ];
+  const isNight = !isDay || timePhase === 'night' || timePhase === 'twilight';
 
   return (
-    <footer className="relative z-20 bg-[#060a17]/95 border-t border-white/15 text-white py-16 sm:py-20 px-4 sm:px-8 md:px-12 backdrop-blur-3xl font-sans select-none overflow-hidden">
+    <footer className="relative z-20 text-white pt-20 sm:pt-28 pb-12 px-4 sm:px-8 md:px-12 font-sans select-none overflow-hidden">
       
-      {/* Subtle atmospheric ambient glow */}
+      {/* 1. SEAMLESS LIVING ENVIRONMENT OVERLAY (Adapts to live day/sunset/night sky) */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-40"
+        className={`absolute inset-0 pointer-events-none transition-colors duration-1000 ${
+          isNight
+            ? 'bg-gradient-to-t from-[#02050f]/95 via-[#060e20]/60 to-transparent'
+            : 'bg-gradient-to-t from-[#0a3570]/85 via-[#1855a8]/40 to-transparent'
+        }`}
+      />
+
+      {/* Atmospheric light bloom behind footer */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-35"
         style={{
-          background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 60%)'
+          background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)'
         }}
       />
 
-      <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col gap-12 sm:gap-16">
+      <div className="max-w-[1440px] mx-auto w-full relative z-10 flex flex-col justify-between min-h-[520px]">
         
-        {/* Top Row: CTA & Back to Top */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pb-8 border-b border-white/10">
-          <div className="max-w-2xl">
-            <span className="text-xs font-mono uppercase tracking-[0.25em] text-blue-400 block mb-3">
-              ✦ Open for Collaborations &amp; Leadership
+        {/* ========================================================================= */}
+        {/* TOP ROW: FLOATING IDENTITY PILL BADGE                                    */}
+        {/* ========================================================================= */}
+        <div className="flex justify-start sm:justify-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 dark:bg-black/40 border border-white/25 backdrop-blur-2xl shadow-xl">
+            <div className="relative w-6 h-6 rounded-full overflow-hidden border border-white/40">
+              <Image
+                src="/images/headshot.png"
+                alt="Santosh"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-white">
+              SANTOSH
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
-              Let&apos;s build experiences that{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">
-                feel human.
+            <div className="flex items-center gap-1 pl-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400/70" />
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400/40" />
+            </div>
+          </div>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* MAIN HEADLINE: "lets create incredible work together."                    */}
+        {/* ========================================================================= */}
+        <div className="max-w-4xl mb-12 sm:mb-16">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white leading-[1.04] drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+            lets <span className="italic font-serif font-light text-blue-200">create</span>
+            <br />
+            incredible work together.
+          </h2>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* CONTACT & SOCIAL DETAILS ROW (Matching user reference layout)            */}
+        {/* ========================================================================= */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 pb-8 border-b border-white/20">
+          
+          {/* Left: Email */}
+          <div className="space-y-1.5">
+            <span className="text-xs font-mono uppercase tracking-widest text-white/70 block">
+              Email
+            </span>
+            <a 
+              href="mailto:Saisantoshmadhari@gmail.com"
+              className="text-lg sm:text-xl md:text-2xl font-bold text-white hover:text-blue-300 transition-colors inline-block"
+            >
+              Saisantoshmadhari@gmail.com
+            </a>
+          </div>
+
+          {/* Center/Right: Action Buttons & Socials */}
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="space-y-1.5">
+              <span className="text-xs font-mono uppercase tracking-widest text-white/70 block">
+                Social
               </span>
-            </h2>
-            <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
-              Have a complex enterprise challenge, an AI agent system, or an ambitious product in mind? Let&apos;s talk.
-            </p>
+              <div className="flex items-center gap-2.5">
+                <a
+                  href="https://www.linkedin.com/in/saisantoshmadhari0711/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center font-bold text-sm hover:scale-110 hover:bg-blue-500 hover:text-white transition-all shadow-md"
+                  aria-label="LinkedIn Profile"
+                >
+                  in
+                </a>
+                <a
+                  href="https://www.instagram.com/sai_santosh_madhari/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center font-bold text-sm hover:scale-110 hover:bg-pink-500 hover:text-white transition-all shadow-md"
+                  aria-label="Instagram Profile"
+                >
+                  ig
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="touch-target px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg hover:scale-105 transition-all ml-2"
+                >
+                  Start a Project ↗
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="touch-target px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
-            >
-              Start a Conversation ↗
-            </button>
-
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="touch-target px-4 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-zinc-200 hover:text-white font-medium text-sm backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-              title="Scroll back to top"
-            >
-              ↑ Back to top
-            </button>
-          </div>
         </div>
 
-        {/* Middle Row: Quick Navigation & Socials */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm">
-          {/* Navigation Links */}
-          <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
-              Navigation
-            </span>
-            <ul className="flex flex-wrap gap-x-4 gap-y-2">
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  <a 
-                    href={link.href}
-                    className="text-zinc-300 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
-              Connect
-            </span>
-            <ul className="space-y-1.5">
-              {socials.map((s) => (
-                <li key={s.name}>
-                  <a 
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-zinc-300 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5"
-                  >
-                    <span>{s.name}</span>
-                    <span className="text-xs text-zinc-500">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Location & Atmosphere */}
-          <div>
-            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
-              Environment
-            </span>
-            <p className="text-xs text-zinc-300 font-mono leading-relaxed">
-              📍 {location} &bull; {localTime}
-              <br />
-              <span className="text-zinc-400 text-[11px]">Living weather-synced portfolio</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Bottom Row: Copyright & Signoff */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400 font-mono">
+        {/* ========================================================================= */}
+        {/* COPYRIGHT & BACK TO TOP                                                   */}
+        {/* ========================================================================= */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/80">
           <p>&copy; {new Date().getFullYear()} Sai Santosh Madhari. All rights reserved.</p>
-          <p className="flex items-center gap-2">
-            <span>Look up. Keep exploring.</span>
-            <span className="text-blue-400">✦</span>
-          </p>
+          <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="touch-target inline-flex items-center gap-2 text-white/80 hover:text-white hover:underline cursor-pointer"
+          >
+            <span>Back to top</span>
+            <span>&uarr;</span>
+          </button>
+        </div>
+
+        {/* ========================================================================= */}
+        {/* MASSIVE "SANTOSH" WATERMARK TYPOGRAPHY ACROSS BOTTOM SKY                  */}
+        {/* ========================================================================= */}
+        <div className="relative w-full overflow-hidden mt-6 pt-4 pointer-events-none select-none">
+          <motion.h1
+            style={{ x: watermarkX }}
+            className="text-[18vw] font-black uppercase tracking-tighter leading-none text-white/[0.14] whitespace-nowrap text-center drop-shadow-sm font-sans"
+          >
+            SANTOSH
+          </motion.h1>
         </div>
 
       </div>
