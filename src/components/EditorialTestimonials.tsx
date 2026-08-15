@@ -38,37 +38,29 @@ export default function EditorialTestimonials() {
   const current = TESTIMONIALS[currentIndex];
 
   return (
-    <section id="testimonials" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto font-sans">
+    <section id="testimonials" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto font-sans">
       
-      {/* 1. SECTION LABEL */}
+      {/* 1. SECTION HEADER CARD */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-3 mb-6"
+        className="p-8 sm:p-10 rounded-3xl bg-white/90 dark:bg-[#0a0f1d]/90 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_15px_35px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.55)] mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-500 dark:text-blue-400">
-          08 // TESTIMONIALS
-        </span>
-        <div className="h-px w-12 bg-blue-500/30 dark:bg-blue-400/30" />
-      </motion.div>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60">
+            08 // TESTIMONIALS
+          </span>
+        </div>
 
-      {/* 2. SECTION HEADLINE */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mb-14 sm:mb-20 max-w-3xl"
-      >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950 dark:text-white leading-[1.2]">
           Peer Endorsements &amp; Leadership Feedback
         </h2>
       </motion.div>
 
-      {/* 3. LARGE EDITORIAL QUOTATION SHOWCASE */}
-      <div className="relative p-8 sm:p-14 lg:p-16 rounded-3xl bg-white/40 dark:bg-[#0b0f1a]/70 backdrop-blur-2xl border border-slate-200/60 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.7)]">
+      {/* 2. LARGE EDITORIAL QUOTATION SHOWCASE CARD */}
+      <div className="relative p-8 sm:p-14 lg:p-16 rounded-3xl bg-white/90 dark:bg-[#0a0f1d]/90 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.08)] dark:shadow-[0_25px_60px_rgba(0,0,0,0.65)]">
         
         {/* Large Decorative Quotation Mark */}
         <span className="absolute top-6 left-8 sm:top-10 sm:left-12 text-6xl sm:text-8xl font-serif text-blue-500/20 dark:text-blue-400/20 pointer-events-none select-none">
@@ -84,17 +76,17 @@ export default function EditorialTestimonials() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="relative z-10 max-w-4xl"
           >
-            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-slate-900 dark:text-white leading-relaxed mb-8 sm:mb-12">
+            <p className="text-xl sm:text-2xl md:text-3xl font-medium text-slate-950 dark:text-white leading-relaxed mb-8 sm:mb-12">
               &ldquo;{current.quote}&rdquo;
             </p>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-slate-200/50 dark:border-white/10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-6 border-t border-slate-200 dark:border-white/10">
               <div>
-                <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                <h4 className="text-base sm:text-lg font-bold text-slate-950 dark:text-white">
                   {current.author}
                 </h4>
-                <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium">
-                  {current.role} &bull; <span className="text-slate-500 dark:text-zinc-400">{current.company}</span>
+                <p className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-bold">
+                  {current.role} &bull; <span className="text-slate-600 dark:text-zinc-400 font-medium">{current.company}</span>
                 </p>
               </div>
 
@@ -103,7 +95,7 @@ export default function EditorialTestimonials() {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="touch-target w-11 h-11 rounded-full bg-white/80 dark:bg-white/10 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 border border-slate-200/70 dark:border-white/15 flex items-center justify-center text-slate-800 dark:text-white transition-all shadow-sm active:scale-95"
+                  className="touch-target w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white dark:bg-white/10 dark:hover:bg-blue-600 border border-slate-300 dark:border-white/15 flex items-center justify-center text-slate-900 dark:text-white transition-all shadow-sm active:scale-95 font-bold"
                   aria-label="Previous Testimonial"
                 >
                   &larr;
@@ -111,7 +103,7 @@ export default function EditorialTestimonials() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="touch-target w-11 h-11 rounded-full bg-white/80 dark:bg-white/10 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 border border-slate-200/70 dark:border-white/15 flex items-center justify-center text-slate-800 dark:text-white transition-all shadow-sm active:scale-95"
+                  className="touch-target w-11 h-11 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white dark:bg-white/10 dark:hover:bg-blue-600 border border-slate-300 dark:border-white/15 flex items-center justify-center text-slate-900 dark:text-white transition-all shadow-sm active:scale-95 font-bold"
                   aria-label="Next Testimonial"
                 >
                   &rarr;

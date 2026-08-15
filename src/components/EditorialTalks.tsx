@@ -29,40 +29,32 @@ const TALKS = [
 
 export default function EditorialTalks() {
   return (
-    <section id="talks" className="relative py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto font-sans">
+    <section id="talks" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto font-sans">
       
-      {/* 1. SECTION LABEL */}
+      {/* 1. SECTION HEADER CARD */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-3 mb-6"
+        className="p-8 sm:p-10 rounded-3xl bg-white/90 dark:bg-[#0a0f1d]/90 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_15px_35px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.55)] mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-500 dark:text-blue-400">
-          07 // TALKS &amp; WORKSHOPS
-        </span>
-        <div className="h-px w-12 bg-blue-500/30 dark:bg-blue-400/30" />
-      </motion.div>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-widest bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60">
+            07 // TALKS &amp; WORKSHOPS
+          </span>
+        </div>
 
-      {/* 2. SECTION HEADLINE */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mb-14 sm:mb-20 max-w-3xl"
-      >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950 dark:text-white leading-[1.2]">
           Public Speaking &amp; Workshops
         </h2>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-zinc-300 font-light mt-3">
+        <p className="text-base sm:text-lg text-slate-700 dark:text-zinc-200 font-normal mt-2 max-w-2xl">
           Sharing lessons on AI interface architecture, enterprise token adoption, and accessible design leadership.
         </p>
       </motion.div>
 
-      {/* 3. CHRONOLOGICAL EDITORIAL SPEAKING LIST */}
-      <div className="space-y-10 sm:space-y-14">
+      {/* 2. TALK CARDS */}
+      <div className="space-y-6 sm:space-y-8">
         {TALKS.map((talk, i) => (
           <motion.div
             key={talk.title}
@@ -70,29 +62,29 @@ export default function EditorialTalks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: 0.1 * i }}
-            className="pb-10 sm:pb-14 border-b border-slate-200/60 dark:border-white/10 last:border-b-0"
+            className="p-6 sm:p-8 rounded-3xl bg-white/90 dark:bg-[#0a0f1d]/90 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_15px_35px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_45px_rgba(0,0,0,0.55)] hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all duration-300 group"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
               
               {/* Left: Date & Scope */}
               <div className="lg:col-span-3">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 block mb-1">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60 inline-block mb-2">
                   {talk.date}
                 </span>
-                <span className="text-xs font-semibold text-slate-900 dark:text-white block">
+                <span className="text-xs font-bold text-slate-950 dark:text-white block">
                   {talk.scope}
                 </span>
-                <span className="text-xs text-slate-500 dark:text-zinc-400">
+                <span className="text-xs text-slate-600 dark:text-zinc-400 font-medium">
                   {talk.location}
                 </span>
               </div>
 
               {/* Center & Right: Title & Summary */}
               <div className="lg:col-span-9">
-                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-950 dark:text-white tracking-tight mb-2">
                   {talk.title}
                 </h3>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-300 font-light leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-700 dark:text-zinc-300 font-normal leading-relaxed">
                   {talk.description}
                 </p>
               </div>
