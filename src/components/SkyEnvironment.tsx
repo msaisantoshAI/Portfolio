@@ -8,7 +8,7 @@ import WeatherCanvas from './WeatherCanvas';
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
-  const { themeMode, timePhase, weatherState, isDay, effectiveTheme } = useEnvironment();
+  const { themeMode, timePhase, weatherState, isDay } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
   // Instantaneous spring-driven scroll tracking that adapts dynamically to user's scrolling speed
@@ -21,6 +21,8 @@ export default function SkyEnvironment() {
 
   // Vertical scroll translation (drifting through the sky proportionally to scroll speed)
   const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-42%']);
+  const cloudLayer1Y = useTransform(smoothProgress, [0, 1], ['0%', '-25%']);
+  const cloudLayer2Y = useTransform(smoothProgress, [0, 1], ['0%', '-55%']);
   const treeTopLeftY = useTransform(smoothProgress, [0, 0.4, 0.8, 1], [0, -60, -140, -220]);
   const treeTopRightY = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, -90, -180, -280]);
 
@@ -30,19 +32,27 @@ export default function SkyEnvironment() {
 
   if (!mounted) return null;
 
-  // Determine whether to display daytime or nighttime sky asset
-  const showDaySky = effectiveTheme === 'light' || (themeMode === 'system' && (timePhase === 'morning' || timePhase === 'afternoon' || timePhase === 'dawn' || timePhase === 'goldenHour'));
-  const showNightSky = !showDaySky;
+  // Manual Modes
+  const isManualLight = themeMode === 'light';
+  const isManualDark = themeMode === 'dark';
+  const isAuto = themeMode === 'system';
+
+  // Auto Mode Specific Time & Phase Visuals
+  const isAutoDay = isAuto && isDay && (timePhase === 'morning' || timePhase === 'afternoon');
+  const isAutoDawn = isAuto && timePhase === 'dawn';
+  const isAutoGoldenHour = isAuto && timePhase === 'goldenHour';
+  const isAutoSunset = isAuto && timePhase === 'sunset';
+  const isAutoNight = isAuto && (!isDay || timePhase === 'night');
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
-      {/* ========================================================= */}
-      {/* 1. DAYTIME SKY (Panoramic Day Sky Image + Parallax)       */}
-      {/* ========================================================= */}
+      {/* ========================================================================= */}
+      {/* 1. MANUAL LIGHT MODE: Keep user's chosen Day Sky Image                     */}
+      {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          showDaySky ? 'opacity-100' : 'opacity-0'
+          isManualLight ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <motion.div 
@@ -51,7 +61,7 @@ export default function SkyEnvironment() {
         >
           <Image
             src="/images/sky-day.png"
-            alt="Sunny blue sky background"
+            alt="Manual Daytime Sky"
             fill
             priority
             className="object-cover object-top"
@@ -60,7 +70,7 @@ export default function SkyEnvironment() {
           />
         </motion.div>
         
-        {/* Daytime Sunlight Zenith Bloom */}
+        {/* Soft sunlight zenith bloom */}
         <div 
           className="absolute inset-0 opacity-45 pointer-events-none"
           style={{
@@ -69,12 +79,12 @@ export default function SkyEnvironment() {
         />
       </div>
 
-      {/* ========================================================= */}
-      {/* 2. NIGHTTIME SKY (Panoramic Night Sky Image + Parallax)   */}
-      {/* ========================================================= */}
+      {/* ========================================================================= */}
+      {/* 2. MANUAL DARK MODE: Keep user's chosen Night Sky Image                    */}
+      {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          showNightSky ? 'opacity-100' : 'opacity-0'
+          isManualDark ? 'opacity-100' : 'opacity-0'
         }`}
       >
         <motion.div 
@@ -83,7 +93,7 @@ export default function SkyEnvironment() {
         >
           <Image
             src="/images/sky-night.png"
-            alt="Starry night sky background with moon"
+            alt="Manual Nighttime Sky"
             fill
             priority
             className="object-cover object-top"
@@ -92,7 +102,7 @@ export default function SkyEnvironment() {
           />
         </motion.div>
 
-        {/* Night Moon & Galaxy Aura */}
+        {/* Soft moonlight aura */}
         <div 
           className="absolute inset-0 opacity-40 pointer-events-none"
           style={{
@@ -102,44 +112,121 @@ export default function SkyEnvironment() {
       </div>
 
 
-      {/* ========================================================= */}
-      {/* 3. TIME-PHASE ATMOSPHERIC COLOR TINTS (Dawn, Golden, Dusk) */}
-      {/* ========================================================= */}
-      
-      {/* Dawn / Sunrise Rose-Gold Horizon Glow */}
-      {themeMode === 'system' && timePhase === 'dawn' && (
+      {/* ========================================================================= */}
+      {/* 3. AUTO MODE: REAL, LOCATION-SPECIFIC DYNAMIC ATMOSPHERIC ENVIRONMENT      */}
+      {/* ========================================================================= */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 ${
+          isAuto ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {/* Base Dynamic Sky Canvas Gradients tailored to real-world location & time */}
+        
+        {/* A. Auto Daytime Clear Sky Base */}
         <div 
-          className="absolute inset-0 transition-opacity duration-1000 pointer-events-none opacity-60"
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isAutoDay ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
-            background: 'linear-gradient(to top, rgba(255, 130, 80, 0.45) 0%, rgba(255, 190, 120, 0.2) 30%, transparent 70%)'
+            background: 'linear-gradient(180deg, #1d6ed8 0%, #3b88ee 35%, #70aeff 70%, #a4cdff 100%)'
+          }}
+        >
+          {/* Dynamic Sun Flare & Natural Light Rays */}
+          <div 
+            className="absolute top-[8%] left-[20%] w-[500px] h-[500px] rounded-full opacity-65 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 255, 245, 0.9) 0%, rgba(255, 235, 160, 0.4) 30%, rgba(255, 200, 100, 0.1) 60%, transparent 80%)',
+              filter: 'blur(30px)'
+            }}
+          />
+        </div>
+
+        {/* B. Auto Dawn Morning Horizon Awakening */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isAutoDawn ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            background: 'linear-gradient(180deg, #1b356e 0%, #385a9c 35%, #88658f 60%, #e07d67 85%, #fca464 100%)'
+          }}
+        >
+          <div 
+            className="absolute bottom-0 inset-x-0 h-[60%] opacity-70 pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse at 50% 100%, rgba(255, 170, 90, 0.6) 0%, rgba(240, 110, 80, 0.3) 40%, transparent 80%)'
+            }}
+          />
+        </div>
+
+        {/* C. Auto Golden Hour Amber Radiance */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isAutoGoldenHour ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            background: 'linear-gradient(180deg, #2b5596 0%, #5d74a8 30%, #c48354 65%, #f19543 85%, #ffb861 100%)'
+          }}
+        >
+          <div 
+            className="absolute top-[12%] right-[15%] w-[650px] h-[650px] rounded-full opacity-70 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle, rgba(255, 240, 190, 0.85) 0%, rgba(255, 160, 50, 0.45) 35%, rgba(240, 90, 40, 0.15) 65%, transparent 80%)',
+              filter: 'blur(35px)'
+            }}
+          />
+        </div>
+
+        {/* D. Auto Sunset Twilight Palette */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isAutoSunset ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            background: 'linear-gradient(180deg, #09132c 0%, #1e1f4b 25%, #562758 50%, #9e3650 75%, #d85c42 90%, #f68c4a 100%)'
           }}
         />
-      )}
 
-      {/* Golden Hour Warm Amber Glow */}
-      {themeMode === 'system' && timePhase === 'goldenHour' && (
+        {/* E. Auto Real Night Celestial Cosmos */}
         <div 
-          className="absolute inset-0 transition-opacity duration-1000 pointer-events-none opacity-65"
+          className={`absolute inset-0 transition-opacity duration-1000 ${
+            isAutoNight ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{
-            background: 'radial-gradient(circle at 85% 20%, rgba(255, 170, 40, 0.5) 0%, rgba(255, 110, 50, 0.25) 40%, transparent 75%)'
+            background: 'radial-gradient(circle at 75% 15%, #0d1b3e 0%, #060e22 45%, #02050f 100%)'
           }}
-        />
-      )}
+        >
+          {/* Luminous Moon */}
+          <div 
+            className="absolute top-[10%] right-[18%] w-[110px] h-[110px] rounded-full bg-[#f4f7ff] shadow-[0_0_60px_rgba(200,225,255,0.75),0_0_120px_rgba(100,160,255,0.3)] pointer-events-none"
+          />
+          {/* Twinkling Starfield */}
+          <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px] opacity-40" />
+          <div className="absolute inset-0 bg-[radial-gradient(#a5c8ff_1.5px,transparent_1.5px)] [background-size:64px_64px] opacity-60" />
+        </div>
 
-      {/* Sunset Twilight Crimson/Violet Gradient */}
-      {themeMode === 'system' && timePhase === 'sunset' && (
-        <div 
-          className="absolute inset-0 transition-opacity duration-1000 pointer-events-none opacity-70"
-          style={{
-            background: 'linear-gradient(to top, rgba(90, 20, 110, 0.5) 0%, rgba(200, 60, 80, 0.35) 30%, rgba(255, 140, 50, 0.2) 60%, transparent 100%)'
-          }}
-        />
-      )}
+        {/* Real Dynamic Layered Cloud Formations in Auto Mode */}
+        <motion.div 
+          style={{ y: cloudLayer1Y }}
+          className="absolute inset-x-0 top-0 w-full h-[140vh] pointer-events-none opacity-45"
+        >
+          <div className="absolute top-[18%] left-[8%] w-[550px] h-[180px] rounded-full bg-white/40 dark:bg-white/10 blur-3xl animate-drift-slow" />
+          <div className="absolute top-[48%] right-[10%] w-[680px] h-[220px] rounded-full bg-white/35 dark:bg-white/10 blur-3xl animate-drift-medium" />
+        </motion.div>
+
+        <motion.div 
+          style={{ y: cloudLayer2Y }}
+          className="absolute inset-x-0 top-0 w-full h-[140vh] pointer-events-none opacity-35"
+        >
+          <div className="absolute top-[32%] right-[25%] w-[420px] h-[140px] rounded-full bg-white/30 dark:bg-white/10 blur-2xl animate-drift-fast" />
+          <div className="absolute top-[68%] left-[15%] w-[520px] h-[160px] rounded-full bg-white/25 dark:bg-white/10 blur-2xl animate-drift-slow" />
+        </motion.div>
+
+      </div>
 
 
-      {/* ========================================================= */}
-      {/* 4. WEATHER-SPECIFIC ATMOSPHERIC OVERLAYS                   */}
-      {/* ========================================================= */}
+      {/* ========================================================================= */}
+      {/* 4. REAL WEATHER-SPECIFIC OVERLAYS (Rain, Storm, Fog, Overcast)           */}
+      {/* ========================================================================= */}
       
       {/* Overcast / Cloudy Diffused Atmosphere */}
       {(weatherState === 'cloudy' || weatherState === 'partlyCloudy') && (
@@ -171,9 +258,9 @@ export default function SkyEnvironment() {
       <WeatherCanvas weatherState={weatherState} isDay={isDay} />
 
 
-      {/* ========================================================= */}
-      {/* 6. OCCASIONAL OVERHANGING CANOPY BRANCHES (Parallax Scroll) */}
-      {/* ========================================================= */}
+      {/* ========================================================================= */}
+      {/* 6. OCCASIONAL OVERHANGING CANOPY BRANCHES (Parallax Scroll)               */}
+      {/* ========================================================================= */}
       
       {/* Top-Left Tree Branch Canopy */}
       <motion.div 
@@ -227,12 +314,6 @@ export default function SkyEnvironment() {
           </g>
         </svg>
       </motion.div>
-
-      {/* Volumetric ambient cloud drift highlights */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[20%] -left-[10%] w-[60vw] max-w-[700px] h-[220px] rounded-full bg-white/20 dark:bg-blue-400/5 blur-3xl animate-drift-slow" />
-        <div className="absolute top-[60%] -right-[10%] w-[65vw] max-w-[750px] h-[240px] rounded-full bg-white/15 dark:bg-blue-400/5 blur-3xl animate-drift-medium" />
-      </div>
 
     </div>
   );

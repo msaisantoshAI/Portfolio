@@ -39,38 +39,33 @@ export default function Navigation() {
 
   return (
     <>
-      {/* Top Header Bar (Rock-solid spacing, zero overlapping) */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full px-3 sm:px-6 md:px-8 pt-3 sm:pt-4 pointer-events-none transition-all duration-300">
-        <div className="mx-auto flex w-full max-w-[1280px] items-center justify-between gap-2 sm:gap-3 pointer-events-auto">
+      {/* Top Header Bar (Clean, uncrowded spacing) */}
+      <header className="fixed top-0 left-0 right-0 z-50 w-full px-3 sm:px-6 md:px-8 pt-3 sm:pt-4 pointer-events-none transition-all duration-300 font-sans">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-3 pointer-events-auto">
           
-          {/* Left: Brand Identity + Ambient Weather HUD */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <a 
-              href="#home" 
-              className="touch-target flex items-center gap-2 group bg-[#0a0f1d]/85 backdrop-blur-xl px-3 py-1.5 rounded-full border border-white/20 shadow-sm transition-transform duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
-              aria-label="Sai Santosh Madhari Home"
-            >
-              <div className="relative h-6 w-6 sm:h-7 sm:w-7 overflow-hidden rounded-full border border-white/20 shrink-0">
-                <Image 
-                  src="/images/headshot.png" 
-                  alt="Sai Santosh Madhari profile" 
-                  fill 
-                  className="object-cover" 
-                />
-              </div>
-              <span className="text-xs sm:text-sm font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
-                Sai Santosh
-              </span>
-            </a>
+          {/* Left: Brand Identity */}
+          <a 
+            href="#home" 
+            className="touch-target flex items-center gap-2 group bg-[#0a0f1d]/85 backdrop-blur-xl px-3 py-1.5 rounded-full border border-white/20 shadow-sm transition-transform duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
+            aria-label="Sai Santosh Madhari Home"
+          >
+            <div className="relative h-6 w-6 sm:h-7 sm:w-7 overflow-hidden rounded-full border border-white/20 shrink-0">
+              <Image 
+                src="/images/headshot.png" 
+                alt="Sai Santosh Madhari profile" 
+                fill 
+                className="object-cover" 
+              />
+            </div>
+            <span className="text-xs sm:text-sm font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
+              Sai Santosh
+            </span>
+          </a>
 
-            {/* Live Weather & Time HUD */}
-            <WeatherHUD />
-          </div>
-
-          {/* Center: Desktop Navigation Pills (Visible only on xl+ screens to prevent overlapping) */}
+          {/* Center: Desktop Navigation Pills (Visible on lg+ screens) */}
           <nav 
             aria-label="Main Navigation"
-            className="hidden xl:flex items-center rounded-full px-2 py-1 bg-[#0a0f1d]/85 border border-white/20 shadow-md backdrop-blur-xl"
+            className="hidden lg:flex items-center rounded-full px-2 py-1 bg-[#0a0f1d]/85 border border-white/20 shadow-md backdrop-blur-xl"
           >
             <div className="flex items-center gap-1">
               {navLinks.map((item) => {
@@ -98,21 +93,21 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right: Dark Mode Resume CTA + Dark Mode LinkedIn Icon + Theme Selector */}
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* Right: Dark Mode Resume CTA + Dark Mode LinkedIn Icon + Theme Dropdown */}
+          <div className="flex items-center gap-2 shrink-0">
             
-            {/* Resume Button (Permanent Dark Mode Button) */}
+            {/* Resume Button */}
             <a 
               href="/resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="View Resume PDF (opens in new tab)" 
-              className="touch-target hidden sm:inline-flex items-center px-3.5 sm:px-4 py-1.5 rounded-full bg-[#0a0f1d] hover:bg-[#15203d] text-white font-semibold text-xs sm:text-sm border border-white/20 hover:border-white/40 shadow-md hover:scale-105 active:scale-95 transition-all shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="touch-target hidden sm:inline-flex items-center px-4 py-1.5 rounded-full bg-[#0a0f1d] hover:bg-[#15203d] text-white font-semibold text-xs sm:text-sm border border-white/20 hover:border-white/40 shadow-md hover:scale-105 active:scale-95 transition-all shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
             >
               Resume
             </a>
 
-            {/* LinkedIn Icon (Permanent Dark Mode Button) */}
+            {/* LinkedIn Icon */}
             <a 
               href="https://www.linkedin.com/in/saisantoshmadhari0711/" 
               target="_blank" 
@@ -125,7 +120,7 @@ export default function Navigation() {
               </svg>
             </a>
 
-            {/* Three-Mode Segmented Theme Selector (Light • Dark • Auto) */}
+            {/* Compact Theme Mode Dropdown */}
             <div className="flex items-center shrink-0">
               <ThemeSelector />
             </div>
@@ -134,11 +129,11 @@ export default function Navigation() {
         </div>
       </header>
 
-      {/* Floating Bottom Pill Navbar (Mobile & Tablet < xl) */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex justify-center xl:hidden px-4 max-w-full">
+      {/* Floating Bottom Pill Navbar (Mobile & Tablet < lg) */}
+      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex justify-center lg:hidden px-4 max-w-full">
         <nav 
           aria-label="Mobile Navigation"
-          className="flex items-center rounded-full bg-[#0a0f1d]/90 border border-white/20 px-2.5 py-1.5 shadow-2xl backdrop-blur-2xl"
+          className="flex items-center rounded-full bg-[#0a0f1d]/90 border border-white/20 px-2.5 py-1.5 shadow-2xl backdrop-blur-2xl font-sans"
         >
           <div className="flex items-center gap-0.5">
             {navLinks.map((item) => {
@@ -166,6 +161,9 @@ export default function Navigation() {
           </div>
         </nav>
       </div>
+
+      {/* Floating Real-Time Location, Weather & Clock Chip (Bottom Right) */}
+      <WeatherHUD />
     </>
   );
 }
