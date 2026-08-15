@@ -18,7 +18,7 @@ export default function HeroLanding() {
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
   const imageY = useTransform(smoothY, [0, 1], ['0%', '15%']);
   const imageScale = useTransform(smoothY, [0, 1], [1, 1.08]);
-  const contentY = useTransform(smoothY, [0, 1], [0, -50]);
+  const contentY = useTransform(smoothY, [0, 1], [0, -45]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
   // Interactive 3D mouse parallax
@@ -50,7 +50,7 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden font-sans pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-8 md:px-14 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 md:px-12 select-none"
     >
       {/* ========================================================================= */}
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
@@ -152,92 +152,94 @@ export default function HeroLanding() {
       />
 
       {/* ========================================================================= */}
-      {/* 3. HERO CONTENT: PROPORTIONATE HEADLINE, SUBTITLE, & VIEW WORKS CTA       */}
+      {/* 3. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
       {/* ========================================================================= */}
-      <motion.div 
-        style={{ y: contentY, opacity: contentOpacity }}
-        className="relative z-20 flex flex-col items-start justify-start max-w-3xl mx-auto md:mx-0 pt-2 sm:pt-4 text-left pointer-events-auto"
-      >
-        {/* Availability Badge: Item 5 */}
+      <div className="relative z-20 max-w-[1240px] mx-auto w-full pointer-events-auto my-auto py-6">
         <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080d1a]/85 backdrop-blur-xl border border-white/20 shadow-md mb-3 sm:mb-4"
+          style={{ y: contentY, opacity: contentOpacity }}
+          className="flex flex-col items-start justify-start max-w-2xl text-left"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-white text-xs sm:text-sm font-semibold tracking-wide font-sans">
-            Available for AI Product Design roles
-          </span>
-          <span className="text-white/30">&bull;</span>
-          <span className="text-zinc-300 text-xs sm:text-sm font-mono">
-            {location}
-          </span>
-        </motion.div>
-
-        {/* Master Headline: Reduced text scale (Item 1) */}
-        <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] mb-3 sm:mb-4">
-          {titleWords.map((word, idx) => (
-            <motion.span
-              key={idx}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.15 + idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className={`inline-block mr-2 sm:mr-2.5 ${
-                word.includes("human") 
-                  ? "text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 drop-shadow-[0_0_25px_rgba(100,180,255,0.5)]" 
-                  : ""
-              }`}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </h1>
-
-        {/* Subtitle: Reduced scale (Item 1) */}
-        <motion.p 
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.55 }}
-          className="text-base sm:text-lg md:text-xl text-zinc-200 font-normal max-w-2xl leading-relaxed drop-shadow-md mb-6"
-        >
-          Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
-        </motion.p>
-
-        {/* View Works Button (Item 1) */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.65 }}
-        >
-          <button
-            type="button"
-            onClick={() => handleScrollTo('work')}
-            className="touch-target inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base border border-blue-400/40 shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-400"
+          {/* Availability Badge */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080d1a]/85 backdrop-blur-xl border border-white/20 shadow-md mb-3.5"
           >
-            View works
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-white text-xs sm:text-sm font-semibold tracking-wide font-sans">
+              Available for AI Product Design roles
+            </span>
+            <span className="text-white/30">&bull;</span>
+            <span className="text-zinc-300 text-xs sm:text-sm font-mono">
+              {location}
+            </span>
+          </motion.div>
+
+          {/* Master Headline: Acorn Fallback Serif Display Typography */}
+          <h1 className="hero-heading text-white leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] mb-3.5">
+            {titleWords.map((word, idx) => (
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.15 + idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                className={`inline-block mr-2 sm:mr-2.5 ${
+                  word.includes("human") 
+                    ? "text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 drop-shadow-[0_0_25px_rgba(100,180,255,0.5)]" 
+                    : ""
+                }`}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.55 }}
+            className="body-lead text-zinc-200 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
+          >
+            Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
+          </motion.p>
+
+          {/* View Works Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.65 }}
+          >
+            <button
+              type="button"
+              onClick={() => handleScrollTo('work')}
+              className="touch-target inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm sm:text-base border border-blue-400/40 shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-400"
+            >
+              View works
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* ========================================================================= */}
       {/* 4. CENTERED SCROLL TO EXPLORE WITH ANIMATED ARROW                          */}
       {/* ========================================================================= */}
-      <div className="relative z-20 flex flex-col items-center justify-center pt-6 pb-2">
+      <div className="relative z-20 flex flex-col items-center justify-center pt-2 pb-1">
         <button
           type="button"
           onClick={() => handleScrollTo('work')}
-          className="touch-target inline-flex flex-col items-center gap-1.5 text-xs sm:text-sm font-semibold text-zinc-300 hover:text-white transition-all group cursor-pointer"
+          className="touch-target inline-flex flex-col items-center gap-1 text-xs font-semibold text-zinc-300 hover:text-white transition-all group cursor-pointer"
           aria-label="Scroll to explore projects"
         >
           <span className="tracking-widest uppercase font-mono text-[10px] sm:text-xs text-zinc-300 group-hover:text-blue-400 transition-colors">
             Scroll to explore
           </span>
           <motion.div 
-            animate={{ y: [0, 5, 0] }}
+            animate={{ y: [0, 4, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
             className="w-7 h-7 rounded-full bg-white/10 group-hover:bg-white/20 border border-white/20 flex items-center justify-center backdrop-blur-md shadow-md"
           >

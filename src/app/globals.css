@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   DESIGN SYSTEM TOKENS (WCAG 2.2 AA Compliant)
+   DESIGN SYSTEM TOKENS & TYPOGRAPHY SCALE (WCAG 2.2 AA Compliant)
    ========================================================================== */
 
 :root {
@@ -50,8 +50,9 @@
   --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.10);
   --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
 
-  --font-serif: var(--font-outfit);
-  --font-sans: var(--font-plus);
+  /* Typography Font Stacks */
+  --font-display: 'Acorn', var(--font-outfit), Georgia, serif;
+  --font-body: var(--font-plus), system-ui, -apple-system, sans-serif;
 }
 
 .dark {
@@ -90,9 +91,14 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   overflow-x: clip;
   min-height: 100vh;
+}
+
+/* Headings & Subheadings: Acorn Fallback Display Typography */
+h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
+  font-family: var(--font-display);
 }
 
 /* ==========================================================================
@@ -128,86 +134,59 @@ body {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY SYSTEM CLASSES
+   TYPOGRAPHY SYSTEM CLASSES (Consistent Typographical Scale)
    ========================================================================== */
 
 .hero-heading {
-  font-size: clamp(2.25rem, 6.5vw, 4.75rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  font-weight: 700;
-}
-
-.section-heading {
-  font-size: clamp(1.875rem, 4.5vw, 3.5rem);
-  line-height: 1.08;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  line-height: 1.06;
   letter-spacing: -0.025em;
   font-weight: 700;
 }
 
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.8vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
 .card-heading {
-  font-size: clamp(1.25rem, 2.2vw, 1.875rem);
-  line-height: 1.2;
+  font-family: var(--font-display);
+  font-size: clamp(1.1875rem, 2vw, 1.625rem);
+  line-height: 1.22;
   letter-spacing: -0.015em;
   font-weight: 700;
 }
 
 .eyebrow {
-  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+  font-size: clamp(0.6875rem, 1vw, 0.8125rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .body-lead {
-  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.25vw, 1.1875rem);
   line-height: 1.6;
   max-width: 65ch;
 }
 
 .body-copy {
-  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1vw, 0.96875rem);
   line-height: 1.65;
   max-width: 65ch;
 }
 
 .caption-meta {
+  font-family: var(--font-body);
   font-size: 0.8125rem; /* 13px */
   line-height: 1.4;
-}
-
-/* ==========================================================================
-   SKY ENVIRONMENT DRIFT ANIMATIONS
-   ========================================================================== */
-
-@keyframes driftSlow {
-  0% { transform: translateX(-4%) translateY(0); }
-  50% { transform: translateX(6%) translateY(-10px); }
-  100% { transform: translateX(-4%) translateY(0); }
-}
-
-@keyframes driftMedium {
-  0% { transform: translateX(4%) translateY(0); }
-  50% { transform: translateX(-6%) translateY(12px); }
-  100% { transform: translateX(4%) translateY(0); }
-}
-
-@keyframes driftFast {
-  0% { transform: translateX(-6%) translateY(0); }
-  50% { transform: translateX(8%) translateY(-8px); }
-  100% { transform: translateX(-6%) translateY(0); }
-}
-
-.animate-drift-slow {
-  animation: driftSlow 40s ease-in-out infinite alternate;
-}
-
-.animate-drift-medium {
-  animation: driftMedium 28s ease-in-out infinite alternate;
-}
-
-.animate-drift-fast {
-  animation: driftFast 20s ease-in-out infinite alternate;
 }
 
 /* ==========================================================================
@@ -228,4 +207,3 @@ body {
     cursor: auto !important;
   }
 }
-
