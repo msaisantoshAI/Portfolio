@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   DESIGN SYSTEM TOKENS & TYPOGRAPHY SCALE (WCAG 2.2 AA Compliant)
+   DESIGN SYSTEM TOKENS & ACORN DISPLAY TYPOGRAPHY (WCAG 2.2 AA Compliant)
    ========================================================================== */
+
+@font-face {
+  font-family: 'Acorn';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: local('Acorn'), local('Acorn-Bold'), local('Fraunces');
+}
 
 :root {
   /* Colors - Light Theme (Warm Editorial Cream) */
@@ -51,7 +59,7 @@
   --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
 
   /* Typography Font Stacks */
-  --font-display: 'Acorn', var(--font-outfit), Georgia, serif;
+  --font-display: 'Acorn', var(--font-acorn), var(--font-outfit), Georgia, serif;
   --font-body: var(--font-plus), system-ui, -apple-system, sans-serif;
 }
 
@@ -96,7 +104,7 @@ body {
   min-height: 100vh;
 }
 
-/* Headings & Subheadings: Acorn Fallback Display Typography */
+/* Headings & Subheadings: Acorn Display Typography */
 h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
   font-family: var(--font-display);
 }
@@ -105,14 +113,12 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
    ACCESSIBILITY & FOCUS VISIBLE
    ========================================================================== */
 
-/* Universal accessible keyboard focus state */
 :focus-visible {
   outline: 2px solid var(--color-accent) !important;
   outline-offset: 3px !important;
   border-radius: 4px;
 }
 
-/* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -124,7 +130,6 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
   }
 }
 
-/* Touch targets minimum size */
 .touch-target {
   min-width: 44px;
   min-height: 44px;
@@ -190,9 +195,24 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 }
 
 /* ==========================================================================
-   CURSOR RESPONSIVENESS & TOUCH ACCESSIBILITY
+   SCROLL REVEALING & PARALLAX ANIMATIONS
    ========================================================================== */
 
+.reveal-mask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.parallax-card {
+  will-change: transform;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.parallax-card:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Cursor touch accessibility */
 @media (pointer: fine) and (hover: hover) and (min-width: 768px) {
   body {
     cursor: none !important;
