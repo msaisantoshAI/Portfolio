@@ -210,3 +210,22 @@ body {
   animation: driftFast 20s ease-in-out infinite alternate;
 }
 
+/* ==========================================================================
+   CURSOR RESPONSIVENESS & TOUCH ACCESSIBILITY
+   ========================================================================== */
+
+@media (pointer: fine) and (hover: hover) and (min-width: 768px) {
+  body {
+    cursor: none !important;
+  }
+  a, button, input, select, textarea, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+@media (pointer: coarse), (hover: none), (max-width: 767px) {
+  body, a, button, input, select, textarea, [role="button"] {
+    cursor: auto !important;
+  }
+}
+

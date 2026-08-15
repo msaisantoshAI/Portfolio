@@ -54,14 +54,14 @@ export default function ThemeSelector() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="touch-target inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0a0f1d]/90 hover:bg-[#131d36] text-white font-sans text-xs font-semibold border border-white/20 hover:border-white/40 shadow-md backdrop-blur-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="touch-target inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#0a0f1d]/90 hover:bg-[#131d36] text-white font-sans text-xs sm:text-sm font-semibold border border-white/20 hover:border-white/40 shadow-md backdrop-blur-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className="text-sm">{currentOption.icon}</span>
-        <span className="font-medium tracking-tight">{currentOption.label}</span>
+        <span className="text-sm sm:text-base">{currentOption.icon}</span>
+        <span className="font-semibold tracking-tight">{currentOption.label}</span>
         <svg 
-          className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-white' : ''}`} 
+          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-white' : ''}`} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"

@@ -12,7 +12,7 @@ import BenContactLetter from '@/components/BenContactLetter';
 
 export default function Home() {
   return (
-    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-6 sm:space-y-10 md:space-y-14 pb-16">
+    <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-4 sm:space-y-6 md:space-y-8 pb-12">
       {/* 1. HERO LANDING (Authentic photo of Sai lying on grass looking up + real-time lighting + 3D parallax) */}
       <div id="home" className="relative">
         <HeroLanding />

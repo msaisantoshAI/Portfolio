@@ -1,113 +1,159 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEnvironment } from '@/context/EnvironmentContext';
 import QueryModal from './QueryModal';
 
 export default function Footer() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
+  const { location, localTime } = useEnvironment();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Work', href: '#work' },
+    { name: 'Process', href: '#fun' },
+    { name: 'Talks', href: '#talks' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
   const socials = [
     { 
       name: 'LinkedIn', 
       url: 'https://www.linkedin.com/in/saisantoshmadhari0711/',
-      icon: (
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-      )
+      label: 'LinkedIn'
     },
     { 
       name: 'Instagram', 
       url: 'https://www.instagram.com/sai_santosh_madhari/',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-        </svg>
-      )
+      label: 'Instagram'
     },
     { 
       name: 'Email', 
       url: 'mailto:Saisantoshmadhari@gmail.com',
-      icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-          <polyline points="22,6 12,13 2,6"></polyline>
-        </svg>
-      )
+      label: 'Saisantoshmadhari@gmail.com'
     }
   ];
 
   return (
-    <footer className="bg-[#03050c] text-white border-t border-white/10 py-24 sm:py-32 relative overflow-hidden">
-      {/* Cinematic Pinterest Native Video Background */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-35" aria-hidden="true">
-        <video 
-           autoPlay 
-           loop 
-           muted 
-           playsInline
-           preload="none"
-           className="w-full h-full object-cover"
-        >
-           <source src="/images/footer-mp4.mp4" type="video/mp4" />
-        </video>
-        {/* Aggressive dark vignette matching */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#03050c] via-[#03050c]/40 to-[#03050c] opacity-90" />
-      </div>
+    <footer className="relative z-20 bg-[#060a17]/95 border-t border-white/15 text-white py-16 sm:py-20 px-6 sm:px-10 md:px-16 backdrop-blur-3xl font-sans select-none overflow-hidden">
+      
+      {/* Subtle atmospheric ambient glow */}
+      <div 
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          background: 'radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)'
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center justify-center text-center space-y-6 mb-20 sm:mb-28"
-        >
-          <h2 className="section-heading text-white">
-            Let&apos;s build
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 italic font-light drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-              something interesting.
+      <div className="max-w-7xl mx-auto relative z-10 flex flex-col gap-12 sm:gap-16">
+        
+        {/* Top Row: CTA & Back to Top */}
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 pb-8 border-b border-white/10">
+          <div className="max-w-2xl">
+            <span className="text-xs font-mono uppercase tracking-[0.25em] text-blue-400 block mb-3">
+              ✦ Open for Collaborations &amp; Leadership
             </span>
-          </h2>
-          <div className="pt-4">
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="touch-target py-3.5 px-8 sm:px-10 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold tracking-wide rounded-full hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            >
-              Start a Conversation
-            </button>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-end pt-8 border-t border-white/10">
-          <div className="flex flex-col space-y-4">
-            <div className="flex items-center space-x-3">
-              {socials.map((s) => (
-                <a
-                  key={s.name}
-                  href={s.url}
-                  className="touch-target w-10 h-10 rounded-full bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all transform hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500"
-                  aria-label={`Open ${s.name} (external link)`}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-            <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
-              Based in Hyderabad, India &bull; Available for Global &amp; Remote Roles
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight mb-4">
+              Let&apos;s build experiences that{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300">
+                feel human.
+              </span>
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-300 font-light leading-relaxed">
+              Have a complex enterprise challenge, an AI agent system, or an ambitious product in mind? Let&apos;s talk.
             </p>
           </div>
-          
-          <div className="flex flex-col md:items-end space-y-2">
-            <p className="text-slate-400 text-xs font-mono tracking-wider uppercase">
-              &copy; {new Date().getFullYear()} &mdash; Sai Santosh Madhari. All rights reserved.
+
+          <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="touch-target px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_30px_rgba(59,130,246,0.4)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              Start a Conversation ↗
+            </button>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="touch-target px-4 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-zinc-200 hover:text-white font-medium text-sm backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              title="Scroll back to top"
+            >
+              ↑ Back to top
+            </button>
+          </div>
+        </div>
+
+        {/* Middle Row: Quick Navigation & Socials */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm">
+          {/* Navigation Links */}
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
+              Navigation
+            </span>
+            <ul className="flex flex-wrap gap-x-4 gap-y-2">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a 
+                    href={link.href}
+                    className="text-zinc-300 hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
+              Connect
+            </span>
+            <ul className="space-y-1.5">
+              {socials.map((s) => (
+                <li key={s.name}>
+                  <a 
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-zinc-300 hover:text-blue-400 transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>{s.name}</span>
+                    <span className="text-xs text-zinc-500">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Location & Atmosphere */}
+          <div>
+            <span className="text-xs font-mono uppercase tracking-widest text-zinc-400 block mb-3">
+              Environment
+            </span>
+            <p className="text-xs text-zinc-300 font-mono leading-relaxed">
+              📍 {location} &bull; {localTime}
+              <br />
+              <span className="text-zinc-400 text-[11px]">Living weather-synced portfolio</span>
             </p>
           </div>
         </div>
+
+        {/* Bottom Row: Copyright & Signoff */}
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400 font-mono">
+          <p>&copy; {new Date().getFullYear()} Sai Santosh Madhari. All rights reserved.</p>
+          <p className="flex items-center gap-2">
+            <span>Look up. Keep exploring.</span>
+            <span className="text-blue-400">✦</span>
+          </p>
+        </div>
+
       </div>
 
       <QueryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
