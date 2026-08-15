@@ -7,22 +7,22 @@ import { useEnvironment, WeatherState } from '@/context/EnvironmentContext';
 function getWeatherIcon(state: WeatherState, isDay: boolean): string {
   switch (state) {
     case 'clear':
-      return isDay ? '☀' : '🌙';
+      return isDay ? '☀️' : '🌙';
     case 'partlyCloudy':
-      return isDay ? '⛅' : '☁';
+      return isDay ? '⛅' : '☁️';
     case 'cloudy':
-      return '☁';
+      return '☁️';
     case 'rain':
     case 'heavyRain':
-      return '🌧';
+      return '🌧️';
     case 'thunderstorm':
-      return '⛈';
+      return '⛈️';
     case 'fog':
-      return '🌫';
+      return '🌫️';
     case 'snow':
-      return '❄';
+      return '❄️';
     default:
-      return isDay ? '☀' : '🌙';
+      return isDay ? '☀️' : '🌙';
   }
 }
 
@@ -61,7 +61,33 @@ export default function WeatherHUD() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
+  const [showGuideNote, setShowGuideNote] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+
+  // Check if guide note was previously dismissed
+  useEffect(() => {
+    try {
+      const dismissed = localStorage.getItem('sai_guide_note_dismissed');
+      if (!dismissed) {
+        // Show after a subtle 1.8s delay for new visitors
+        const timer = setTimeout(() => {
+          setShowGuideNote(true);
+        }, 1800);
+        return () => clearTimeout(timer);
+      }
+    } catch {
+      // Ignore
+    }
+  }, []);
+
+  const handleDismissGuideNote = () => {
+    setShowGuideNote(false);
+    try {
+      localStorage.setItem('sai_guide_note_dismissed', 'true');
+    } catch {
+      // Ignore
+    }
+  };
 
   // Close modal when clicking outside
   useEffect(() => {
@@ -93,14 +119,66 @@ export default function WeatherHUD() {
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans pointer-events-auto" ref={modalRef}>
       
+      {/* GUIDE NOTE POPUP OVER LOCATION BUTTON FOR NEW USERS */}
+      <AnimatePresence>
+        {showGuideNote && !isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 15, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute bottom-[calc(100%+14px)] right-0 w-[290px] sm:w-[320px] p-4 rounded-2xl bg-[#080d1a]/95 text-white border border-blue-400/40 shadow-[0_16px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl z-50 flex flex-col gap-2.5"
+          >
+            {/* Header & Dismiss */}
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-blue-400 flex items-center gap-1.5 uppercase tracking-wider">
+                <span className="animate-spin text-sm">✨</span>
+                <span>Interactive Sky</span>
+              </span>
+              <button
+                type="button"
+                onClick={handleDismissGuideNote}
+                className="w-5 h-5 rounded-full hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-white text-xs transition-colors"
+                aria-label="Dismiss guide tip"
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="text-xs text-zinc-200 leading-relaxed font-normal">
+              Click the location button below to switch cities (e.g. <strong>Tokyo, London, Dubai</strong>) and watch the entire sky, time &amp; weather adapt live!
+            </p>
+
+            <div className="flex items-center justify-end gap-2 pt-1 border-t border-white/10">
+              <button
+                type="button"
+                onClick={() => {
+                  handleDismissGuideNote();
+                  setIsOpen(true);
+                }}
+                className="px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-bold shadow-md transition-colors"
+              >
+                Try It Now ↗
+              </button>
+            </div>
+
+            {/* Little pointer arrow */}
+            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-[#080d1a] border-r border-b border-blue-400/40 transform rotate-45" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* 1. Floating Ambient Status Chip (Click to open Location Switcher) */}
       <motion.button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (showGuideNote) handleDismissGuideNote();
+          setIsOpen(!isOpen);
+        }}
         initial={{ opacity: 0, y: 10, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className="touch-target inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 rounded-full bg-[#0a0f1d]/90 hover:bg-[#131e3d] text-white font-sans text-xs sm:text-[13px] border border-white/20 hover:border-white/40 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="touch-target inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-2 rounded-full bg-[#0a0f1d]/90 hover:bg-[#131e3d] text-white font-sans text-xs sm:text-[13px] border border-white/25 hover:border-blue-400/50 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-blue-500"
         aria-label="Open Worldwide Location Switcher"
         title="Click to test different world locations!"
       >
@@ -140,90 +218,125 @@ export default function WeatherHUD() {
         )}
       </motion.button>
 
-      {/* 2. Location Switcher Modal */}
+      {/* 2. Expanded Interactive Worldwide Location & Atmosphere Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.96 }}
-            animate={{ opacity: 1, y: -8, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.96 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute bottom-full right-0 mb-2 w-[320px] sm:w-[380px] p-4 rounded-3xl bg-[#080d1a]/95 border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] backdrop-blur-2xl text-left overflow-hidden text-white"
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute bottom-14 right-0 w-[340px] sm:w-[420px] max-h-[82vh] overflow-y-auto rounded-3xl bg-[#090d1c]/95 border border-white/20 p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-3xl text-white space-y-5"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
+            <div className="flex items-center justify-between border-b border-white/10 pb-3">
               <div>
-                <h3 className="text-sm font-bold text-white flex items-center gap-1.5">
-                  <span>🌍</span> Change Location
-                </h3>
+                <h4 className="text-base font-bold text-white flex items-center gap-2">
+                  <span>🌍</span> Worldwide Live Weather
+                </h4>
                 <p className="text-[11px] text-zinc-400">
-                  {displayLocation} &bull; {temperature !== null ? `${temperature}°C, ` : ''}{weatherDescription}{windSpeed !== null ? ` • 💨 ${windSpeed} km/h` : ''} &bull; {timePhase}
+                  Switch location &amp; watch the living sky adapt in real-time
                 </p>
               </div>
-
-              {isSimulating && (
-                <button
-                  type="button"
-                  onClick={resetToLiveLocation}
-                  className="touch-target px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/10 hover:bg-white/20 text-zinc-200 border border-white/20 transition-all"
-                  title="Reset to your real local time & city"
-                >
-                  ↺ Reset
-                </button>
-              )}
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-xs text-zinc-300 hover:text-white transition-colors"
+                aria-label="Close modal"
+              >
+                ✕
+              </button>
             </div>
 
-            {/* City Search Input */}
-            <form onSubmit={handleSearchSubmit} className="mb-3">
-              <div className="relative flex items-center">
+            {/* Current Active Environmental Telemetry Card */}
+            <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-zinc-400">Current Station:</span>
+                <span className="font-semibold text-blue-400">{location}</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 pt-1 text-center font-mono">
+                <div className="p-2 rounded-xl bg-black/30 border border-white/5">
+                  <span className="text-[10px] text-zinc-400 block">TEMP</span>
+                  <span className="text-sm font-bold text-white">{temperature !== null ? `${temperature}°C` : '--'}</span>
+                </div>
+                <div className="p-2 rounded-xl bg-black/30 border border-white/5">
+                  <span className="text-[10px] text-zinc-400 block">WIND</span>
+                  <span className="text-sm font-bold text-cyan-300">{windSpeed} km/h</span>
+                </div>
+                <div className="p-2 rounded-xl bg-black/30 border border-white/5">
+                  <span className="text-[10px] text-zinc-400 block">PHASE</span>
+                  <span className="text-xs font-bold text-amber-300 capitalize">{timePhase}</span>
+                </div>
+              </div>
+              <div className="text-[11px] text-zinc-300 text-center font-light pt-1">
+                {icon} {weatherDescription} &bull; Local clock: <span className="font-mono font-bold text-white">{localTime}</span>
+              </div>
+            </div>
+
+            {/* Live Global Search Input */}
+            <form onSubmit={handleSearchSubmit} className="space-y-1.5">
+              <label htmlFor="city-search" className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+                Search Any Global City / Country
+              </label>
+              <div className="flex items-center gap-2">
                 <input
+                  id="city-search"
                   type="text"
+                  placeholder="e.g. San Francisco, Berlin, Kyoto..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Type any city, state, or country (e.g. Reykjavik, London, Tokyo)..."
-                  className="w-full pl-3.5 pr-16 py-2 rounded-xl bg-white/5 border border-white/15 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                  className="flex-1 px-3.5 py-2 rounded-xl bg-white/10 border border-white/15 text-xs text-white placeholder-zinc-400 focus:outline-none focus:border-blue-400 font-sans"
                 />
                 <button
                   type="submit"
                   disabled={isSearching || !searchQuery.trim()}
-                  className="absolute right-1.5 px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-40 text-[11px] font-semibold text-white transition-all"
+                  className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-xs font-semibold text-white transition-colors cursor-pointer"
                 >
-                  {isSearching ? '...' : 'Go'}
+                  {isSearching ? '...' : 'Apply'}
                 </button>
               </div>
             </form>
 
-            {/* Quick Location Preset Pills */}
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 block mb-1.5">
-                Worldwide Presets:
+            {/* Worldwide Quick-Select Presets */}
+            <div className="space-y-2">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 block">
+                Popular Worldwide Stations
               </span>
-              <div className="grid grid-cols-4 gap-1.5">
-                {CITY_PRESETS.map((city) => {
-                  const isSelected = location.toLowerCase().includes(city.name.toLowerCase());
-                  return (
-                    <button
-                      key={city.name}
-                      type="button"
-                      onClick={() => setCustomLocation(city.name, city.lat, city.lon, city.tz)}
-                      className={`p-1.5 rounded-xl text-center text-xs font-medium border transition-all flex flex-col items-center gap-0.5 ${
-                        isSelected 
-                          ? 'bg-blue-600/30 border-blue-400 text-white shadow-sm' 
-                          : 'bg-white/5 hover:bg-white/10 border-white/10 text-zinc-300'
-                      }`}
-                    >
-                      <span className="text-sm">{city.flag}</span>
-                      <span className="text-[10px] truncate max-w-full font-semibold">{city.name}</span>
-                    </button>
-                  );
-                })}
+              <div className="grid grid-cols-2 gap-2">
+                {CITY_PRESETS.map((city) => (
+                  <button
+                    key={city.name}
+                    type="button"
+                    onClick={() => {
+                      setCustomLocation(city.name, city.lat, city.lon, city.tz);
+                      setIsOpen(false);
+                    }}
+                    className={`touch-target px-3 py-2 rounded-xl text-xs font-medium text-left border flex items-center justify-between transition-all cursor-pointer ${
+                      location.toLowerCase().includes(city.name.toLowerCase())
+                        ? 'bg-blue-600/30 border-blue-400/60 text-white font-bold'
+                        : 'bg-white/5 border-white/10 text-zinc-300 hover:bg-white/15 hover:text-white'
+                    }`}
+                  >
+                    <span>{city.flag} {city.name}</span>
+                    <span className="text-[10px] text-zinc-400">&rarr;</span>
+                  </button>
+                ))}
               </div>
             </div>
 
-            <div className="mt-3 pt-2.5 border-t border-white/10 text-[10px] text-zinc-400 leading-tight">
-              Selecting a location automatically transforms the sky, local clock, sunrise/sunset, and weather atmosphere in real-time.
-            </div>
-
+            {/* Reset to Auto Live Geolocation */}
+            {isSimulating && (
+              <button
+                type="button"
+                onClick={() => {
+                  resetToLiveLocation();
+                  setIsOpen(false);
+                }}
+                className="w-full py-2.5 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-500/40 text-emerald-300 text-xs font-bold transition-all text-center"
+              >
+                ↻ Reset to My Auto Live Location
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

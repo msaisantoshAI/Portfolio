@@ -50,7 +50,7 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-8 md:px-12 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
     >
       {/* ========================================================================= */}
       {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
@@ -156,36 +156,32 @@ export default function HeroLanding() {
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"
         >
-          {/* Availability Badge */}
+          {/* Luminous Availability Badge (Bright, Radiant, High-Legibility) */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#080d1a]/85 backdrop-blur-xl border border-white/20 shadow-md mb-3.5"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-lg mb-4 text-white"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
             <span className="text-white text-xs sm:text-sm font-semibold tracking-wide font-sans">
               Available for AI Product Design roles
             </span>
-            <span className="text-white/30">&bull;</span>
-            <span className="text-zinc-300 text-xs sm:text-sm font-mono">
+            <span className="text-white/40">&bull;</span>
+            <span className="text-white/90 text-xs sm:text-sm font-mono font-bold">
               {location}
             </span>
           </motion.div>
 
-          {/* Master Headline: Acorn Fallback Serif Display Typography */}
-          <h1 className="hero-heading text-white leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)] mb-3.5">
+          {/* Master Headline: Pure Complete White Typography */}
+          <h1 className="hero-heading text-white leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-4">
             {titleWords.map((word, idx) => (
               <motion.span
                 key={idx}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.15 + idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                className={`inline-block mr-2 sm:mr-2.5 ${
-                  word.includes("human") 
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 drop-shadow-[0_0_25px_rgba(100,180,255,0.5)]" 
-                    : ""
-                }`}
+                className="inline-block mr-2 sm:mr-2.5 text-white"
               >
                 {word}
               </motion.span>
@@ -197,7 +193,7 @@ export default function HeroLanding() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.55 }}
-            className="body-lead text-zinc-200 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
+            className="body-lead text-zinc-100 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
           >
             Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
           </motion.p>
@@ -223,33 +219,24 @@ export default function HeroLanding() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 4. BOTTOM HERO BAR: SCROLL TO EXPLORE WITH CENTERED ARROW                 */}
+      {/* 4. BOTTOM HERO BAR: ONLY 1 CENTERED "SCROLL TO EXPLORE" BUTTON            */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1440px] mx-auto w-full flex items-center justify-between text-white/80 font-mono text-xs sm:text-sm border-t border-white/10 pt-4 pointer-events-auto">
-        <span className="hidden sm:inline-block text-zinc-300">
-          Scroll down to explore works
-        </span>
-
-        {/* Center: Animated Scroll Down Button */}
+      <div className="relative z-20 max-w-[1440px] mx-auto w-full flex items-center justify-center text-white/90 font-mono text-xs sm:text-sm border-t border-white/15 pt-4 pointer-events-auto">
         <button
           type="button"
           onClick={() => handleScrollTo('about')}
-          className="touch-target mx-auto sm:mx-0 flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer group"
-          aria-label="Scroll to about section"
+          className="touch-target flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer group"
+          aria-label="Scroll to explore"
         >
-          <span className="tracking-widest uppercase text-[11px] font-bold">Scroll to explore</span>
+          <span className="tracking-widest uppercase text-[11px] sm:text-xs font-bold">Scroll to explore</span>
           <motion.span
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-5 h-5 rounded-full border border-white/40 flex items-center justify-center group-hover:border-blue-400"
+            className="w-5 h-5 rounded-full border border-white/50 flex items-center justify-center group-hover:border-blue-400 group-hover:text-blue-400 transition-colors"
           >
             &darr;
           </motion.span>
         </button>
-
-        <span className="hidden sm:inline-block text-zinc-300">
-          Sai Santosh &bull; 2026
-        </span>
       </div>
 
     </section>
