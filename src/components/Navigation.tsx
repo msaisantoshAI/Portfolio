@@ -11,7 +11,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'work', 'process', 'prototypes', 'writings', 'talks', 'testimonials', 'contact'];
+      const sections = ['home', 'about', 'work', 'fun', 'talks', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -30,23 +30,23 @@ export default function Navigation() {
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
-    { name: 'Work', href: '#work', id: 'work' },
     { name: 'About', href: '#about', id: 'about' },
-    { name: 'Process', href: '#process', id: 'process' },
+    { name: 'Work', href: '#work', id: 'work' },
+    { name: 'Process', href: '#fun', id: 'fun' },
     { name: 'Talks', href: '#talks', id: 'talks' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
   return (
     <>
-      {/* Top Header Bar (Minimal, floating translucent glass) */}
+      {/* Top Header Bar (Clean, uncrowded spacing) */}
       <header className="fixed top-0 left-0 right-0 z-50 w-full px-3 sm:px-6 md:px-8 pt-3 sm:pt-4 pointer-events-none transition-all duration-300 font-sans">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 pointer-events-auto">
+        <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between gap-3 pointer-events-auto">
           
           {/* Left: Brand Identity */}
           <a 
             href="#home" 
-            className="touch-target flex items-center gap-2.5 group bg-[#0a0f1d]/85 backdrop-blur-2xl px-3.5 py-1.5 rounded-full border border-white/20 shadow-md transition-transform duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="touch-target flex items-center gap-2 group bg-[#0a0f1d]/85 backdrop-blur-xl px-3 py-1.5 rounded-full border border-white/20 shadow-sm transition-transform duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label="Sai Santosh Madhari Home"
           >
             <div className="relative h-6 w-6 sm:h-7 sm:w-7 overflow-hidden rounded-full border border-white/20 shrink-0">
@@ -65,7 +65,7 @@ export default function Navigation() {
           {/* Center: Desktop Navigation Pills (Visible on lg+ screens) */}
           <nav 
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center rounded-full px-2 py-1 bg-[#0a0f1d]/85 border border-white/20 shadow-lg backdrop-blur-2xl"
+            className="hidden lg:flex items-center rounded-full px-2 py-1 bg-[#0a0f1d]/85 border border-white/20 shadow-md backdrop-blur-xl"
           >
             <div className="flex items-center gap-1">
               {navLinks.map((item) => {
@@ -81,8 +81,8 @@ export default function Navigation() {
                   >
                     {isActive && (
                       <motion.span
-                        layoutId="activePillNavEditorial"
-                        className="absolute inset-0 bg-blue-600 rounded-full shadow-[0_0_12px_rgba(59,130,246,0.6)] -z-10"
+                        layoutId="activePillNavUnifiedCleanDark"
+                        className="absolute inset-0 bg-blue-600 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)] -z-10"
                         transition={{ type: 'spring', stiffness: 400, damping: 35 }}
                       />
                     )}
@@ -93,23 +93,23 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right: Resume CTA + LinkedIn + Theme Dropdown */}
+          {/* Right: Dark Mode Resume CTA + Dark Mode LinkedIn Icon + Theme Dropdown */}
           <div className="flex items-center gap-2 shrink-0">
             
             {/* Resume Button */}
             <a 
-              href="/assets/resume.pdf" 
+              href="/resume.pdf" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="View Resume PDF (opens in new tab)" 
               className="touch-target hidden sm:inline-flex items-center px-4 py-1.5 rounded-full bg-[#0a0f1d] hover:bg-[#15203d] text-white font-semibold text-xs sm:text-sm border border-white/20 hover:border-white/40 shadow-md hover:scale-105 active:scale-95 transition-all shrink-0 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              Resume &rarr;
+              Resume
             </a>
 
             {/* LinkedIn Icon */}
             <a 
-              href="https://www.linkedin.com/in/sai-santosh-madhari/" 
+              href="https://www.linkedin.com/in/saisantoshmadhari0711/" 
               target="_blank" 
               rel="noreferrer" 
               aria-label="LinkedIn Profile (opens in new tab)" 
@@ -120,7 +120,7 @@ export default function Navigation() {
               </svg>
             </a>
 
-            {/* Compact Theme Mode Dropdown (Light / Dark / Auto) */}
+            {/* Compact Theme Mode Dropdown */}
             <div className="flex items-center shrink-0">
               <ThemeSelector />
             </div>
@@ -130,7 +130,7 @@ export default function Navigation() {
       </header>
 
       {/* Floating Bottom Pill Navbar (Mobile & Tablet < lg) */}
-      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex justify-center lg:hidden px-4 max-w-full pointer-events-auto">
+      <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex justify-center lg:hidden px-4 max-w-full">
         <nav 
           aria-label="Mobile Navigation"
           className="flex items-center rounded-full bg-[#0a0f1d]/90 border border-white/20 px-2.5 py-1.5 shadow-2xl backdrop-blur-2xl font-sans"
@@ -149,7 +149,7 @@ export default function Navigation() {
                 >
                   {isActive && (
                     <motion.span
-                      layoutId="activePillNavMobileEditorial"
+                      layoutId="activePillNavMobileUnifiedCleanDark"
                       className="absolute inset-0 bg-blue-600 rounded-full -z-10 shadow-sm"
                       transition={{ type: 'spring', stiffness: 400, damping: 35 }}
                     />
@@ -162,7 +162,7 @@ export default function Navigation() {
         </nav>
       </div>
 
-      {/* Floating Real-Time Location, Weather & Clock HUD (Bottom Right) */}
+      {/* Floating Real-Time Location, Weather & Clock Chip (Bottom Right) */}
       <WeatherHUD />
     </>
   );
