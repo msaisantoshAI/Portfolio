@@ -70,7 +70,6 @@ export default function AtmosphericSkyCanvas() {
     cloudCover, 
     windSpeed, 
     isWindy,
-    sunPosition,
     moonPosition
   } = useEnvironment();
 
@@ -247,41 +246,7 @@ export default function AtmosphericSkyCanvas() {
         style={{ y: skyY }}
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
-        {/* Dynamic Sun Orb with Solar Corona (Positioned at live sunPosition) */}
-        {!isNight && (
-          <motion.div
-            animate={{
-              left: `${sunPosition.x}%`,
-              top: `${sunPosition.y}%`,
-            }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
-            className="absolute rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2"
-            style={{
-              width: '140px',
-              height: '140px',
-            }}
-          >
-            <div className="relative w-full h-full">
-              {/* Sun Core Disc */}
-              <div 
-                className="absolute inset-0 rounded-full"
-                style={{
-                  background: isSunset 
-                    ? 'radial-gradient(circle, #ffffff 0%, #ffe0b2 30%, #ff7043 65%, rgba(255, 87, 34, 0.4) 85%, transparent 100%)'
-                    : isGoldenHour
-                    ? 'radial-gradient(circle, #ffffff 0%, #fff8e1 30%, #ffca28 65%, rgba(255, 160, 0, 0.45) 85%, transparent 100%)'
-                    : 'radial-gradient(circle, #ffffff 0%, #fffde7 30%, #ffee58 60%, rgba(255, 214, 0, 0.4) 85%, transparent 100%)',
-                  boxShadow: isSunset
-                    ? '0 0 70px rgba(255, 87, 34, 0.95), 0 0 160px rgba(230, 81, 0, 0.6)'
-                    : isGoldenHour
-                    ? '0 0 70px rgba(255, 179, 0, 0.95), 0 0 160px rgba(255, 111, 0, 0.6)'
-                    : '0 0 70px rgba(255, 238, 88, 0.95), 0 0 160px rgba(255, 167, 38, 0.55), 0 0 260px rgba(255, 143, 0, 0.35)',
-                }}
-              />
-              <div className="absolute -inset-10 rounded-full bg-[radial-gradient(circle,rgba(255,255,240,0.55)_0%,transparent_70%)] animate-pulse" />
-            </div>
-          </motion.div>
-        )}
+        {/* Sun orb removed per user preference - relying on natural photorealistic atmospheric sky textures */}
 
         {/* Dynamic Moon Orb with Lunar Craters & Silvery Moonbeams (Positioned at live moonPosition) */}
         {isNight && (
