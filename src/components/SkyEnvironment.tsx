@@ -3,12 +3,60 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { useEnvironment } from '@/context/EnvironmentContext';
+import { useEnvironment, LocationRegion, TimePhase, WeatherState } from '@/context/EnvironmentContext';
 import WeatherCanvas from './WeatherCanvas';
+
+// Real-world location & time-adaptive photographic sky mapping
+function getLocationImage(region: LocationRegion, timePhase: TimePhase, weatherState: WeatherState, isDay: boolean): string {
+  // If it's actively raining or thunderstorming
+  if (weatherState === 'rain' || weatherState === 'thunderstorm') {
+    if (region === 'india') return 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop';
+    if (region === 'us') return 'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=2000&auto=format&fit=crop';
+    return 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=2000&auto=format&fit=crop';
+  }
+
+  // 1. INDIA / HYDERABAD
+  if (region === 'india') {
+    if (timePhase === 'dawn') return 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=2000&auto=format&fit=crop';
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1590447158019-883d8d5f8bc7?q=80&w=2000&auto=format&fit=crop';
+    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?q=80&w=2000&auto=format&fit=crop';
+    // Daytime
+    return 'https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?q=80&w=2000&auto=format&fit=crop';
+  }
+
+  // 2. UNITED STATES / AMERICAS
+  if (region === 'us') {
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000&auto=format&fit=crop';
+    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2000&auto=format&fit=crop';
+    // Daytime
+    return 'https://images.unsplash.com/photo-1506146332389-18140dc7b2fb?q=80&w=2000&auto=format&fit=crop';
+  }
+
+  // 3. EUROPE / UK
+  if (region === 'europe') {
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2000&auto=format&fit=crop';
+    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2000&auto=format&fit=crop';
+    // Daytime
+    return 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2000&auto=format&fit=crop';
+  }
+
+  // 4. ASIA / EAST ASIA
+  if (region === 'asia') {
+    if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2000&auto=format&fit=crop';
+    if (!isDay || timePhase === 'night') return 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=2000&auto=format&fit=crop';
+    // Daytime
+    return 'https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2000&auto=format&fit=crop';
+  }
+
+  // 5. GLOBAL FALLBACK
+  if (timePhase === 'goldenHour' || timePhase === 'sunset') return 'https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop';
+  if (!isDay || timePhase === 'night') return '/images/sky-night.png';
+  return '/images/sky-day.png';
+}
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
-  const { themeMode, timePhase, weatherState, isDay } = useEnvironment();
+  const { themeMode, timePhase, weatherState, isDay, region, location } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
   // Instantaneous spring-driven scroll tracking that adapts dynamically to user's scrolling speed
@@ -21,8 +69,6 @@ export default function SkyEnvironment() {
 
   // Vertical scroll translation (drifting through the sky proportionally to scroll speed)
   const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-42%']);
-  const cloudLayer1Y = useTransform(smoothProgress, [0, 1], ['0%', '-25%']);
-  const cloudLayer2Y = useTransform(smoothProgress, [0, 1], ['0%', '-55%']);
   const treeTopLeftY = useTransform(smoothProgress, [0, 0.4, 0.8, 1], [0, -60, -140, -220]);
   const treeTopRightY = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, -90, -180, -280]);
 
@@ -37,22 +83,18 @@ export default function SkyEnvironment() {
   const isManualDark = themeMode === 'dark';
   const isAuto = themeMode === 'system';
 
-  // Auto Mode Specific Time & Phase Visuals
-  const isAutoDay = isAuto && isDay && (timePhase === 'morning' || timePhase === 'afternoon');
-  const isAutoDawn = isAuto && timePhase === 'dawn';
-  const isAutoGoldenHour = isAuto && timePhase === 'goldenHour';
-  const isAutoSunset = isAuto && timePhase === 'sunset';
-  const isAutoNight = isAuto && (!isDay || timePhase === 'night');
+  // Compute Auto Image URL
+  const autoImageUrl = getLocationImage(region, timePhase, weatherState, isDay);
 
   return (
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
       {/* ========================================================================= */}
-      {/* 1. MANUAL LIGHT MODE: Keep user's chosen Day Sky Image                     */}
+      {/* 1. MANUAL LIGHT MODE: User's chosen Day Sky Image                          */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          isManualLight ? 'opacity-100' : 'opacity-0'
+          isManualLight ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <motion.div 
@@ -80,11 +122,11 @@ export default function SkyEnvironment() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: Keep user's chosen Night Sky Image                    */}
+      {/* 2. MANUAL DARK MODE: User's chosen Night Sky Image                         */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          isManualDark ? 'opacity-100' : 'opacity-0'
+          isManualDark ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
         <motion.div 
@@ -113,135 +155,66 @@ export default function SkyEnvironment() {
 
 
       {/* ========================================================================= */}
-      {/* 3. AUTO MODE: REAL, LOCATION-SPECIFIC DYNAMIC ATMOSPHERIC ENVIRONMENT      */}
+      {/* 3. AUTO MODE: REAL, CRISP LOCATION-SPECIFIC PHOTOGRAPHIC SKY & SKYLINE     */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
-          isAuto ? 'opacity-100' : 'opacity-0'
+          isAuto ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       >
-        {/* Base Dynamic Sky Canvas Gradients tailored to real-world location & time */}
-        
-        {/* A. Auto Daytime Clear Sky Base */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isAutoDay ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            background: 'linear-gradient(180deg, #1d6ed8 0%, #3b88ee 35%, #70aeff 70%, #a4cdff 100%)'
-          }}
-        >
-          {/* Dynamic Sun Flare & Natural Light Rays */}
-          <div 
-            className="absolute top-[8%] left-[20%] w-[500px] h-[500px] rounded-full opacity-65 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle, rgba(255, 255, 245, 0.9) 0%, rgba(255, 235, 160, 0.4) 30%, rgba(255, 200, 100, 0.1) 60%, transparent 80%)',
-              filter: 'blur(30px)'
-            }}
-          />
-        </div>
-
-        {/* B. Auto Dawn Morning Horizon Awakening */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isAutoDawn ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            background: 'linear-gradient(180deg, #1b356e 0%, #385a9c 35%, #88658f 60%, #e07d67 85%, #fca464 100%)'
-          }}
-        >
-          <div 
-            className="absolute bottom-0 inset-x-0 h-[60%] opacity-70 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse at 50% 100%, rgba(255, 170, 90, 0.6) 0%, rgba(240, 110, 80, 0.3) 40%, transparent 80%)'
-            }}
-          />
-        </div>
-
-        {/* C. Auto Golden Hour Amber Radiance */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isAutoGoldenHour ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            background: 'linear-gradient(180deg, #2b5596 0%, #5d74a8 30%, #c48354 65%, #f19543 85%, #ffb861 100%)'
-          }}
-        >
-          <div 
-            className="absolute top-[12%] right-[15%] w-[650px] h-[650px] rounded-full opacity-70 pointer-events-none"
-            style={{
-              background: 'radial-gradient(circle, rgba(255, 240, 190, 0.85) 0%, rgba(255, 160, 50, 0.45) 35%, rgba(240, 90, 40, 0.15) 65%, transparent 80%)',
-              filter: 'blur(35px)'
-            }}
-          />
-        </div>
-
-        {/* D. Auto Sunset Twilight Palette */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isAutoSunset ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            background: 'linear-gradient(180deg, #09132c 0%, #1e1f4b 25%, #562758 50%, #9e3650 75%, #d85c42 90%, #f68c4a 100%)'
-          }}
-        />
-
-        {/* E. Auto Real Night Celestial Cosmos */}
-        <div 
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            isAutoNight ? 'opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            background: 'radial-gradient(circle at 75% 15%, #0d1b3e 0%, #060e22 45%, #02050f 100%)'
-          }}
-        >
-          {/* Luminous Moon */}
-          <div 
-            className="absolute top-[10%] right-[18%] w-[110px] h-[110px] rounded-full bg-[#f4f7ff] shadow-[0_0_60px_rgba(200,225,255,0.75),0_0_120px_rgba(100,160,255,0.3)] pointer-events-none"
-          />
-          {/* Twinkling Starfield */}
-          <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:28px_28px] opacity-40" />
-          <div className="absolute inset-0 bg-[radial-gradient(#a5c8ff_1.5px,transparent_1.5px)] [background-size:64px_64px] opacity-60" />
-        </div>
-
-        {/* Real Dynamic Layered Cloud Formations in Auto Mode */}
         <motion.div 
-          style={{ y: cloudLayer1Y }}
-          className="absolute inset-x-0 top-0 w-full h-[140vh] pointer-events-none opacity-45"
+          style={{ y: skyY }}
+          className="absolute inset-x-0 -top-10 w-full h-[155vh] min-h-[1200px]"
         >
-          <div className="absolute top-[18%] left-[8%] w-[550px] h-[180px] rounded-full bg-white/40 dark:bg-white/10 blur-3xl animate-drift-slow" />
-          <div className="absolute top-[48%] right-[10%] w-[680px] h-[220px] rounded-full bg-white/35 dark:bg-white/10 blur-3xl animate-drift-medium" />
+          <Image
+            key={autoImageUrl}
+            src={autoImageUrl}
+            alt={`Live ${location} sky environment`}
+            fill
+            priority
+            className="object-cover object-top transition-opacity duration-1000"
+            sizes="100vw"
+            quality={90}
+          />
         </motion.div>
 
-        <motion.div 
-          style={{ y: cloudLayer2Y }}
-          className="absolute inset-x-0 top-0 w-full h-[140vh] pointer-events-none opacity-35"
-        >
-          <div className="absolute top-[32%] right-[25%] w-[420px] h-[140px] rounded-full bg-white/30 dark:bg-white/10 blur-2xl animate-drift-fast" />
-          <div className="absolute top-[68%] left-[15%] w-[520px] h-[160px] rounded-full bg-white/25 dark:bg-white/10 blur-2xl animate-drift-slow" />
-        </motion.div>
-
+        {/* Subtle atmospheric zenith depth based on day/night */}
+        {isDay ? (
+          <div 
+            className="absolute inset-0 opacity-30 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle at 20% 15%, rgba(255, 255, 240, 0.35) 0%, transparent 65%)'
+            }}
+          />
+        ) : (
+          <div 
+            className="absolute inset-0 opacity-45 pointer-events-none"
+            style={{
+              background: 'radial-gradient(circle at 80% 15%, rgba(180, 210, 255, 0.25) 0%, rgba(5, 10, 25, 0.3) 50%, transparent 80%)'
+            }}
+          />
+        )}
       </div>
 
 
       {/* ========================================================================= */}
-      {/* 4. REAL WEATHER-SPECIFIC OVERLAYS (Rain, Storm, Fog, Overcast)           */}
+      {/* 4. REAL WEATHER-SPECIFIC PARTICLES & ATMOSPHERE (Canvas Layer)            */}
       {/* ========================================================================= */}
       
       {/* Overcast / Cloudy Diffused Atmosphere */}
       {(weatherState === 'cloudy' || weatherState === 'partlyCloudy') && (
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            weatherState === 'cloudy' ? 'opacity-40' : 'opacity-20'
+            weatherState === 'cloudy' ? 'opacity-35' : 'opacity-15'
           } bg-slate-900/30`}
         />
       )}
 
       {/* Fog / Mist Layer */}
       {weatherState === 'fog' && (
-        <div className="absolute inset-0 pointer-events-none opacity-50 bg-slate-100/40 dark:bg-slate-900/40 backdrop-blur-[2px] transition-opacity duration-1000">
-          <div className="absolute top-[25%] -left-[10%] w-[120vw] h-[250px] bg-white/30 dark:bg-white/10 blur-3xl animate-drift-slow" />
-          <div className="absolute top-[55%] -left-[10%] w-[120vw] h-[300px] bg-white/25 dark:bg-white/10 blur-3xl animate-drift-medium" />
+        <div className="absolute inset-0 pointer-events-none opacity-45 bg-slate-100/30 dark:bg-slate-900/30 backdrop-blur-[1px] transition-opacity duration-1000">
+          <div className="absolute top-[25%] -left-[10%] w-[120vw] h-[250px] bg-white/25 dark:bg-white/10 blur-3xl animate-drift-slow" />
+          <div className="absolute top-[55%] -left-[10%] w-[120vw] h-[300px] bg-white/20 dark:bg-white/10 blur-3xl animate-drift-medium" />
         </div>
       )}
 
@@ -249,17 +222,17 @@ export default function SkyEnvironment() {
       {(weatherState === 'rain' || weatherState === 'thunderstorm') && (
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-            weatherState === 'thunderstorm' ? 'opacity-55' : 'opacity-35'
-          } bg-slate-950/40`}
+            weatherState === 'thunderstorm' ? 'opacity-50' : 'opacity-30'
+          } bg-slate-950/30`}
         />
       )}
 
-      {/* 5. Live Canvas Particles (Rain / Snow / Thunderstorm Glow) */}
+      {/* Live Canvas Particles (Rain / Snow / Thunderstorm Glow) */}
       <WeatherCanvas weatherState={weatherState} isDay={isDay} />
 
 
       {/* ========================================================================= */}
-      {/* 6. OCCASIONAL OVERHANGING CANOPY BRANCHES (Parallax Scroll)               */}
+      {/* 5. OCCASIONAL OVERHANGING CANOPY BRANCHES (Parallax Scroll)               */}
       {/* ========================================================================= */}
       
       {/* Top-Left Tree Branch Canopy */}

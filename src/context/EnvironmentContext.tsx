@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes';
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type TimePhase = 'dawn' | 'morning' | 'afternoon' | 'goldenHour' | 'sunset' | 'night';
 export type WeatherState = 'clear' | 'partlyCloudy' | 'cloudy' | 'rain' | 'thunderstorm' | 'fog' | 'snow';
+export type LocationRegion = 'india' | 'us' | 'europe' | 'asia' | 'global';
 
 export interface EnvironmentState {
   themeMode: ThemeMode;
@@ -13,6 +14,7 @@ export interface EnvironmentState {
   weatherState: WeatherState;
   temperature: number | null;
   location: string;
+  region: LocationRegion;
   localTime: string;
   isDay: boolean;
   weatherDescription: string;
@@ -26,7 +28,8 @@ const defaultState: EnvironmentState = {
   timePhase: 'afternoon',
   weatherState: 'clear',
   temperature: null,
-  location: 'Local',
+  location: 'Hyderabad',
+  region: 'india',
   localTime: '',
   isDay: true,
   weatherDescription: 'Clear',
@@ -60,7 +63,8 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
   const [timePhase, setTimePhase] = useState<TimePhase>('afternoon');
   const [weatherState, setWeatherState] = useState<WeatherState>('clear');
   const [temperature, setTemperature] = useState<number | null>(null);
-  const [location, setLocation] = useState<string>('Local');
+  const [location, setLocation] = useState<string>('Hyderabad');
+  const [region, setRegion] = useState<LocationRegion>('india');
   const [localTime, setLocalTime] = useState<string>('');
   const [isDay, setIsDay] = useState<boolean>(true);
   const [weatherDescription, setWeatherDescription] = useState<string>('Clear');
@@ -75,7 +79,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         setThemeModeState(saved);
       }
     } catch {
-      // Ignore localStorage errors
+      // Ignore
     }
   }, []);
 
@@ -170,6 +174,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
       let lat = 17.385; // Default Hyderabad fallback
       let lon = 78.4867;
       let locName = 'Hyderabad';
+      let detectedRegion: LocationRegion = 'india';
 
       try {
         const geoRes = await fetch('https://ipwho.is/', { cache: 'no-store' });
@@ -179,6 +184,21 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
             lat = geoData.latitude || lat;
             lon = geoData.longitude || lon;
             locName = geoData.city || geoData.region || geoData.country || locName;
+
+            const locLower = `${geoData.city || ''} ${geoData.region || ''} ${geoData.country || ''}`.toLowerCase();
+            const countryCode = (geoData.country_code || '').toUpperCase();
+
+            if (countryCode === 'IN' || locLower.includes('india') || locLower.includes('hyderabad') || locLower.includes('mumbai') || locLower.includes('delhi') || locLower.includes('bangalore') || locLower.includes('bengaluru')) {
+              detectedRegion = 'india';
+            } else if (countryCode === 'US' || countryCode === 'CA' || locLower.includes('united states') || locLower.includes('california') || locLower.includes('york') || locLower.includes('francisco') || locLower.includes('seattle')) {
+              detectedRegion = 'us';
+            } else if (['GB', 'FR', 'DE', 'IT', 'ES', 'NL', 'CH', 'SE'].includes(countryCode) || locLower.includes('london') || locLower.includes('paris') || locLower.includes('berlin') || locLower.includes('europe')) {
+              detectedRegion = 'europe';
+            } else if (['JP', 'SG', 'KR', 'CN', 'AE', 'TH', 'ID'].includes(countryCode) || locLower.includes('tokyo') || locLower.includes('singapore') || locLower.includes('dubai') || locLower.includes('seoul')) {
+              detectedRegion = 'asia';
+            } else {
+              detectedRegion = 'global';
+            }
           }
         }
       } catch {
@@ -188,6 +208,16 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
           if (tz) {
             const parts = tz.split('/');
             locName = parts[parts.length - 1].replace(/_/g, ' ');
+            const tzLower = tz.toLowerCase();
+            if (tzLower.includes('calcutta') || tzLower.includes('kolkata') || tzLower.includes('india') || tzLower.includes('asia/colombo')) {
+              detectedRegion = 'india';
+            } else if (tzLower.includes('america') || tzLower.includes('us') || tzLower.includes('new_york') || tzLower.includes('los_angeles')) {
+              detectedRegion = 'us';
+            } else if (tzLower.includes('europe') || tzLower.includes('london') || tzLower.includes('paris')) {
+              detectedRegion = 'europe';
+            } else if (tzLower.includes('asia') || tzLower.includes('tokyo') || tzLower.includes('singapore')) {
+              detectedRegion = 'asia';
+            }
           }
         } catch {
           // Keep default
@@ -195,6 +225,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
       }
 
       setLocation(locName);
+      setRegion(detectedRegion);
 
       // Step B: Fetch Live Weather from Open-Meteo API
       const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day&daily=sunrise,sunset&timezone=auto`;
@@ -240,7 +271,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
     effectiveTheme = 'dark';
   } else {
     // In system mode: daytime phases -> light, evening/sunset/night -> dark
-    effectiveTheme = isDay && (timePhase === 'morning' || timePhase === 'afternoon') ? 'light' : 'dark';
+    effectiveTheme = isDay && (timePhase === 'morning' || timePhase === 'afternoon' || timePhase === 'dawn') ? 'light' : 'dark';
   }
 
   // Update next-themes provider
@@ -256,6 +287,7 @@ export function EnvironmentProvider({ children }: { children: React.ReactNode })
         weatherState,
         temperature,
         location,
+        region,
         localTime,
         isDay,
         weatherDescription,
