@@ -1,5 +1,5 @@
 import React from 'react';
-import CinematicLivingHero from '@/components/CinematicLivingHero';
+import LivingHero from '@/components/LivingHero';
 import BenIntroCards from '@/components/BenIntroCards';
 import BenAboutSection from '@/components/BenAboutSection';
 import SanjayExperience from '@/components/SanjayExperience';
@@ -13,9 +13,9 @@ import BenContactLetter from '@/components/BenContactLetter';
 export default function Home() {
   return (
     <main className="bg-transparent transition-colors duration-300 relative overflow-x-clip space-y-12 md:space-y-20 pb-20">
-      {/* 1. CINEMATIC LIVING HERO (Weather, Time & Location Adaptive Hero) */}
+      {/* 1. LIVING HERO SECTION (Atmospheric Location & Time-Adaptive Living Photo) */}
       <div id="home" className="relative">
-        <CinematicLivingHero />
+        <LivingHero />
       </div>
 
       {/* 2. INTRO BANNER & 4-CARD CURATED DECK */}
