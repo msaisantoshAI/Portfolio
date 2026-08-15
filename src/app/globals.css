@@ -177,36 +177,97 @@ body {
 }
 
 /* ==========================================================================
-   SKY ENVIRONMENT DRIFT ANIMATIONS
+   LIVING VIDEO-LIKE ENVIRONMENT ANIMATIONS
    ========================================================================== */
 
 @keyframes driftSlow {
-  0% { transform: translateX(-4%) translateY(0); }
-  50% { transform: translateX(6%) translateY(-10px); }
-  100% { transform: translateX(-4%) translateY(0); }
+  0% { transform: translateX(-8%) translateY(0); }
+  50% { transform: translateX(8%) translateY(-12px); }
+  100% { transform: translateX(-8%) translateY(0); }
 }
 
 @keyframes driftMedium {
-  0% { transform: translateX(4%) translateY(0); }
-  50% { transform: translateX(-6%) translateY(12px); }
-  100% { transform: translateX(4%) translateY(0); }
+  0% { transform: translateX(6%) translateY(0); }
+  50% { transform: translateX(-8%) translateY(14px); }
+  100% { transform: translateX(6%) translateY(0); }
 }
 
 @keyframes driftFast {
-  0% { transform: translateX(-6%) translateY(0); }
-  50% { transform: translateX(8%) translateY(-8px); }
-  100% { transform: translateX(-6%) translateY(0); }
+  0% { transform: translateX(-10%) translateY(0); }
+  50% { transform: translateX(12%) translateY(-10px); }
+  100% { transform: translateX(-10%) translateY(0); }
+}
+
+/* Organic breathing motion */
+@keyframes heroBreathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.008) translateY(-3px); }
+}
+
+/* Grass and hair wind ripple */
+@keyframes windGrass {
+  0%, 100% { transform: skewX(0deg) translateY(0); }
+  35% { transform: skewX(0.8deg) translateY(-1px); }
+  70% { transform: skewX(-0.6deg) translateY(0.5px); }
+}
+
+/* Glasses reflection shimmer sweep */
+@keyframes glassShimmer {
+  0%, 80% { opacity: 0; transform: translateX(-100%) rotate(25deg); }
+  88% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(200%) rotate(25deg); }
+}
+
+/* Floating dandelion seeds */
+@keyframes floatSeed {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translate(140px, -240px) rotate(180deg); opacity: 0; }
+}
+
+/* Sun flare gentle pulsing */
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.1); opacity: 0.95; }
 }
 
 .animate-drift-slow {
-  animation: driftSlow 40s ease-in-out infinite alternate;
+  animation: driftSlow 45s ease-in-out infinite alternate;
 }
 
 .animate-drift-medium {
-  animation: driftMedium 28s ease-in-out infinite alternate;
+  animation: driftMedium 30s ease-in-out infinite alternate;
 }
 
 .animate-drift-fast {
   animation: driftFast 20s ease-in-out infinite alternate;
 }
 
+.animate-hero-breathe {
+  animation: heroBreathe 5s ease-in-out infinite;
+}
+
+.animate-wind-grass {
+  animation: windGrass 4s ease-in-out infinite;
+}
+
+.animate-glass-shimmer {
+  animation: glassShimmer 7s ease-in-out infinite;
+}
+
+.animate-sun-pulse {
+  animation: sunPulse 6s ease-in-out infinite;
+}
+
+.animate-seed-1 {
+  animation: floatSeed 12s ease-in-out infinite;
+}
+
+.animate-seed-2 {
+  animation: floatSeed 16s 4s ease-in-out infinite;
+}
+
+.animate-seed-3 {
+  animation: floatSeed 14s 8s ease-in-out infinite;
+}
