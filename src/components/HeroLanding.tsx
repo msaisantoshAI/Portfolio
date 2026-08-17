@@ -56,7 +56,7 @@ export default function HeroLanding() {
       className="relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Full 100vw x 100dvh Viewport Coverage)    */}
+      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night & Desktop vs. Mobile Images) */}
       {/* ========================================================================= */}
       <motion.div 
         animate={isWindy ? {
@@ -76,30 +76,60 @@ export default function HeroLanding() {
         style={{ y: imageY, scale: imageScale }}
         className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] pointer-events-none origin-center"
       >
-        {/* Daytime Hero Image (Active when Light Mode or Daytime) */}
+        {/* ==================== DAYTIME HERO IMAGES ==================== */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-0' : 'opacity-100'}`}>
-          <Image
-            src="/images/hero-lying.jpg"
-            alt="Sai Santosh Madhari lying on green grass looking up at the living daytime sky"
-            fill
-            priority
-            sizes="100vw"
-            quality={95}
-            className="w-full h-full object-cover object-[center_32%] sm:object-[center_35%] md:object-center filter brightness-[1.08] contrast-[1.03]"
-          />
+          {/* Desktop/Tablet Daytime */}
+          <div className="hidden sm:block absolute inset-0 w-full h-full">
+            <Image
+              src="/images/hero-lying.jpg"
+              alt="Sai Santosh Madhari lying on green grass looking up at the living daytime sky"
+              fill
+              priority
+              sizes="100vw"
+              quality={95}
+              className="w-full h-full object-cover object-center filter brightness-[1.08] contrast-[1.03]"
+            />
+          </div>
+          {/* Mobile Daytime (Custom Vertical Aspect) */}
+          <div className="block sm:hidden absolute inset-0 w-full h-full">
+            <Image
+              src="/images/hero-lying-mobile.png"
+              alt="Sai Santosh Madhari lying on green grass looking up at the living daytime sky on mobile"
+              fill
+              priority
+              sizes="100vw"
+              quality={95}
+              className="w-full h-full object-cover object-bottom filter brightness-[1.05] contrast-[1.02]"
+            />
+          </div>
         </div>
 
-        {/* Nighttime Starry Sky Hero Image (Active when Dark Mode or Nighttime) */}
+        {/* ==================== NIGHTTIME HERO IMAGES ==================== */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-100' : 'opacity-0'}`}>
-          <Image
-            src="/images/hero-lying-night.jpg"
-            alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic night sky"
-            fill
-            priority
-            sizes="100vw"
-            quality={95}
-            className="w-full h-full object-cover object-[center_32%] sm:object-[center_35%] md:object-center filter brightness-[1.04] contrast-[1.04]"
-          />
+          {/* Desktop/Tablet Nighttime */}
+          <div className="hidden sm:block absolute inset-0 w-full h-full">
+            <Image
+              src="/images/hero-lying-night.jpg"
+              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic night sky"
+              fill
+              priority
+              sizes="100vw"
+              quality={95}
+              className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.04]"
+            />
+          </div>
+          {/* Mobile Nighttime (Custom Vertical Aspect) */}
+          <div className="block sm:hidden absolute inset-0 w-full h-full">
+            <Image
+              src="/images/hero-lying-night-mobile.png"
+              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic night sky on mobile"
+              fill
+              priority
+              sizes="100vw"
+              quality={95}
+              className="w-full h-full object-cover object-bottom filter brightness-[1.04] contrast-[1.04]"
+            />
+          </div>
         </div>
       </motion.div>
 
