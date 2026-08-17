@@ -111,7 +111,7 @@ export default function WeatherHUD() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans pointer-events-auto" ref={modalRef}>
+    <div className="fixed bottom-16 right-3 sm:bottom-5 sm:right-5 z-40 font-sans pointer-events-auto" ref={modalRef}>
       
       {/* 1. COMPACT GUIDE NOTE TOOLTIP OVER LOCATION BUTTON */}
       <AnimatePresence>

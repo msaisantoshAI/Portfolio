@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 import MouseGlow from '@/components/MouseGlow';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
-import WeatherWelcomeModal from '@/components/WeatherWelcomeModal';
+import WeatherFeatureGuideModal from '@/components/WeatherFeatureGuideModal';
 
 const acorn = Fraunces({
   subsets: ['latin'],
@@ -49,7 +49,7 @@ export default function RootLayout({
             Skip to main content
           </a>
           <Preloader />
-          <WeatherWelcomeModal />
+          <WeatherFeatureGuideModal />
           <CustomCursor />
           <SkyEnvironment />
           <MouseGlow />

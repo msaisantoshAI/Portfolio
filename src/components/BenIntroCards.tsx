@@ -133,33 +133,38 @@ export default function BenIntroCards() {
             </article>
           </motion.div>
 
-          {/* Card 3: LevelUp Designer (AI Platform & Copilot) */}
+          {/* Card 3: LevelUp Designer Live AI Web App */}
           <motion.div 
             whileHover={{ y: -6, scale: 1.015 }}
             className="h-[340px] xl:h-[360px]"
           >
-            <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#4f46e5] via-[#6366f1] to-[#7c3aed] text-white shadow-md flex flex-col justify-between border border-indigo-300/30 relative">
-              <div className="space-y-3 relative z-10">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-indigo-200 bg-black/30 px-3 py-1 rounded-full border border-indigo-400/30 inline-flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>AI Copilot &bull; Live</span>
+            <article className="h-full w-full overflow-hidden rounded-[24px] bg-[#0c1017] shadow-md border border-black/10 dark:border-white/10 group relative flex flex-col justify-between p-6">
+              <Image
+                src="/images/levelup-designer.png"
+                alt="LevelUp Designer interactive product design mastery platform"
+                fill
+                className="object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+              <div className="relative z-10 space-y-2">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-300 bg-emerald-950/80 px-2.5 py-0.5 rounded border border-emerald-800">
+                  AI Web App &bull; Live
                 </span>
-                <h3 className="card-heading text-white leading-tight">
+                <h3 className="text-xl font-bold text-white leading-snug">
                   LevelUp Designer
                 </h3>
-                <p className="text-sm font-normal text-indigo-100/90 leading-relaxed">
-                  AI-powered product design copilot &amp; workflow accelerator built for modern UX designers.
+                <p className="text-xs text-zinc-300 line-clamp-2">
+                  Interactive learning &amp; practice deck for product designers mastering agentic UX.
                 </p>
               </div>
-              <div className="relative z-10">
+              <div className="relative z-10 pt-2">
                 <a
                   href="https://level-up-designer.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="touch-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-zinc-900 font-bold text-xs xl:text-sm hover:bg-zinc-100 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-white hover:scale-105"
+                  className="touch-target inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs xl:text-sm transition-colors shadow-md focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  <span>Open LevelUp Designer</span>
-                  <span>↗</span>
+                  Launch App ↗
                 </a>
               </div>
             </article>

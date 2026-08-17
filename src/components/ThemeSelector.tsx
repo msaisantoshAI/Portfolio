@@ -30,13 +30,13 @@ export default function ThemeSelector() {
       id: 'light', 
       label: 'Light', 
       icon: '☀', 
-      description: 'Daytime sky background' 
+      description: 'Daytime sky atmosphere' 
     },
     { 
       id: 'dark', 
       label: 'Dark', 
       icon: '🌙', 
-      description: 'Night starry sky background' 
+      description: 'Night starry cosmic sky' 
     },
     { 
       id: 'system', 
@@ -50,18 +50,19 @@ export default function ThemeSelector() {
 
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
-      {/* Dropdown Trigger Button */}
+      {/* Dropdown Trigger Button with Glassmorphism */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="touch-target inline-flex items-center gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-[#0a0f1d]/90 hover:bg-[#131d36] text-white font-sans text-xs sm:text-sm font-semibold border border-white/20 hover:border-white/40 shadow-md backdrop-blur-xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500"
+        className="touch-target inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 text-zinc-900 dark:text-white font-sans text-xs sm:text-sm font-semibold border border-black/10 dark:border-white/20 shadow-md backdrop-blur-2xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-label="Toggle visual theme mode"
       >
         <span className="text-sm sm:text-base">{currentOption.icon}</span>
         <span className="font-semibold tracking-tight">{currentOption.label}</span>
         <svg 
-          className={`w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-white' : ''}`} 
+          className={`w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-zinc-900 dark:text-white' : ''}`} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -70,7 +71,7 @@ export default function ThemeSelector() {
         </svg>
       </button>
 
-      {/* Dropdown Menu with Radio Option Buttons */}
+      {/* Dropdown Menu with Glassmorphism */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -78,12 +79,12 @@ export default function ThemeSelector() {
             animate={{ opacity: 1, scale: 1, y: 4 }}
             exit={{ opacity: 0, scale: 0.95, y: -6 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
-            className="absolute right-0 top-full mt-1.5 w-60 rounded-2xl bg-[#080d1a]/95 backdrop-blur-2xl border border-white/20 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 overflow-hidden font-sans"
+            className="absolute right-0 top-full mt-1.5 w-56 sm:w-60 rounded-2xl bg-white/95 dark:bg-[#0c111e]/95 backdrop-blur-3xl border border-black/10 dark:border-white/20 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] z-50 overflow-hidden font-sans"
             role="listbox"
           >
-            <div className="px-3 py-2 border-b border-white/10 mb-1">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-400 font-mono">
-                Background Theme
+            <div className="px-3 py-2 border-b border-black/5 dark:border-white/10 mb-1">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-500 dark:text-zinc-400 font-mono">
+                Environment Mode
               </span>
             </div>
 
@@ -100,34 +101,25 @@ export default function ThemeSelector() {
                     }}
                     role="option"
                     aria-selected={isSelected}
-                    className={`w-full flex items-center justify-between p-2.5 rounded-xl text-left transition-all duration-150 group ${
-                      isSelected 
-                        ? 'bg-blue-600/25 border border-blue-500/40 text-white' 
-                        : 'hover:bg-white/10 text-zinc-300 hover:text-white border border-transparent'
+                    className={`w-full touch-target text-left px-3 py-2 rounded-xl transition-all duration-150 flex items-center justify-between text-xs cursor-pointer ${
+                      isSelected
+                        ? 'bg-blue-600 text-white font-bold shadow-sm'
+                        : 'text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white'
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <span className="text-base">{opt.icon}</span>
-                      <div className="flex flex-col">
-                        <span className={`text-xs font-semibold ${isSelected ? 'text-blue-300' : 'text-white'}`}>
-                          {opt.label}
-                        </span>
-                        <span className="text-[10px] text-zinc-400 leading-tight">
+                      <span className="text-sm sm:text-base">{opt.icon}</span>
+                      <div>
+                        <p className="font-semibold">{opt.label}</p>
+                        <p className={`text-[10px] leading-tight ${isSelected ? 'text-blue-100' : 'text-zinc-500 dark:text-zinc-400'}`}>
                           {opt.description}
-                        </span>
+                        </p>
                       </div>
                     </div>
 
-                    {/* Radio Button Indicator */}
-                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-all ${
-                      isSelected 
-                        ? 'border-blue-400 bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.6)]' 
-                        : 'border-white/30 group-hover:border-white/60 bg-white/5'
-                    }`}>
-                      {isSelected && (
-                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                      )}
-                    </div>
+                    {isSelected && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-white ml-2 shrink-0" />
+                    )}
                   </button>
                 );
               })}

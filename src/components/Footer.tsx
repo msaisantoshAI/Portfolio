@@ -114,7 +114,7 @@ export default function Footer() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="touch-target px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/25 backdrop-blur-md shadow-md hover:scale-105 transition-all ml-1 sm:ml-2"
+                  className="touch-target px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold text-xs sm:text-sm shadow-md backdrop-blur-md hover:scale-105 transition-all ml-1 sm:ml-2 cursor-pointer"
                 >
                   Start a Project ↗
                 </button>
@@ -125,18 +125,18 @@ export default function Footer() {
         </div>
 
         {/* ========================================================================= */}
-        {/* COPYRIGHT & PRIMARY RADIANT BACK TO TOP BUTTON                            */}
+        {/* COPYRIGHT & PRIMARY HIGH-VISIBILITY BACK TO TOP BUTTON                    */}
         {/* ========================================================================= */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/80">
           <p>&copy; {new Date().getFullYear()} Sai Santosh Madhari. All rights reserved.</p>
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm border border-blue-400/40 shadow-[0_0_25px_rgba(59,130,246,0.45)] transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(59,130,246,0.5)] border border-blue-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             aria-label="Scroll back to top"
           >
             <span>Back to top</span>
-            <span className="text-white font-bold text-sm">&uarr;</span>
+            <span className="font-bold">&uarr;</span>
           </button>
         </div>
 
