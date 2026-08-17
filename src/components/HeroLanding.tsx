@@ -56,7 +56,7 @@ export default function HeroLanding() {
       className="relative min-h-[86vh] sm:min-h-[90vh] md:min-h-[95vh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night Starry Sky Crossfade)        */}
+      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night Starry Sky 100vw Full-Bleed)*/}
       {/* ========================================================================= */}
       <motion.div 
         animate={isWindy ? {
@@ -74,7 +74,7 @@ export default function HeroLanding() {
           ease: 'easeInOut'
         }}
         style={{ y: imageY, scale: imageScale }}
-        className="absolute inset-0 w-full h-full pointer-events-none origin-center"
+        className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] pointer-events-none origin-center"
       >
         {/* Daytime Hero Image (Active when Light or Day) */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-0' : 'opacity-100'}`}>
@@ -85,7 +85,7 @@ export default function HeroLanding() {
             priority
             sizes="100vw"
             quality={95}
-            className="object-cover object-center sm:object-[center_35%] filter brightness-[1.08] contrast-[1.03]"
+            className="w-full h-full object-cover object-center sm:object-[center_35%] filter brightness-[1.08] contrast-[1.03]"
           />
         </div>
 
@@ -98,7 +98,7 @@ export default function HeroLanding() {
             priority
             sizes="100vw"
             quality={95}
-            className="object-cover object-center sm:object-[center_35%] filter brightness-[1.04] contrast-[1.04]"
+            className="w-full h-full object-cover object-center sm:object-[center_35%] filter brightness-[1.04] contrast-[1.04]"
           />
         </div>
       </motion.div>

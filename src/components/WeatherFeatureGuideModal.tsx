@@ -8,23 +8,23 @@ export default function WeatherFeatureGuideModal() {
 
   useEffect(() => {
     try {
-      const seen = localStorage.getItem('sai_weather_guide_modal_seen');
-      if (!seen) {
-        // Pop up smoothly after entrance (~3.2s)
+      const dismissed = sessionStorage.getItem('sai_weather_guide_dismissed_v3');
+      if (!dismissed) {
+        // Pop up smoothly 1.2s after page loads
         const timer = setTimeout(() => {
           setIsOpen(true);
-        }, 3200);
+        }, 1200);
         return () => clearTimeout(timer);
       }
     } catch {
-      // Ignore
+      setIsOpen(true);
     }
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
     try {
-      localStorage.setItem('sai_weather_guide_modal_seen', 'true');
+      sessionStorage.setItem('sai_weather_guide_dismissed_v3', 'true');
     } catch {
       // Ignore
     }
@@ -33,7 +33,7 @@ export default function WeatherFeatureGuideModal() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm pointer-events-auto">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md pointer-events-auto">
           {/* Backdrop Click to close */}
           <motion.div 
             initial={{ opacity: 0 }}
@@ -45,24 +45,24 @@ export default function WeatherFeatureGuideModal() {
 
           {/* Simple Clean Notification Pop Up in Center */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 12 }}
+            initial={{ opacity: 0, scale: 0.92, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 12 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-sm rounded-2xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/20 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] backdrop-blur-2xl text-zinc-900 dark:text-white font-sans z-10 space-y-3"
+            exit={{ opacity: 0, scale: 0.92, y: 15 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-sm rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/20 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl text-zinc-900 dark:text-white font-sans z-10 space-y-4"
           >
             {/* Header: Icon + Title + Close Button */}
-            <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-2.5">
+            <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-3">
               <div className="flex items-center gap-2">
-                <span className="text-base">✨</span>
-                <h3 className="text-sm font-bold text-zinc-900 dark:text-white">
+                <span className="text-xl">✨</span>
+                <h3 className="text-base font-bold text-zinc-900 dark:text-white">
                   Live Environmental Sky
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={handleClose}
-                className="w-6 h-6 rounded-full hover:bg-black/5 dark:hover:bg-white/10 flex items-center justify-center text-zinc-400 hover:text-zinc-900 dark:hover:text-white text-xs transition-colors cursor-pointer"
+                className="w-7 h-7 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white text-xs transition-colors cursor-pointer"
                 aria-label="Close notification"
               >
                 ✕
@@ -70,7 +70,7 @@ export default function WeatherFeatureGuideModal() {
             </div>
 
             {/* Simple Clear Explanation */}
-            <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               This portfolio adapts live to real-world <strong>weather, day/night cycles, and local time</strong>. You can switch global cities anytime using the location button on the bottom-right corner!
             </p>
 
@@ -79,7 +79,7 @@ export default function WeatherFeatureGuideModal() {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
               >
                 Got it ✕
               </button>
