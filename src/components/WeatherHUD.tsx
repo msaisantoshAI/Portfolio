@@ -47,7 +47,6 @@ export default function WeatherHUD() {
     temperature, 
     weatherState, 
     isDay, 
-    themeMode, 
     isSimulating,
     setCustomLocation,
     resetToLiveLocation
@@ -88,60 +87,51 @@ export default function WeatherHUD() {
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans pointer-events-auto select-none" ref={modalRef}>
       
-      {/* 1. Floating Ambient Status Chip (Click to open Location Switcher) */}
+      {/* 1. Small Sleek Weather & Location Icon Button in Right Corner */}
       <motion.button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        className="touch-target inline-flex items-center gap-2 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-full bg-white/85 dark:bg-[#0a0f1d]/90 hover:bg-white dark:hover:bg-[#131e3d] text-zinc-900 dark:text-white font-sans text-xs sm:text-sm font-semibold border border-black/10 dark:border-white/25 hover:border-blue-500/50 shadow-[0_10px_30px_rgba(0,0,0,0.25)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
-        aria-label="Open Worldwide Location Switcher"
-        title="Click to test different world locations & live sky!"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.94 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3 }}
+        className="touch-target relative flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#0a0f1d]/90 hover:bg-white dark:hover:bg-[#131e3d] text-zinc-900 dark:text-white font-sans text-xs font-semibold border border-black/10 dark:border-white/25 hover:border-blue-500/50 shadow-[0_10px_30px_rgba(0,0,0,0.25)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all group focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+        aria-label="Open Worldwide Location & Weather Switcher"
+        title={`Live Location: ${displayLocation} • Click to change cities & sky!`}
       >
-        {/* Location Pin */}
-        <span className="flex items-center gap-1.5 font-medium">
-          <span className="text-blue-500 group-hover:scale-110 transition-transform">📍</span>
-          <span className="font-bold tracking-tight">{displayLocation}</span>
+        <span className="text-base sm:text-lg group-hover:scale-110 transition-transform">
+          {icon}
         </span>
-
-        {/* Temperature */}
+        <span className="text-xs font-bold text-zinc-800 dark:text-white max-w-[80px] sm:max-w-[100px] truncate">
+          {location}
+        </span>
         {temperature !== null && (
-          <>
-            <span className="text-zinc-400 dark:text-white/25 text-xs" aria-hidden="true">•</span>
-            <span className="font-semibold text-zinc-700 dark:text-zinc-200">{temperature}°C</span>
-          </>
+          <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-300">
+            {temperature}°
+          </span>
         )}
 
-        {/* Weather Icon & Local Clock */}
-        <span className="text-zinc-400 dark:text-white/25 text-xs" aria-hidden="true">•</span>
-        <span className="flex items-center gap-1.5 text-amber-500 dark:text-amber-300 font-medium">
-          <span className="text-sm">{icon}</span>
-          <span className="font-mono font-bold tracking-wide">{localTime}</span>
-        </span>
-
-        {/* Simulator / Live indicator */}
-        {isSimulating ? (
-          <span className="inline-flex items-center px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30 ml-0.5">
-            CUSTOM
-          </span>
-        ) : (
-          themeMode === 'system' && (
-            <span className="relative flex h-2 w-2 ml-0.5" title="Live environment active">
+        {/* Live indicator dot */}
+        <span className="relative flex h-2 w-2 ml-0.5">
+          {isSimulating ? (
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+          ) : (
+            <>
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-          )
-        )}
+            </>
+          )}
+        </span>
       </motion.button>
 
       {/* 2. Interactive Worldwide Location & Atmosphere Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            initial={{ opacity: 0, y: 10, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            exit={{ opacity: 0, y: 8, scale: 0.94 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute bottom-14 right-0 w-[300px] sm:w-[350px] max-h-[75vh] overflow-y-auto rounded-3xl bg-white/95 dark:bg-[#090d1c]/95 border border-black/10 dark:border-white/20 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl text-zinc-900 dark:text-white space-y-4"
           >
@@ -149,7 +139,7 @@ export default function WeatherHUD() {
             <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-3">
               <div>
                 <h4 className="text-sm font-bold flex items-center gap-1.5 text-zinc-900 dark:text-white">
-                  <span>🌍</span> Worldwide Live Weather
+                  <span>🌍</span> Worldwide Live Sky
                 </h4>
                 <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   Switch city to adapt sky &amp; atmosphere live

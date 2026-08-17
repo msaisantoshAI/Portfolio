@@ -16,9 +16,9 @@ export default function HeroLanding() {
   });
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
-  const imageY = useTransform(smoothY, [0, 1], ['0%', '18%']);
-  const imageScale = useTransform(smoothY, [0, 1], [1, 1.1]);
-  const contentY = useTransform(smoothY, [0, 1], [0, -50]);
+  const imageY = useTransform(smoothY, [0, 1], ['0%', '16%']);
+  const imageScale = useTransform(smoothY, [0, 1], [1, 1.08]);
+  const contentY = useTransform(smoothY, [0, 1], [0, -45]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
   // Interactive 3D mouse parallax
@@ -53,19 +53,19 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[86vh] sm:min-h-[90vh] md:min-h-[95vh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
+      className="relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night Starry Sky 100vw Full-Bleed)*/}
+      {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Full 100vw x 100dvh Viewport Coverage)    */}
       {/* ========================================================================= */}
       <motion.div 
         animate={isWindy ? {
-          x: [-mousePos.x * 16 - 2, -mousePos.x * 16 + 2, -mousePos.x * 16 - 2],
-          y: [-mousePos.y * 16 - 1, -mousePos.y * 16 + 1, -mousePos.y * 16 - 1],
+          x: [-mousePos.x * 14 - 2, -mousePos.x * 14 + 2, -mousePos.x * 14 - 2],
+          y: [-mousePos.y * 14 - 1, -mousePos.y * 14 + 1, -mousePos.y * 14 - 1],
           rotate: [-0.15, 0.15, -0.15]
         } : {
-          x: -mousePos.x * 16,
-          y: -mousePos.y * 16,
+          x: -mousePos.x * 14,
+          y: -mousePos.y * 14,
           rotate: 0
         }}
         transition={{
@@ -76,7 +76,7 @@ export default function HeroLanding() {
         style={{ y: imageY, scale: imageScale }}
         className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] pointer-events-none origin-center"
       >
-        {/* Daytime Hero Image (Active when Light or Day) */}
+        {/* Daytime Hero Image (Active when Light Mode or Daytime) */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-0' : 'opacity-100'}`}>
           <Image
             src="/images/hero-lying.jpg"
@@ -85,11 +85,11 @@ export default function HeroLanding() {
             priority
             sizes="100vw"
             quality={95}
-            className="w-full h-full object-cover object-center sm:object-[center_35%] filter brightness-[1.08] contrast-[1.03]"
+            className="w-full h-full object-cover object-[center_32%] sm:object-[center_35%] md:object-center filter brightness-[1.08] contrast-[1.03]"
           />
         </div>
 
-        {/* Nighttime Starry Sky Hero Image (Active when Dark Mode or Night at Location) */}
+        {/* Nighttime Starry Sky Hero Image (Active when Dark Mode or Nighttime) */}
         <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-100' : 'opacity-0'}`}>
           <Image
             src="/images/hero-lying-night.jpg"
@@ -98,7 +98,7 @@ export default function HeroLanding() {
             priority
             sizes="100vw"
             quality={95}
-            className="w-full h-full object-cover object-center sm:object-[center_35%] filter brightness-[1.04] contrast-[1.04]"
+            className="w-full h-full object-cover object-[center_32%] sm:object-[center_35%] md:object-center filter brightness-[1.04] contrast-[1.04]"
           />
         </div>
       </motion.div>
@@ -158,7 +158,7 @@ export default function HeroLanding() {
       {/* ========================================================================= */}
       {/* 3. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-4">
+      <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-2 sm:py-4">
         <motion.div 
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"

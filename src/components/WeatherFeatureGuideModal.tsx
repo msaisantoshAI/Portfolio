@@ -8,7 +8,7 @@ export default function WeatherFeatureGuideModal() {
 
   useEffect(() => {
     try {
-      const dismissed = sessionStorage.getItem('sai_weather_guide_dismissed_v3');
+      const dismissed = sessionStorage.getItem('sai_weather_guide_dismissed_v4');
       if (!dismissed) {
         // Pop up smoothly 1.2s after page loads
         const timer = setTimeout(() => {
@@ -24,7 +24,7 @@ export default function WeatherFeatureGuideModal() {
   const handleClose = () => {
     setIsOpen(false);
     try {
-      sessionStorage.setItem('sai_weather_guide_dismissed_v3', 'true');
+      sessionStorage.setItem('sai_weather_guide_dismissed_v4', 'true');
     } catch {
       // Ignore
     }
@@ -71,7 +71,7 @@ export default function WeatherFeatureGuideModal() {
 
             {/* Simple Clear Explanation */}
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-              This portfolio adapts live to real-world <strong>weather, day/night cycles, and local time</strong>. You can switch global cities anytime using the location button on the bottom-right corner!
+              This portfolio adapts live to real-world <strong>weather, day/night cycles, and local time</strong>. Click the weather icon button in the bottom-right corner anytime to switch cities, countries, and see the background sky change!
             </p>
 
             {/* Got It Button */}
