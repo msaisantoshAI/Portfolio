@@ -9,6 +9,7 @@ import MouseGlow from '@/components/MouseGlow';
 import CustomCursor from '@/components/CustomCursor';
 import Preloader from '@/components/Preloader';
 import WeatherFeatureGuideModal from '@/components/WeatherFeatureGuideModal';
+import WeatherHUD from '@/components/WeatherHUD';
 
 const acorn = Fraunces({
   subsets: ['latin'],
@@ -54,6 +55,7 @@ export default function RootLayout({
           <SkyEnvironment />
           <MouseGlow />
           <Navigation />
+          <WeatherHUD />
           <main id="main-content" className="flex-1 relative z-10 w-full" tabIndex={-1}>
             {children}
           </main>
