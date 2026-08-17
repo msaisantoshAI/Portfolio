@@ -1,57 +1,26 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion, useInView } from 'framer-motion';
-import QueryModal from '@/components/QueryModal';
-
-function CountUp({ end, decimals = 0, suffix = '' }: { end: number; decimals?: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
-
-  useEffect(() => {
-    if (!inView) return;
-    let startTimestamp: number | null = null;
-    const duration = 1600;
-
-    const step = (timestamp: number) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const currentVal = easeProgress * end;
-      setCount(currentVal);
-
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        setCount(end);
-      }
-    };
-
-    window.requestAnimationFrame(step);
-  }, [inView, end]);
-
-  return (
-    <span ref={ref}>
-      {count.toFixed(decimals)}
-      {suffix}
-    </span>
-  );
-}
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import CountUp from './CountUp';
+import QueryModal from './QueryModal';
 
 interface WorkItem {
   year: string;
   title: string;
   category: string;
-  outcomeMetricValue: number;
-  outcomeMetricSuffix: string;
-  outcomeMetricDecimals?: number;
   outcome: string;
+  outcomeMetricValue: number;
+  outcomeMetricPrefix?: string;
+  outcomeMetricSuffix?: string;
+  outcomeMetricDecimals?: number;
   problem: string;
   role: string;
   tags: string[];
   image: string;
+  link?: string;
   actionText: string;
   isFlagship?: boolean;
 }
@@ -60,22 +29,23 @@ const workItems: WorkItem[] = [
   {
     year: '2024',
     title: 'eSOW Planner',
-    category: 'Enterprise SaaS · Tata Consultancy Services',
+    category: 'Enterprise SaaS · Contract & SOW Automation',
     outcomeMetricValue: 68,
     outcomeMetricSuffix: '%',
-    outcome: 'reduction in Statement of Work authoring cycle for enterprise delivery managers',
-    problem: 'SOW generation spanned 3–5 disconnected tools and required 14 days of manual back-and-forth between legal, commercial, and delivery teams.',
-    role: 'Lead Product Designer · End-to-End Systems UX',
-    tags: ['Enterprise SaaS', 'Design Systems', 'Data Density', 'WCAG 2.2 AA'],
+    outcome: 'reduction in average SOW authoring cycle time across global delivery teams',
+    problem: 'Enterprise sales & engineering teams suffered 3+ weeks turnaround due to fragmented pricing matrices and manual audits.',
+    role: 'Lead Product Designer · UX Architecture · Design System',
+    tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
-    actionText: 'Explore Case Study',
+    link: '/projects/esow-planner',
+    actionText: 'View Case Study',
     isFlagship: true,
   },
   {
-    year: '2024',
-    title: 'Antigravity Studio',
-    category: 'AI Tooling & Orchestration',
-    outcomeMetricValue: 3.4,
+    year: '2025',
+    title: 'AI Orchestration Workspace',
+    category: 'AI Interaction Design · Generative UI',
+    outcomeMetricValue: 4.2,
     outcomeMetricSuffix: 'x',
     outcomeMetricDecimals: 1,
     outcome: 'faster iteration speed for designers & engineers testing autonomous LLM agent chains',
@@ -118,10 +88,10 @@ export default function BenWorkTimeline() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="work" className="px-3 sm:px-6 md:px-10 lg:px-12 max-w-[1440px] mx-auto w-full py-10 sm:py-14 font-sans">
+    <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full">
       
       {/* Section Header */}
-      <div className="mb-8 sm:mb-10 space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
+      <div className="mb-10 space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
         <p className="eyebrow text-blue-600 dark:text-blue-400">
           Featured Case Studies
         </p>
@@ -129,16 +99,16 @@ export default function BenWorkTimeline() {
           <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
             Selected Case Studies
           </h2>
-          <span className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono">
-            Enterprise Platforms &bull; AI Products
+          <span className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-light">
+            (Scroll down to explore overlapping projects)
           </span>
         </div>
       </div>
 
-      {/* Sticky Overlapping Project Cards Stack with Ocean Blue Styling & Expanded Size */}
-      <div className="relative flex flex-col gap-8 sm:gap-12 pb-12">
+      {/* Sticky Overlapping Project Cards Stack */}
+      <div className="relative flex flex-col gap-10 sm:gap-14 pb-16">
         {workItems.map((item, idx) => {
-          const topOffset = 100 + idx * 24;
+          const topOffset = 110 + idx * 24;
 
           return (
             <motion.div
@@ -146,84 +116,94 @@ export default function BenWorkTimeline() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               style={{
                 top: `${topOffset}px`,
                 zIndex: idx + 10,
               }}
-              className="sticky rounded-[32px] bg-gradient-to-br from-[#0c2354]/95 via-[#081738]/95 to-[#040c1e]/95 text-white border border-blue-400/30 p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_-10px_rgba(10,35,90,0.5)] backdrop-blur-3xl transition-all duration-300 group"
+              className="sticky rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_16px_50px_-10px_rgba(0,0,0,0.14)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 group"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
-                {/* Left Column: Case Study Details (6 Cols) */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-5">
+                {/* Left Column: Case Study Details */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
                   
                   {/* Category & Year */}
                   <div className="flex items-center justify-between gap-4">
-                    <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                    <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
                       {item.category}
                     </span>
-                    <span className="text-xs font-mono font-bold text-blue-300/80">
+                    <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
                       {item.year}
                     </span>
                   </div>
 
-                  {/* Title & Role */}
-                  <div className="space-y-1.5">
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+                  {/* Title & Core Problem */}
+                  <div className="space-y-3">
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm font-medium text-blue-300">
-                      {item.role}
+                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                      {item.problem}
                     </p>
                   </div>
 
-                  {/* Problem & Impact Summary */}
-                  <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed">
-                    {item.problem}
-                  </p>
-
-                  {/* Quantified Metric Badge */}
-                  <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-black/40 border border-blue-400/20 backdrop-blur-md">
-                    <div className="text-2xl sm:text-3xl font-extrabold text-blue-400 font-mono shrink-0">
-                      <CountUp 
-                        end={item.outcomeMetricValue} 
-                        decimals={item.outcomeMetricDecimals || 0} 
-                        suffix={item.outcomeMetricSuffix} 
+                  {/* Impact Metric Highlight with Live CountUp Animation */}
+                  <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-4">
+                    <div className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
+                      <CountUp
+                        value={item.outcomeMetricValue}
+                        prefix={item.outcomeMetricPrefix}
+                        suffix={item.outcomeMetricSuffix}
+                        decimals={item.outcomeMetricDecimals || 0}
+                        duration={2.0}
                       />
                     </div>
-                    <p className="text-xs sm:text-sm text-blue-100 leading-snug">
+                    <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-medium">
                       {item.outcome}
+                    </div>
+                  </div>
+
+                  {/* Role & Tags */}
+                  <div className="space-y-3 pt-1 border-t border-black/5 dark:border-white/10">
+                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                      <strong className="text-zinc-800 dark:text-zinc-200">Role:</strong> {item.role}
                     </p>
+                    <div className="flex flex-wrap gap-2">
+                      {item.tags.map((t, i) => (
+                        <span key={i} className="text-xs px-2.5 py-0.5 rounded-md bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400 border border-black/5 dark:border-white/5">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[11px] font-mono bg-white/10 text-blue-200 px-3 py-1 rounded-full border border-white/10"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Action CTA Button */}
+                  {/* Action Buttons to ALL Projects */}
                   <div className="pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setIsModalOpen(true)}
-                      className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-500 hover:bg-blue-400 text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(59,130,246,0.5)] border border-blue-300/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                    >
-                      <span>{item.actionText}</span>
-                      <span className="font-bold">&rarr;</span>
-                    </button>
+                    {item.link ? (
+                      <Link
+                        href={item.link}
+                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        <span>{item.actionText}</span>
+                        <span>↗</span>
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setIsModalOpen(true)}
+                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
+                      >
+                        <span>{item.actionText}</span>
+                        <span>↗</span>
+                      </button>
+                    )}
                   </div>
+
                 </div>
 
-                {/* Right Column: Larger High-Resolution Media Frame (6 Cols) */}
-                <div className="lg:col-span-6 relative min-h-[260px] sm:min-h-[340px] md:min-h-[380px] rounded-2xl overflow-hidden border border-blue-400/30 bg-black/60 shadow-xl group">
+                {/* Right Column: Visual Preview Showcase */}
+                <div className="lg:col-span-6 relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-100 dark:bg-black/60 border border-black/10 dark:border-white/10 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
                   {item.image.endsWith('.mp4') ? (
                     <video
                       src={item.image}
@@ -231,24 +211,18 @@ export default function BenWorkTimeline() {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     <Image
                       src={item.image}
-                      alt={`${item.title} case study interactive preview`}
+                      alt={item.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90 group-hover:opacity-100"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#040c1e]/80 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Floating Tag */}
-                  <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
-                    <span className="bg-black/70 px-3 py-1.5 rounded-full border border-blue-400/30 backdrop-blur-md text-[11px]">
-                      🚀 Shipped Enterprise Experience
-                    </span>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
               </div>

@@ -179,22 +179,22 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 
 .body-lead {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.25vw, 1.1875rem);
-  line-height: 1.6;
-  max-width: 65ch;
+  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
+  line-height: 1.68;
+  max-width: 68ch;
 }
 
 .body-copy {
   font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1vw, 0.96875rem);
-  line-height: 1.65;
-  max-width: 65ch;
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  line-height: 1.72;
+  max-width: 68ch;
 }
 
 .caption-meta {
   font-family: var(--font-body);
-  font-size: 0.8125rem; /* 13px */
-  line-height: 1.4;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.45;
 }
 
 /* ==========================================================================
