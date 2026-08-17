@@ -95,7 +95,7 @@ export default function Navigation() {
             
             {/* Resume Button: Clean text without arrow */}
             <a
-              href="https://drive.google.com/file/d/1U4gJbS_oX45u5L9iU2tWqK1zU_VzR_Yd/view"
+              href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="touch-target hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-md transition-all hover:scale-105 active:scale-95"
@@ -168,7 +168,7 @@ export default function Navigation() {
 
               <div className="pt-2 border-t border-black/5 dark:border-white/10 mt-1">
                 <a
-                  href="https://drive.google.com/file/d/1U4gJbS_oX45u5L9iU2tWqK1zU_VzR_Yd/view"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}

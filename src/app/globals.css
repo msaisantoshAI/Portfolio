@@ -1,31 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ==========================================================================
-   DESIGN SYSTEM TOKENS & ACORN DISPLAY TYPOGRAPHY (WCAG 2.2 AA Compliant)
+   DESIGN SYSTEM TOKENS & UNIFIED MODERN TYPOGRAPHY (Plus Jakarta Sans)
    ========================================================================== */
 
-@font-face {
-  font-family: 'Acorn';
-  font-style: normal;
-  font-weight: 400 900;
-  font-display: swap;
-  src: local('Acorn'), local('Acorn-Bold'), url('https://fonts.gstatic.com/s/fraunces/v31/6NU78FmTB5BhhWQ7KG14.woff2') format('woff2');
-}
-
 :root {
-  /* Colors - Light Theme (Warm Editorial Cream) */
-  --color-background: #F7F5EC;
+  /* Colors - Light Theme */
+  --color-background: #F8FAFC;
   --color-surface: #FFFFFF;
   --color-surface-elevated: #FFFFFFEE;
   --color-surface-glass: rgba(255, 255, 255, 0.85);
   
-  --color-text-primary: #0F172A;   /* Slate-900 (Contrast > 14:1 on cream) */
-  --color-text-secondary: #334155; /* Slate-700 (Contrast > 8.5:1 on cream) */
-  --color-text-tertiary: #64748B;  /* Slate-500 (Contrast > 4.6:1 on cream) */
+  --color-text-primary: #0F172A;   /* Slate-900 */
+  --color-text-secondary: #334155; /* Slate-700 */
+  --color-text-tertiary: #64748B;  /* Slate-500 */
   
   --color-border: rgba(15, 23, 42, 0.08);
   --color-border-subtle: rgba(15, 23, 42, 0.04);
@@ -41,10 +31,6 @@
   --space-5: 2.5rem;   /* 40px */
   --space-6: 3rem;     /* 48px */
   --space-8: 4rem;     /* 64px */
-  --space-10: 5rem;    /* 80px */
-  --space-12: 6rem;    /* 96px */
-  --space-16: 8rem;    /* 128px */
-  --space-20: 10rem;   /* 160px */
 
   /* Border Radii */
   --radius-sm: 8px;
@@ -60,21 +46,21 @@
   --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.10);
   --shadow-glass: 0 8px 32px 0 rgba(15, 23, 42, 0.06);
 
-  /* Typography Font Stacks */
-  --font-display: 'Acorn', 'Fraunces', Georgia, serif;
-  --font-body: var(--font-plus), system-ui, -apple-system, sans-serif;
+  /* Unified Single Font Family */
+  --font-display: var(--font-plus), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: var(--font-plus), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .dark {
-  /* Colors - Dark Theme (Cinematic Obsidian Navy) */
+  /* Colors - Dark Theme */
   --color-background: #03050C;
   --color-surface: #0B0F1A;
   --color-surface-elevated: #111726;
   --color-surface-glass: rgba(11, 15, 26, 0.85);
   
-  --color-text-primary: #F8FAFC;   /* Slate-50 (Contrast > 18:1 on dark) */
-  --color-text-secondary: #CBD5E1; /* Slate-300 (Contrast > 11:1 on dark) */
-  --color-text-tertiary: #94A3B8;  /* Slate-400 (Contrast > 6.5:1 on dark) */
+  --color-text-primary: #F8FAFC;   /* Slate-50 */
+  --color-text-secondary: #CBD5E1; /* Slate-300 */
+  --color-text-tertiary: #94A3B8;  /* Slate-400 */
   
   --color-border: rgba(255, 255, 255, 0.10);
   --color-border-subtle: rgba(255, 255, 255, 0.05);
@@ -106,10 +92,10 @@ body {
   min-height: 100vh;
 }
 
-/* Headings & Subheadings: Acorn Display Typography */
-h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
-  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
-  font-weight: 700;
+/* Unified Headings across entire website */
+h1, h2, h3, h4, h5, h6, .hero-heading, .section-heading, .card-heading {
+  font-family: var(--font-display) !important;
+  letter-spacing: -0.02em;
 }
 
 /* ==========================================================================
@@ -142,77 +128,73 @@ h1, h2, h3, h4, .hero-heading, .section-heading, .card-heading {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY SYSTEM CLASSES (Consistent Typographical Scale)
+   STANDARDIZED TYPOGRAPHY SCALE (Strictly Aligned)
    ========================================================================== */
 
 .hero-heading {
-  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
-  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
-  line-height: 1.06;
+  font-size: clamp(2rem, 4.2vw, 3.5rem);
+  line-height: 1.12;
   letter-spacing: -0.025em;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .section-heading {
-  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
-  font-size: clamp(1.75rem, 3.8vw, 3rem);
-  line-height: 1.12;
+  font-size: clamp(1.625rem, 3.2vw, 2.5rem);
+  line-height: 1.18;
   letter-spacing: -0.02em;
   font-weight: 700;
 }
 
 .card-heading {
-  font-family: 'Acorn', 'Fraunces', Georgia, serif !important;
-  font-size: clamp(1.1875rem, 2vw, 1.625rem);
-  line-height: 1.22;
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+  line-height: 1.25;
   letter-spacing: -0.015em;
   font-weight: 700;
 }
 
 .eyebrow {
-  font-family: var(--font-body);
-  font-size: clamp(0.6875rem, 1vw, 0.8125rem);
+  font-size: 0.75rem; /* 12px */
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .body-lead {
-  font-family: var(--font-body);
-  font-size: clamp(1.0625rem, 1.35vw, 1.25rem);
-  line-height: 1.68;
+  font-size: clamp(1rem, 1.25vw, 1.1875rem);
+  line-height: 1.65;
   max-width: 68ch;
 }
 
 .body-copy {
-  font-family: var(--font-body);
-  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
-  line-height: 1.72;
+  font-size: clamp(0.875rem, 1.05vw, 1rem);
+  line-height: 1.68;
   max-width: 68ch;
 }
 
 .caption-meta {
-  font-family: var(--font-body);
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.8125rem; /* 13px */
   line-height: 1.45;
 }
 
 /* ==========================================================================
-   SCROLL REVEALING & PARALLAX ANIMATIONS
+   SECTION ALIGNMENT & PADDING RULES
    ========================================================================== */
 
-.reveal-mask {
-  overflow: hidden;
-  display: inline-block;
+.site-section-wrapper {
+  padding-left: clamp(1rem, 3.5vw, 3rem);
+  padding-right: clamp(1rem, 3.5vw, 3rem);
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
-.parallax-card {
-  will-change: transform;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
-}
-
-.parallax-card:hover {
-  transform: translateY(-4px) scale(1.01);
+.site-surface-card {
+  border-radius: 32px;
+  padding: clamp(1.5rem, 3.5vw, 3.5rem);
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(24px);
+  transition: all 0.3s ease;
 }
 
 /* Cursor touch accessibility */

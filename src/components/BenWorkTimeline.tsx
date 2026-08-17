@@ -29,10 +29,10 @@ const workItems: WorkItem[] = [
   {
     year: '2024',
     title: 'eSOW Planner',
-    category: 'Enterprise SaaS · Contract & SOW Automation',
+    category: 'Enterprise SaaS · Contract Automation',
     outcomeMetricValue: 68,
     outcomeMetricSuffix: '%',
-    outcome: 'reduction in average SOW authoring cycle time across global delivery teams',
+    outcome: 'reduction in average SOW authoring cycle time across global teams',
     problem: 'Enterprise sales & engineering teams suffered 3+ weeks turnaround due to fragmented pricing matrices and manual audits.',
     role: 'Lead Product Designer · UX Architecture · Design System',
     tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
@@ -48,7 +48,7 @@ const workItems: WorkItem[] = [
     outcomeMetricValue: 4.2,
     outcomeMetricSuffix: 'x',
     outcomeMetricDecimals: 1,
-    outcome: 'faster iteration speed for designers & engineers testing autonomous LLM agent chains',
+    outcome: 'faster iteration speed for designers & engineers testing agent chains',
     problem: 'Navigating non-deterministic AI outputs and complex prompt trees caused developer confusion and poor UI feedback loops.',
     role: 'Product Designer & AI Prototyper · Interaction Model',
     tags: ['AI Product Design', 'Generative UI', 'Agent Workflows', 'Prompt Canvas'],
@@ -59,20 +59,20 @@ const workItems: WorkItem[] = [
   {
     year: '2023',
     title: 'SAS + HRMS Integration',
-    category: 'Critical Infrastructure · High-Density Telemetry',
+    category: 'Critical Infrastructure · Telemetry',
     outcomeMetricValue: 52,
     outcomeMetricSuffix: '%',
-    outcome: 'reduction in incident dispatch response latency for electrical grid operators',
+    outcome: 'reduction in incident dispatch latency for electrical grid operators',
     problem: 'Field engineers struggled with disparate hardware sensors and legacy workforce rosters during emergency grid faults.',
     role: 'Product UX Designer · Information Architecture',
     tags: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
     image: '/images/project_sas_1775675939361.png',
-    actionText: 'Explore System Architecture',
+    actionText: 'Explore Architecture',
   },
   {
     year: '2023',
     title: 'EMULATE Virtual Cloud',
-    category: 'Cloud Infrastructure · Sandbox Environments',
+    category: 'Cloud Infrastructure · Sandboxes',
     outcomeMetricValue: 80,
     outcomeMetricSuffix: '%',
     outcome: 'drop in setup friction for spinning up remote engineering sandbox clusters',
@@ -80,152 +80,148 @@ const workItems: WorkItem[] = [
     role: 'UI/UX Architect · Concept & Prototype Design',
     tags: ['Cloud Computing', 'UI/UX Architecture', 'Concept Design'],
     image: '/images/project_emulate_1775675955645.png',
-    actionText: 'Explore Cloud Sandbox',
+    actionText: 'Explore Sandbox',
   },
 ];
 
 export default function BenWorkTimeline() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const renderCardContent = (item: WorkItem) => (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+      {/* Left Column: Case Study Details (6 Cols) */}
+      <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
+        {/* Category, Year & Click Indicator */}
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
+              {item.category}
+            </span>
+            <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+              {item.year}
+            </span>
+          </div>
+          <span className="text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+            <span>{item.actionText}</span>
+            <span>&rarr;</span>
+          </span>
+        </div>
+
+        {/* Title & Core Problem */}
+        <div className="space-y-1.5">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            {item.title}
+          </h3>
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed line-clamp-2 sm:line-clamp-3">
+            {item.problem}
+          </p>
+        </div>
+
+        {/* Impact Metric Highlight with Live CountUp */}
+        <div className="p-3.5 sm:p-4 rounded-xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-3.5">
+          <div className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
+            <CountUp
+              value={item.outcomeMetricValue}
+              prefix={item.outcomeMetricPrefix}
+              suffix={item.outcomeMetricSuffix}
+              decimals={item.outcomeMetricDecimals || 0}
+              duration={2.0}
+            />
+          </div>
+          <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-snug">
+            {item.outcome}
+          </p>
+        </div>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 pt-1">
+          {item.tags.map((tag, tIdx) => (
+            <span
+              key={tIdx}
+              className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-zinc-600 dark:text-zinc-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Column: Visual Mockup / Video (6 Cols) */}
+      <div className="lg:col-span-6 relative aspect-[16/10] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-950 shadow-sm">
+        {item.image.endsWith('.mp4') ? (
+          <video
+            src={item.image}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+          />
+        ) : (
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+      </div>
+    </div>
+  );
+
   return (
-    <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      
+    <section id="work" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
       {/* Sticky Overlapping Project Cards Stack with Integrated Header */}
-      <div className="relative flex flex-col gap-10 sm:gap-14 pb-16">
+      <div className="relative flex flex-col gap-6 sm:gap-8 pb-12">
         {workItems.map((item, idx) => {
-          const topOffset = 100 + idx * 24;
+          const topOffset = 84 + idx * 20;
 
           return (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              viewport={{ once: true, margin: '-30px' }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
               style={{
                 top: `${topOffset}px`,
                 zIndex: idx + 10,
               }}
-              className="sticky rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_16px_50px_-10px_rgba(0,0,0,0.14)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 group space-y-6"
+              className="sticky rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-5 sm:p-7 md:p-9 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 group hover:border-blue-500/40 hover:shadow-2xl"
             >
               {/* Integrated Header at the top of Card 1 */}
               {idx === 0 && (
-                <div className="border-b border-black/5 dark:border-white/10 pb-5 mb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div className="border-b border-black/5 dark:border-white/10 pb-4 mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                   <div className="space-y-1">
                     <p className="eyebrow text-blue-600 dark:text-blue-400">
                       Featured Case Studies
                     </p>
-                    <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                    <h2 className="section-heading text-zinc-900 dark:text-white">
                       Selected Case Studies
                     </h2>
                   </div>
-                  <span className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono">
-                    (Scroll down to explore overlapping projects)
+                  <span className="text-xs text-zinc-500 dark:text-zinc-400 font-mono">
+                    (Scroll to explore stacked projects)
                   </span>
                 </div>
               )}
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                
-                {/* Left Column: Case Study Details */}
-                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
-                  
-                  {/* Category & Year */}
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
-                      {item.category}
-                    </span>
-                    <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
-                      {item.year}
-                    </span>
-                  </div>
-
-                  {/* Title & Core Problem */}
-                  <div className="space-y-3">
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-                      {item.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                      {item.problem}
-                    </p>
-                  </div>
-
-                  {/* Impact Metric Highlight with Live CountUp Animation */}
-                  <div className="p-4 sm:p-5 rounded-2xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-4">
-                    <div className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
-                      <CountUp
-                        value={item.outcomeMetricValue}
-                        prefix={item.outcomeMetricPrefix}
-                        suffix={item.outcomeMetricSuffix}
-                        decimals={item.outcomeMetricDecimals || 0}
-                        duration={2.0}
-                      />
-                    </div>
-                    <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-snug">
-                      {item.outcome}
-                    </p>
-                  </div>
-
-                  {/* Tags & Direct Action Button */}
-                  <div className="space-y-4 pt-2">
-                    <div className="flex flex-wrap gap-2">
-                      {item.tags.map((tag, tIdx) => (
-                        <span
-                          key={tIdx}
-                          className="px-3 py-1 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-zinc-700 dark:text-zinc-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="pt-2">
-                      {item.link ? (
-                        <Link
-                          href={item.link}
-                          className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
-                        >
-                          <span>{item.actionText}</span>
-                          <span>&rarr;</span>
-                        </Link>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => setIsModalOpen(true)}
-                          className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                        >
-                          <span>Request Deep-Dive</span>
-                          <span>&rarr;</span>
-                        </button>
-                      )}
-                    </div>
-                  </div>
-
+              {item.link ? (
+                <Link href={item.link} className="block w-full text-left outline-none cursor-pointer">
+                  {renderCardContent(item)}
+                </Link>
+              ) : (
+                <div 
+                  onClick={() => setIsModalOpen(true)} 
+                  role="button" 
+                  tabIndex={0} 
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsModalOpen(true); }}
+                  className="block w-full text-left outline-none cursor-pointer"
+                >
+                  {renderCardContent(item)}
                 </div>
-
-                {/* Right Column: Visual Mockup / Video */}
-                <div className="lg:col-span-6 relative aspect-video sm:aspect-[16/10] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-950 shadow-md">
-                  {item.image.endsWith('.mp4') ? (
-                    <video
-                      src={item.image}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                    />
-                  ) : (
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                </div>
-
-              </div>
+              )}
             </motion.div>
           );
         })}

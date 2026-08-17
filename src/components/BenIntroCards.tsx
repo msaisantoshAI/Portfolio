@@ -21,15 +21,7 @@ export default function BenIntroCards() {
         />
 
         <div className="relative z-10 flex flex-col gap-5 max-w-4xl">
-          {/* Status Badge */}
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 text-blue-700 dark:text-blue-400 text-xs font-mono font-semibold tracking-wide">
-              <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse" aria-hidden="true" />
-              AVAILABLE FOR AI PRODUCT DESIGN ROLES
-            </span>
-          </div>
-
-          {/* Large Acorn-style Display Headline */}
+          {/* Display Headline */}
           <h2 className="hero-heading text-zinc-900 dark:text-white">
             Hi, I&apos;m Sai Santosh.<br />
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-400 bg-clip-text text-transparent">

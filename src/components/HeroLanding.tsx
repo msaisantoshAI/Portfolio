@@ -7,7 +7,7 @@ import { useEnvironment } from '@/context/EnvironmentContext';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDay, timePhase, weatherState, location, isWindy, windSpeed, themeMode } = useEnvironment();
+  const { isDay, timePhase, weatherState, isWindy, windSpeed, themeMode } = useEnvironment();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const { scrollYProgress } = useScroll({
@@ -193,20 +193,16 @@ export default function HeroLanding() {
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"
         >
-          {/* Availability Badge: Compact, Elegant, Small */}
+          {/* Availability Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-sm mb-3 text-white"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-sm mb-3.5 text-white"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-            <span className="text-white text-[11px] sm:text-xs font-semibold tracking-wide font-sans">
-              Available for AI Product Design roles
-            </span>
-            <span className="text-white/40">&bull;</span>
-            <span className="text-white/90 text-[11px] sm:text-xs font-mono font-bold">
-              {location}
+            <span className="text-white text-xs font-semibold tracking-wide">
+              Available for AI Product Designer roles
             </span>
           </motion.div>
 
