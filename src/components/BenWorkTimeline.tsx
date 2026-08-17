@@ -88,27 +88,12 @@ export default function BenWorkTimeline() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full">
+    <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
       
-      {/* Section Header */}
-      <div className="mb-10 space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
-        <p className="eyebrow text-blue-600 dark:text-blue-400">
-          Featured Case Studies
-        </p>
-        <div className="flex flex-wrap items-baseline justify-between gap-4">
-          <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
-            Selected Case Studies
-          </h2>
-          <span className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-light">
-            (Scroll down to explore overlapping projects)
-          </span>
-        </div>
-      </div>
-
-      {/* Sticky Overlapping Project Cards Stack */}
+      {/* Sticky Overlapping Project Cards Stack with Integrated Header */}
       <div className="relative flex flex-col gap-10 sm:gap-14 pb-16">
         {workItems.map((item, idx) => {
-          const topOffset = 110 + idx * 24;
+          const topOffset = 100 + idx * 24;
 
           return (
             <motion.div
@@ -121,8 +106,25 @@ export default function BenWorkTimeline() {
                 top: `${topOffset}px`,
                 zIndex: idx + 10,
               }}
-              className="sticky rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_16px_50px_-10px_rgba(0,0,0,0.14)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 group"
+              className="sticky rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_16px_50px_-10px_rgba(0,0,0,0.14)] dark:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all duration-300 group space-y-6"
             >
+              {/* Integrated Header at the top of Card 1 */}
+              {idx === 0 && (
+                <div className="border-b border-black/5 dark:border-white/10 pb-5 mb-2 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                  <div className="space-y-1">
+                    <p className="eyebrow text-blue-600 dark:text-blue-400">
+                      Featured Case Studies
+                    </p>
+                    <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                      Selected Case Studies
+                    </h2>
+                  </div>
+                  <span className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-mono">
+                    (Scroll down to explore overlapping projects)
+                  </span>
+                </div>
+              )}
+
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 
                 {/* Left Column: Case Study Details */}
@@ -159,51 +161,50 @@ export default function BenWorkTimeline() {
                         duration={2.0}
                       />
                     </div>
-                    <div className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-medium">
+                    <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-snug">
                       {item.outcome}
-                    </div>
+                    </p>
                   </div>
 
-                  {/* Role & Tags */}
-                  <div className="space-y-3 pt-1 border-t border-black/5 dark:border-white/10">
-                    <p className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
-                      <strong className="text-zinc-800 dark:text-zinc-200">Role:</strong> {item.role}
-                    </p>
+                  {/* Tags & Direct Action Button */}
+                  <div className="space-y-4 pt-2">
                     <div className="flex flex-wrap gap-2">
-                      {item.tags.map((t, i) => (
-                        <span key={i} className="text-xs px-2.5 py-0.5 rounded-md bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400 border border-black/5 dark:border-white/5">
-                          {t}
+                      {item.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="px-3 py-1 rounded-full text-xs font-medium bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-zinc-700 dark:text-zinc-300"
+                        >
+                          {tag}
                         </span>
                       ))}
                     </div>
-                  </div>
 
-                  {/* Action Buttons to ALL Projects */}
-                  <div className="pt-2">
-                    {item.link ? (
-                      <Link
-                        href={item.link}
-                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
-                      >
-                        <span>{item.actionText}</span>
-                        <span>↗</span>
-                      </Link>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setIsModalOpen(true)}
-                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg transition-transform hover:scale-105 active:scale-95 cursor-pointer"
-                      >
-                        <span>{item.actionText}</span>
-                        <span>↗</span>
-                      </button>
-                    )}
+                    <div className="pt-2">
+                      {item.link ? (
+                        <Link
+                          href={item.link}
+                          className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                        >
+                          <span>{item.actionText}</span>
+                          <span>&rarr;</span>
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setIsModalOpen(true)}
+                          className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                        >
+                          <span>Request Deep-Dive</span>
+                          <span>&rarr;</span>
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                 </div>
 
-                {/* Right Column: Visual Preview Showcase */}
-                <div className="lg:col-span-6 relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-zinc-100 dark:bg-black/60 border border-black/10 dark:border-white/10 shadow-inner group-hover:scale-[1.01] transition-transform duration-500">
+                {/* Right Column: Visual Mockup / Video */}
+                <div className="lg:col-span-6 relative aspect-video sm:aspect-[16/10] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-950 shadow-md">
                   {item.image.endsWith('.mp4') ? (
                     <video
                       src={item.image}
@@ -211,18 +212,17 @@ export default function BenWorkTimeline() {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
                   ) : (
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                 </div>
 
               </div>

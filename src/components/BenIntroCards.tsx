@@ -55,22 +55,13 @@ export default function BenIntroCards() {
             to become AI Product designer in night.
           </p>
 
-          {/* Action CTA Buttons */}
+          {/* Action CTA Button */}
           <div className="flex flex-wrap items-center gap-3.5 pt-3">
             <a
-              href="#work"
+              href="#about"
               className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-sm md:text-base hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
             >
-              Check out recent work
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-            <a
-              href="#about"
-              className="touch-target inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-black/15 dark:border-white/20 text-zinc-900 dark:text-white font-medium text-sm md:text-base hover:bg-black/5 dark:hover:bg-white/10 transition-all backdrop-blur-sm focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            >
-              Learn more about me
+              Learn more about me &rarr;
             </a>
           </div>
         </div>
