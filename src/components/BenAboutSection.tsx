@@ -40,26 +40,29 @@ export default function BenAboutSection() {
             </div>
           </div>
 
-          {/* Narrative & Italicized Philosophy Statement */}
+          {/* Narrative & Quote by Santosh */}
           <div className="w-full max-w-[700px] space-y-6">
             
-            {/* Featured Italicized Callout Quote */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-blue-50/60 dark:bg-blue-500/10 border border-blue-200/80 dark:border-blue-500/20 shadow-xs">
-              <p className="text-base sm:text-lg md:text-xl text-zinc-800 dark:text-blue-100 italic font-medium leading-relaxed">
+            {/* Clean Quote by Santosh (No outside card/border, matches body size) */}
+            <div className="border-l-2 border-blue-500 pl-4 py-1">
+              <p className="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 italic leading-relaxed">
                 &ldquo;I’m a generalist by nature, curious across strategy, research, Design systems, Business and AI going deep where the problem demands, and connecting the pieces to create better products.&rdquo;
               </p>
+              <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 mt-1.5 block">
+                — Sai Santosh
+              </span>
             </div>
 
             {/* Narrative Paragraphs */}
             <div className="space-y-4 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
               <p>
-                My foundation started in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, which trained me to observe patterns, human emotion, and systemic balance.
+                My foundation started in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, which trained me to observe patterns, human emotion, and systemic balance. that foundation eventually led me into <strong className="text-zinc-900 dark:text-white font-semibold">UX and Product Design</strong>.
               </p>
               <p>
-                Today at <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong>, I architect high-density enterprise SaaS systems and design <strong className="text-blue-600 dark:text-blue-400 font-semibold">human-in-the-loop AI interfaces</strong> that transform intricate technical requirements into effortless, intuitive workflows.
+                Today at <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong>, I work on complex enterprise SaaS products and Integration of AI workflows, turning complicated requirements into simple, intuitive workflows.
               </p>
               <p>
-                By night, I research and build agentic AI workflows, interactive design tooling, and community workshops—bridging the gap between engineering pragmatism and delightful human-centric design.
+                Outside of work, I explore AI, agentic workflows, design tools, Content Creation and community learning &mdash; always experimenting, learning, and finding new ways to bring technology and human-centered design together.
               </p>
             </div>
 
