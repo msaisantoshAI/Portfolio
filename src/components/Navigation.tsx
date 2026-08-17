@@ -11,7 +11,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'work', 'ai-exploration', 'drawings', 'talks', 'contact'];
+      const sections = ['home', 'work', 'experience', 'ai-exploration', 'about', 'drawings', 'talks', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -30,10 +30,11 @@ export default function Navigation() {
 
   const navLinks = [
     { name: 'Home', href: '#home', id: 'home' },
-    { name: 'About', href: '#about', id: 'about' },
     { name: 'Work', href: '#work', id: 'work' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
     { name: 'AI Exploration', href: '#ai-exploration', id: 'ai-exploration' },
-    { name: 'Artworks', href: '#drawings', id: 'drawings' },
+    { name: 'About', href: '#about', id: 'about' },
+    { name: 'Artwork', href: '#drawings', id: 'drawings' },
     { name: 'Talks', href: '#talks', id: 'talks' },
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
@@ -47,7 +48,7 @@ export default function Navigation() {
           {/* Left: Brand Identity Pill */}
           <a 
             href="#home" 
-            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/20 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/85 dark:bg-black/65 hover:bg-white dark:hover:bg-black/85 backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/20 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
             aria-label="Sai Santosh Madhari Home"
           >
             <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden rounded-full border border-black/10 dark:border-white/30 shrink-0">
@@ -63,10 +64,10 @@ export default function Navigation() {
             </span>
           </a>
 
-          {/* Center: Desktop Navigation Pills (Hidden on mobile) */}
+          {/* Center: Desktop Navigation Pills (Increased text size & updated sequence) */}
           <nav 
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center rounded-full px-3 py-1.5 bg-white/80 dark:bg-black/60 border border-black/10 dark:border-white/20 shadow-md backdrop-blur-2xl"
+            className="hidden lg:flex items-center rounded-full px-3 py-1.5 bg-white/85 dark:bg-black/65 border border-black/10 dark:border-white/20 shadow-md backdrop-blur-2xl"
           >
             <div className="flex items-center gap-1.5">
               {navLinks.map((item) => {
@@ -75,7 +76,7 @@ export default function Navigation() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`touch-target px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer ${
+                    className={`touch-target px-3.5 py-1.5 text-xs sm:text-[13px] font-semibold rounded-full transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-sm font-bold'
                         : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
@@ -106,7 +107,7 @@ export default function Navigation() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="touch-target lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 border border-black/10 dark:border-white/20 text-zinc-900 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-md transition-all cursor-pointer"
+              className="touch-target lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/85 dark:bg-black/65 hover:bg-white dark:hover:bg-black/85 border border-black/10 dark:border-white/20 text-zinc-900 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-md transition-all cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
             >

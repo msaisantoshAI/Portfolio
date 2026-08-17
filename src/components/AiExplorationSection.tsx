@@ -71,28 +71,28 @@ export default function AiExplorationSection() {
   const activeExp = aiExperiments[activeTab];
 
   return (
-    <section id="ai-exploration" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-7 sm:p-12 md:p-16 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+    <section id="ai-exploration" className="px-3 sm:px-6 md:px-10 lg:px-12 max-w-[1440px] mx-auto w-full py-10 sm:py-14 font-sans">
+      <div className="rounded-[32px] bg-gradient-to-br from-[#0c2354]/95 via-[#081738]/95 to-[#040c1e]/95 text-white border border-blue-400/30 p-7 sm:p-12 md:p-14 shadow-[0_20px_60px_-10px_rgba(10,35,90,0.5)] backdrop-blur-3xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-5">
           <div className="space-y-2">
-            <p className="eyebrow text-blue-600 dark:text-blue-400">
+            <p className="eyebrow text-blue-300">
               R&amp;D &bull; Prototypes &bull; Side Projects
             </p>
-            <h2 className="section-heading text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-bold text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
               AI Exploration &amp; Playground
             </h2>
           </div>
           <div>
-            <span className="caption-meta font-mono text-zinc-500 dark:text-zinc-400">
+            <span className="text-xs sm:text-sm font-mono text-blue-300">
               Interactive Canvas &bull; Live Workflows
             </span>
           </div>
         </div>
 
         {/* Experiment Navigation Tabs */}
-        <div className="flex flex-wrap gap-2 sm:gap-3 border-b border-black/5 dark:border-white/10 pb-4">
+        <div className="flex flex-wrap gap-2 sm:gap-3 border-b border-white/10 pb-4">
           {aiExperiments.map((exp, idx) => {
             const isActive = activeTab === idx;
             return (
@@ -102,8 +102,8 @@ export default function AiExplorationSection() {
                 onClick={() => setActiveTab(idx)}
                 className={`touch-target px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-blue-600 text-white shadow-md font-bold'
-                    : 'bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-white/10'
+                    ? 'bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] font-bold'
+                    : 'bg-white/10 text-blue-200 hover:bg-white/20 hover:text-white'
                 }`}
               >
                 <span>{exp.name}</span>
@@ -118,7 +118,7 @@ export default function AiExplorationSection() {
         </div>
 
         {/* Active Experiment Dynamic Detail Card */}
-        <div className="relative rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/70 dark:bg-black/30 p-6 sm:p-8 md:p-10 shadow-sm">
+        <div className="relative rounded-2xl border border-blue-400/20 bg-black/40 p-6 sm:p-8 md:p-10 shadow-sm backdrop-blur-md">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeExp.id}
@@ -129,43 +129,43 @@ export default function AiExplorationSection() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
             >
               {/* Left Column: Conceptual Details (7 Cols) */}
-              <div className="lg:col-span-7 space-y-6">
+              <div className="lg:col-span-7 space-y-5">
                 
                 {/* Meta & Status */}
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-500/20">
+                  <span className="text-xs font-mono font-bold text-blue-300 bg-blue-500/20 px-3 py-1 rounded-full border border-blue-400/30">
                     {activeExp.category}
                   </span>
-                  <span className="text-xs font-mono text-zinc-400">
+                  <span className="text-xs font-mono text-blue-300/80">
                     &bull; {activeExp.status}
                   </span>
                 </div>
 
                 {/* Title & Tagline */}
                 <div className="space-y-2">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
                     {activeExp.name}
                   </h3>
-                  <p className="text-sm font-semibold text-blue-600 dark:text-blue-300">
+                  <p className="text-sm sm:text-base font-semibold text-blue-300">
                     {activeExp.tagline}
                   </p>
                 </div>
 
                 {/* Description */}
                 <div className="space-y-4">
-                  <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                  <p className="text-sm sm:text-base text-blue-100/90 leading-relaxed font-normal">
                     {activeExp.description}
                   </p>
 
                   {/* Key Capabilities List */}
                   <div className="space-y-2 pt-2">
-                    <span className="text-xs font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-bold block">
+                    <span className="text-xs font-mono uppercase tracking-wider text-blue-300 font-bold block">
                       Core Innovations:
                     </span>
-                    <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300">
+                    <ul className="space-y-1.5 text-xs sm:text-sm text-blue-100/90">
                       {activeExp.features.map((feat, fIdx) => (
                         <li key={fIdx} className="flex items-start gap-2">
-                          <span className="text-blue-500 mt-0.5 font-bold">✔</span>
+                          <span className="text-blue-400 mt-0.5 font-bold">✔</span>
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -174,12 +174,12 @@ export default function AiExplorationSection() {
                 </div>
 
                 {/* Tags & Action Buttons */}
-                <div className="pt-4 border-t border-black/5 dark:border-white/10 flex flex-wrap items-center justify-between gap-4">
+                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
                   <div className="flex flex-wrap gap-1.5">
                     {activeExp.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-3 py-1 rounded-full shadow-sm"
+                        className="text-xs font-mono bg-white/10 border border-white/10 text-blue-200 px-3 py-1 rounded-full shadow-sm"
                       >
                         {tag}
                       </span>
@@ -191,13 +191,13 @@ export default function AiExplorationSection() {
                       href={activeExp.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                      className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-500 hover:bg-blue-400 text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all hover:scale-105 active:scale-95"
                     >
                       <span>Launch {activeExp.name}</span>
                       <span>↗</span>
                     </a>
                   ) : (
-                    <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                    <span className="text-xs font-mono text-blue-300/80">
                       Prototype {activeTab + 1} of {aiExperiments.length}
                     </span>
                   )}
@@ -205,7 +205,7 @@ export default function AiExplorationSection() {
               </div>
 
               {/* Right Column: Visual Frame (5 Cols) */}
-              <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 shadow-md group">
+              <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] rounded-2xl overflow-hidden border border-blue-400/30 bg-zinc-900 shadow-xl group">
                 <Image
                   src={activeExp.image}
                   alt={`${activeExp.name} interface preview`}
@@ -214,7 +214,7 @@ export default function AiExplorationSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
-                  <span className="bg-black/70 px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md">
+                  <span className="bg-black/70 px-3 py-1.5 rounded-full border border-blue-400/30 backdrop-blur-md">
                     ⚡ {activeExp.status}
                   </span>
                   {activeExp.link && (
@@ -222,7 +222,7 @@ export default function AiExplorationSection() {
                       href={activeExp.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-full font-bold shadow-md transition-colors"
+                      className="bg-blue-500 hover:bg-blue-400 text-white px-3 py-1.5 rounded-full font-bold shadow-md transition-colors"
                     >
                       Visit ↗
                     </a>

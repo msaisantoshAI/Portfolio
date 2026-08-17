@@ -1,10 +1,10 @@
 import React from 'react';
 import HeroLanding from '@/components/HeroLanding';
-import BenIntroCards from '@/components/BenIntroCards';
-import BenAboutSection from '@/components/BenAboutSection';
-import SanjayExperience from '@/components/SanjayExperience';
 import BenWorkTimeline from '@/components/BenWorkTimeline';
+import SanjayExperience from '@/components/SanjayExperience';
 import AiExplorationSection from '@/components/AiExplorationSection';
+import BenAboutSection from '@/components/BenAboutSection';
+import BenIntroCards from '@/components/BenIntroCards';
 import BenWritings from '@/components/BenWritings';
 import BenTalks from '@/components/BenTalks';
 import BenTestimonials from '@/components/BenTestimonials';
@@ -18,32 +18,46 @@ export default function Home() {
         <HeroLanding />
       </div>
 
-      {/* 2. INTRO BANNER & CURATED DECK */}
+      {/* 2. SELECTED WORKS / FEATURED CASE STUDIES */}
+      <div id="work">
+        <BenWorkTimeline />
+      </div>
+
+      {/* 3. WORK HISTORY & EXPERIENCE (TCS Enterprise Systems & AI Workflows) */}
+      <div id="experience">
+        <SanjayExperience />
+      </div>
+
+      {/* 4. AI EXPLORATION & PLAYGROUND */}
+      <div id="ai-exploration">
+        <AiExplorationSection />
+      </div>
+
+      {/* 5. A BIT ABOUT ME SECTION */}
+      <div id="about">
+        <BenAboutSection />
+      </div>
+
+      {/* 6. CURATED HIGHLIGHTS DECK */}
       <BenIntroCards />
 
-      {/* 3. A BIT ABOUT ME SECTION */}
-      <BenAboutSection />
-
-      {/* 4. WORK HISTORY & EXPERIENCE (TCS Enterprise Systems & AI Workflows) */}
-      <SanjayExperience />
-
-      {/* 5. FEATURED CASE STUDIES (Sticky Overlapping Stack) */}
-      <BenWorkTimeline />
-
-      {/* 6. AI EXPLORATION & PLAYGROUND */}
-      <AiExplorationSection />
-
       {/* 7. ADDITIONAL WORKS: I DRAW. QUITE A LOT. (Artworks & Workshops) */}
-      <BenWritings />
+      <div id="drawings">
+        <BenWritings />
+      </div>
 
       {/* 8. PUBLIC TALKS & WORKSHOPS */}
-      <BenTalks />
+      <div id="talks">
+        <BenTalks />
+      </div>
 
-      {/* 9. PEER FEEDBACK & COLLABORATION */}
+      {/* 9. PEER FEEDBACK & COLLABORATION (Pinned Papers) */}
       <BenTestimonials />
 
       {/* 10. INTERESTED IN COLLABORATING? (Letter & Contact Form) */}
-      <BenContactLetter />
+      <div id="contact">
+        <BenContactLetter />
+      </div>
     </main>
   );
 }
