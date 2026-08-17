@@ -156,32 +156,32 @@ export default function HeroLanding() {
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"
         >
-          {/* Luminous Availability Badge (Bright, Radiant, High-Legibility) */}
+          {/* Luminous Availability Badge (Sleek, Small, Refined) */}
           <motion.div 
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-lg mb-4 text-white"
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/35 shadow-md mb-3 text-white text-[11px] sm:text-xs"
           >
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span className="text-white text-xs sm:text-sm font-semibold tracking-wide font-sans">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+            <span className="text-white font-medium tracking-wide font-sans">
               Available for AI Product Design roles
             </span>
             <span className="text-white/40">&bull;</span>
-            <span className="text-white/90 text-xs sm:text-sm font-mono font-bold">
+            <span className="text-white/90 font-mono font-semibold">
               {location}
             </span>
           </motion.div>
 
-          {/* Master Headline: Pure Complete White Typography */}
-          <h1 className="hero-heading text-white leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-4">
+          {/* Master Headline: Refined & Balanced Complete White Typography */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold text-white leading-[1.12] drop-shadow-[0_3px_20px_rgba(0,0,0,0.85)] mb-3.5 tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
             {titleWords.map((word, idx) => (
               <motion.span
                 key={idx}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: 0.15 + idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block mr-2 sm:mr-2.5 text-white"
+                transition={{ duration: 0.4, delay: 0.12 + idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-block mr-1.5 sm:mr-2 text-white"
               >
                 {word}
               </motion.span>
@@ -190,10 +190,10 @@ export default function HeroLanding() {
 
           {/* Subtitle */}
           <motion.p 
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.55 }}
-            className="body-lead text-zinc-100 font-normal max-w-xl leading-relaxed drop-shadow-md mb-6 font-sans"
+            transition={{ duration: 0.45, delay: 0.45 }}
+            className="text-xs sm:text-sm md:text-base text-zinc-100 font-normal max-w-lg leading-relaxed drop-shadow-md mb-5 font-sans"
           >
             Product designer crafting digital experiences that are <span className="text-white font-semibold">intuitive</span>, <span className="text-white font-semibold">accessible</span>, and <span className="text-white font-semibold">meaningful</span>.
           </motion.p>

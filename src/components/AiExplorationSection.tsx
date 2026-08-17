@@ -14,23 +14,27 @@ interface AIExperiment {
   tags: string[];
   image: string;
   status: string;
+  url?: string;
+  ctaText?: string;
 }
 
 const aiExperiments: AIExperiment[] = [
   {
-    id: 'antigravity-studio',
-    name: 'Antigravity Studio',
-    category: 'Agentic AI Interaction',
-    tagline: 'Multi-agent orchestration & streaming UI states',
-    description: 'An interactive canvas exploring streaming UI components, agent state transitions, human verification checkpoints, and graceful error fallback models for non-deterministic AI tasks.',
+    id: 'levelup-designer',
+    name: 'LevelUp Designer',
+    category: 'AI Design Copilot & Platform',
+    tagline: 'AI-powered workflow accelerator for modern product designers',
+    description: 'An intelligent design copilot & learning hub empowering UX/Product designers to master AI agentic workflows, prompt-to-UI prototyping, accessible design system tokens, and automated enterprise handoffs.',
     features: [
-      'Visualized agent decision trees & branching workflows',
-      'Real-time streaming token renderers with optimistic UI',
-      'Human-in-the-loop audit checkpoints'
+      'Interactive agentic AI workflows for UX research & synthesis',
+      'Generative UI tokenizers and rapid prototype generator',
+      'Curated playbooks for mastering AI tools & design engineering'
     ],
-    tags: ['Generative UI', 'Agent Trees', 'Human-in-the-Loop', 'Next.js'],
+    tags: ['AI Product Design', 'Design Copilot', 'Agentic Workflows', 'Generative UI'],
     image: '/images/gallery_whiteboard.jpg',
-    status: 'Live Prototype'
+    status: 'Live Application',
+    url: 'https://level-up-designer.vercel.app/',
+    ctaText: 'Launch LevelUp Designer'
   },
   {
     id: 'ai-design-system',
@@ -85,7 +89,7 @@ export default function AiExplorationSection() {
           </div>
           <div>
             <span className="caption-meta font-mono text-zinc-500 dark:text-zinc-400">
-              Generative UI &bull; Multi-Agent Systems &bull; Prototypes
+              Generative UI &bull; Multi-Agent Systems &bull; LevelUp Designer
             </span>
           </div>
         </div>
@@ -100,21 +104,22 @@ export default function AiExplorationSection() {
               return (
                 <button
                   key={exp.id}
+                  type="button"
                   onClick={() => setActiveTab(idx)}
-                  className={`touch-target flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                  className={`touch-target px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                     isSelected
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 ring-2 ring-blue-400'
-                      : 'bg-white dark:bg-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 border border-black/10 dark:border-white/10'
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'bg-white/80 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 border border-black/5 dark:border-white/5'
                   }`}
                 >
-                  <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-white animate-pulse' : 'bg-blue-400'}`} />
                   <span>{exp.name}</span>
+                  {exp.url && <span className="text-[10px] text-blue-200">↗</span>}
                 </button>
               );
             })}
           </div>
 
-          {/* Active Experiment Showcase Grid */}
+          {/* Active Experiment Showcase */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeExp.id}
@@ -136,7 +141,7 @@ export default function AiExplorationSection() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
                     {activeExp.name}
                   </h3>
 
@@ -144,7 +149,7 @@ export default function AiExplorationSection() {
                     &frasl;&frasl; {activeExp.tagline}
                   </p>
 
-                  <p className="body-copy text-zinc-600 dark:text-zinc-300">
+                  <p className="body-copy text-zinc-600 dark:text-zinc-300 leading-relaxed">
                     {activeExp.description}
                   </p>
 
@@ -162,6 +167,21 @@ export default function AiExplorationSection() {
                       ))}
                     </ul>
                   </div>
+
+                  {/* External Live Action Button */}
+                  {activeExp.url && (
+                    <div className="pt-3">
+                      <a
+                        href={activeExp.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg hover:scale-105 active:scale-95 transition-all"
+                      >
+                        <span>{activeExp.ctaText || 'Open Website'}</span>
+                        <span>↗</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 {/* Tags & Action */}
@@ -192,10 +212,22 @@ export default function AiExplorationSection() {
                   className="object-cover opacity-80 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                
                 <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
                   <span className="bg-black/60 px-3 py-1.5 rounded-full border border-white/15 backdrop-blur-md">
-                    ⚡ Live Playground Node
+                    ⚡ Live AI Sandbox
                   </span>
+
+                  {activeExp.url && (
+                    <a
+                      href={activeExp.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-md transition-colors"
+                    >
+                      Visit Live ↗
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

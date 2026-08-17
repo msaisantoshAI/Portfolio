@@ -133,29 +133,33 @@ export default function BenIntroCards() {
             </article>
           </motion.div>
 
-          {/* Card 3: Indie Apps & AI Tools (Purple Accent) */}
+          {/* Card 3: LevelUp Designer (AI Platform & Copilot) */}
           <motion.div 
             whileHover={{ y: -6, scale: 1.015 }}
             className="h-[340px] xl:h-[360px]"
           >
-            <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#6d28d9] to-[#581c87] text-white shadow-md flex flex-col justify-between border border-purple-400/30">
-              <div className="space-y-3">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-purple-200 bg-black/25 px-3 py-1 rounded-full">
-                  Process &amp; AI
+            <article className="h-full w-full overflow-hidden rounded-[24px] p-7 bg-gradient-to-br from-[#4f46e5] via-[#6366f1] to-[#7c3aed] text-white shadow-md flex flex-col justify-between border border-indigo-300/30 relative">
+              <div className="space-y-3 relative z-10">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-indigo-200 bg-black/30 px-3 py-1 rounded-full border border-indigo-400/30 inline-flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>AI Copilot &bull; Live</span>
                 </span>
                 <h3 className="card-heading text-white leading-tight">
-                  How I Work
+                  LevelUp Designer
                 </h3>
-                <p className="text-sm font-normal text-purple-100/90 leading-relaxed">
-                  Discover &rarr; Structure &rarr; Design &rarr; Build &rarr; Validate with modern AI tooling.
+                <p className="text-sm font-normal text-indigo-100/90 leading-relaxed">
+                  AI-powered product design copilot &amp; workflow accelerator built for modern UX designers.
                 </p>
               </div>
-              <div>
+              <div className="relative z-10">
                 <a
-                  href="#fun"
-                  className="touch-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black text-white font-semibold text-xs xl:text-sm hover:bg-zinc-900 transition-colors shadow-md focus-visible:ring-2 focus-visible:ring-white"
+                  href="https://level-up-designer.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="touch-target inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-zinc-900 font-bold text-xs xl:text-sm hover:bg-zinc-100 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-white hover:scale-105"
                 >
-                  Explore Process &rarr;
+                  <span>Open LevelUp Designer</span>
+                  <span>↗</span>
                 </a>
               </div>
             </article>
