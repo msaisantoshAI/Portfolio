@@ -7,7 +7,7 @@ import { useEnvironment } from '@/context/EnvironmentContext';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDay, timePhase, weatherState, location, isWindy, windSpeed } = useEnvironment();
+  const { isDay, timePhase, weatherState, location, isWindy, windSpeed, themeMode } = useEnvironment();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const { scrollYProgress } = useScroll({
@@ -16,9 +16,9 @@ export default function HeroLanding() {
   });
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
-  const imageY = useTransform(smoothY, [0, 1], ['0%', '18%']);
-  const imageScale = useTransform(smoothY, [0, 1], [1, 1.1]);
-  const contentY = useTransform(smoothY, [0, 1], [0, -50]);
+  const imageY = useTransform(smoothY, [0, 1], ['0%', '14%']);
+  const imageScale = useTransform(smoothY, [0, 1], [1, 1.06]);
+  const contentY = useTransform(smoothY, [0, 1], [0, -40]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
   // Interactive 3D mouse parallax
@@ -37,12 +37,12 @@ export default function HeroLanding() {
     }
   };
 
-  // Environmental lighting variables
-  const isNight = !isDay || timePhase === 'night';
-  const isDawn = timePhase === 'dawn';
-  const isGoldenHour = timePhase === 'goldenHour';
-  const isSunset = timePhase === 'sunset';
-  const isRaining = weatherState === 'rain' || weatherState === 'thunderstorm';
+  // Environmental lighting & theme variables
+  const isNight = themeMode === 'dark' || (themeMode === 'system' && (!isDay || timePhase === 'night'));
+  const isDawn = themeMode === 'system' && timePhase === 'dawn';
+  const isGoldenHour = themeMode === 'system' && timePhase === 'goldenHour';
+  const isSunset = themeMode === 'system' && timePhase === 'sunset';
+  const isRaining = themeMode === 'system' && (weatherState === 'rain' || weatherState === 'thunderstorm');
 
   const titleWords = ["I", "design", "experiences", "that", "feel", "human."];
 
@@ -50,19 +50,79 @@ export default function HeroLanding() {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[86vh] sm:min-h-[90vh] md:min-h-[95vh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
+      className="relative min-h-[90vh] sm:min-h-[94vh] md:min-h-screen w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-6 sm:pb-10 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
     >
       {/* ========================================================================= */}
-      {/* 1. BRIGHT, HIGH-RESOLUTION HERO IMAGE WITH 3D PARALLAX & LIGHTING         */}
+      {/* 1. SEAMLESS LIVING SKY SHOWS THROUGH 100% TRANSPARENT BACKGROUND          */}
+      {/* ========================================================================= */}
+
+      {/* Atmospheric Ambient Mood Layers */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isRaining ? 'opacity-70' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(to bottom, rgba(15, 23, 42, 0.35) 0%, rgba(30, 41, 59, 0.25) 50%, rgba(15, 23, 42, 0.5) 100%)'
+        }}
+      />
+
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isGoldenHour ? 'opacity-85' : 'opacity-0'
+        }`}
+        style={{
+          background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.25) 0%, rgba(255, 120, 30, 0.1) 45%, transparent 75%)'
+        }}
+      />
+
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isSunset ? 'opacity-80' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(to top, rgba(90, 20, 110, 0.35) 0%, rgba(220, 60, 80, 0.2) 40%, rgba(255, 140, 50, 0.1) 70%, transparent 100%)'
+        }}
+      />
+
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isDawn ? 'opacity-75' : 'opacity-0'
+        }`}
+        style={{
+          background: 'linear-gradient(to top, rgba(255, 130, 80, 0.25) 0%, rgba(255, 190, 120, 0.12) 35%, transparent 70%)'
+        }}
+      />
+
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
+          isNight ? 'opacity-85' : 'opacity-0'
+        }`}
+        style={{
+          background: 'radial-gradient(circle at 85% 15%, rgba(180, 220, 255, 0.25) 0%, rgba(20, 40, 90, 0.2) 40%, rgba(2, 6, 18, 0.45) 85%)'
+        }}
+      />
+
+      {/* Subtle Top-to-Bottom Contrast Vignette for Header and Typography */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: isNight
+            ? 'linear-gradient(to bottom, rgba(5, 10, 25, 0.45) 0%, rgba(5, 10, 25, 0.05) 40%, rgba(5, 10, 25, 0.5) 100%)'
+            : 'linear-gradient(to bottom, rgba(10, 25, 60, 0.3) 0%, rgba(255, 255, 255, 0) 40%, rgba(5, 15, 35, 0.45) 100%)'
+        }}
+      />
+
+      {/* ========================================================================= */}
+      {/* 2. TRANSPARENT PNG CUTOUT OF SAI LYING ON GRASS (100vw Responsive)        */}
       {/* ========================================================================= */}
       <motion.div 
         animate={isWindy ? {
-          x: [-mousePos.x * 16 - 2, -mousePos.x * 16 + 2, -mousePos.x * 16 - 2],
-          y: [-mousePos.y * 16 - 1, -mousePos.y * 16 + 1, -mousePos.y * 16 - 1],
-          rotate: [-0.15, 0.15, -0.15]
+          x: [-mousePos.x * 12 - 2, -mousePos.x * 12 + 2, -mousePos.x * 12 - 2],
+          y: [-mousePos.y * 12 - 1, -mousePos.y * 12 + 1, -mousePos.y * 12 - 1],
+          rotate: [-0.1, 0.1, -0.1]
         } : {
-          x: -mousePos.x * 16,
-          y: -mousePos.y * 16,
+          x: -mousePos.x * 12,
+          y: -mousePos.y * 12,
           rotate: 0
         }}
         transition={{
@@ -71,109 +131,51 @@ export default function HeroLanding() {
           ease: 'easeInOut'
         }}
         style={{ y: imageY, scale: imageScale }}
-        className="absolute inset-0 w-full h-full pointer-events-none origin-center"
+        className="absolute inset-x-0 bottom-0 w-full h-[65vh] sm:h-[72vh] md:h-[80vh] pointer-events-none origin-bottom z-10"
       >
-        <Image
-          src="/images/hero-lying.jpg"
-          alt="Sai Santosh Madhari lying on green grass looking up at the living sky"
-          fill
-          priority
-          sizes="100vw"
-          quality={95}
-          className="object-cover object-center sm:object-[center_35%] filter brightness-[1.08] contrast-[1.03]"
-        />
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-sai-grass.png"
+            alt="Sai Santosh Madhari lying on green grass looking up at the living sky"
+            fill
+            priority
+            sizes="100vw"
+            quality={95}
+            className="object-cover object-bottom sm:object-[center_bottom] pointer-events-none"
+          />
+        </div>
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* 2. ATMOSPHERIC ENVIRONMENTAL LIGHTING OVERLAYS                            */}
-      {/* ========================================================================= */}
-      
-      {/* Rain Atmosphere Mood */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isRaining ? 'opacity-80' : 'opacity-0'
-        }`}
-        style={{
-          background: 'linear-gradient(to bottom, rgba(15, 23, 42, 0.45) 0%, rgba(30, 41, 59, 0.35) 50%, rgba(15, 23, 42, 0.6) 100%)'
-        }}
-      />
-
-      {/* Golden Hour Amber Sunlight Bloom */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isGoldenHour ? 'opacity-90' : 'opacity-0'
-        }`}
-        style={{
-          background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.35) 0%, rgba(255, 120, 30, 0.15) 45%, transparent 75%)'
-        }}
-      />
-
-      {/* Sunset Rich Coral/Violet Lighting */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isSunset ? 'opacity-85' : 'opacity-0'
-        }`}
-        style={{
-          background: 'linear-gradient(to top, rgba(90, 20, 110, 0.45) 0%, rgba(220, 60, 80, 0.3) 40%, rgba(255, 140, 50, 0.15) 70%, transparent 100%)'
-        }}
-      />
-
-      {/* Dawn Rose Horizon Glow */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isDawn ? 'opacity-80' : 'opacity-0'
-        }`}
-        style={{
-          background: 'linear-gradient(to top, rgba(255, 130, 80, 0.35) 0%, rgba(255, 190, 120, 0.18) 35%, transparent 70%)'
-        }}
-      />
-
-      {/* Midnight Starry Cosmic Atmosphere */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isNight ? 'opacity-90' : 'opacity-0'
-        }`}
-        style={{
-          background: 'radial-gradient(circle at 85% 15%, rgba(180, 220, 255, 0.3) 0%, rgba(20, 40, 90, 0.25) 40%, rgba(2, 6, 18, 0.55) 85%)'
-        }}
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:32px_32px] opacity-40" />
-      </div>
-
-      {/* Readability Contrast Vignette */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.45) 0%, rgba(5, 10, 25, 0.1) 45%, rgba(5, 10, 25, 0.55) 100%)'
-        }}
-      />
-
-      {/* ========================================================================= */}
-      {/* 3. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
+      {/* 3. HERO CONTENT: RESPONSIVE TYPOGRAPHY & CALL TO ACTION                   */}
       {/* ========================================================================= */}
       <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-4">
         <motion.div 
           style={{ y: contentY, opacity: contentOpacity }}
           className="flex flex-col items-start justify-start max-w-2xl text-left"
         >
-          {/* Availability Badge: Compact, Elegant, Small */}
+          {/* Availability Badge: Adaptive Frosted Glass Pill */}
           <motion.div 
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-sm mb-3 text-white"
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full backdrop-blur-2xl border shadow-sm mb-3 ${
+              isNight
+                ? 'bg-white/20 border-white/40 text-white'
+                : 'bg-white/75 dark:bg-black/60 border-white/60 dark:border-white/20 text-zinc-900 dark:text-white'
+            }`}
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-            <span className="text-white text-[11px] sm:text-xs font-semibold tracking-wide font-sans">
+            <span className="text-[11px] sm:text-xs font-semibold tracking-wide font-sans">
               Available for AI Product Design roles
             </span>
-            <span className="text-white/40">&bull;</span>
-            <span className="text-white/90 text-[11px] sm:text-xs font-mono font-bold">
+            <span className="opacity-40">&bull;</span>
+            <span className="text-[11px] sm:text-xs font-mono font-bold opacity-90">
               {location}
             </span>
           </motion.div>
 
-          {/* Master Headline: Pure White, Reduced & Balanced Typographical Scale */}
+          {/* Master Headline: Pure White Crisp Acorn Typography */}
           <h1 
             className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-3"
             style={{ fontFamily: 'var(--font-display)' }}
