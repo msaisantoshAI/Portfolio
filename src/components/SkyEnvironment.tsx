@@ -4,14 +4,14 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
-import AtmosphericSkyCanvas from '@/components/AtmosphericSkyCanvas';
+import LivingSkyEngine from '@/components/LivingSkyEngine';
 
 export default function SkyEnvironment() {
   const [mounted, setMounted] = useState(false);
   const { themeMode } = useEnvironment();
   const { scrollYProgress } = useScroll();
 
-  // Instantaneous spring-driven scroll tracking for smooth manual photo parallax
+  // Smooth scroll tracking
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 140,
     damping: 22,
@@ -19,8 +19,8 @@ export default function SkyEnvironment() {
     restDelta: 0.0001
   });
 
-  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-35%']);
-  const canopyScale = useTransform(smoothProgress, [0, 1], [1, 1.06]);
+  const skyY = useTransform(smoothProgress, [0, 1], ['0%', '-30%']);
+  const canopyScale = useTransform(smoothProgress, [0, 1], [1, 1.05]);
 
   useEffect(() => {
     setMounted(true);
@@ -36,7 +36,18 @@ export default function SkyEnvironment() {
     <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none transition-colors duration-1000">
       
       {/* ========================================================================= */}
-      {/* 1. MANUAL LIGHT MODE: Photorealistic Day Sky Image & Upward Trees         */}
+      {/* 1. AUTO / LOCATION MODE: 100% PURE DYNAMIC PHOTOREALISTIC LIVING SKY       */}
+      {/* ========================================================================= */}
+      <div 
+        className={`absolute inset-0 transition-opacity duration-1000 ${
+          isAuto ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <LivingSkyEngine />
+      </div>
+
+      {/* ========================================================================= */}
+      {/* 2. MANUAL LIGHT MODE                                                      */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -49,7 +60,7 @@ export default function SkyEnvironment() {
         >
           <Image
             src="/images/sky-day.png"
-            alt="Manual Daytime Sky with Trees looking up"
+            alt="Manual Daytime Sky with Trees"
             fill
             priority
             className="object-cover object-top"
@@ -58,7 +69,6 @@ export default function SkyEnvironment() {
           />
         </motion.div>
         
-        {/* Soft sunlight zenith warmth */}
         <div 
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{
@@ -68,7 +78,7 @@ export default function SkyEnvironment() {
       </div>
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: Photorealistic Night Sky Image & Stars               */}
+      {/* 3. MANUAL DARK MODE                                                       */}
       {/* ========================================================================= */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 ${
@@ -81,7 +91,7 @@ export default function SkyEnvironment() {
         >
           <Image
             src="/images/sky-night.png"
-            alt="Manual Night Sky with Stars and Trees looking up"
+            alt="Manual Night Sky with Stars"
             fill
             priority
             className="object-cover object-top"
@@ -90,24 +100,12 @@ export default function SkyEnvironment() {
           />
         </motion.div>
 
-        {/* Twinkling Starlight Halo */}
         <div 
           className="absolute inset-0 opacity-40 pointer-events-none"
           style={{
             background: 'radial-gradient(circle at 82% 14%, rgba(180, 220, 255, 0.25) 0%, rgba(50, 90, 180, 0.1) 35%, transparent 65%)'
           }}
         />
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 3. AUTO MODE: LIVING PROCEDURAL WEATHER & CELESTIAL DOME (0 STATIC IMAGES) */}
-      {/* ========================================================================= */}
-      <div 
-        className={`absolute inset-0 transition-opacity duration-1000 ${
-          isAuto ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <AtmosphericSkyCanvas />
       </div>
 
     </div>

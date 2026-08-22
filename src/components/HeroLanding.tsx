@@ -4,11 +4,11 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
-import LiveCosmicSkyCanvas from '@/components/LiveCosmicSkyCanvas';
+import LivingSkyEngine from '@/components/LivingSkyEngine';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDay, timePhase, weatherState, isWindy, windSpeed, themeMode, location } = useEnvironment();
+  const { timePhase, weatherState, isWindy, windSpeed, themeMode } = useEnvironment();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const { scrollYProgress } = useScroll({
@@ -37,8 +37,10 @@ export default function HeroLanding() {
     }
   };
 
-  // Determine if Night Hero Image should be active:
-  const isNightMode = themeMode === 'dark' || (themeMode === 'system' && (!isDay || timePhase === 'night' || timePhase === 'twilight'));
+  // Determine modes:
+  const isAutoMode = themeMode === 'system';
+  const isManualDark = themeMode === 'dark';
+  const isManualLight = themeMode === 'light';
 
   const isDawn = timePhase === 'dawn';
   const isGoldenHour = timePhase === 'goldenHour';
@@ -54,92 +56,83 @@ export default function HeroLanding() {
       className="relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none font-sans"
     >
       {/* ========================================================================= */}
-      {/* 1. SEAMLESS DYNAMIC HERO IMAGE WITH LIVING DRIFT & 3D PARALLAX             */}
+      {/* 1. DYNAMIC LIVING SKY (0 Static Images when in Auto / Location Search)     */}
       {/* ========================================================================= */}
-      <motion.div 
-        animate={{
-          x: [-mousePos.x * 16, -mousePos.x * 16 + 4, -mousePos.x * 16 - 4, -mousePos.x * 16],
-          y: [-mousePos.y * 16, -mousePos.y * 16 - 3, -mousePos.y * 16 + 3, -mousePos.y * 16],
-          scale: [1.02, 1.05, 1.03, 1.02],
-        }}
-        transition={{
-          duration: isWindy ? Math.max(4, 70 / (windSpeed || 10)) : 14,
-          repeat: Infinity,
-          ease: 'easeInOut'
-        }}
-        style={{ y: imageY }}
-        className="absolute -inset-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none origin-center"
-      >
-        {/* ==================== DAYTIME HERO IMAGES ==================== */}
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-0' : 'opacity-100'}`}>
-          {/* Desktop/Tablet Daytime */}
-          <div className="hidden sm:block absolute inset-0 w-full h-full">
-            <Image
-              src="/images/hero-lying.jpg"
-              alt="Sai Santosh Madhari lying on green grass looking up at the living daytime sky"
-              fill
-              priority
-              sizes="100vw"
-              quality={95}
-              className="w-full h-full object-cover object-center filter brightness-[1.08] contrast-[1.03]"
-            />
-          </div>
-          {/* Mobile Daytime (Custom Vertical Aspect) */}
-          <div className="block sm:hidden absolute inset-0 w-full h-full">
-            <Image
-              src="/images/hero-lying-mobile.png"
-              alt="Sai Santosh Madhari lying on green grass looking up at the living daytime sky on mobile"
-              fill
-              priority
-              sizes="100vw"
-              quality={95}
-              className="w-full h-full object-cover object-bottom filter brightness-[1.05] contrast-[1.02]"
-            />
-          </div>
+      {isAutoMode ? (
+        <div className="absolute inset-0 w-full h-full pointer-events-none">
+          <LivingSkyEngine />
         </div>
-
-        {/* ==================== NIGHTTIME HERO IMAGES ==================== */}
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${isNightMode ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Desktop/Tablet Nighttime */}
-          <div className="hidden sm:block absolute inset-0 w-full h-full">
-            <Image
-              src="/images/hero-lying-night.jpg"
-              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic night sky"
-              fill
-              priority
-              sizes="100vw"
-              quality={95}
-              className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.04]"
-            />
+      ) : (
+        /* Manual Photo Modes */
+        <motion.div 
+          animate={{
+            x: [-mousePos.x * 16, -mousePos.x * 16 + 4, -mousePos.x * 16 - 4, -mousePos.x * 16],
+            y: [-mousePos.y * 16, -mousePos.y * 16 - 3, -mousePos.y * 16 + 3, -mousePos.y * 16],
+            scale: [1.02, 1.05, 1.03, 1.02],
+          }}
+          transition={{
+            duration: isWindy ? Math.max(4, 70 / (windSpeed || 10)) : 14,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          style={{ y: imageY }}
+          className="absolute -inset-3 w-[calc(100%+24px)] h-[calc(100%+24px)] pointer-events-none origin-center"
+        >
+          {/* Manual Light Mode */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${isManualLight ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="hidden sm:block absolute inset-0 w-full h-full">
+              <Image
+                src="/images/hero-lying.jpg"
+                alt="Sai Santosh Madhari daytime hero"
+                fill
+                priority
+                sizes="100vw"
+                quality={95}
+                className="w-full h-full object-cover object-center filter brightness-[1.08] contrast-[1.03]"
+              />
+            </div>
+            <div className="block sm:hidden absolute inset-0 w-full h-full">
+              <Image
+                src="/images/hero-lying-mobile.png"
+                alt="Sai Santosh Madhari daytime mobile"
+                fill
+                priority
+                sizes="100vw"
+                quality={95}
+                className="w-full h-full object-cover object-bottom filter brightness-[1.05] contrast-[1.02]"
+              />
+            </div>
           </div>
-          {/* Mobile Nighttime (Custom Vertical Aspect) */}
-          <div className="block sm:hidden absolute inset-0 w-full h-full">
-            <Image
-              src="/images/hero-lying-night-mobile.png"
-              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic night sky on mobile"
-              fill
-              priority
-              sizes="100vw"
-              quality={95}
-              className="w-full h-full object-cover object-bottom filter brightness-[1.04] contrast-[1.04]"
-            />
+
+          {/* Manual Dark Mode */}
+          <div className={`absolute inset-0 transition-opacity duration-1000 ${isManualDark ? 'opacity-100' : 'opacity-0'}`}>
+            <div className="hidden sm:block absolute inset-0 w-full h-full">
+              <Image
+                src="/images/hero-lying-night.jpg"
+                alt="Sai Santosh Madhari nighttime hero"
+                fill
+                priority
+                sizes="100vw"
+                quality={95}
+                className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.04]"
+              />
+            </div>
+            <div className="block sm:hidden absolute inset-0 w-full h-full">
+              <Image
+                src="/images/hero-lying-night-mobile.png"
+                alt="Sai Santosh Madhari nighttime mobile"
+                fill
+                priority
+                sizes="100vw"
+                quality={95}
+                className="w-full h-full object-cover object-bottom filter brightness-[1.04] contrast-[1.04]"
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      )}
 
-      {/* ========================================================================= */}
-      {/* 2. DYNAMIC LIVE COSMIC SKY CANVAS (Shooting Stars, Aurora, Motes & Wind)   */}
-      {/* ========================================================================= */}
-      <LiveCosmicSkyCanvas
-        isNightMode={isNightMode}
-        timePhase={timePhase}
-        weatherState={weatherState}
-        location={location}
-        isWindy={isWindy}
-        windSpeed={windSpeed}
-      />
-
-      {/* Atmospheric Environmental Lighting Overlays */}
+      {/* Atmospheric Overlays */}
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
           isRaining ? 'opacity-80' : 'opacity-0'
@@ -151,7 +144,7 @@ export default function HeroLanding() {
 
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isGoldenHour && !isNightMode ? 'opacity-90' : 'opacity-0'
+          isGoldenHour && !isManualDark ? 'opacity-90' : 'opacity-0'
         }`}
         style={{
           background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.35) 0%, rgba(255, 120, 30, 0.15) 45%, transparent 75%)'
@@ -160,7 +153,7 @@ export default function HeroLanding() {
 
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isSunset && !isNightMode ? 'opacity-85' : 'opacity-0'
+          isSunset && !isManualDark ? 'opacity-85' : 'opacity-0'
         }`}
         style={{
           background: 'linear-gradient(to top, rgba(90, 20, 110, 0.45) 0%, rgba(220, 60, 80, 0.3) 40%, rgba(255, 140, 50, 0.15) 70%, transparent 100%)'
@@ -169,7 +162,7 @@ export default function HeroLanding() {
 
       <div 
         className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none ${
-          isDawn && !isNightMode ? 'opacity-80' : 'opacity-0'
+          isDawn && !isManualDark ? 'opacity-80' : 'opacity-0'
         }`}
         style={{
           background: 'linear-gradient(to top, rgba(255, 130, 80, 0.35) 0%, rgba(255, 190, 120, 0.18) 35%, transparent 70%)'
@@ -185,7 +178,7 @@ export default function HeroLanding() {
       />
 
       {/* ========================================================================= */}
-      {/* 3. HERO CONTENT: PRECISE, ARTICULATED & CRISP                              */}
+      {/* 2. HERO CONTENT: PRECISE, ARTICULATED & CRISP                              */}
       {/* ========================================================================= */}
       <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-2 sm:py-4">
         <motion.div 
