@@ -32,8 +32,8 @@ const workItems: WorkItem[] = [
     category: 'Enterprise SaaS · Contract Automation',
     outcomeMetricValue: 68,
     outcomeMetricSuffix: '%',
-    outcome: 'reduction in average SOW authoring cycle time across global teams',
-    problem: 'Enterprise sales & engineering teams suffered 3+ weeks turnaround due to fragmented pricing matrices and manual audits.',
+    outcome: 'reduction in SOW authoring cycle time across global teams',
+    problem: 'Eliminated weeks of contract estimation latency with automated pricing tables and structured approval workflows.',
     role: 'Lead Product Designer · UX Architecture · Design System',
     tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
@@ -48,8 +48,8 @@ const workItems: WorkItem[] = [
     outcomeMetricValue: 4.2,
     outcomeMetricSuffix: 'x',
     outcomeMetricDecimals: 1,
-    outcome: 'faster iteration speed for designers & engineers testing agent chains',
-    problem: 'Navigating non-deterministic AI outputs and complex prompt trees caused developer confusion and poor UI feedback loops.',
+    outcome: 'faster iteration speed for testing multi-step agent chains',
+    problem: 'Visualized non-deterministic AI outputs and streaming prompt nodes into an intuitive, real-time playground.',
     role: 'Product Designer & AI Prototyper · Interaction Model',
     tags: ['AI Product Design', 'Generative UI', 'Agent Workflows', 'Prompt Canvas'],
     image: '/images/hero-video.mp4',
@@ -62,8 +62,8 @@ const workItems: WorkItem[] = [
     category: 'Critical Infrastructure · Telemetry',
     outcomeMetricValue: 52,
     outcomeMetricSuffix: '%',
-    outcome: 'reduction in incident dispatch latency for electrical grid operators',
-    problem: 'Field engineers struggled with disparate hardware sensors and legacy workforce rosters during emergency grid faults.',
+    outcome: 'drop in dispatch latency for emergency grid repairs',
+    problem: 'Unified legacy workforce rosters and live sensor streams into a calm, high-density operations center.',
     role: 'Product UX Designer · Information Architecture',
     tags: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
     image: '/images/project_sas_1775675939361.png',
@@ -75,8 +75,8 @@ const workItems: WorkItem[] = [
     category: 'Cloud Infrastructure · Sandboxes',
     outcomeMetricValue: 80,
     outcomeMetricSuffix: '%',
-    outcome: 'drop in setup friction for spinning up remote engineering sandbox clusters',
-    problem: 'Developers spent hours configuring local virtualization environments and debugging permission conflicts across distributed squads.',
+    outcome: 'drop in friction when spinning up remote sandbox clusters',
+    problem: 'Automated developer environment setup to eliminate configuration errors across distributed squads.',
     role: 'UI/UX Architect · Concept & Prototype Design',
     tags: ['Cloud Computing', 'UI/UX Architecture', 'Concept Design'],
     image: '/images/project_emulate_1775675955645.png',
@@ -90,11 +90,11 @@ export default function BenWorkTimeline() {
   const renderCardContent = (item: WorkItem) => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
       {/* Left Column: Case Study Details (6 Cols) */}
-      <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
+      <div className="lg:col-span-6 flex flex-col justify-between space-y-3.5">
         {/* Category, Year & Click Indicator */}
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
+            <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50">
               {item.category}
             </span>
             <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
@@ -108,17 +108,17 @@ export default function BenWorkTimeline() {
         </div>
 
         {/* Title & Core Problem */}
-        <div className="space-y-1.5">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+        <div className="space-y-1">
+          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {item.title}
           </h3>
-          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed line-clamp-2 sm:line-clamp-3">
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed line-clamp-2">
             {item.problem}
           </p>
         </div>
 
         {/* Impact Metric Highlight with Live CountUp */}
-        <div className="p-3.5 sm:p-4 rounded-xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-3.5">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-3">
           <div className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
             <CountUp
               value={item.outcomeMetricValue}
@@ -134,7 +134,7 @@ export default function BenWorkTimeline() {
         </div>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 pt-1">
+        <div className="flex flex-wrap gap-1.5 pt-0.5">
           {item.tags.map((tag, tIdx) => (
             <span
               key={tIdx}
@@ -173,7 +173,7 @@ export default function BenWorkTimeline() {
   return (
     <section id="work" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
       {/* Sticky Overlapping Project Cards Stack with Integrated Header */}
-      <div className="relative flex flex-col gap-6 sm:gap-8 pb-12">
+      <div className="relative flex flex-col gap-6 sm:gap-8 pb-10">
         {workItems.map((item, idx) => {
           const topOffset = 84 + idx * 20;
 
@@ -188,7 +188,7 @@ export default function BenWorkTimeline() {
                 top: `${topOffset}px`,
                 zIndex: idx + 10,
               }}
-              className="sticky rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-5 sm:p-7 md:p-9 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 group hover:border-blue-500/40 hover:shadow-2xl"
+              className="sticky rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-5 sm:p-7 md:p-8 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-all duration-300 group hover:border-blue-500/40 hover:shadow-2xl"
             >
               {/* Integrated Header at the top of Card 1 */}
               {idx === 0 && (
