@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import { useEnvironment, LocationRegion } from '@/context/EnvironmentContext';
 
 interface LivingAtmosphereProps {
-  mousePos?: { x: number; y: number };
   isHero?: boolean;
 }
 
@@ -24,7 +23,7 @@ interface LocationAtmosphereProfile {
   nightSkyGradients: string[];
   auroraColor?: string;
   nebulaColor: string;
-  starDensity: number; // 80 to 200
+  starDensity: number;
   cloudTint: string;
   dayAtmosphereTint: string;
   hazeColor: string;
@@ -46,11 +45,11 @@ function getLocationProfile(
     return {
       name: 'Tokyo / East Asia',
       nightSkyGradients: ['#04020a', '#0d0822', '#1a0b36', '#2b104d'],
-      nebulaColor: 'rgba(168, 85, 247, 0.18)',
-      starDensity: 140,
-      cloudTint: 'rgba(192, 132, 252, 0.35)',
-      dayAtmosphereTint: 'rgba(129, 140, 248, 0.12)',
-      hazeColor: 'rgba(147, 51, 234, 0.2)',
+      nebulaColor: 'rgba(168, 85, 247, 0.16)',
+      starDensity: 90,
+      cloudTint: 'rgba(192, 132, 252, 0.28)',
+      dayAtmosphereTint: 'rgba(129, 140, 248, 0.1)',
+      hazeColor: 'rgba(147, 51, 234, 0.15)',
       specialEffect: 'cosmicDust',
     };
   }
@@ -60,26 +59,26 @@ function getLocationProfile(
     return {
       name: 'London / Northern Europe',
       nightSkyGradients: ['#020611', '#061226', '#0b203d', '#0d324d'],
-      auroraColor: 'rgba(52, 211, 153, 0.22)',
-      nebulaColor: 'rgba(56, 189, 248, 0.15)',
-      starDensity: 110,
-      cloudTint: 'rgba(148, 163, 184, 0.4)',
-      dayAtmosphereTint: 'rgba(186, 230, 253, 0.15)',
-      hazeColor: 'rgba(14, 165, 233, 0.18)',
+      auroraColor: 'rgba(52, 211, 153, 0.18)',
+      nebulaColor: 'rgba(56, 189, 248, 0.14)',
+      starDensity: 80,
+      cloudTint: 'rgba(148, 163, 184, 0.3)',
+      dayAtmosphereTint: 'rgba(186, 230, 253, 0.12)',
+      hazeColor: 'rgba(14, 165, 233, 0.14)',
       specialEffect: 'aurora',
     };
   }
 
   // 3. NEW YORK / US EAST COAST: Midnight electric cobalt, crisp high-density stars, silver lunar glare
-  if (locLower.includes('york') || locLower.includes('boston') || locLower.includes('toronto') || region === 'us' && lon > -85) {
+  if (locLower.includes('york') || locLower.includes('boston') || locLower.includes('toronto') || (region === 'us' && lon > -85)) {
     return {
       name: 'New York / US East',
       nightSkyGradients: ['#02040a', '#071124', '#0d1f42', '#122e5e'],
-      nebulaColor: 'rgba(59, 130, 246, 0.2)',
-      starDensity: 160,
-      cloudTint: 'rgba(191, 219, 254, 0.35)',
-      dayAtmosphereTint: 'rgba(96, 165, 250, 0.14)',
-      hazeColor: 'rgba(37, 99, 235, 0.22)',
+      nebulaColor: 'rgba(59, 130, 246, 0.18)',
+      starDensity: 100,
+      cloudTint: 'rgba(191, 219, 254, 0.28)',
+      dayAtmosphereTint: 'rgba(96, 165, 250, 0.12)',
+      hazeColor: 'rgba(37, 99, 235, 0.18)',
       specialEffect: 'shootingStars',
     };
   }
@@ -89,11 +88,11 @@ function getLocationProfile(
     return {
       name: 'San Francisco / West Coast',
       nightSkyGradients: ['#04030d', '#0e0b24', '#1e133d', '#321b4a'],
-      nebulaColor: 'rgba(236, 72, 153, 0.15)',
-      starDensity: 135,
-      cloudTint: 'rgba(244, 114, 182, 0.3)',
-      dayAtmosphereTint: 'rgba(251, 146, 60, 0.12)',
-      hazeColor: 'rgba(217, 70, 239, 0.18)',
+      nebulaColor: 'rgba(236, 72, 153, 0.14)',
+      starDensity: 85,
+      cloudTint: 'rgba(244, 114, 182, 0.25)',
+      dayAtmosphereTint: 'rgba(251, 146, 60, 0.1)',
+      hazeColor: 'rgba(217, 70, 239, 0.15)',
       specialEffect: 'coastalMist',
     };
   }
@@ -103,11 +102,11 @@ function getLocationProfile(
     return {
       name: 'Hyderabad / India',
       nightSkyGradients: ['#030612', '#08142c', '#0f244a', '#173663'],
-      nebulaColor: 'rgba(99, 102, 241, 0.22)',
-      starDensity: 150,
-      cloudTint: 'rgba(224, 231, 255, 0.38)',
-      dayAtmosphereTint: 'rgba(253, 224, 71, 0.12)',
-      hazeColor: 'rgba(79, 70, 229, 0.2)',
+      nebulaColor: 'rgba(99, 102, 241, 0.18)',
+      starDensity: 95,
+      cloudTint: 'rgba(224, 231, 255, 0.3)',
+      dayAtmosphereTint: 'rgba(253, 224, 71, 0.1)',
+      hazeColor: 'rgba(79, 70, 229, 0.16)',
       specialEffect: 'shootingStars',
     };
   }
@@ -117,11 +116,11 @@ function getLocationProfile(
     return {
       name: 'Southern Hemisphere',
       nightSkyGradients: ['#02040e', '#061026', '#0c1d3f', '#132d5c'],
-      nebulaColor: 'rgba(45, 212, 191, 0.18)',
-      starDensity: 175,
-      cloudTint: 'rgba(153, 246, 228, 0.3)',
-      dayAtmosphereTint: 'rgba(56, 189, 248, 0.15)',
-      hazeColor: 'rgba(20, 184, 166, 0.2)',
+      nebulaColor: 'rgba(45, 212, 191, 0.15)',
+      starDensity: 110,
+      cloudTint: 'rgba(153, 246, 228, 0.25)',
+      dayAtmosphereTint: 'rgba(56, 189, 248, 0.12)',
+      hazeColor: 'rgba(20, 184, 166, 0.16)',
       specialEffect: 'shootingStars',
     };
   }
@@ -137,16 +136,16 @@ function getLocationProfile(
       `hsl(${hue1}, 55%, 15%)`,
       `hsl(${hue2}, 45%, 22%)`,
     ],
-    nebulaColor: `hsla(${hue1}, 75%, 60%, 0.16)`,
-    starDensity: 120 + (seed % 60),
-    cloudTint: `hsla(${hue1}, 40%, 80%, 0.3)`,
-    dayAtmosphereTint: `hsla(${hue2}, 60%, 65%, 0.12)`,
-    hazeColor: `hsla(${hue1}, 70%, 50%, 0.18)`,
+    nebulaColor: `hsla(${hue1}, 75%, 60%, 0.14)`,
+    starDensity: 80 + (seed % 40),
+    cloudTint: `hsla(${hue1}, 40%, 80%, 0.25)`,
+    dayAtmosphereTint: `hsla(${hue2}, 60%, 65%, 0.1)`,
+    hazeColor: `hsla(${hue1}, 70%, 50%, 0.15)`,
     specialEffect: seed % 2 === 0 ? 'shootingStars' : 'cosmicDust',
   };
 }
 
-export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = false }: LivingAtmosphereProps) {
+export default function LivingAtmosphere({ isHero = false }: LivingAtmosphereProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const {
     location,
@@ -186,28 +185,38 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
       height = canvas.height = canvas.parentElement.clientHeight || window.innerHeight;
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    // Smooth internal mouse tracking with zero React re-renders
+    const targetMouse = { x: 0, y: 0 };
+    const currentMouse = { x: 0, y: 0 };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      targetMouse.x = (e.clientX / window.innerWidth - 0.5) * 18;
+      targetMouse.y = (e.clientY / window.innerHeight - 0.5) * 14;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // 1. Procedural Stars with Individual Twinkle Cycles
     const stars = Array.from({ length: profile.starDensity }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * (height * 0.85),
-      size: Math.random() * 1.8 + 0.4,
-      baseAlpha: Math.random() * 0.6 + 0.25,
-      twinkleSpeed: Math.random() * 0.03 + 0.01,
+      size: Math.random() * 1.6 + 0.4,
+      baseAlpha: Math.random() * 0.5 + 0.25,
+      twinkleSpeed: Math.random() * 0.025 + 0.008,
       twinklePhase: Math.random() * Math.PI * 2,
       color: i % 7 === 0 ? '#93c5fd' : i % 11 === 0 ? '#ddd6fe' : '#ffffff',
     }));
 
-    // 2. Procedural Drifting Clouds
-    const cloudCount = 5;
+    // 2. Procedural Drifting Clouds (Clean, lightweight)
+    const cloudCount = isHero ? 3 : 2;
     const clouds = Array.from({ length: cloudCount }, (_, i) => ({
-      x: (i / cloudCount) * width + Math.random() * 100,
-      y: (height * 0.1) + Math.random() * (height * 0.5),
-      radiusX: 180 + Math.random() * 220,
-      radiusY: 60 + Math.random() * 80,
-      speed: (0.15 + Math.random() * 0.25) * ((windSpeed || 10) / 10),
-      opacity: 0.12 + Math.random() * 0.18,
+      x: (i / cloudCount) * width + Math.random() * 60,
+      y: (height * 0.12) + Math.random() * (height * 0.45),
+      radiusX: 160 + Math.random() * 180,
+      radiusY: 50 + Math.random() * 60,
+      speed: (0.12 + Math.random() * 0.2) * ((windSpeed || 10) / 10),
     }));
 
     // 3. Shooting Stars Engine
@@ -221,26 +230,25 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
       decay: number;
     }
     const shootingStars: ShootingStar[] = [];
-    let nextShootingStarTime = Date.now() + 2000 + Math.random() * 4000;
+    let nextShootingStarTime = Date.now() + 3000 + Math.random() * 5000;
 
-    // 4. Rain & Atmospheric Particles
-    const rainDrops = Array.from({ length: isRain ? (weatherState === 'heavyRain' ? 120 : 60) : 0 }, () => ({
+    // 4. Rain Particles
+    const rainCount = isRain ? (weatherState === 'heavyRain' ? 80 : 40) : 0;
+    const rainDrops = Array.from({ length: rainCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      speed: 12 + Math.random() * 10,
-      length: 15 + Math.random() * 18,
-      opacity: 0.25 + Math.random() * 0.35,
+      speed: 12 + Math.random() * 8,
+      length: 14 + Math.random() * 14,
     }));
 
-    // 5. Ambient Light Motives (Floating Sunlight / Stardust)
-    const dustMotes = Array.from({ length: 35 }, () => ({
+    // 5. Floating Dust Motes
+    const dustMotes = Array.from({ length: isHero ? 20 : 10 }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: -Math.random() * 0.4 - 0.1,
-      alpha: Math.random() * 0.4 + 0.1,
-      fadeSpeed: Math.random() * 0.01 + 0.005,
+      radius: Math.random() * 1.2 + 0.4,
+      speedX: (Math.random() - 0.5) * 0.25,
+      speedY: -Math.random() * 0.3 - 0.08,
+      alpha: Math.random() * 0.35 + 0.1,
     }));
 
     let frame = 0;
@@ -250,8 +258,12 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
       frame++;
       ctx.clearRect(0, 0, width, height);
 
-      const mx = mousePos.x * 25;
-      const my = mousePos.y * 20;
+      // Smooth mouse lerp
+      currentMouse.x += (targetMouse.x - currentMouse.x) * 0.05;
+      currentMouse.y += (targetMouse.y - currentMouse.y) * 0.05;
+
+      const mx = currentMouse.x;
+      const my = currentMouse.y;
 
       // ----------------------------------------------------
       // A. NIGHT SKY: Dynamic Location Gradients & Nebulae
@@ -268,11 +280,11 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         ctx.fillRect(0, 0, width, height);
 
         // Soft Moving Cosmic Nebula Sheen
-        const nebulaX = width * 0.5 + Math.sin(frame * 0.005) * 60 + mx * 0.5;
-        const nebulaY = height * 0.3 + Math.cos(frame * 0.004) * 30 + my * 0.5;
-        const nebulaGrad = ctx.createRadialGradient(nebulaX, nebulaY, 10, nebulaX, nebulaY, width * 0.55);
+        const nebulaX = width * 0.5 + Math.sin(frame * 0.004) * 40 + mx * 0.3;
+        const nebulaY = height * 0.3 + Math.cos(frame * 0.003) * 20 + my * 0.3;
+        const nebulaGrad = ctx.createRadialGradient(nebulaX, nebulaY, 10, nebulaX, nebulaY, width * 0.5);
         nebulaGrad.addColorStop(0, profile.nebulaColor);
-        nebulaGrad.addColorStop(0.6, 'rgba(30, 27, 75, 0.05)');
+        nebulaGrad.addColorStop(0.6, 'rgba(30, 27, 75, 0.03)');
         nebulaGrad.addColorStop(1, 'transparent');
 
         ctx.fillStyle = nebulaGrad;
@@ -280,8 +292,8 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
 
         // Aurora Ribbon Effect (for Northern Europe & High Latitudes)
         if (profile.auroraColor) {
-          const auroraY = height * 0.25 + Math.sin(frame * 0.01) * 20;
-          const auroraGrad = ctx.createLinearGradient(0, auroraY - 80, 0, auroraY + 120);
+          const auroraY = height * 0.22 + Math.sin(frame * 0.008) * 15;
+          const auroraGrad = ctx.createLinearGradient(0, auroraY - 60, 0, auroraY + 90);
           auroraGrad.addColorStop(0, 'transparent');
           auroraGrad.addColorStop(0.5, profile.auroraColor);
           auroraGrad.addColorStop(1, 'transparent');
@@ -289,8 +301,8 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
           ctx.fillStyle = auroraGrad;
           ctx.beginPath();
           ctx.moveTo(0, auroraY);
-          for (let x = 0; x <= width; x += 40) {
-            const wave = Math.sin(x * 0.006 + frame * 0.015) * 30 + Math.cos(x * 0.012 - frame * 0.01) * 15;
+          for (let x = 0; x <= width; x += 50) {
+            const wave = Math.sin(x * 0.005 + frame * 0.012) * 20 + Math.cos(x * 0.01 - frame * 0.008) * 10;
             ctx.lineTo(x, auroraY + wave);
           }
           ctx.lineTo(width, height);
@@ -302,14 +314,14 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         // Twinkling Stars
         stars.forEach((star) => {
           star.twinklePhase += star.twinkleSpeed;
-          const currentAlpha = star.baseAlpha + Math.sin(star.twinklePhase) * 0.35;
+          const currentAlpha = star.baseAlpha + Math.sin(star.twinklePhase) * 0.25;
           const clampedAlpha = Math.max(0.1, Math.min(1, currentAlpha));
 
           ctx.save();
           ctx.fillStyle = star.color;
           ctx.globalAlpha = clampedAlpha;
           ctx.beginPath();
-          ctx.arc(star.x + mx * 0.3, star.y + my * 0.3, star.size, 0, Math.PI * 2);
+          ctx.arc(star.x + mx * 0.2, star.y + my * 0.2, star.size, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
         });
@@ -318,14 +330,14 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         if (Date.now() > nextShootingStarTime && profile.specialEffect === 'shootingStars') {
           shootingStars.push({
             x: Math.random() * width * 0.8 + width * 0.1,
-            y: Math.random() * height * 0.35,
-            length: 80 + Math.random() * 60,
-            speed: 16 + Math.random() * 10,
-            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.2,
-            opacity: 1,
-            decay: 0.025 + Math.random() * 0.015,
+            y: Math.random() * height * 0.3,
+            length: 60 + Math.random() * 50,
+            speed: 14 + Math.random() * 8,
+            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.15,
+            opacity: 0.9,
+            decay: 0.022 + Math.random() * 0.012,
           });
-          nextShootingStarTime = Date.now() + 4000 + Math.random() * 8000;
+          nextShootingStarTime = Date.now() + 5000 + Math.random() * 9000;
         }
 
         for (let i = shootingStars.length - 1; i >= 0; i--) {
@@ -344,11 +356,11 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
 
           const sGrad = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
           sGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-          sGrad.addColorStop(0.7, 'rgba(186, 230, 253, 0.6)');
+          sGrad.addColorStop(0.7, 'rgba(186, 230, 253, 0.5)');
           sGrad.addColorStop(1, `rgba(255, 255, 255, ${s.opacity})`);
 
           ctx.strokeStyle = sGrad;
-          ctx.lineWidth = 1.8;
+          ctx.lineWidth = 1.5;
           ctx.beginPath();
           ctx.moveTo(tailX, tailY);
           ctx.lineTo(s.x, s.y);
@@ -359,17 +371,17 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         // B. DAYTIME / SUNSET ATMOSPHERE
         // ----------------------------------------------------
         if (isSunset) {
-          const sunsetGrad = ctx.createLinearGradient(0, height * 0.3, 0, height);
+          const sunsetGrad = ctx.createLinearGradient(0, height * 0.35, 0, height);
           sunsetGrad.addColorStop(0, 'transparent');
-          sunsetGrad.addColorStop(0.6, 'rgba(249, 115, 22, 0.18)');
-          sunsetGrad.addColorStop(1, 'rgba(225, 29, 72, 0.25)');
+          sunsetGrad.addColorStop(0.6, 'rgba(249, 115, 22, 0.14)');
+          sunsetGrad.addColorStop(1, 'rgba(225, 29, 72, 0.2)');
           ctx.fillStyle = sunsetGrad;
           ctx.fillRect(0, 0, width, height);
         } else if (isDawn) {
-          const dawnGrad = ctx.createLinearGradient(0, height * 0.4, 0, height);
+          const dawnGrad = ctx.createLinearGradient(0, height * 0.45, 0, height);
           dawnGrad.addColorStop(0, 'transparent');
-          dawnGrad.addColorStop(0.6, 'rgba(251, 146, 60, 0.14)');
-          dawnGrad.addColorStop(1, 'rgba(244, 63, 94, 0.18)');
+          dawnGrad.addColorStop(0.6, 'rgba(251, 146, 60, 0.12)');
+          dawnGrad.addColorStop(1, 'rgba(244, 63, 94, 0.15)');
           ctx.fillStyle = dawnGrad;
           ctx.fillRect(0, 0, width, height);
         }
@@ -382,15 +394,15 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         cloud.x += cloud.speed;
         if (cloud.x - cloud.radiusX > width) {
           cloud.x = -cloud.radiusX;
-          cloud.y = height * 0.1 + Math.random() * (height * 0.5);
+          cloud.y = height * 0.12 + Math.random() * (height * 0.45);
         }
 
-        const cx = cloud.x + mx * 0.2;
-        const cy = cloud.y + my * 0.2;
+        const cx = cloud.x + mx * 0.15;
+        const cy = cloud.y + my * 0.15;
 
         const cGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, cloud.radiusX);
         cGrad.addColorStop(0, profile.cloudTint);
-        cGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.06)');
+        cGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.04)');
         cGrad.addColorStop(1, 'transparent');
 
         ctx.fillStyle = cGrad;
@@ -403,7 +415,7 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
       // D. FLOATING LIGHT DUST & PARTICLES
       // ----------------------------------------------------
       dustMotes.forEach((mote) => {
-        mote.x += mote.speedX + (isWindy ? 0.8 : 0);
+        mote.x += mote.speedX + (isWindy ? 0.6 : 0);
         mote.y += mote.speedY;
 
         if (mote.y < 0) {
@@ -417,7 +429,7 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
         ctx.fillStyle = isNight ? '#93c5fd' : '#fef08a';
         ctx.globalAlpha = mote.alpha;
         ctx.beginPath();
-        ctx.arc(mote.x + mx * 0.5, mote.y + my * 0.5, mote.radius, 0, Math.PI * 2);
+        ctx.arc(mote.x + mx * 0.3, mote.y + my * 0.3, mote.radius, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       });
@@ -426,12 +438,12 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
       // E. LIVE RAIN & THUNDERSTORM SIMULATION
       // ----------------------------------------------------
       if (isRain && rainDrops.length > 0) {
-        ctx.strokeStyle = 'rgba(186, 230, 253, 0.4)';
-        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = 'rgba(186, 230, 253, 0.35)';
+        ctx.lineWidth = 1.1;
 
         rainDrops.forEach((drop) => {
           drop.y += drop.speed;
-          drop.x += isWindy ? 2.5 : 0.5;
+          drop.x += isWindy ? 2 : 0.4;
 
           if (drop.y > height) {
             drop.y = -drop.length;
@@ -440,13 +452,13 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
 
           ctx.beginPath();
           ctx.moveTo(drop.x, drop.y);
-          ctx.lineTo(drop.x + (isWindy ? 4 : 1), drop.y + drop.length);
+          ctx.lineTo(drop.x + (isWindy ? 3 : 0.8), drop.y + drop.length);
           ctx.stroke();
         });
 
         // Thunder Lightning Flash
-        if (isThunder && Math.random() < 0.008) {
-          lightningFlash = 0.7;
+        if (isThunder && Math.random() < 0.006) {
+          lightningFlash = 0.6;
         }
         if (lightningFlash > 0) {
           ctx.fillStyle = `rgba(255, 255, 255, ${lightningFlash})`;
@@ -463,9 +475,10 @@ export default function LivingAtmosphere({ mousePos = { x: 0, y: 0 }, isHero = f
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
       cancelAnimationFrame(animId);
     };
-  }, [profile, isNight, isSunset, isDawn, isRain, isThunder, weatherState, windSpeed, isWindy, mousePos.x, mousePos.y]);
+  }, [profile, isNight, isSunset, isDawn, isRain, isThunder, weatherState, windSpeed, isWindy, isHero]);
 
   return (
     <div className={`absolute inset-0 pointer-events-none overflow-hidden ${isHero ? 'z-10' : 'z-0'}`}>

@@ -1,15 +1,19 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { useEnvironment } from '@/context/EnvironmentContext';
 import LivingAtmosphere from '@/components/LivingAtmosphere';
 
 export default function HeroLanding() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { isDay, timePhase, weatherState, isWindy, windSpeed, themeMode } = useEnvironment();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const { isDay, timePhase, weatherState, themeMode } = useEnvironment();
+
+  // Hardware-accelerated Motion Value for subtle horizontal parallax (0 React re-renders)
+  const mouseX = useMotionValue(0);
+  const smoothMouseX = useSpring(mouseX, { stiffness: 60, damping: 18 });
+  const parallaxX = useTransform(smoothMouseX, [-0.5, 0.5], [8, -8]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -18,17 +22,16 @@ export default function HeroLanding() {
 
   const smoothY = useSpring(scrollYProgress, { stiffness: 100, damping: 20 });
   const imageY = useTransform(smoothY, [0, 1], ['0%', '16%']);
-  const imageScale = useTransform(smoothY, [0, 1], [1, 1.08]);
+  const imageScale = useTransform(smoothY, [0, 1], [1, 1.06]);
   const contentY = useTransform(smoothY, [0, 1], [0, -45]);
   const contentOpacity = useTransform(smoothY, [0, 0.75], [1, 0]);
 
-  // Interactive 3D mouse parallax
+  // Direct mouse move without React re-renders
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY, currentTarget } = e;
-    const { width, height, left, top } = currentTarget.getBoundingClientRect();
+    const { clientX, currentTarget } = e;
+    const { width, left } = currentTarget.getBoundingClientRect();
     const x = (clientX - left) / width - 0.5;
-    const y = (clientY - top) / height - 0.5;
-    setMousePos({ x, y });
+    mouseX.set(x);
   };
 
   const handleScrollTo = (id: string) => {
@@ -38,11 +41,7 @@ export default function HeroLanding() {
     }
   };
 
-  // Determine if Night Hero Image should be active:
-  // 1. Manually selected "dark" mode
-  // 2. Auto/System mode when local time is night or twilight or !isDay
   const isNightMode = themeMode === 'dark' || (themeMode === 'system' && (!isDay || timePhase === 'night' || timePhase === 'twilight'));
-
   const isDawn = timePhase === 'dawn';
   const isGoldenHour = timePhase === 'goldenHour';
   const isSunset = timePhase === 'sunset';
@@ -60,21 +59,11 @@ export default function HeroLanding() {
       {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night & Desktop vs. Mobile Images) */}
       {/* ========================================================================= */}
       <motion.div 
-        animate={isWindy ? {
-          x: [-mousePos.x * 14 - 2, -mousePos.x * 14 + 2, -mousePos.x * 14 - 2],
-          y: [-mousePos.y * 14 - 1, -mousePos.y * 14 + 1, -mousePos.y * 14 - 1],
-          rotate: [-0.15, 0.15, -0.15]
-        } : {
-          x: -mousePos.x * 14,
-          y: -mousePos.y * 14,
-          rotate: 0
+        style={{ 
+          y: imageY, 
+          scale: imageScale,
+          x: parallaxX,
         }}
-        transition={{
-          duration: isWindy ? Math.max(3, 80 / (windSpeed || 10)) : 0.3,
-          repeat: isWindy ? Infinity : 0,
-          ease: 'easeInOut'
-        }}
-        style={{ y: imageY, scale: imageScale }}
         className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] pointer-events-none origin-center"
       >
         {/* ==================== DAYTIME HERO IMAGES ==================== */}
@@ -88,10 +77,10 @@ export default function HeroLanding() {
               priority
               sizes="100vw"
               quality={95}
-              className="w-full h-full object-cover object-center filter brightness-[1.08] contrast-[1.03]"
+              className="w-full h-full object-cover object-center filter brightness-[1.06] contrast-[1.02]"
             />
           </div>
-          {/* Mobile Daytime (Custom Vertical Aspect) */}
+          {/* Mobile Daytime */}
           <div className="block sm:hidden absolute inset-0 w-full h-full">
             <Image
               src="/images/hero-lying-mobile.png"
@@ -119,7 +108,7 @@ export default function HeroLanding() {
               className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.04]"
             />
           </div>
-          {/* Mobile Nighttime (Custom Vertical Aspect) */}
+          {/* Mobile Nighttime */}
           <div className="block sm:hidden absolute inset-0 w-full h-full">
             <Image
               src="/images/hero-lying-night-mobile.png"
@@ -135,9 +124,9 @@ export default function HeroLanding() {
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* 2. LIVING INTERACTIVE ATMOSPHERE (Moving Sky, Stars, Clouds & Wind)       */}
+      {/* 2. LIVING INTERACTIVE ATMOSPHERE (Smooth 60FPS Moving Sky & Stars)        */}
       {/* ========================================================================= */}
-      <LivingAtmosphere mousePos={mousePos} isHero={true} />
+      <LivingAtmosphere isHero={true} />
 
       {/* Rain Atmosphere Mood */}
       <div 
@@ -155,7 +144,7 @@ export default function HeroLanding() {
           isGoldenHour && !isNightMode ? 'opacity-90' : 'opacity-0'
         }`}
         style={{
-          background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.35) 0%, rgba(255, 120, 30, 0.15) 45%, transparent 75%)'
+          background: 'radial-gradient(circle at 75% 30%, rgba(255, 170, 50, 0.3) 0%, rgba(255, 120, 30, 0.12) 45%, transparent 75%)'
         }}
       />
 
@@ -165,7 +154,7 @@ export default function HeroLanding() {
           isSunset && !isNightMode ? 'opacity-85' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(to top, rgba(90, 20, 110, 0.45) 0%, rgba(220, 60, 80, 0.3) 40%, rgba(255, 140, 50, 0.15) 70%, transparent 100%)'
+          background: 'linear-gradient(to top, rgba(90, 20, 110, 0.35) 0%, rgba(220, 60, 80, 0.25) 40%, rgba(255, 140, 50, 0.12) 70%, transparent 100%)'
         }}
       />
 
@@ -175,7 +164,7 @@ export default function HeroLanding() {
           isDawn && !isNightMode ? 'opacity-80' : 'opacity-0'
         }`}
         style={{
-          background: 'linear-gradient(to top, rgba(255, 130, 80, 0.35) 0%, rgba(255, 190, 120, 0.18) 35%, transparent 70%)'
+          background: 'linear-gradient(to top, rgba(255, 130, 80, 0.3) 0%, rgba(255, 190, 120, 0.15) 35%, transparent 70%)'
         }}
       />
 
@@ -183,7 +172,7 @@ export default function HeroLanding() {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.45) 0%, rgba(5, 10, 25, 0.1) 45%, rgba(5, 10, 25, 0.55) 100%)'
+          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.4) 0%, rgba(5, 10, 25, 0.08) 45%, rgba(5, 10, 25, 0.5) 100%)'
         }}
       />
 
@@ -208,17 +197,16 @@ export default function HeroLanding() {
             </span>
           </motion.div>
 
-          {/* Master Headline: Pure White, Reduced & Balanced Typographical Scale */}
+          {/* Master Headline */}
           <h1 
-            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-3"
-            style={{ fontFamily: 'var(--font-display)' }}
+            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-bold leading-[1.1] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-3"
           >
             {titleWords.map((word, idx) => (
               <motion.span
                 key={idx}
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.12 + idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.4, delay: 0.12 + idx * 0.05, ease: [0.16, 1, 0.3, 1] }}
                 className="inline-block mr-2 text-white"
               >
                 {word}
@@ -245,38 +233,29 @@ export default function HeroLanding() {
             <button
               type="button"
               onClick={() => handleScrollTo('work')}
-              className="touch-target inline-flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm border border-blue-400/40 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-400"
+              className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm border border-blue-400/40 shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-400"
             >
-              View works
-              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
+              <span>Explore My Work</span>
+              <span>&darr;</span>
             </button>
           </motion.div>
         </motion.div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 4. BOTTOM HERO BAR: ONLY 1 CENTERED "SCROLL TO EXPLORE" BUTTON            */}
+      {/* 4. BOTTOM BAR: SCROLL CUE IN CENTER                                       */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1440px] mx-auto w-full flex items-center justify-center text-white/90 font-mono text-xs border-t border-white/15 pt-3 pointer-events-auto">
+      <div className="relative z-20 w-full flex items-center justify-center pointer-events-none mt-auto">
         <button
           type="button"
-          onClick={() => handleScrollTo('about')}
-          className="touch-target flex items-center gap-2 text-white hover:text-blue-300 transition-colors cursor-pointer group"
-          aria-label="Scroll to explore"
+          onClick={() => handleScrollTo('work')}
+          className="touch-target pointer-events-auto flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 text-white/90 text-xs font-mono tracking-wider transition-all duration-300 hover:scale-105 cursor-pointer shadow-md"
+          aria-label="Scroll down to work section"
         >
-          <span className="tracking-widest uppercase text-[10px] sm:text-xs font-bold">Scroll to explore</span>
-          <motion.span
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-4 h-4 rounded-full border border-white/50 flex items-center justify-center group-hover:border-blue-400 group-hover:text-blue-400 transition-colors text-[10px]"
-          >
-            &darr;
-          </motion.span>
+          <span className="inline-block animate-bounce">↓</span>
+          <span>Scroll to explore</span>
         </button>
       </div>
-
     </section>
   );
 }
