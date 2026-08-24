@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { useEnvironment, TimePhase, WeatherState, LocationRegion } from '@/context/EnvironmentContext';
+import LivingAtmosphere from '@/components/LivingAtmosphere';
 
 // Select authentic photorealistic sky photograph based on live Time, Weather & Region
 function getPhotorealisticSkyAsset(timePhase: TimePhase, weatherState: WeatherState, region: LocationRegion, isDay: boolean): string {
@@ -240,6 +241,9 @@ export default function AtmosphericSkyCanvas() {
           }`}
         />
       </motion.div>
+
+      {/* 2. Living Interactive Atmospheric Canvas (Clouds, Starfield, Dynamic Sky, Shooting Stars) */}
+      <LivingAtmosphere isHero={false} />
 
       {/* 2. REAL-TIME ASTRONOMICAL MOVING SUN & MOON (Positioned accurately according to local clock) */}
       <motion.div

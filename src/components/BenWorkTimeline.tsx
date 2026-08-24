@@ -33,7 +33,7 @@ const workItems: WorkItem[] = [
     outcomeMetricValue: 68,
     outcomeMetricSuffix: '%',
     outcome: 'reduction in SOW authoring cycle time across global teams',
-    problem: 'Eliminated weeks of contract estimation latency with automated pricing tables and structured approval workflows.',
+    problem: 'Rebuilt pricing matrices and authoring workflows to eliminate weeks of manual delivery delay.',
     role: 'Lead Product Designer · UX Architecture · Design System',
     tags: ['Enterprise SaaS', 'Workflow Automation', 'Design System', 'WCAG 2.2 AA'],
     image: '/images/project_esow_1775675924462.png',
@@ -48,8 +48,8 @@ const workItems: WorkItem[] = [
     outcomeMetricValue: 4.2,
     outcomeMetricSuffix: 'x',
     outcomeMetricDecimals: 1,
-    outcome: 'faster iteration speed for testing multi-step agent chains',
-    problem: 'Visualized non-deterministic AI outputs and streaming prompt nodes into an intuitive, real-time playground.',
+    outcome: 'faster iteration speed for testing multi-agent chains',
+    problem: 'Visual prompt tree canvas with streaming state feedback for complex multi-agent LLM systems.',
     role: 'Product Designer & AI Prototyper · Interaction Model',
     tags: ['AI Product Design', 'Generative UI', 'Agent Workflows', 'Prompt Canvas'],
     image: '/images/hero-video.mp4',
@@ -62,8 +62,8 @@ const workItems: WorkItem[] = [
     category: 'Critical Infrastructure · Telemetry',
     outcomeMetricValue: 52,
     outcomeMetricSuffix: '%',
-    outcome: 'drop in dispatch latency for emergency grid repairs',
-    problem: 'Unified legacy workforce rosters and live sensor streams into a calm, high-density operations center.',
+    outcome: 'reduction in emergency incident dispatch latency',
+    problem: 'Unified disparate hardware telemetry and legacy rosters into a real-time operator console.',
     role: 'Product UX Designer · Information Architecture',
     tags: ['Critical Infrastructure', 'Information Architecture', 'Data Density'],
     image: '/images/project_sas_1775675939361.png',
@@ -75,8 +75,8 @@ const workItems: WorkItem[] = [
     category: 'Cloud Infrastructure · Sandboxes',
     outcomeMetricValue: 80,
     outcomeMetricSuffix: '%',
-    outcome: 'drop in friction when spinning up remote sandbox clusters',
-    problem: 'Automated developer environment setup to eliminate configuration errors across distributed squads.',
+    outcome: 'drop in developer environment setup friction',
+    problem: 'One-click cloud sandboxes eliminating local virtualization conflicts for distributed squads.',
     role: 'UI/UX Architect · Concept & Prototype Design',
     tags: ['Cloud Computing', 'UI/UX Architecture', 'Concept Design'],
     image: '/images/project_emulate_1775675955645.png',
@@ -94,7 +94,7 @@ export default function BenWorkTimeline() {
         {/* Category, Year & Click Indicator */}
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50">
+            <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50">
               {item.category}
             </span>
             <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
@@ -109,7 +109,7 @@ export default function BenWorkTimeline() {
 
         {/* Title & Core Problem */}
         <div className="space-y-1">
-          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {item.title}
           </h3>
           <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed line-clamp-2">
@@ -118,7 +118,7 @@ export default function BenWorkTimeline() {
         </div>
 
         {/* Impact Metric Highlight with Live CountUp */}
-        <div className="p-3 sm:p-3.5 rounded-xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-3">
+        <div className="p-3 sm:p-3.5 rounded-xl bg-zinc-50 dark:bg-black/40 border border-black/5 dark:border-white/10 flex items-center gap-3.5">
           <div className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
             <CountUp
               value={item.outcomeMetricValue}
@@ -171,19 +171,19 @@ export default function BenWorkTimeline() {
   );
 
   return (
-    <section id="work" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
+    <section id="work" className="px-4 py-8 sm:py-12 sm:px-6 md:px-10 lg:px-12 max-w-[1440px] mx-auto w-full font-sans">
       {/* Sticky Overlapping Project Cards Stack with Integrated Header */}
       <div className="relative flex flex-col gap-6 sm:gap-8 pb-10">
         {workItems.map((item, idx) => {
-          const topOffset = 84 + idx * 20;
+          const topOffset = 84 + idx * 18;
 
           return (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-30px' }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              viewport={{ once: true, margin: '-20px' }}
+              transition={{ duration: 0.45, delay: idx * 0.06 }}
               style={{
                 top: `${topOffset}px`,
                 zIndex: idx + 10,
@@ -192,7 +192,7 @@ export default function BenWorkTimeline() {
             >
               {/* Integrated Header at the top of Card 1 */}
               {idx === 0 && (
-                <div className="border-b border-black/5 dark:border-white/10 pb-4 mb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div className="border-b border-black/5 dark:border-white/10 pb-3.5 mb-3.5 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                   <div className="space-y-1">
                     <p className="eyebrow text-blue-600 dark:text-blue-400">
                       Featured Case Studies

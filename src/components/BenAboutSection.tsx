@@ -5,10 +5,10 @@ import Image from 'next/image';
 
 export default function BenAboutSection() {
   return (
-    <section id="about" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
+    <section id="about" className="px-4 py-8 sm:py-12 sm:px-6 md:px-10 lg:px-12 max-w-[1440px] mx-auto w-full font-sans">
       <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-colors duration-300">
         
-        {/* Section Header */}
+        {/* Section Eyebrow & Heading */}
         <div className="space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
           <p className="eyebrow text-blue-600 dark:text-blue-400">
             A bit about me
@@ -19,7 +19,7 @@ export default function BenAboutSection() {
           </h2>
         </div>
 
-        <div className="mt-8 flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-8 sm:mt-10 flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-between">
           
           {/* Studio Portrait Image */}
           <div className="relative h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-[340px] sm:max-w-[380px] shrink-0 overflow-hidden rounded-3xl border border-black/10 dark:border-white/20 bg-[#090d19] shadow-xl group">
@@ -31,7 +31,7 @@ export default function BenAboutSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
-              <span className="bg-black/70 px-3 py-1.5 rounded-full border border-white/20 backdrop-blur-md font-semibold">
+              <span className="bg-black/60 px-3 py-1 rounded-full border border-white/20 backdrop-blur-md font-semibold text-[11px]">
                 Sai Santosh Madhari
               </span>
               <span className="text-zinc-300 text-[11px]">
@@ -44,25 +44,25 @@ export default function BenAboutSection() {
           <div className="w-full max-w-[680px] space-y-5">
             
             {/* Clean Quote by Santosh */}
-            <div className="border-l-2 border-blue-600 pl-4 py-1">
-              <p className="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 italic leading-relaxed">
+            <div className="border-l-2 border-blue-500 pl-4 py-1">
+              <p className="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 italic leading-relaxed font-normal">
                 &ldquo;I’m a generalist by nature, curious across strategy, research, Design systems, Business and AI going deep where the problem demands, and connecting the pieces to create better products.&rdquo;
               </p>
-              <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 mt-1.5 block">
+              <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 mt-1 block">
                 — Sai Santosh
               </span>
             </div>
 
-            {/* Concise Narrative Lines */}
-            <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+            {/* Concise Narrative Paragraphs */}
+            <div className="space-y-3.5 text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
               <p>
-                My foundation started in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, which trained me to observe patterns, human emotion, and systemic balance — leading directly into UX and Product Design.
+                My foundation started in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, training me to observe patterns, human emotion, and systemic balance—which naturally led me into <strong className="text-zinc-900 dark:text-white font-semibold">UX and Product Design</strong>.
               </p>
               <p>
-                At <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong>, I design complex enterprise SaaS products and integrate AI workflows, turning heavy requirements into clear, intuitive workflows.
+                Today at <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong>, I architect enterprise SaaS products and integrate AI workflows, turning complex operational requirements into simple, intuitive workflows.
               </p>
               <p>
-                Outside of work, I explore agentic AI, design tooling, and community learning — finding practical ways to bring modern technology and human-centered design together.
+                Outside of work, I explore agentic workflows, design systems, and community learning—always experimenting and finding new ways to bring technology and human-centered craft together.
               </p>
             </div>
 
