@@ -1,9 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import QueryModal from './QueryModal';
 
 export default function AiExplorationSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <section id="ai-exploration" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
       <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
@@ -25,15 +28,15 @@ export default function AiExplorationSection() {
           </div>
         </div>
 
-        {/* Modern Bento Grid Layout for AI Experiments */}
+        {/* Distinct Sequential Bento Grid Layout for AI Experiments */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
           
-          {/* Bento Cell 1: Flagship Live App — LevelUp Designer (8 Cols) */}
+          {/* Card 1: Flagship Live App — LevelUp Designer (8 Cols) */}
           <article className="lg:col-span-8 rounded-3xl border border-black/10 dark:border-white/15 bg-zinc-50/80 dark:bg-black/40 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
                     Interactive AI Web App
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
@@ -41,15 +44,6 @@ export default function AiExplorationSection() {
                     LIVE
                   </span>
                 </div>
-                <a
-                  href="https://level-up-designer.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-all hover:scale-105"
-                >
-                  <span>Launch App</span>
-                  <span>↗</span>
-                </a>
               </div>
 
               <div className="space-y-2">
@@ -73,21 +67,33 @@ export default function AiExplorationSection() {
               </div>
             </div>
 
-            {/* Feature Chips */}
-            <div className="flex flex-wrap gap-2 pt-2 border-t border-black/5 dark:border-white/10">
-              {['Interactive Decks', 'Problem vs. Solution Space', 'Focus Timer & Journal', 'Gemini AI Assistant', 'Next.js'].map((tag, tIdx) => (
-                <span key={tIdx} className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2.5 py-0.5 rounded-full shadow-2xs">
-                  {tag}
-                </span>
-              ))}
+            {/* Feature Chips & Clear CTA */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+              <div className="flex flex-wrap gap-1.5">
+                {['Interactive Decks', 'Focus Timer', 'Gemini AI Assistant', 'Next.js'].map((tag, tIdx) => (
+                  <span key={tIdx} className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2.5 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="https://level-up-designer.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="touch-target inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
+              >
+                <span>Launch App</span>
+                <span>↗</span>
+              </a>
             </div>
           </article>
 
-          {/* Bento Cell 2: Prompt Flow OS (4 Cols) */}
+          {/* Card 2: Prompt Flow OS (4 Cols) */}
           <article className="lg:col-span-4 rounded-3xl border border-black/10 dark:border-white/15 bg-zinc-50/80 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
                   Spatial AI
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">Research Lab</span>
@@ -107,20 +113,31 @@ export default function AiExplorationSection() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
-              {['Knowledge Graphs', 'Node Interface', 'Claude API'].map((tag, tIdx) => (
-                <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
-                  {tag}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+              <div className="flex flex-wrap gap-1.5">
+                {['Knowledge Graphs', 'Claude API'].map((tag, tIdx) => (
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                <span>Details</span>
+                <span>&rarr;</span>
+              </button>
             </div>
           </article>
 
-          {/* Bento Cell 3: Dynamic Token Synthesizer (6 Cols) */}
+          {/* Card 3: Dynamic Token Synthesizer (6 Cols) */}
           <article className="lg:col-span-6 rounded-3xl border border-black/10 dark:border-white/15 bg-zinc-50/80 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
                   Design Systems &bull; Algorithmic
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">Active Beta</span>
@@ -134,20 +151,31 @@ export default function AiExplorationSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
-              {['Design Tokens', 'WCAG 2.2 AA', 'APCA Contrast', 'Tailwind'].map((tag, tIdx) => (
-                <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
-                  {tag}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+              <div className="flex flex-wrap gap-1.5">
+                {['Design Tokens', 'WCAG 2.2 AA', 'APCA'].map((tag, tIdx) => (
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                <span>Details</span>
+                <span>&rarr;</span>
+              </button>
             </div>
           </article>
 
-          {/* Bento Cell 4: Agent Orchestration Workbench (6 Cols) */}
+          {/* Card 4: Agent Orchestration Workbench (6 Cols) */}
           <article className="lg:col-span-6 rounded-3xl border border-black/10 dark:border-white/15 bg-zinc-50/80 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
                   Interaction Model &bull; UI States
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">Prototype</span>
@@ -161,18 +189,31 @@ export default function AiExplorationSection() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
-              {['Generative UI', 'Human-in-the-Loop', 'Streaming States'].map((tag, tIdx) => (
-                <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
-                  {tag}
-                </span>
-              ))}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+              <div className="flex flex-wrap gap-1.5">
+                {['Generative UI', 'Human-in-the-Loop'].map((tag, tIdx) => (
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                <span>Details</span>
+                <span>&rarr;</span>
+              </button>
             </div>
           </article>
 
         </div>
 
       </div>
+
+      <QueryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 }

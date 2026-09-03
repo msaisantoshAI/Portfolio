@@ -2,16 +2,25 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeSelector from '@/components/ThemeSelector';
 
 export default function Navigation() {
+  const pathname = usePathname();
+  const isAboutPage = pathname === '/about';
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (isAboutPage) {
+      setActiveSection('about');
+      return;
+    }
+
     const handleScroll = () => {
-      const sections = ['home', 'work', 'experience', 'ai-exploration', 'about', 'drawings', 'talks', 'contact'];
+      const sections = ['home', 'work', 'experience', 'ai-exploration'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -26,17 +35,14 @@ export default function Navigation() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isAboutPage]);
 
   const navLinks = [
-    { name: 'Home', href: '#home', id: 'home' },
-    { name: 'Work', href: '#work', id: 'work' },
-    { name: 'Experience', href: '#experience', id: 'experience' },
-    { name: 'AI Exploration', href: '#ai-exploration', id: 'ai-exploration' },
-    { name: 'About', href: '#about', id: 'about' },
-    { name: 'Artworks', href: '#drawings', id: 'drawings' },
-    { name: 'Talks', href: '#talks', id: 'talks' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: 'Home', href: '/#home', id: 'home' },
+    { name: 'Work', href: '/#work', id: 'work' },
+    { name: 'Experience', href: '/#experience', id: 'experience' },
+    { name: 'AI Exploration', href: '/#ai-exploration', id: 'ai-exploration' },
+    { name: 'About', href: '/about', id: 'about' },
   ];
 
   return (
@@ -46,8 +52,8 @@ export default function Navigation() {
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-3 pointer-events-auto">
           
           {/* Left: Brand Identity Pill */}
-          <a 
-            href="#home" 
+          <Link 
+            href="/#home" 
             className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/20 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
             aria-label="Sai Santosh Madhari Home"
           >
@@ -62,7 +68,7 @@ export default function Navigation() {
             <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
               Sai Santosh
             </span>
-          </a>
+          </Link>
 
           {/* Center: Desktop Navigation Pills (Hidden on mobile) */}
           <nav 
@@ -73,7 +79,7 @@ export default function Navigation() {
               {navLinks.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={`touch-target px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer ${
@@ -83,7 +89,7 @@ export default function Navigation() {
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
@@ -151,7 +157,7 @@ export default function Navigation() {
               {navLinks.map((item) => {
                 const isActive = activeSection === item.id;
                 return (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -162,7 +168,7 @@ export default function Navigation() {
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 );
               })}
 

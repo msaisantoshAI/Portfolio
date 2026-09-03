@@ -14,7 +14,8 @@ function getPhotorealisticSkyAsset(timePhase: TimePhase, weatherState: WeatherSt
     return '/images/locations/sky-rain.jpg';
   }
 
-  if (!isDay || timePhase === 'night') {
+  // Nighttime
+  if (!isDay || timePhase === 'night' || timePhase === 'twilight') {
     if (region === 'india') return '/images/locations/india-sky-night.jpg';
     if (region === 'europe') return '/images/locations/europe-sky-night.jpg';
     if (region === 'asia') return '/images/locations/asia-sky-night.jpg';
@@ -22,27 +23,7 @@ function getPhotorealisticSkyAsset(timePhase: TimePhase, weatherState: WeatherSt
     return '/images/locations/sky-night.jpg';
   }
 
-  if (timePhase === 'sunset' || timePhase === 'twilight') {
-    if (region === 'india') return '/images/locations/india-sky-sunset.jpg';
-    if (region === 'europe') return '/images/locations/europe-sky-sunset.jpg';
-    if (region === 'asia') return '/images/locations/asia-sky-sunset.jpg';
-    if (region === 'us') return '/images/locations/us-sky-sunset.jpg';
-    return '/images/locations/sky-sunset.jpg';
-  }
-
-  if (timePhase === 'goldenHour') {
-    return '/images/locations/sky-golden.jpg';
-  }
-
-  if (timePhase === 'dawn') {
-    return '/images/locations/sky-dawn.jpg';
-  }
-
-  if (timePhase === 'morning') {
-    return '/images/locations/sky-morning.jpg';
-  }
-
-  // Afternoon / Day default
+  // Daytime / Clean live atmospheric sky
   if (region === 'india') return '/images/locations/india-sky-day.jpg';
   if (region === 'europe') return '/images/locations/europe-sky-day.jpg';
   if (region === 'asia') return '/images/locations/asia-sky-day.jpg';

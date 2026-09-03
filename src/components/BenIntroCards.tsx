@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export default function BenIntroCards() {
@@ -36,12 +37,12 @@ export default function BenIntroCards() {
 
           {/* Action CTA Button */}
           <div className="pt-2">
-            <a
-              href="#about"
+            <Link
+              href="/about"
               className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-sm hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              Learn more about me &rarr;
-            </a>
+              Learn more about me
+            </Link>
           </div>
         </div>
 
