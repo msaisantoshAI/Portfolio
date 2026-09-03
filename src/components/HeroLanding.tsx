@@ -37,26 +37,22 @@ export default function HeroLanding() {
     }
   };
 
-  // Determine if Night Hero Image should be active:
-  // 1. Manually selected "dark" mode
-  // 2. Auto/System mode when local time is night or twilight or !isDay
+  // Determine if Night Hero Image should be active
   const isNightMode = themeMode === 'dark' || (themeMode === 'system' && (!isDay || timePhase === 'night' || timePhase === 'twilight'));
-
-  const titleWords = ["I", "design", "experiences", "that", "feel", "human."];
 
   return (
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-5 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none"
+      className="relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none font-sans"
     >
       {/* ========================================================================= */}
       {/* 1. SEAMLESS DYNAMIC HERO IMAGE (Day vs. Night & Desktop vs. Mobile Images) */}
       {/* ========================================================================= */}
       <motion.div 
         animate={{
-          x: -mousePos.x * 12,
-          y: -mousePos.y * 12,
+          x: -mousePos.x * 10,
+          y: -mousePos.y * 10,
           rotate: 0
         }}
         transition={{
@@ -80,7 +76,7 @@ export default function HeroLanding() {
               className="w-full h-full object-cover object-center filter brightness-[1.04] contrast-[1.02]"
             />
           </div>
-          {/* Mobile Daytime (Custom Vertical Aspect) */}
+          {/* Mobile Daytime */}
           <div className="block sm:hidden absolute inset-0 w-full h-full">
             <Image
               src="/images/hero-lying-mobile.png"
@@ -100,7 +96,7 @@ export default function HeroLanding() {
           <div className="hidden sm:block absolute inset-0 w-full h-full">
             <Image
               src="/images/hero-lying-night.jpg"
-              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic sky"
+              alt="Sai Santosh Madhari lying on green grass looking up at the starry sky"
               fill
               priority
               sizes="100vw"
@@ -108,11 +104,11 @@ export default function HeroLanding() {
               className="w-full h-full object-cover object-center filter brightness-[1.02] contrast-[1.03]"
             />
           </div>
-          {/* Mobile Nighttime (Custom Vertical Aspect) */}
+          {/* Mobile Nighttime */}
           <div className="block sm:hidden absolute inset-0 w-full h-full">
             <Image
               src="/images/hero-lying-night-mobile.png"
-              alt="Sai Santosh Madhari lying on green grass looking up at the starry cosmic sky on mobile"
+              alt="Sai Santosh Madhari lying on green grass looking up at the starry sky on mobile"
               fill
               priority
               sizes="100vw"
@@ -127,80 +123,81 @@ export default function HeroLanding() {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.35) 0%, rgba(5, 10, 25, 0.05) 50%, rgba(5, 10, 25, 0.45) 100%)'
+          background: 'linear-gradient(to bottom, rgba(5, 10, 25, 0.4) 0%, rgba(5, 10, 25, 0.08) 50%, rgba(5, 10, 25, 0.5) 100%)'
         }}
       />
 
       {/* ========================================================================= */}
-      {/* 2. HERO CONTENT: CENTER-LEFT ALIGNED CONTAINER                            */}
+      {/* 2. HERO CONTENT CONTAINER                                                 */}
       {/* ========================================================================= */}
-      <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-2 sm:py-4">
+      <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-4">
         <motion.div 
           style={{ y: contentY, opacity: contentOpacity }}
-          className="flex flex-col items-start justify-start max-w-2xl text-left"
+          className="flex flex-col items-start justify-start max-w-3xl text-left space-y-4"
         >
           {/* Availability Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-sm mb-3.5 text-white"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 dark:bg-white/15 backdrop-blur-2xl border border-white/40 shadow-sm text-white"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
             <span className="text-white text-xs font-semibold tracking-wide font-sans">
-              Available for AI Product Designer roles
+              Product Designer &bull; Systems Thinker
             </span>
           </motion.div>
 
           {/* Master Headline */}
-          <h1 
-            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.1] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] mb-3"
+          <motion.h1 
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.15 }}
+            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.12] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]"
           >
-            {titleWords.map((word, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.12 + idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block mr-2 text-white"
-              >
-                {word}
-              </motion.span>
-            ))}
-          </h1>
+            I design products that create value for people and growth for businesses.
+          </motion.h1>
 
-          {/* Precise, Articulated Subtitle */}
+          {/* Concise Supporting Subtitle */}
           <motion.p 
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.45 }}
-            className="text-xs sm:text-sm md:text-base text-zinc-100 font-normal max-w-lg leading-relaxed drop-shadow-md mb-5 font-sans"
+            transition={{ duration: 0.45, delay: 0.3 }}
+            className="text-sm sm:text-base md:text-lg text-zinc-100 font-normal max-w-2xl leading-relaxed drop-shadow-md font-sans"
           >
-            Product Designer crafting intuitive <span className="text-white font-semibold">AI workflows</span> and high-impact <span className="text-white font-semibold">enterprise SaaS platforms</span>.
+            Product Designer combining design, technology, AI, and business thinking to solve complex problems across B2B and B2C products.
           </motion.p>
 
-          {/* View Works Button */}
+          {/* Primary and Secondary Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.55 }}
+            transition={{ duration: 0.45, delay: 0.45 }}
+            className="flex flex-wrap items-center gap-3 pt-2"
           >
             <button
               type="button"
               onClick={() => handleScrollTo('work')}
-              className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-500"
             >
-              View works
-              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-              </svg>
+              <span>View My Work</span>
+              <span className="text-sm">&darr;</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => handleScrollTo('ai-exploration')}
+              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/20 hover:bg-white/30 text-white font-bold text-xs sm:text-sm backdrop-blur-md border border-white/30 shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <span>Explore AI Work</span>
+              <span className="text-sm">&rarr;</span>
             </button>
           </motion.div>
         </motion.div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. BOTTOM HERO BAR: ONLY 1 CENTERED "SCROLL TO EXPLORE" BUTTON            */}
+      {/* 3. BOTTOM HERO BAR: SCROLL TO EXPLORE                                     */}
       {/* ========================================================================= */}
       <div className="relative z-20 max-w-[1440px] mx-auto w-full flex items-center justify-center text-white/90 font-mono text-xs border-t border-white/15 pt-3 pointer-events-auto">
         <button

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import BenAboutSection from '@/components/BenAboutSection';
+import SanjayExperience from '@/components/SanjayExperience';
 import BenWritings from '@/components/BenWritings';
 import BenTalks from '@/components/BenTalks';
 import BenTestimonials from '@/components/BenTestimonials';
@@ -22,24 +23,27 @@ export default function AboutPage() {
           </Link>
 
           <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider">
-            About Me &bull; Craft &bull; Community
+            About Me &bull; Story &bull; Craft &bull; Journey
           </span>
         </div>
       </div>
 
-      {/* 1. ABOUT ME CORE BIO & STUDIO PORTRAIT */}
+      {/* 1. ABOUT ME CORE STORY & STUDIO PORTRAIT */}
       <BenAboutSection />
 
-      {/* 2. ARTWORKS & SKETCHES ("I draw. Quite a lot.") */}
+      {/* 2. WORK HISTORY & PROFESSIONAL EXPERIENCE (TCS) */}
+      <SanjayExperience />
+
+      {/* 3. ARTWORKS & SKETCHES ("I draw. Quite a lot.") */}
       <BenWritings />
 
-      {/* 3. PUBLIC TALKS & WORKSHOPS */}
+      {/* 4. PUBLIC TALKS & WORKSHOPS */}
       <BenTalks />
 
-      {/* 4. PEER FEEDBACK & COLLABORATION (TESTIMONIALS) */}
+      {/* 5. PEER FEEDBACK & COLLABORATION (TESTIMONIALS) */}
       <BenTestimonials />
 
-      {/* 5. GET IN TOUCH / CONTACT LETTER */}
+      {/* 6. GET IN TOUCH / CONTACT LETTER */}
       <BenContactLetter />
     </main>
   );

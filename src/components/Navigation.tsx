@@ -20,7 +20,7 @@ export default function Navigation() {
     }
 
     const handleScroll = () => {
-      const sections = ['home', 'work', 'experience', 'ai-exploration'];
+      const sections = ['home', 'work', 'ai-exploration', 'what-i-bring', 'contact'];
       for (const section of sections.reverse()) {
         const el = document.getElementById(section);
         if (el) {
@@ -40,8 +40,8 @@ export default function Navigation() {
   const navLinks = [
     { name: 'Home', href: '/#home', id: 'home' },
     { name: 'Work', href: '/#work', id: 'work' },
-    { name: 'Experience', href: '/#experience', id: 'experience' },
     { name: 'AI Exploration', href: '/#ai-exploration', id: 'ai-exploration' },
+    { name: 'What I Bring', href: '/#what-i-bring', id: 'what-i-bring' },
     { name: 'About', href: '/about', id: 'about' },
   ];
 
@@ -99,7 +99,7 @@ export default function Navigation() {
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             <ThemeSelector />
             
-            {/* Resume Button: Clean text without arrow */}
+            {/* Resume Button */}
             <a
               href="/resume.pdf"
               target="_blank"
