@@ -22,7 +22,7 @@ export default function ContactSection() {
               Get in Touch &bull; Open for Opportunities
             </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.15]">
             Have a problem worth solving?
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal pt-1">

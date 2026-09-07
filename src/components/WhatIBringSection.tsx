@@ -44,7 +44,7 @@ export default function WhatIBringSection() {
                 Core Value &bull; Strategic Strengths
               </p>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-zinc-950 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-zinc-950 dark:text-white tracking-tight">
               What I Bring to the Table
             </h2>
           </div>

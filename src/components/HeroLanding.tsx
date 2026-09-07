@@ -203,7 +203,7 @@ export default function HeroLanding() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, delay: 0.15 }}
-            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-serif font-bold leading-[1.12] tracking-tight ${
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-sans font-bold leading-[1.12] tracking-tight ${
               isManualLight 
                 ? 'text-zinc-950' 
                 : 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]'

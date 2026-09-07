@@ -84,7 +84,7 @@ export default function BenWorkTimeline() {
             <span className="text-xs font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
               01 &bull; Selected Work
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-zinc-950 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-zinc-950 dark:text-white tracking-tight">
               Solving Complex Product Problems
             </h2>
           </div>

@@ -70,7 +70,7 @@ export default function AiExplorationSection() {
             <span className="text-xs font-mono tracking-widest uppercase text-zinc-400 dark:text-zinc-500">
               02 &bull; Active Learning &amp; Prototyping
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-zinc-950 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-zinc-950 dark:text-white tracking-tight">
               Exploring AI Through Products
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed font-normal pt-1">

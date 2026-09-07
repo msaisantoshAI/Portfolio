@@ -28,7 +28,7 @@ export default function ProjectCaseStudy({ params }: { params: { slug: string } 
             transition={{ duration: 0.8 }}
           >
             <span className="text-zinc-950 dark:text-white font-mono text-[10px] tracking-[0.4em] uppercase mb-4 block">Case Study Development</span>
-            <h1 className="text-4xl md:text-6xl font-serif italic font-bold tracking-tight mb-8">
+            <h1 className="text-4xl md:text-6xl font-sans font-bold tracking-tight mb-8">
               {formatTitle(params.slug)}
             </h1>
             <div className="w-16 h-px bg-white/20 mx-auto" />
@@ -53,7 +53,7 @@ export default function ProjectCaseStudy({ params }: { params: { slug: string } 
                    <span className="text-[10px] font-mono tracking-[0.4em] text-white/50 uppercase">Case Study Initializing</span>
                 </div>
                 
-                <h2 className="text-5xl md:text-7xl font-serif italic text-white font-bold tracking-tight">Coming Soon</h2>
+                <h2 className="text-5xl md:text-7xl font-sans text-white font-bold tracking-tight">Coming Soon</h2>
 
                 <p className="text-xl md:text-2xl font-light text-slate-400 leading-relaxed max-w-2xl mx-auto">
                    The comprehensive architectural deep-dive for <span className="text-white border-b border-white/20">{formatTitle(params.slug)}</span> is currently being synthesized for this experience.
