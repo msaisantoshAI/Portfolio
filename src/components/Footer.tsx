@@ -27,7 +27,7 @@ export default function Footer() {
       <div 
         className="absolute inset-0 pointer-events-none opacity-35"
         style={{
-          background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(59, 130, 246, 0.3) 0%, transparent 70%)'
+          background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255, 255, 255, 0.2) 0%, transparent 70%)'
         }}
       />
 
@@ -50,9 +50,9 @@ export default function Footer() {
               SANTOSH
             </span>
             <div className="flex items-center gap-1 pl-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400/70" />
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400/40" />
+              <span className="w-1.5 h-1.5 rounded-full bg-zinc-950/10 dark:bg-white/10 animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-zinc-950/10 dark:bg-white/10" />
+              <span className="w-1.5 h-1.5 rounded-full bg-zinc-950/10 dark:bg-white/10" />
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function Footer() {
         {/* ========================================================================= */}
         <div className="max-w-4xl">
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-            lets <span className="italic font-serif font-light text-blue-200">create</span>
+            lets <span className="italic font-serif font-light text-zinc-950 dark:text-white">create</span>
             <br />
             incredible work together.
           </h2>
@@ -80,7 +80,7 @@ export default function Footer() {
             </span>
             <a 
               href="mailto:Saisantoshmadhari@gmail.com"
-              className="text-base sm:text-xl md:text-2xl font-bold text-white hover:text-blue-300 transition-colors inline-block"
+              className="text-base sm:text-xl md:text-2xl font-bold text-white hover:text-zinc-200 transition-colors inline-block"
             >
               Saisantoshmadhari@gmail.com
             </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/in/saisantoshmadhari0711/"
                   target="_blank"
                   rel="noreferrer"
-                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center font-bold text-xs sm:text-sm hover:scale-110 hover:bg-blue-500 hover:text-white transition-all shadow-md"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-zinc-900 flex items-center justify-center font-bold text-xs sm:text-sm hover:scale-110 hover:bg-zinc-950 dark:bg-white hover:text-white transition-all shadow-md"
                   aria-label="LinkedIn Profile"
                 >
                   in
@@ -132,7 +132,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(59,130,246,0.5)] border border-blue-400/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-950 dark:bg-white hover:bg-zinc-950 dark:bg-white text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(255, 255, 255, 0.2)] border border-zinc-950 dark:border-white/40 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             aria-label="Scroll back to top"
           >
             <span>Back to top</span>

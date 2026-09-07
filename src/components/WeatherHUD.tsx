@@ -96,7 +96,7 @@ export default function WeatherHUD() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="touch-target relative flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#0a0f1d]/90 hover:bg-white dark:hover:bg-[#131e3d] text-zinc-900 dark:text-white font-sans text-xs font-semibold border border-black/10 dark:border-white/25 hover:border-blue-500/50 shadow-[0_10px_30px_rgba(0,0,0,0.25)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all group focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+        className="touch-target relative flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#0a0f1d]/90 hover:bg-white dark:hover:bg-[#131e3d] text-zinc-900 dark:text-white font-sans text-xs font-semibold border border-black/10 dark:border-white/25 hover:border-zinc-950 dark:border-white/50 shadow-[0_10px_30px_rgba(0,0,0,0.25)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all group focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white cursor-pointer"
         aria-label="Open Worldwide Location & Weather Switcher"
         title={`Live Location: ${displayLocation} • Click to change cities & sky!`}
       >
@@ -157,7 +157,7 @@ export default function WeatherHUD() {
 
             {/* Current Active Station Box */}
             <div className="p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-between text-xs">
-              <span className="font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+              <span className="font-semibold text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white flex items-center gap-1.5">
                 <span>{icon}</span>
                 <span>{location}</span>
               </span>
@@ -178,12 +178,12 @@ export default function WeatherHUD() {
                   placeholder="e.g. Tokyo, London, Paris..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-blue-500 font-sans"
+                  className="flex-1 px-3 py-2 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-950 dark:border-white font-sans"
                 />
                 <button
                   type="submit"
                   disabled={isSearching || !searchQuery.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-xs font-semibold text-white transition-colors cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-950 dark:bg-white disabled:opacity-50 text-xs font-semibold text-white transition-colors cursor-pointer"
                 >
                   {isSearching ? '...' : 'Apply'}
                 </button>
@@ -206,7 +206,7 @@ export default function WeatherHUD() {
                     }}
                     className={`touch-target px-2.5 py-1.5 rounded-xl text-xs font-medium text-left border flex items-center justify-between transition-all cursor-pointer ${
                       location.toLowerCase().includes(city.name.toLowerCase())
-                        ? 'bg-blue-600 text-white font-bold border-blue-500 shadow-xs'
+                        ? 'bg-zinc-950 dark:bg-white text-white font-bold border-zinc-950 dark:border-white shadow-xs'
                         : 'bg-black/5 dark:bg-white/5 border-black/5 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-black/10 dark:hover:bg-white/15 hover:text-zinc-900 dark:hover:text-white'
                     }`}
                   >

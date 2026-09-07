@@ -71,17 +71,17 @@ export default function Preloader() {
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-blue-600 dark:bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
               />
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0.2 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-blue-500 dark:bg-blue-400 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
               />
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-blue-400 dark:bg-blue-300 shadow-[0_0_8px_rgba(59,130,246,0.8)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950/10 dark:bg-white/10 dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
               />
             </div>
 

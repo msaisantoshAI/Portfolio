@@ -27,7 +27,7 @@ export default function ProjectCaseStudy({ params }: { params: { slug: string } 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-4 block">Case Study Development</span>
+            <span className="text-zinc-950 dark:text-white font-mono text-[10px] tracking-[0.4em] uppercase mb-4 block">Case Study Development</span>
             <h1 className="text-4xl md:text-6xl font-serif italic font-bold tracking-tight mb-8">
               {formatTitle(params.slug)}
             </h1>
@@ -44,11 +44,11 @@ export default function ProjectCaseStudy({ params }: { params: { slug: string } 
                viewport={{ once: true }}
                className="space-y-12"
              >
-                <div className="inline-flex items-center space-x-6 px-8 py-3 bg-white/5 rounded-full border border-white/10 shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+                <div className="inline-flex items-center space-x-6 px-8 py-3 bg-white/5 rounded-full border border-white/10 shadow-[0_0_30px_rgba(255, 255, 255, 0.2)]">
                    <div className="flex space-x-1">
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+                      <div className="w-1.5 h-1.5 bg-zinc-950 dark:bg-white rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                      <div className="w-1.5 h-1.5 bg-zinc-950 dark:bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                      <div className="w-1.5 h-1.5 bg-zinc-950 dark:bg-white rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
                    </div>
                    <span className="text-[10px] font-mono tracking-[0.4em] text-white/50 uppercase">Case Study Initializing</span>
                 </div>
@@ -60,7 +60,7 @@ export default function ProjectCaseStudy({ params }: { params: { slug: string } 
                 </p>
 
                 <div className="pt-12">
-                   <Link href="/" className="inline-flex items-center space-x-4 group text-white hover:text-blue-400 transition-colors">
+                   <Link href="/" className="inline-flex items-center space-x-4 group text-white hover:text-zinc-900 dark:text-white transition-colors">
                       <span className="text-sm font-mono uppercase tracking-widest">Return to Projects</span>
                       <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                    </Link>

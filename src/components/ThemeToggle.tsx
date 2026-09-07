@@ -50,7 +50,7 @@ export default function ThemeToggle() {
             rotate: theme === 'dark' ? 0 : -45 
           }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute w-5 h-5 text-blue-400"
+          className="absolute w-5 h-5 text-zinc-900 dark:text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

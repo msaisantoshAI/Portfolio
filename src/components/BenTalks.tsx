@@ -57,7 +57,7 @@ export default function BenTalks() {
         
         {/* Section Header */}
         <div className="space-y-3">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
             Speaking &amp; Masterclasses
           </p>
           <div className="flex flex-wrap items-baseline gap-3">
@@ -77,18 +77,18 @@ export default function BenTalks() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch pt-2">
           
           {/* Featured Large Talk (7 Cols) */}
-          <div className="lg:col-span-7 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm hover:border-blue-500/40 transition-all group">
+          <div className="lg:col-span-7 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all group">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   {mainTalk.date} &bull; {mainTalk.location}
                 </span>
-                <span className="text-xs font-mono font-bold bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800/60">
+                <span className="text-xs font-mono font-bold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white px-3 py-1 rounded-full border border-black/10 dark:border-white/15">
                   {mainTalk.stats}
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
                 {mainTalk.title}
               </h3>
               
@@ -127,11 +127,11 @@ export default function BenTalks() {
             {secondaryTalks.map((talk, idx) => (
               <div
                 key={idx}
-                className="flex-1 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 flex flex-col justify-between space-y-4 shadow-sm hover:border-blue-500/40 transition-all group"
+                className="flex-1 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 flex flex-col justify-between space-y-4 shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all group"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                    <span className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                       {talk.date} &bull; {talk.location}
                     </span>
                     <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
@@ -139,7 +139,7 @@ export default function BenTalks() {
                     </span>
                   </div>
 
-                  <h4 className="text-lg font-bold text-zinc-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                  <h4 className="text-lg font-bold text-zinc-950 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors leading-snug">
                     {talk.title}
                   </h4>
 

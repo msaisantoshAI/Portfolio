@@ -16,7 +16,7 @@ export default function ContactSection() {
         
         {/* Simple & Confident Headline & Subtext */}
         <div className="max-w-3xl space-y-3">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
             Get in Touch
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-950 dark:text-white leading-[1.15]">
@@ -27,12 +27,12 @@ export default function ContactSection() {
           </p>
         </div>
 
-        {/* Action Button & Platform Links */}
+        {/* Action Button & Platform Links - Pure Monochrome */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-4 border-t border-black/5 dark:border-white/10">
           <div>
             <a
               href="mailto:saisantoshmadhari@gmail.com?subject=Product%20Opportunity%20/%20Project%20Inquiry"
-              className="touch-target inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm sm:text-base shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="touch-target inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-sm sm:text-base shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
             >
               <span>Let&apos;s Talk</span>
               <span>&rarr;</span>
@@ -47,7 +47,7 @@ export default function ContactSection() {
                 href={link.href}
                 target={link.label === 'Email' ? undefined : '_blank'}
                 rel={link.label === 'Email' ? undefined : 'noopener noreferrer'}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-zinc-100 dark:bg-[#18181B] hover:bg-zinc-200 dark:hover:bg-[#222226] text-zinc-800 dark:text-zinc-200 text-xs font-semibold border border-black/5 dark:border-white/10 transition-all hover:scale-105"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-zinc-100 dark:bg-[#18181B] hover:bg-zinc-200 dark:hover:bg-[#242428] text-zinc-900 dark:text-zinc-200 text-xs font-semibold border border-black/5 dark:border-white/10 transition-all hover:scale-105"
               >
                 <span>{link.label}</span>
                 <span className="text-[11px] text-zinc-500 dark:text-zinc-400">{link.icon}</span>

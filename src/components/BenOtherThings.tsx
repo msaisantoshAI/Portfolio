@@ -47,7 +47,7 @@ export default function BenOtherThings() {
         
         {/* Section Header */}
         <div className="space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white">
             Methodology &amp; Framework
           </p>
           <h2 className="section-heading text-zinc-900 dark:text-white">
@@ -63,15 +63,15 @@ export default function BenOtherThings() {
           {processPillars.map((p, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-zinc-50/80 dark:bg-black/30 border border-black/5 dark:border-white/10 space-y-3 flex flex-col justify-between shadow-sm hover:border-blue-500/30 transition-all group"
+              className="p-5 rounded-2xl bg-zinc-50/80 dark:bg-black/30 border border-black/5 dark:border-white/10 space-y-3 flex flex-col justify-between shadow-sm hover:border-white/20 transition-all group"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-500/20">
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white bg-black/5 dark:bg-zinc-950 dark:bg-white/10 px-2 py-0.5 rounded-full border border-black/10 dark:border-white/10">
                     Step {p.step}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-white group-hover:text-zinc-950 dark:text-white dark:group-hover:text-zinc-900 dark:text-white transition-colors">
                   {p.title}
                 </h3>
                 <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 leading-snug">

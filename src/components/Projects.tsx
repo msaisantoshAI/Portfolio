@@ -116,7 +116,7 @@ const Card = ({ i, project, progress, range, targetScale }: { i: number; project
         <div className="relative z-10 w-full h-full p-6 md:p-10 flex flex-col justify-end pointer-events-none">
            <div className="w-full md:max-w-xl bg-black/60 backdrop-blur-3xl border border-white/10 p-6 md:p-8 rounded-[1.5rem] transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-700 ease-[0.16,1,0.3,1]">
               <div className="flex items-center space-x-3 mb-3">
-                 <span className="text-blue-400 font-mono text-[10px] tracking-[0.2em] uppercase">
+                 <span className="text-zinc-900 dark:text-white font-mono text-[10px] tracking-[0.2em] uppercase">
                     Project {i + 1} &frasl;&frasl; {project.category}
                  </span>
                  <span className="text-white/40 font-mono text-xs">

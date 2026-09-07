@@ -29,7 +29,7 @@ export default function MouseGlow() {
       <motion.div
          className="absolute inset-0 z-0 opacity-40 dark:opacity-60"
          animate={{
-            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(59, 130, 246, 0.15), transparent 60%)`,
+            background: `radial-gradient(800px circle at ${position.x}px ${position.y}px, rgba(255, 255, 255, 0.2), transparent 60%)`,
          }}
          transition={{ type: 'tween', ease: 'backOut', duration: 0.15 }}
       />

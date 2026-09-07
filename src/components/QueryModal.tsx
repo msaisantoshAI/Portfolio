@@ -53,18 +53,18 @@ export default function QueryModal({ isOpen, onClose }: QueryModalProps) {
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl z-10"
+            className="relative w-full max-w-lg bg-[#121214] border border-white/15 rounded-[2rem] overflow-hidden shadow-2xl z-10"
           >
             <div className="p-8 md:p-12">
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-2xl font-bold text-white tracking-tight">Start Conversation</h2>
-                <button onClick={onClose} className="text-white/40 hover:text-white transition-colors text-xl">✕</button>
+                <button onClick={onClose} className="text-white/40 hover:text-white transition-colors text-xl cursor-pointer">✕</button>
               </div>
 
               {status === 'success' ? (
                 <div className="text-center py-12">
-                   <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                   <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                    </div>
                    <h3 className="text-xl font-bold text-white mb-2">Message Received</h3>
                    <p className="text-white/50">I&apos;ll get back to you shortly.</p>
@@ -78,7 +78,7 @@ export default function QueryModal({ isOpen, onClose }: QueryModalProps) {
                       type="text" 
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/50 transition-colors"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-white/50 transition-colors"
                       placeholder="Enter your name"
                     />
                   </div>
@@ -90,7 +90,7 @@ export default function QueryModal({ isOpen, onClose }: QueryModalProps) {
                       type="email" 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/50 transition-colors"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-white/50 transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -102,20 +102,20 @@ export default function QueryModal({ isOpen, onClose }: QueryModalProps) {
                       rows={4}
                       value={formData.query}
                       onChange={(e) => setFormData({...formData, query: e.target.value})}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/50 transition-colors resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-hidden focus:border-white/50 transition-colors resize-none"
                       placeholder="How can I help you?"
                     />
                   </div>
 
                   <button 
                     disabled={status === 'submitting'}
-                    className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-300 disabled:opacity-50"
+                    className="w-full bg-white text-zinc-950 font-bold py-4 rounded-xl hover:bg-zinc-200 transition-all duration-300 disabled:opacity-50 cursor-pointer"
                   >
                     {status === 'submitting' ? 'Transmitting...' : 'Send Message'}
                   </button>
                   
                   {status === 'error' && (
-                    <p className="text-red-400 text-xs text-center">Connection error. Please try again.</p>
+                    <p className="text-zinc-400 text-xs text-center">Connection error. Please try again.</p>
                   )}
                 </form>
               )}

@@ -81,7 +81,7 @@ export default function BenWritings() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
           <div className="space-y-2">
-            <p className="eyebrow text-blue-600 dark:text-blue-400">
+            <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
               Additional Works
             </p>
             <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -101,7 +101,7 @@ export default function BenWritings() {
             <div
               key={art.id}
               onClick={() => setSelectedArtwork(art)}
-              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] overflow-hidden shadow-sm hover:shadow-md hover:border-blue-500/40 transition-all flex flex-col justify-between"
+              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] overflow-hidden shadow-sm hover:shadow-md hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
             >
               {/* Image Frame */}
               <div className="relative w-full aspect-[4/3] bg-zinc-900 overflow-hidden">
@@ -120,10 +120,10 @@ export default function BenWritings() {
 
               {/* Title & Tag */}
               <div className="p-4 space-y-1">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-bold block">
                   {art.category}
                 </span>
-                <h3 className="text-sm font-bold text-zinc-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-sm font-bold text-zinc-950 dark:text-white group-hover:text-black dark:group-hover:text-white transition-colors">
                   {art.title}
                 </h3>
               </div>
@@ -175,7 +175,7 @@ export default function BenWritings() {
               {/* Description Footer */}
               <div className="p-5 sm:p-6 bg-[#18181B] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1">
-                  <span className="text-xs font-mono uppercase tracking-wider text-blue-400 font-bold">
+                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold">
                     {selectedArtwork.category}
                   </span>
                   <h4 className="text-lg font-bold text-white">

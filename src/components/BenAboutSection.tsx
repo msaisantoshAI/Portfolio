@@ -10,7 +10,7 @@ export default function BenAboutSection() {
         
         {/* Section Header */}
         <div className="space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
             A bit about me
           </p>
           <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -43,12 +43,12 @@ export default function BenAboutSection() {
           {/* Narrative & Quote by Santosh */}
           <div className="w-full max-w-[680px] space-y-5">
             
-            {/* Clean Quote with Blue Accent Bar */}
-            <div className="border-l-2 border-blue-600 dark:border-blue-400 pl-4 py-0.5">
+            {/* Clean Quote with Monochrome Accent Bar */}
+            <div className="border-l-2 border-zinc-950 dark:border-white pl-4 py-0.5">
               <p className="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 italic leading-relaxed">
                 &ldquo;I’m a generalist by nature &mdash; curious across strategy, design systems, and AI, connecting the pieces to build better products.&rdquo;
               </p>
-              <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 mt-1 block">
+              <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white mt-1 block">
                 &mdash; Sai Santosh
               </span>
             </div>

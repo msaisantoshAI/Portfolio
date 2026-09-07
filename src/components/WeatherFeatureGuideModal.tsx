@@ -75,7 +75,7 @@ export default function WeatherFeatureGuideModal() {
               <button
                 type="button"
                 onClick={handleClose}
-                className="px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                className="px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
               >
                 Got it
               </button>

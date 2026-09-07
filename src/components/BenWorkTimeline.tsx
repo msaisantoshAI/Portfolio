@@ -76,7 +76,7 @@ export default function BenWorkTimeline() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-black/5 dark:border-white/10 pb-5">
           <div className="space-y-1.5">
-            <p className="eyebrow text-blue-600 dark:text-blue-400">
+            <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
               Selected Work &amp; Experience
             </p>
             <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -99,7 +99,7 @@ export default function BenWorkTimeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.45, delay: idx * 0.05 }}
-              className="rounded-2xl bg-zinc-50 dark:bg-[#18181B] border border-black/10 dark:border-white/10 p-6 sm:p-8 hover:border-blue-500/50 dark:hover:border-blue-400/50 transition-all duration-300 group shadow-sm"
+              className="rounded-2xl bg-zinc-50 dark:bg-[#18181B] border border-black/10 dark:border-white/10 p-6 sm:p-8 hover:border-black/30 dark:hover:border-white/30 transition-all duration-300 group shadow-sm"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
                 
@@ -108,7 +108,7 @@ export default function BenWorkTimeline() {
                   
                   {/* Role & Domain Badge */}
                   <div>
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/10 dark:border-white/15">
                       {project.role}
                     </span>
                   </div>
@@ -125,7 +125,7 @@ export default function BenWorkTimeline() {
 
                   {/* Measurable Impact Box */}
                   <div className="p-4 rounded-xl bg-white dark:bg-[#121214] border border-black/5 dark:border-white/10 flex items-center gap-4 shadow-2xs">
-                    <div className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 shrink-0 font-mono">
+                    <div className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white shrink-0 font-mono">
                       <CountUp
                         value={project.impactMetric}
                         prefix={project.impactPrefix}
@@ -135,7 +135,7 @@ export default function BenWorkTimeline() {
                       />
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-zinc-400 dark:text-zinc-400 block">
+                      <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-zinc-500 dark:text-zinc-400 block">
                         Measurable Impact
                       </span>
                       <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 font-medium leading-snug">
@@ -144,12 +144,12 @@ export default function BenWorkTimeline() {
                     </div>
                   </div>
 
-                  {/* Clear Action Link */}
+                  {/* Clear Action Link - Monochrome */}
                   <div className="pt-2">
                     {project.link ? (
                       <Link
                         href={project.link}
-                        className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
+                        className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-md transition-all hover:scale-105 active:scale-95"
                       >
                         <span>{project.actionText}</span>
                         <span>&rarr;</span>
@@ -158,7 +158,7 @@ export default function BenWorkTimeline() {
                       <button
                         type="button"
                         onClick={() => setIsModalOpen(true)}
-                        className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs sm:text-sm shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+                        className="touch-target inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-md hover:opacity-90 transition-all hover:scale-105 active:scale-95 cursor-pointer"
                       >
                         <span>{project.actionText}</span>
                         <span>&rarr;</span>

@@ -16,7 +16,7 @@ export default function GlowCard({ children, className = '' }: { children: React
     mouseY.set(clientY - top);
   }
 
-  const spotlightBg = useMotionTemplate`radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(59, 130, 246, 0.15), transparent 80%)`;
+  const spotlightBg = useMotionTemplate`radial-gradient(600px circle at ${smoothX}px ${smoothY}px, rgba(255, 255, 255, 0.2), transparent 80%)`;
 
   return (
     <motion.div 

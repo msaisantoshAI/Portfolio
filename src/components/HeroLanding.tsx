@@ -174,7 +174,7 @@ export default function HeroLanding() {
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* 2. HERO CONTENT CONTAINER (WCAG AAA High Contrast in All Modes)           */}
+      {/* 2. HERO CONTENT CONTAINER (Pure Monochrome Black & White)                 */}
       {/* ========================================================================= */}
       <div className="relative z-20 max-w-[1440px] mx-auto w-full pointer-events-auto my-auto py-4">
         <motion.div 
@@ -188,11 +188,11 @@ export default function HeroLanding() {
             transition={{ duration: 0.4, delay: 0.1 }}
             className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-sm ${
               isManualLight 
-                ? 'bg-white/90 border-black/10 text-zinc-800' 
-                : 'bg-white/10 dark:bg-white/15 backdrop-blur-2xl border-white/30 text-white'
+                ? 'bg-white/90 border-black/10 text-zinc-900' 
+                : 'bg-white/10 dark:bg-white/15 backdrop-blur-2xl border-white/20 text-white'
             }`}
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+            <span className="w-2 h-2 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
             <span className="text-xs font-semibold tracking-wide font-sans">
               Product Designer &bull; Systems Thinker
             </span>
@@ -226,7 +226,7 @@ export default function HeroLanding() {
             Product Designer combining design, technology, AI, and business thinking to solve complex problems across B2B and B2C products.
           </motion.p>
 
-          {/* Primary and Secondary Action CTAs */}
+          {/* Primary and Secondary Action CTAs - Pure Monochrome */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -236,7 +236,7 @@ export default function HeroLanding() {
             <button
               type="button"
               onClick={() => handleScrollTo('work')}
-              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans"
             >
               <span>View My Work</span>
               <span className="text-sm">&darr;</span>
@@ -247,8 +247,8 @@ export default function HeroLanding() {
               onClick={() => handleScrollTo('ai-exploration')}
               className={`touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs sm:text-sm backdrop-blur-md border shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans ${
                 isManualLight 
-                  ? 'bg-white/80 hover:bg-white text-zinc-900 border-black/15 focus-visible:ring-2 focus-visible:ring-zinc-900' 
-                  : 'bg-white/15 hover:bg-white/25 text-white border-white/30 focus-visible:ring-2 focus-visible:ring-white'
+                  ? 'bg-white/80 hover:bg-white text-zinc-950 border-black/15' 
+                  : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
               }`}
             >
               <span>Explore AI Work</span>
@@ -268,7 +268,7 @@ export default function HeroLanding() {
           type="button"
           onClick={() => handleScrollTo('work')}
           className={`touch-target flex items-center gap-2 transition-colors cursor-pointer group ${
-            isManualLight ? 'text-zinc-700 hover:text-blue-600' : 'text-white hover:text-blue-300'
+            isManualLight ? 'text-zinc-800 hover:text-black' : 'text-zinc-200 hover:text-white'
           }`}
           aria-label="Scroll to explore"
         >
@@ -278,8 +278,8 @@ export default function HeroLanding() {
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
             className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors text-[10px] ${
               isManualLight 
-                ? 'border-zinc-400 group-hover:border-blue-600 group-hover:text-blue-600' 
-                : 'border-white/50 group-hover:border-blue-400 group-hover:text-blue-400'
+                ? 'border-zinc-400 group-hover:border-black group-hover:text-black' 
+                : 'border-white/50 group-hover:border-white group-hover:text-white'
             }`}
           >
             &darr;

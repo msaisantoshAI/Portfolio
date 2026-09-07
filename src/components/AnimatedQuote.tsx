@@ -14,9 +14,9 @@ export default function AnimatedQuote() {
             viewport={{ once: true }}
             className="flex items-center space-x-3 mb-8"
          >
-            <div className="h-[1px] w-6 bg-blue-500/30" />
-            <span className="text-[10px] md:text-xs font-mono text-blue-500/60 uppercase tracking-[0.5em]">My Philosophy</span>
-            <div className="h-[1px] w-6 bg-blue-500/30" />
+            <div className="h-[1px] w-6 bg-zinc-950 dark:bg-white/30" />
+            <span className="text-[10px] md:text-xs font-mono text-zinc-950 dark:text-white/60 uppercase tracking-[0.5em]">My Philosophy</span>
+            <div className="h-[1px] w-6 bg-zinc-950 dark:bg-white/30" />
          </motion.div>
          
          <motion.p 
@@ -36,7 +36,7 @@ export default function AnimatedQuote() {
             viewport={{ once: true }}
             className="mt-2 flex flex-col items-center"
          >
-              <div className="w-px h-4 bg-gradient-to-b from-blue-500/40 to-transparent mb-2" />
+              <div className="w-px h-4 bg-gradient-to-b from-zinc-800/40 to-transparent mb-2" />
               <span className="text-[10px] md:text-xs text-white/60 font-light tracking-[0.3em] uppercase">Sai Santosh</span>
          </motion.div>
       </div>

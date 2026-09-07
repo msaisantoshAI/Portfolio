@@ -21,7 +21,7 @@ export default function BenContactLetter() {
         
         {/* Section Header */}
         <div className="space-y-3">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
             Get In Touch
           </p>
           <div className="flex flex-wrap items-baseline gap-3">
@@ -40,25 +40,25 @@ export default function BenContactLetter() {
         {/* 2 Column Layout: Handwritten Letter + Accessible Connect Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-2">
           
-          {/* Left: Yellow/Amber Warm Letter Note Card */}
-          <div className="lg:col-span-6 transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 rounded-3xl bg-[#f59e0b] p-7 sm:p-9 text-zinc-900 shadow-xl relative overflow-hidden flex flex-col justify-between border-4 border-amber-300">
+          {/* Left: Warm Letter Note Card */}
+          <div className="lg:col-span-6 transform rotate-[-1deg] hover:rotate-0 transition-transform duration-500 rounded-3xl bg-zinc-100 dark:bg-[#18181B] p-7 sm:p-9 text-zinc-900 dark:text-white shadow-xl relative overflow-hidden flex flex-col justify-between border border-black/10 dark:border-white/15">
             <div className="space-y-4 relative z-10">
-              <div className="flex items-center justify-between pb-3 border-b-2 border-zinc-900/20">
-                <span className="font-mono text-xs uppercase tracking-wider font-bold">
+              <div className="flex items-center justify-between pb-3 border-b border-black/10 dark:border-white/10">
+                <span className="font-mono text-xs uppercase tracking-wider font-bold text-zinc-600 dark:text-zinc-400">
                   💌 A LETTER FOR YOU
                 </span>
-                <span className="font-mono text-xs font-bold">
+                <span className="font-mono text-xs font-bold text-zinc-600 dark:text-zinc-400">
                   📍 HYDERABAD / WORLDWIDE
                 </span>
               </div>
 
-              <div className="space-y-3 text-sm sm:text-base font-medium leading-relaxed font-sans text-zinc-950">
-                <p className="font-bold text-lg">Dear potential collaborator,</p>
+              <div className="space-y-3 text-sm sm:text-base font-medium leading-relaxed font-sans text-zinc-950 dark:text-zinc-100">
+                <p className="font-bold text-lg text-zinc-950 dark:text-white">Dear potential collaborator,</p>
                 <p>
                   I enjoy building high-impact digital products with thoughtful, curious humans.
                 </p>
                 <p>
-                  My sweet spot is at the intersection of <span className="font-bold underline decoration-zinc-900 decoration-2">Design, Technology, AI, and Business</span> &mdash; untangling dense systems and transforming them into natural user workflows.
+                  My sweet spot is at the intersection of <span className="font-bold underline decoration-zinc-900 dark:decoration-white decoration-2">Design, Technology, AI, and Business</span> &mdash; untangling dense systems and transforming them into natural user workflows.
                 </p>
                 <p>
                   If you have a challenging product in the works, let&apos;s talk.
@@ -66,11 +66,11 @@ export default function BenContactLetter() {
               </div>
             </div>
 
-            <div className="pt-6 border-t-2 border-zinc-900/20 flex items-center justify-between mt-4">
-              <span className="font-mono text-xs font-bold">
+            <div className="pt-6 border-t border-black/10 dark:border-white/10 flex items-center justify-between mt-4">
+              <span className="font-mono text-xs font-bold text-zinc-950 dark:text-white">
                 Sai Santosh Madhari
               </span>
-              <span className="text-xs font-mono font-bold bg-zinc-900 text-amber-300 px-3 py-1 rounded-full">
+              <span className="text-xs font-mono font-bold bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 px-3 py-1 rounded-full">
                 Open for Opportunities
               </span>
             </div>
@@ -88,7 +88,7 @@ export default function BenContactLetter() {
             </div>
 
             {isSubmitted ? (
-              <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-center space-y-2">
+              <div className="p-6 rounded-2xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/20 text-zinc-950 dark:text-white text-center space-y-2">
                 <p className="font-bold text-base">Message Sent!</p>
                 <p className="text-xs">Thanks for reaching out &mdash; talk soon.</p>
               </div>
@@ -104,7 +104,7 @@ export default function BenContactLetter() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Jane Doe"
-                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500 transition-all placeholder:text-zinc-400"
+                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
@@ -118,7 +118,7 @@ export default function BenContactLetter() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="jane@company.com"
-                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500 transition-all placeholder:text-zinc-400"
+                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white transition-all placeholder:text-zinc-400"
                   />
                 </div>
 
@@ -132,13 +132,13 @@ export default function BenContactLetter() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Tell me about what you are building..."
-                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-500 transition-all placeholder:text-zinc-400 resize-none"
+                    className="w-full px-4 py-2.5 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#121214] text-zinc-950 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white transition-all placeholder:text-zinc-400 resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="touch-target w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                  className="touch-target w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-sm shadow-md transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                 >
                   <span>Send Message</span>
                   <span>&rarr;</span>
@@ -148,10 +148,10 @@ export default function BenContactLetter() {
 
             {/* Quick Email & Social Links */}
             <div className="pt-4 border-t border-black/5 dark:border-white/10 flex flex-wrap items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
-              <span>Direct: <a href="mailto:saisantoshmadhari@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:underline">saisantoshmadhari@gmail.com</a></span>
+              <span>Direct: <a href="mailto:saisantoshmadhari@gmail.com" className="text-zinc-950 dark:text-white font-semibold hover:underline">saisantoshmadhari@gmail.com</a></span>
               <div className="flex gap-3 font-semibold">
-                <a href="https://www.linkedin.com/in/sai-santosh-madhari/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white">LinkedIn ↗</a>
-                <a href="https://github.com/msaisantoshAI" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-white">GitHub ↗</a>
+                <a href="https://www.linkedin.com/in/sai-santosh-madhari/" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-950 dark:hover:text-white">LinkedIn ↗</a>
+                <a href="https://github.com/msaisantoshAI" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-950 dark:hover:text-white">GitHub ↗</a>
               </div>
             </div>
           </div>

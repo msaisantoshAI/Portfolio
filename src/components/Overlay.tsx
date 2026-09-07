@@ -111,12 +111,12 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
           className="absolute inset-0 flex flex-col items-start justify-center p-6 sm:p-12 md:p-20 text-left pointer-events-auto"
         >
           <div className="max-w-md bg-[#0b0f1a]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5">
-            <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
+            <span className="eyebrow text-zinc-900 dark:text-white font-mono text-xs uppercase tracking-wider font-semibold">
               Creative Foundation
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
               Passionate Artist,<br />
-              <span className="text-blue-400 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              <span className="text-zinc-900 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-cyan-400">
                 Professional Designer.
               </span>
             </h2>
@@ -132,7 +132,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
           className="absolute inset-0 flex flex-col items-end justify-center p-6 sm:p-12 md:p-20 text-right pointer-events-auto"
         >
           <div className="max-w-md bg-[#0b0f1a]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5 text-right">
-            <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
+            <span className="eyebrow text-zinc-900 dark:text-white font-mono text-xs uppercase tracking-wider font-semibold">
               AI Orchestration
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
@@ -150,7 +150,7 @@ export default function Overlay({ scrollYProgress }: { scrollYProgress: MotionVa
           className="absolute inset-0 flex flex-col items-center justify-end pb-10 px-6 text-center pointer-events-auto"
         >
           <div className="max-w-lg bg-[#0b0f1a]/90 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl space-y-2.5">
-            <span className="eyebrow text-blue-400 font-mono text-xs uppercase tracking-wider font-semibold">
+            <span className="eyebrow text-zinc-900 dark:text-white font-mono text-xs uppercase tracking-wider font-semibold">
               Product Leadership
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">

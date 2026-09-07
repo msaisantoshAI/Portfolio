@@ -60,10 +60,10 @@ export default function Experience() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div className="flex flex-col items-start pt-2">
                       <h3 className="text-xl md:text-2xl font-bold text-white mb-2 leading-tight">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-br from-white to-blue-200">{exp.role}</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-br from-white to-zinc-950">{exp.role}</span>
                       </h3>
                       <span className="text-white/80 font-medium mb-4">{exp.company}</span>
-                      <span className="text-blue-400 text-sm font-medium tracking-widest font-mono bg-blue-500/10 px-4 py-1.5 rounded-full border border-blue-500/20">
+                      <span className="text-zinc-900 dark:text-white text-sm font-medium tracking-widest font-mono bg-zinc-950 dark:bg-white/10 px-4 py-1.5 rounded-full border border-white/10">
                         {exp.tenure}
                       </span>
                     </div>
@@ -71,7 +71,7 @@ export default function Experience() {
                     {/* Expand Toggle Button for Mobile */}
                     <button 
                       onClick={() => setIsExpanded(!isExpanded)}
-                      className="md:hidden flex items-center justify-center space-x-2 bg-blue-500/10 text-blue-400 px-6 py-3 rounded-xl border border-blue-500/20 w-full active:scale-95 transition-transform"
+                      className="md:hidden flex items-center justify-center space-x-2 bg-zinc-950 dark:bg-white/10 text-zinc-900 dark:text-white px-6 py-3 rounded-xl border border-white/10 w-full active:scale-95 transition-transform"
                     >
                       <span className="font-bold text-sm tracking-wide">{isExpanded ? 'Show Less' : 'View Responsibilities'}</span>
                       <motion.svg 
@@ -101,7 +101,7 @@ export default function Experience() {
                               key={i} 
                               className="text-white/70 text-base leading-relaxed flex items-start"
                             >
-                              <span className="mr-4 mt-1 text-blue-500/60 text-2xl leading-none">&quot;</span>
+                              <span className="mr-4 mt-1 text-zinc-950 dark:text-white/60 text-2xl leading-none">&quot;</span>
                               <span className="text-white">{metric}</span>
                             </motion.li>
                           ))}

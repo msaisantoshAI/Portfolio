@@ -54,7 +54,7 @@ export default function Navigation() {
           {/* Left: Brand Identity Pill */}
           <Link 
             href="/#home" 
-            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/15 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/15 shadow-md transition-all duration-200 hover:scale-105 shrink-0 cursor-pointer"
             aria-label="Sai Santosh Madhari Home"
           >
             <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden rounded-full border border-black/10 dark:border-white/30 shrink-0">
@@ -65,7 +65,7 @@ export default function Navigation() {
                 className="object-cover" 
               />
             </div>
-            <span className="text-xs sm:text-sm font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
+            <span className="text-xs sm:text-sm font-bold text-zinc-950 dark:text-white tracking-tight pr-1 whitespace-nowrap">
               Sai Santosh
             </span>
           </Link>
@@ -84,7 +84,7 @@ export default function Navigation() {
                     href={item.href}
                     className={`touch-target px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? 'bg-blue-600 text-white shadow-sm font-bold'
+                        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 shadow-sm font-bold'
                         : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
                     }`}
                   >
@@ -104,7 +104,7 @@ export default function Navigation() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-md transition-all hover:scale-105 active:scale-95"
+              className="touch-target hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-md transition-all hover:scale-105 active:scale-95"
             >
               Resume
             </a>
@@ -163,7 +163,7 @@ export default function Navigation() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`touch-target px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                       isActive
-                        ? 'bg-blue-600 text-white font-bold shadow-sm'
+                        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-bold shadow-sm'
                         : 'text-zinc-800 dark:text-zinc-200 hover:bg-black/5 dark:hover:bg-white/10'
                     }`}
                   >
@@ -178,7 +178,7 @@ export default function Navigation() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="touch-target w-full flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 shadow-md text-center"
+                  className="touch-target w-full flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-md text-center"
                 >
                   Resume
                 </a>

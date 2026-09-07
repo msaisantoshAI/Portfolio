@@ -38,7 +38,7 @@ export default function WhatIBringSection() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-black/5 dark:border-white/10 pb-5">
           <div className="space-y-1.5 max-w-2xl">
-            <p className="eyebrow text-blue-600 dark:text-blue-400">
+            <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
               Core Strengths &bull; Value Creation
             </p>
             <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -46,7 +46,7 @@ export default function WhatIBringSection() {
             </h2>
           </div>
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60">
+            <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/10 dark:border-white/15">
               Design &times; Business &times; Technology &times; AI
             </span>
           </div>
@@ -61,11 +61,11 @@ export default function WhatIBringSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="rounded-2xl bg-zinc-50 dark:bg-[#18181B] border border-black/10 dark:border-white/10 p-6 sm:p-8 hover:border-blue-500/40 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-sm"
+              className="rounded-2xl bg-zinc-50 dark:bg-[#18181B] border border-black/10 dark:border-white/10 p-6 sm:p-8 hover:border-black/30 dark:hover:border-white/30 transition-all duration-200 flex flex-col justify-between space-y-4 shadow-sm"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                  <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                     {item.tag}
                   </span>
                   <span className="text-base sm:text-lg">{item.icon}</span>

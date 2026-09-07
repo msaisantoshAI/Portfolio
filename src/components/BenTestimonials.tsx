@@ -53,7 +53,7 @@ export default function BenTestimonials() {
         
         {/* Section Header */}
         <div className="space-y-2 text-center max-w-2xl mx-auto">
-          <p className="eyebrow text-blue-600 dark:text-blue-400">
+          <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
             Peer Feedback &amp; Collaboration
           </p>
           <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -73,7 +73,7 @@ export default function BenTestimonials() {
             >
               {/* Top Pin / Tag */}
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/60">
+                <span className="text-[10px] font-mono font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/10 dark:border-white/15">
                   {item.tag}
                 </span>
                 <span className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-700 shadow-inner border border-zinc-400/40" />

@@ -51,7 +51,7 @@ export default function CaseStudyFooter({ currentSlug }: { currentSlug: string }
               <Link href={`/projects/${project.slug}`} className="group block">
                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 border border-white/10 group-hover:border-white/30 transition-colors bg-[#121214]">
                   {/* Image Placeholder */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 opacity-50" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/10 to-purple-500/10 opacity-50" />
                   <div className="absolute inset-0 flex items-center justify-center opacity-20 group-hover:opacity-40 transition-opacity">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">
                         {project.slug === 'esow-planner' ? 'Available Now' : 'Development'}
@@ -60,14 +60,14 @@ export default function CaseStudyFooter({ currentSlug }: { currentSlug: string }
                   
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-sm">
-                    <span className={`px-6 py-2 ${project.slug === 'esow-planner' ? 'bg-white text-black' : 'bg-blue-500/20 text-blue-400 border border-blue-500/30'} text-[10px] font-bold uppercase tracking-widest rounded-full transform scale-90 group-hover:scale-100 transition-transform`}>
+                    <span className={`px-6 py-2 ${project.slug === 'esow-planner' ? 'bg-white text-black' : 'bg-zinc-950 dark:bg-white/20 text-zinc-900 dark:text-white border border-white/20'} text-[10px] font-bold uppercase tracking-widest rounded-full transform scale-90 group-hover:scale-100 transition-transform`}>
                         {project.slug === 'esow-planner' ? 'Explore Case' : 'Coming Soon'}
                     </span>
                   </div>
                 </div>
                 
                 <div>
-                  <span className="text-[10px] font-mono text-blue-500 uppercase tracking-widest mb-2 block">{project.category}</span>
+                  <span className="text-[10px] font-mono text-zinc-950 dark:text-white uppercase tracking-widest mb-2 block">{project.category}</span>
                   <h3 className="text-xl font-serif font-bold text-white/90 group-hover:text-white transition-colors">{project.title}</h3>
                 </div>
               </Link>

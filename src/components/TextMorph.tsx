@@ -37,7 +37,7 @@ export default function TextMorph({
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className={`inline-block whitespace-nowrap ${
             gradient
-              ? 'bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 dark:from-blue-400 dark:via-cyan-300 dark:to-indigo-300 bg-clip-text text-transparent drop-shadow-sm font-bold'
+              ? 'bg-gradient-to-r from-zinc-900 via-cyan-500 to-indigo-600 dark:from-zinc-900 dark:via-cyan-300 dark:to-indigo-300 bg-clip-text text-transparent drop-shadow-sm font-bold'
               : className
           }`}
         >

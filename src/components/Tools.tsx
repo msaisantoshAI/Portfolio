@@ -40,13 +40,13 @@ export default function Tools() {
             <h2 className="text-xl md:text-2xl font-bold tracking-normal text-white mb-4">
                <TextReveal text="Arsenal / Tools" delay={0.2} />
             </h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" />
+            <div className="w-12 h-1 bg-gradient-to-r from-zinc-800 to-cyan-500 rounded-full" />
           </motion.div>
 
           {/* Expand Toggle Button for Mobile */}
           <button 
             onClick={() => setIsExpanded(!isExpanded)}
-            className="md:hidden flex items-center justify-center p-2 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20 active:scale-90 transition-transform"
+            className="md:hidden flex items-center justify-center p-2 bg-zinc-950 dark:bg-white/10 text-zinc-900 dark:text-white rounded-full border border-white/10 active:scale-90 transition-transform"
           >
             <motion.svg 
               animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -85,7 +85,7 @@ export default function Tools() {
                     }}
                     className="group pointer-events-auto cursor-default"
                   >
-                     <div className="px-6 py-4 rounded-full bg-white/[0.03] border border-white/10 hover:bg-blue-500/10 hover:border-blue-500/40 hover:shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-3">
+                     <div className="px-6 py-4 rounded-full bg-white/[0.03] border border-white/10 hover:bg-zinc-950 dark:bg-white/10 hover:border-black/30 dark:border-white/30 hover:shadow-lg hover:shadow-[0_0_20px_rgba(255, 255, 255, 0.2)] transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-3">
                        <div className="w-5 h-5 flex items-center justify-center">
                          {tool.name === 'Balsamiq' ? (
                            <img src="https://balsamiq.com/favicon.ico" alt="Balsamiq" className="w-4 h-4" />
@@ -101,16 +101,16 @@ export default function Tools() {
                                const parent = e.currentTarget.parentElement;
                                if (parent) {
                                  const fallback = document.createElement('div');
-                                 fallback.className = 'w-2 h-2 rounded-full bg-blue-500/50';
+                                 fallback.className = 'w-2 h-2 rounded-full bg-zinc-950 dark:bg-white/50';
                                  parent.appendChild(fallback);
                                }
                              }}
                            />
                          ) : (
-                           <div className="w-2 h-2 rounded-full bg-blue-500/50 transition-colors" />
+                           <div className="w-2 h-2 rounded-full bg-zinc-950 dark:bg-white/50 transition-colors" />
                          )}
                        </div>
-                       <span className="text-white/80 font-medium group-hover:text-blue-300 transition-colors tracking-wide text-base">
+                       <span className="text-white/80 font-medium group-hover:text-zinc-200 transition-colors tracking-wide text-base">
                          {tool.name}
                        </span>
                      </div>

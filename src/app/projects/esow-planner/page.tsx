@@ -61,12 +61,12 @@ export default function EsowPlannerCaseStudy() {
           <span>Back to Portfolio</span>
         </Link>
         <div className="flex items-center gap-3">
-          <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider hidden sm:inline">
+          <span className="text-xs font-mono text-zinc-950 dark:text-white font-bold uppercase tracking-wider hidden sm:inline">
             Enterprise Product Design Case Study
           </span>
           <a
             href="mailto:saisantoshmadhari@gmail.com?subject=Inquiry regarding ESOW Planner Case Study"
-            className="touch-target inline-flex items-center px-4 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-all"
+            className="touch-target inline-flex items-center px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 text-xs font-bold shadow-sm transition-all"
           >
             Get In Touch
           </a>
@@ -78,10 +78,10 @@ export default function EsowPlannerCaseStudy() {
         
         {/* Case Study Header Banner */}
         <div className="mb-10 sm:mb-14 rounded-3xl bg-white dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-lg backdrop-blur-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 space-y-4 max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/50 text-blue-600 dark:text-blue-400 text-xs font-mono font-bold tracking-wider uppercase">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-zinc-950 dark:text-white text-xs font-mono font-bold tracking-wider uppercase">
               ✦ End-to-End Enterprise SaaS Redesign
             </div>
             
@@ -101,19 +101,19 @@ export default function EsowPlannerCaseStudy() {
           {/* Quick Metrics Bento Row */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 pt-6 border-t border-black/5 dark:border-white/10">
             <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10">
-              <span className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">40%</span>
+              <span className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white font-mono">40%</span>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">Time Reduction in Creation</p>
             </div>
             <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10">
-              <span className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">12,000+</span>
+              <span className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white font-mono">12,000+</span>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">SOWs Generated Yearly</p>
             </div>
             <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10">
-              <span className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">2,500+</span>
+              <span className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white font-mono">2,500+</span>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">Active Enterprise Users</p>
             </div>
             <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10">
-              <span className="text-2xl sm:text-3xl font-black text-blue-600 dark:text-blue-400 font-mono">$45M+</span>
+              <span className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white font-mono">$45M+</span>
               <p className="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">Contract Value Managed</p>
             </div>
           </div>
@@ -145,7 +145,7 @@ export default function EsowPlannerCaseStudy() {
                     onClick={() => scrollTo(sec.id)}
                     className={`touch-target w-full text-left px-3 py-2 rounded-xl transition-all font-medium flex items-center justify-between cursor-pointer ${
                       isActive
-                        ? 'bg-blue-600 text-white font-bold shadow-sm'
+                        ? 'bg-zinc-950 text-white dark:bg-white dark:text-zinc-950 font-bold shadow-sm'
                         : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
                     }`}
                   >
@@ -170,7 +170,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 01. OVERVIEW & PROJECT SNAPSHOT */}
             <section id="overview" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   01 · Overview
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -224,7 +224,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 02. SITUATION & BLAST RADIUS */}
             <section id="situation" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   02 · Situation (S)
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -259,7 +259,7 @@ export default function EsowPlannerCaseStudy() {
                 </div>
 
                 <div className="p-5 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1.5">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase">
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase">
                     Wide Global Reach
                   </span>
                   <h4 className="text-sm sm:text-base font-bold text-zinc-900 dark:text-white">10+ Countries Affected</h4>
@@ -279,7 +279,7 @@ export default function EsowPlannerCaseStudy() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900/40 text-xs sm:text-sm text-zinc-800 dark:text-blue-200 leading-relaxed font-medium">
+              <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/10/30 border border-black/10 dark:border-black/10 dark:border-white/15 text-xs sm:text-sm text-zinc-800 dark:text-zinc-950 dark:text-white leading-relaxed font-medium">
                 💡 <strong>The Key Insight:</strong> A UI refresh alone would not fix it &mdash; the entire end-to-end workflow needed to be reimagined.
               </div>
             </section>
@@ -287,7 +287,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 03. TASK & MANDATE */}
             <section id="task" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   03 · Task &amp; Mandate (T)
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -297,7 +297,7 @@ export default function EsowPlannerCaseStudy() {
 
               {/* Highlight Mandate Box */}
               <div className="p-6 rounded-2xl bg-zinc-900 text-white dark:bg-white/10 border border-white/10 space-y-2">
-                <span className="text-xs font-mono uppercase tracking-widest text-blue-400 font-bold">
+                <span className="text-xs font-mono uppercase tracking-widest text-zinc-300 font-bold">
                   My Mandate As Framed To The Squad
                 </span>
                 <p className="text-base sm:text-lg font-bold text-white italic">
@@ -308,27 +308,27 @@ export default function EsowPlannerCaseStudy() {
               {/* 5 Objectives Bento Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">01 / User Research</span>
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">01 / User Research</span>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">12 Stakeholder Interviews</h4>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400">Across PMs, HR vendors, and finance to map real workflows.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">02 / Journey Mapping</span>
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">02 / Journey Mapping</span>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Empathy &amp; Trust Maps</h4>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400">Locating exactly where trust broke down across steps.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">03 / Wireframing</span>
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">03 / Wireframing</span>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Rapid Iterative Flows</h4>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400">Low to high fidelity prototypes iterated in weekly reviews.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1 sm:col-span-1.5">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">04 / UI Design</span>
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">04 / UI Design</span>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Design System Scale</h4>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400">Aligned with enterprise design system tokens and WCAG 2.2 AA.</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1 sm:col-span-2">
-                  <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">05 / Usability Validation</span>
+                  <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">05 / Usability Validation</span>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Structured Testing</h4>
                   <p className="text-xs text-zinc-600 dark:text-zinc-400">Validated error reduction and user speed prior to code freeze.</p>
                 </div>
@@ -338,7 +338,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 04. DISCOVERY & RESEARCH */}
             <section id="discovery" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   04 · Discovery &amp; Research
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -353,26 +353,26 @@ export default function EsowPlannerCaseStudy() {
                     <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-white">Empathy Map &mdash; Sarah, Project Manager</h3>
                     <p className="text-xs text-zinc-500 dark:text-zinc-400">Senior PM creating 15&ndash;20 SOWs per quarter</p>
                   </div>
-                  <span className="text-xs font-mono bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full font-bold">
+                  <span className="text-xs font-mono bg-black/5 dark:bg-white/10 text-zinc-950 dark:text-white px-3 py-1 rounded-full font-bold">
                     Primary Persona
                   </span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
                   <div className="p-4 rounded-xl bg-white dark:bg-black/30 border border-black/5 dark:border-white/5 space-y-1">
-                    <span className="font-mono font-bold text-blue-600 dark:text-blue-400 uppercase text-[11px]">What Sarah Says</span>
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white uppercase text-[11px]">What Sarah Says</span>
                     <p className="text-zinc-700 dark:text-zinc-300 italic">&ldquo;I spend more time fighting the tool than planning the work. I never know where my SOWs are in approvals.&rdquo;</p>
                   </div>
                   <div className="p-4 rounded-xl bg-white dark:bg-black/30 border border-black/5 dark:border-white/5 space-y-1">
-                    <span className="font-mono font-bold text-blue-600 dark:text-blue-400 uppercase text-[11px]">What Sarah Thinks</span>
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white uppercase text-[11px]">What Sarah Thinks</span>
                     <p className="text-zinc-700 dark:text-zinc-300">Worries about missing required fields. Feels the tool doesn&apos;t respect her time. Seeks better vendor comparison.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-white dark:bg-black/30 border border-black/5 dark:border-white/5 space-y-1">
-                    <span className="font-mono font-bold text-blue-600 dark:text-blue-400 uppercase text-[11px]">What Sarah Does</span>
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white uppercase text-[11px]">What Sarah Does</span>
                     <p className="text-zinc-700 dark:text-zinc-300">Keeps multiple browser tabs open. Maintains personal tracking spreadsheets. Copies and edits old SOWs as workarounds.</p>
                   </div>
                   <div className="p-4 rounded-xl bg-white dark:bg-black/30 border border-black/5 dark:border-white/5 space-y-1">
-                    <span className="font-mono font-bold text-blue-600 dark:text-blue-400 uppercase text-[11px]">What Sarah Feels</span>
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white uppercase text-[11px]">What Sarah Feels</span>
                     <p className="text-zinc-700 dark:text-zinc-300">Frustrated by inefficient manual steps. Anxious regarding costly contractual errors. Relieved when finally approved.</p>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export default function EsowPlannerCaseStudy() {
                   ].map((j, i) => (
                     <div key={i} className="p-3.5 rounded-xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">{j.step}</span>
+                        <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">{j.step}</span>
                         <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
                           j.level === 'Very High' || j.level === 'High' ? 'bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400' : 'bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400'
                         }`}>
@@ -410,7 +410,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 05. DEFINE & PERSONAS */}
             <section id="define" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   05 · Define &amp; Personas
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -426,7 +426,7 @@ export default function EsowPlannerCaseStudy() {
                       <h3 className="text-base font-bold text-zinc-900 dark:text-white">Sarah Chen</h3>
                       <p className="text-xs text-zinc-500">Project Manager &bull; London, UK</p>
                     </div>
-                    <span className="text-[11px] font-mono text-blue-600 dark:text-blue-400 font-bold">Creator</span>
+                    <span className="text-[11px] font-mono text-zinc-950 dark:text-white font-bold">Creator</span>
                   </div>
                   <div className="text-xs space-y-2">
                     <p><strong>Frustrations:</strong> Admin overhead, zero approval visibility, inability to compare vendors, fear of contract revisions.</p>
@@ -453,20 +453,20 @@ export default function EsowPlannerCaseStudy() {
               <div className="space-y-3 pt-2">
                 <h3 className="text-base font-bold text-zinc-900 dark:text-white">Problem Statements &rarr; How Might We (HMW)</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
-                  <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 space-y-1">
-                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400 text-xs">4&ndash;6 Hours Per SOW</span>
+                  <div className="p-4 rounded-xl bg-black/5/50 dark:bg-white/10/20 border border-black/10 dark:border-black/10 dark:border-white/15 space-y-1">
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white dark:text-white text-xs">4&ndash;6 Hours Per SOW</span>
                     <p className="text-zinc-700 dark:text-zinc-300"><strong>HMW</strong> streamline creation to cut time and cognitive load through guided inputs?</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 space-y-1">
-                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400 text-xs">No Approval Visibility</span>
+                  <div className="p-4 rounded-xl bg-black/5/50 dark:bg-white/10/20 border border-black/10 dark:border-black/10 dark:border-white/15 space-y-1">
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white dark:text-white text-xs">No Approval Visibility</span>
                     <p className="text-zinc-700 dark:text-zinc-300"><strong>HMW</strong> surface real-time approval visibility and status telemetry automatically?</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 space-y-1">
-                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400 text-xs">Manual Vendor Spreadsheets</span>
+                  <div className="p-4 rounded-xl bg-black/5/50 dark:bg-white/10/20 border border-black/10 dark:border-black/10 dark:border-white/15 space-y-1">
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white dark:text-white text-xs">Manual Vendor Spreadsheets</span>
                     <p className="text-zinc-700 dark:text-zinc-300"><strong>HMW</strong> enable side-by-side, data-driven vendor comparison directly inside the tool?</p>
                   </div>
-                  <div className="p-4 rounded-xl bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 space-y-1">
-                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400 text-xs">35% Revision Bounce Rate</span>
+                  <div className="p-4 rounded-xl bg-black/5/50 dark:bg-white/10/20 border border-black/10 dark:border-black/10 dark:border-white/15 space-y-1">
+                    <span className="font-mono font-bold text-zinc-950 dark:text-white dark:text-white text-xs">35% Revision Bounce Rate</span>
                     <p className="text-zinc-700 dark:text-zinc-300"><strong>HMW</strong> prevent submission errors with real-time validation and contextual guidance?</p>
                   </div>
                 </div>
@@ -476,7 +476,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 06. STRATEGY & ROADMAP */}
             <section id="strategy" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   06 · Strategy &amp; Roadmap
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -490,10 +490,10 @@ export default function EsowPlannerCaseStudy() {
 
               {/* Now / Next / Later Bento Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="p-5 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 space-y-2">
+                <div className="p-5 rounded-2xl bg-black/5/60 dark:bg-white/10/30 border border-black/10 dark:border-white/15 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase">NOW &bull; v1</span>
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase">NOW &bull; v1</span>
+                    <span className="w-2.5 h-2.5 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
                   </div>
                   <h4 className="text-sm font-bold text-zinc-900 dark:text-white">Shipped in this Project</h4>
                   <ul className="text-xs text-zinc-700 dark:text-zinc-300 space-y-1.5 list-disc pl-4">
@@ -535,7 +535,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 07. INFORMATION ARCHITECTURE */}
             <section id="ia" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   07 · Information Architecture
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -558,7 +558,7 @@ export default function EsowPlannerCaseStudy() {
                   { num: '6', title: 'Templates', desc: 'Reusable, pre-filled contractual scope blueprints.' },
                 ].map((ia, i) => (
                   <div key={i} className="p-4 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 space-y-1">
-                    <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">{ia.num} · Module</span>
+                    <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white">{ia.num} · Module</span>
                     <h4 className="text-sm font-bold text-zinc-900 dark:text-white">{ia.title}</h4>
                     <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{ia.desc}</p>
                   </div>
@@ -569,7 +569,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 08. UI DESIGN & DECISIONS + VISUAL SHOWCASE */}
             <section id="ui-design" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   08 · UI Design &amp; Key Decisions
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -686,7 +686,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 10. USABILITY VALIDATION */}
             <section id="validation" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   10 · Usability Validation
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -723,7 +723,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 11. MEASURABLE IMPACT (R) */}
             <section id="impact" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   11 · Result: Measurable Impact (R)
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -733,23 +733,23 @@ export default function EsowPlannerCaseStudy() {
 
               {/* 4 Large Impact Counter Bento Cells */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 text-center space-y-1">
-                  <span className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 font-mono">40%</span>
+                <div className="p-5 rounded-2xl bg-black/5/70 dark:bg-white/10/30 border border-black/10 dark:border-white/15 text-center space-y-1">
+                  <span className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white font-mono">40%</span>
                   <p className="text-xs font-bold text-zinc-900 dark:text-white">Cycle Reduction</p>
                   <p className="text-[11px] text-zinc-500">From initiation to final signoff</p>
                 </div>
-                <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 text-center space-y-1">
-                  <span className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 font-mono">68%</span>
+                <div className="p-5 rounded-2xl bg-black/5/70 dark:bg-white/10/30 border border-black/10 dark:border-white/15 text-center space-y-1">
+                  <span className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white font-mono">68%</span>
                   <p className="text-xs font-bold text-zinc-900 dark:text-white">Time-to-Create</p>
                   <p className="text-[11px] text-zinc-500">Average time down to 1.1 hours</p>
                 </div>
-                <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 text-center space-y-1">
-                  <span className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 font-mono">91%</span>
+                <div className="p-5 rounded-2xl bg-black/5/70 dark:bg-white/10/30 border border-black/10 dark:border-white/15 text-center space-y-1">
+                  <span className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white font-mono">91%</span>
                   <p className="text-xs font-bold text-zinc-900 dark:text-white">User Satisfaction</p>
                   <p className="text-[11px] text-zinc-500">Post-launch rating 4 or 5 / 5</p>
                 </div>
-                <div className="p-5 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 text-center space-y-1">
-                  <span className="text-3xl sm:text-4xl font-black text-blue-600 dark:text-blue-400 font-mono">4.5 / 5</span>
+                <div className="p-5 rounded-2xl bg-black/5/70 dark:bg-white/10/30 border border-black/10 dark:border-white/15 text-center space-y-1">
+                  <span className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white font-mono">4.5 / 5</span>
                   <p className="text-xs font-bold text-zinc-900 dark:text-white">Average Score</p>
                   <p className="text-[11px] text-zinc-500">In-app survey (n=71)</p>
                 </div>
@@ -760,7 +760,7 @@ export default function EsowPlannerCaseStudy() {
                 <p className="text-sm sm:text-base text-zinc-800 dark:text-zinc-200 italic leading-relaxed">
                   &ldquo;We typically interact with the SOW Planner only once every quarter, but it always felt like a chore. The redesign has transformed that experience &mdash; it&apos;s now clear, engaging, and significantly boosts both satisfaction and productivity.&rdquo;
                 </p>
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 block">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white block">
                   &mdash; Product Manager, Client Team
                 </span>
               </div>
@@ -769,7 +769,7 @@ export default function EsowPlannerCaseStudy() {
             {/* 12. REFLECTION & KEY LEARNINGS */}
             <section id="reflection" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-bold text-zinc-950 dark:text-white uppercase tracking-widest">
                   12 · Reflection &amp; Next Steps
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
@@ -814,7 +814,7 @@ export default function EsowPlannerCaseStudy() {
                 <div className="flex items-center gap-3 shrink-0">
                   <a
                     href="mailto:saisantoshmadhari@gmail.com"
-                    className="touch-target px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all"
+                    className="touch-target px-5 py-2 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-md transition-all"
                   >
                     Email Me &rarr;
                   </a>

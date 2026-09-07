@@ -42,13 +42,13 @@ export default function BentoSkills() {
             <h2 className="text-xl md:text-2xl font-bold tracking-normal text-white mb-4">
               <TextReveal text="Skills Matrix" delay={0.2} />
             </h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" />
+            <div className="w-12 h-1 bg-gradient-to-r from-zinc-800 to-cyan-500 rounded-full" />
           </motion.div>
 
           {/* Expand Toggle Button for Mobile */}
           <button 
             onClick={() => setIsExpanded(!isExpanded)}
-            className="md:hidden flex items-center justify-center p-2 bg-blue-500/10 text-blue-400 rounded-full border border-blue-500/20 active:scale-90 transition-transform"
+            className="md:hidden flex items-center justify-center p-2 bg-zinc-950 dark:bg-white/10 text-zinc-900 dark:text-white rounded-full border border-white/10 active:scale-90 transition-transform"
           >
             <motion.svg 
               animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -87,8 +87,8 @@ export default function BentoSkills() {
                     }}
                     className="group pointer-events-auto cursor-default"
                   >
-                    <div className="px-6 py-4 rounded-full bg-slate-100 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 hover:bg-blue-500/5 dark:hover:bg-blue-500/10 hover:border-blue-500/20 dark:hover:border-blue-500/40 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-300 transform hover:-translate-y-1">
-                      <span className="text-slate-800 dark:text-white/80 font-medium group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors tracking-wide text-base">
+                    <div className="px-6 py-4 rounded-full bg-slate-100 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 hover:bg-zinc-950 dark:bg-white/5 dark:hover:bg-zinc-950 dark:bg-white/10 hover:border-white/10 dark:hover:border-black/30 dark:border-white/30 hover:shadow-lg dark:hover:shadow-[0_0_20px_rgba(255, 255, 255, 0.2)] transition-all duration-300 transform hover:-translate-y-1">
+                      <span className="text-slate-800 dark:text-white/80 font-medium group-hover:text-zinc-950 dark:text-white dark:group-hover:text-zinc-200 transition-colors tracking-wide text-base">
                         {skill}
                       </span>
                     </div>

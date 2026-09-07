@@ -25,21 +25,21 @@ export default function BenIntroCards() {
           {/* Display Headline */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.15]">
             Hi, I&apos;m Sai Santosh.<br />
-            <span className="text-blue-600 dark:text-blue-400">
+            <span className="text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white">
               Product Designer &amp; AI Builder.
             </span>
           </h2>
 
           {/* Concise Bio */}
           <p className="text-base sm:text-lg text-zinc-700 dark:text-zinc-300 leading-relaxed">
-            Designing complex enterprise systems at <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong> by day; building <strong className="text-blue-600 dark:text-blue-400 font-semibold">AI workflows &amp; interactive tools</strong> by night.
+            Designing complex enterprise systems at <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong> by day; building <strong className="text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white font-semibold">AI workflows &amp; interactive tools</strong> by night.
           </p>
 
           {/* Action CTA Button */}
           <div className="pt-2">
             <Link
               href="/about"
-              className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-sm hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-blue-500"
+              className="touch-target inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-sm hover:opacity-90 hover:scale-105 active:scale-95 transition-all shadow-md focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white"
             >
               Learn more about me
             </Link>
@@ -56,7 +56,7 @@ export default function BenIntroCards() {
           >
             <article className="h-full w-full overflow-hidden rounded-2xl p-6 bg-zinc-900 text-white shadow-md flex flex-col justify-between border border-white/10">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-blue-400 bg-blue-950/80 px-2.5 py-1 rounded-full border border-blue-800/60">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white bg-zinc-950/10 dark:bg-white/10 px-2.5 py-1 rounded-full border border-black/10 dark:border-white/15">
                   Case Studies
                 </span>
                 <h3 className="text-lg font-bold text-white leading-tight">
@@ -69,7 +69,7 @@ export default function BenIntroCards() {
               <div>
                 <a
                   href="#work"
-                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors shadow-sm"
+                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white font-semibold text-xs transition-colors shadow-sm"
                 >
                   View Projects &rarr;
                 </a>
@@ -91,7 +91,7 @@ export default function BenIntroCards() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="relative z-10 space-y-1.5">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-blue-300 bg-blue-950/80 px-2 py-0.5 rounded border border-blue-800">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-200 bg-zinc-950/10 dark:bg-white/10 px-2 py-0.5 rounded border border-black/10 dark:border-white/15">
                   Flagship
                 </span>
                 <h3 className="text-base font-bold text-white leading-snug">
@@ -133,7 +133,7 @@ export default function BenIntroCards() {
                   href="https://level-up-designer.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors shadow-sm"
+                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white font-semibold text-xs transition-colors shadow-sm"
                 >
                   Launch App ↗
                 </a>
@@ -148,7 +148,7 @@ export default function BenIntroCards() {
           >
             <article className="h-full w-full overflow-hidden rounded-2xl p-6 bg-zinc-900 text-white shadow-md flex flex-col justify-between border border-white/10">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-blue-400 bg-blue-950/80 px-2.5 py-1 rounded-full border border-blue-800/60">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white bg-zinc-950/10 dark:bg-white/10 px-2.5 py-1 rounded-full border border-black/10 dark:border-white/15">
                   Community
                 </span>
                 <h3 className="text-lg font-bold text-white leading-tight">
@@ -161,7 +161,7 @@ export default function BenIntroCards() {
               <div>
                 <a
                   href="#talks"
-                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors shadow-sm"
+                  className="touch-target inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200 text-white font-semibold text-xs transition-colors shadow-sm"
                 >
                   View Talks &rarr;
                 </a>

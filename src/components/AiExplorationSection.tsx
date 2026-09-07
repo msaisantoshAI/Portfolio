@@ -62,7 +62,7 @@ export default function AiExplorationSection() {
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-black/5 dark:border-white/10 pb-5">
           <div className="space-y-1.5 max-w-2xl">
-            <p className="eyebrow text-blue-600 dark:text-blue-400">
+            <p className="eyebrow text-zinc-500 dark:text-zinc-400 font-mono">
               Active Learning &bull; Prototyping
             </p>
             <h2 className="section-heading text-zinc-950 dark:text-white">
@@ -81,14 +81,14 @@ export default function AiExplorationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
           
           {/* Card 1: LevelUp Designer (8 Cols) */}
-          <article className="lg:col-span-8 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-8 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm group hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold text-zinc-900 dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15">
                   {aiProjects[0].category}
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/10 dark:border-white/15">
+                  <span className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white animate-pulse" />
                   {aiProjects[0].status}
                 </span>
               </div>
@@ -128,7 +128,7 @@ export default function AiExplorationSection() {
                 href={aiProjects[0].link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="touch-target inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
+                className="touch-target inline-flex items-center gap-2 px-5 py-2 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
               >
                 <span>{aiProjects[0].actionText}</span>
                 <span>↗</span>
@@ -137,10 +137,10 @@ export default function AiExplorationSection() {
           </article>
 
           {/* Card 2: Prompt Flow OS (4 Cols) */}
-          <article className="lg:col-span-4 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-4 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm group hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-3.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-zinc-900 dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15">
                   {aiProjects[1].category}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">{aiProjects[1].status}</span>
@@ -156,7 +156,7 @@ export default function AiExplorationSection() {
               </div>
 
               <div className="p-3.5 rounded-xl bg-white dark:bg-[#121214] border border-black/5 dark:border-white/10 space-y-1 text-xs">
-                <span className="font-bold text-zinc-900 dark:text-white block">Focus Area:</span>
+                <span className="font-bold text-zinc-950 dark:text-white block">Focus Area:</span>
                 <p className="text-zinc-600 dark:text-zinc-400">&bull; Chaining multi-agent context trees</p>
                 <p className="text-zinc-600 dark:text-zinc-400">&bull; Spatial prompt versioning</p>
               </div>
@@ -174,7 +174,7 @@ export default function AiExplorationSection() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 <span>{aiProjects[1].actionText}</span>
                 <span>&rarr;</span>
@@ -183,10 +183,10 @@ export default function AiExplorationSection() {
           </article>
 
           {/* Card 3: Dynamic Token Synthesizer (6 Cols) */}
-          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-zinc-900 dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15">
                   {aiProjects[3].category}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">{aiProjects[3].status}</span>
@@ -212,7 +212,7 @@ export default function AiExplorationSection() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 <span>{aiProjects[3].actionText}</span>
                 <span>&rarr;</span>
@@ -221,10 +221,10 @@ export default function AiExplorationSection() {
           </article>
 
           {/* Card 4: Agent Orchestration Workbench (6 Cols) */}
-          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-zinc-900 dark:text-white bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15">
                   {aiProjects[2].category}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">{aiProjects[2].status}</span>
@@ -250,7 +250,7 @@ export default function AiExplorationSection() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 <span>{aiProjects[2].actionText}</span>
                 <span>&rarr;</span>

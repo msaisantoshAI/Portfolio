@@ -50,7 +50,7 @@ export default function ThemeSelector() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="touch-target inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] text-zinc-900 dark:text-white font-sans text-xs sm:text-sm font-semibold border border-black/10 dark:border-white/15 shadow-md backdrop-blur-2xl transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+        className="touch-target inline-flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] text-zinc-900 dark:text-white font-sans text-xs sm:text-sm font-semibold border border-black/10 dark:border-white/15 shadow-md backdrop-blur-2xl transition-all duration-200 cursor-pointer"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label="Toggle visual theme mode"
@@ -98,18 +98,18 @@ export default function ThemeSelector() {
                     aria-selected={isSelected}
                     className={`w-full touch-target text-left px-3 py-2 rounded-xl transition-all duration-150 flex items-center gap-3 text-xs cursor-pointer ${
                       isSelected
-                        ? 'bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 font-semibold'
+                        ? 'bg-black/10 dark:bg-white/15 text-zinc-950 dark:text-white font-semibold'
                         : 'text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white'
                     }`}
                   >
                     {/* Radio Button Circle */}
                     <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
                       isSelected
-                        ? 'border-blue-600 dark:border-blue-400 bg-white dark:bg-[#121214]'
+                        ? 'border-zinc-950 dark:border-white bg-white dark:bg-[#121214]'
                         : 'border-zinc-400 dark:border-zinc-600 bg-transparent'
                     }`}>
                       {isSelected && (
-                        <div className="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400" />
+                        <div className="w-2 h-2 rounded-full bg-zinc-950 dark:bg-white" />
                       )}
                     </div>
 

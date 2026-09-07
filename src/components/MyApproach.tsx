@@ -75,12 +75,12 @@ export default function MyApproach() {
             <h2 className="text-2xl md:text-4xl font-bold tracking-normal text-white mb-4">
               <TextReveal text="My Approach" delay={0.1} />
             </h2>
-            <p className="text-lg md:text-xl font-light bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 tracking-wide mb-6">
+            <p className="text-lg md:text-xl font-light bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-cyan-400 tracking-wide mb-6">
                Designing Products with AI which People Can Actually Use
             </p>
-            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full" />
-            <div className="mt-6 inline-block bg-blue-500/10 border border-blue-500/20 px-6 py-2 rounded-full">
-               <span className="text-blue-300 text-sm tracking-widest uppercase font-mono font-semibold">5-Step Process</span>
+            <div className="w-16 h-1 bg-gradient-to-r from-zinc-800 to-cyan-500 rounded-full" />
+            <div className="mt-6 inline-block bg-zinc-950 dark:bg-white/10 border border-white/10 px-6 py-2 rounded-full">
+               <span className="text-zinc-200 text-sm tracking-widest uppercase font-mono font-semibold">5-Step Process</span>
             </div>
        </div>
 
@@ -112,7 +112,7 @@ export default function MyApproach() {
                             <ul className="space-y-2 mb-4">
                               {step.questions.map((q, idx) => (
                                   <li key={idx} className="flex items-start text-slate-300">
-                                    <span className="text-blue-500 mr-2 mt-0.5 opacity-50 text-xs">✦</span>
+                                    <span className="text-zinc-950 dark:text-white mr-2 mt-0.5 opacity-50 text-xs">✦</span>
                                     <span className="leading-snug font-light text-xs md:text-sm">{q}</span>
                                   </li>
                               ))}
@@ -120,12 +120,12 @@ export default function MyApproach() {
 
                             {step.focusTitle && (
                               <div className="bg-white/[0.02] p-4 rounded-xl border border-white/5 mt-auto relative overflow-hidden group">
-                                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                  <span className="text-[10px] md:text-xs font-mono text-blue-400 uppercase tracking-widest block mb-2 relative z-10">{step.focusTitle}</span>
+                                  <div className="absolute inset-0 bg-zinc-950 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <span className="text-[10px] md:text-xs font-mono text-zinc-900 dark:text-white uppercase tracking-widest block mb-2 relative z-10">{step.focusTitle}</span>
                                   <ul className="space-y-2 relative z-10">
                                     {step.focusPoints.map((fp, idx) => (
                                         <li key={idx} className="text-white flex items-center font-medium text-xs md:text-sm drop-shadow-md leading-tight">
-                                          <span className="mr-2 text-blue-500 text-xs">👉</span> {fp}
+                                          <span className="mr-2 text-zinc-950 dark:text-white text-xs">👉</span> {fp}
                                         </li>
                                     ))}
                                   </ul>

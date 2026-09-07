@@ -48,7 +48,7 @@ export default function Contact() {
            <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 mb-20">
               <a 
                 href="mailto:Saisantoshmadhari@gmail.com" 
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full font-semibold tracking-wide hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-300 hover:scale-105 active:scale-95 text-lg w-full md:w-auto text-center"
+                className="px-8 py-4 bg-gradient-to-r from-zinc-800 to-cyan-500 text-white rounded-full font-semibold tracking-wide hover:shadow-[0_0_30px_rgba(255, 255, 255, 0.2)] transition-all duration-300 hover:scale-105 active:scale-95 text-lg w-full md:w-auto text-center"
               >
                 Send me an Email
               </a>
@@ -75,8 +75,8 @@ export default function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-12"
                 >
-                  <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                  <div className="w-20 h-20 bg-zinc-950 dark:bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-zinc-950 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">Query Logged</h3>
                   <p className="text-white/50">Your request has been sent to my Google Sheet database.</p>
@@ -94,7 +94,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
                         placeholder="John Doe"
-                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white/50 transition-all"
                       />
                     </div>
                     <div className="space-y-2 text-left">
@@ -106,7 +106,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
                         placeholder="john@example.com"
-                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white/50 transition-all"
                       />
                     </div>
                     <div className="space-y-2 text-left">
@@ -118,13 +118,13 @@ export default function Contact() {
                         value={formData.query}
                         onChange={(e) => setFormData({...formData, query: e.target.value})}
                         placeholder="What can I help you with?"
-                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
+                        className="w-full bg-white/[0.05] border border-white/10 rounded-2xl px-6 py-4 text-white focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white/50 transition-all resize-none"
                       />
                     </div>
                     <button 
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="w-full py-5 bg-white text-black font-bold rounded-2xl hover:bg-blue-500 hover:text-white transition-all duration-300 transform active:scale-95 disabled:opacity-50 shadow-xl"
+                      className="w-full py-5 bg-white text-black font-bold rounded-2xl hover:bg-zinc-950 dark:bg-white hover:text-white transition-all duration-300 transform active:scale-95 disabled:opacity-50 shadow-xl"
                     >
                       {status === 'submitting' ? 'Transmitting to Sheet...' : 'Submit Query'}
                     </button>
