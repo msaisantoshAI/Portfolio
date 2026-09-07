@@ -5,58 +5,55 @@ import { motion } from 'framer-motion';
 
 const strengths = [
   {
-    num: '01',
+    id: '01',
     pillar: 'Product Thinking',
-    tag: 'Problem Space',
-    description: 'Deconstructing complex workflows, user friction, and system architectures to design high-clarity, intuitive solutions.',
+    tag: 'Design & Strategy',
+    description: 'Understanding problems, users, workflows, and opportunities to design the right solutions.',
   },
   {
-    num: '02',
-    pillar: 'Business Alignment',
+    id: '02',
+    pillar: 'Business Mindset',
     tag: 'Growth & ROI',
-    description: 'Directly connecting design decisions to business KPIs, operational velocity, retention, and measurable bottom-line value.',
+    description: 'Connecting product decisions with growth, efficiency, adoption, and measurable business value.',
   },
   {
-    num: '03',
-    pillar: 'AI & Systems Craft',
-    tag: 'Intelligence',
-    description: 'Leveraging LLMs and predictive intelligence pragmatically where they solve real-world user problems, not as gimmicks.',
+    id: '03',
+    pillar: 'Technology & AI',
+    tag: 'Architecture & Leverage',
+    description: 'Understanding systems and exploring technology and AI where they create meaningful value.',
   },
   {
-    num: '04',
-    pillar: 'Cross-functional Execution',
-    tag: 'Delivery',
-    description: 'Partnering closely with engineering, product management, and leadership to bring zero-to-one ideas into shipped reality.',
+    id: '04',
+    pillar: 'Cross-functional Collaboration',
+    tag: 'Execution & Delivery',
+    description: 'Working with product, engineering, business, and other teams to turn ideas into shipped products.',
   },
 ];
 
 export default function WhatIBringSection() {
   return (
-    <section id="what-i-bring" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-zinc-200 dark:border-zinc-800 p-6 sm:p-10 md:p-14 shadow-sm backdrop-blur-2xl space-y-10 transition-colors duration-300">
+    <section id="what-i-bring" className="px-4 py-12 sm:py-16 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
+      <div className="rounded-[36px] bg-white/95 dark:bg-[#121214]/95 border border-black/[0.08] dark:border-white/[0.1] p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-3xl space-y-10 transition-colors duration-300">
         
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-zinc-100 dark:border-zinc-800/80 pb-6">
-          <div className="space-y-2 max-w-2xl">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-zinc-950 dark:bg-white" />
-              <p className="text-[11px] sm:text-xs font-mono font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                Core Value &bull; Strategic Strengths
-              </p>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-zinc-950 dark:text-white tracking-tight">
+        {/* Minimal Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-6">
+          <div className="space-y-1.5 max-w-2xl">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block">
+              Core Value &bull; Strengths
+            </span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
               What I Bring to the Table
             </h2>
           </div>
-          <div className="flex items-center">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">
-              Design &times; Business &times; Tech &times; AI
+          <div className="flex items-center gap-2">
+            <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/[0.06] dark:border-white/10">
+              Design &times; Business &times; Technology &times; AI
             </span>
           </div>
         </div>
 
-        {/* 4 Architectural Minimalist Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        {/* 4 Clean Minimal Architectural Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {strengths.map((item, idx) => (
             <motion.article
               key={item.pillar}
@@ -64,30 +61,23 @@ export default function WhatIBringSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="group rounded-2xl bg-zinc-50/80 dark:bg-[#18181B] border border-zinc-200/80 dark:border-zinc-800 p-6 sm:p-8 hover:border-zinc-400 dark:hover:border-zinc-600 transition-all duration-300 flex flex-col justify-between space-y-6"
+              className="rounded-3xl bg-zinc-50/80 dark:bg-[#18181B]/80 border border-black/[0.06] dark:border-white/[0.08] p-8 md:p-10 hover:border-black/25 dark:hover:border-white/25 transition-all duration-200 flex flex-col justify-between space-y-6 shadow-2xs group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500 tracking-wider">
-                    {item.num} / 04
+                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+                    {item.id}
                   </span>
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-mono font-medium uppercase tracking-wider bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
+                  <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 tracking-wider uppercase">
                     {item.tag}
                   </span>
                 </div>
-                
-                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight font-sans">
+                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
                   {item.pillar}
                 </h3>
-                
-                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
                   {item.description}
                 </p>
-              </div>
-
-              <div className="pt-2 border-t border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-between text-xs font-mono text-zinc-400 dark:text-zinc-500">
-                <span>Verified Impact</span>
-                <span className="group-hover:translate-x-1 transition-transform duration-200 text-zinc-950 dark:text-white">→</span>
               </div>
             </motion.article>
           ))}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { IBM_Plex_Sans, Space_Grotesk } from 'next/font/google';
+import { Fraunces, Outfit, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Providers } from './providers';
 import SkyEnvironment from '@/components/SkyEnvironment';
@@ -11,23 +11,30 @@ import Preloader from '@/components/Preloader';
 import WeatherFeatureGuideModal from '@/components/WeatherFeatureGuideModal';
 import WeatherHUD from '@/components/WeatherHUD';
 
-const ibmPlexSans = IBM_Plex_Sans({
+const acorn = Fraunces({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-ibm-sans',
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-acorn',
   display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-space',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  variable: '--font-plus',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   title: 'Sai Santosh Madhari | Product Designer & AI Builder',
-  description: 'Product Designer combining design, technology, AI, and business thinking to solve complex problems across B2B and B2C products.',
+  description: 'Product Designer with Data Science & AI background. Case studies across AI, enterprise SaaS, and design systems.',
 };
 
 export default function RootLayout({
@@ -37,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scrollbar-hide" suppressHydrationWarning>
-      <body className={`${ibmPlexSans.variable} ${spaceGrotesk.variable} font-sans antialiased bg-[#F8F9FA] dark:bg-[#0A0A0B] text-zinc-950 dark:text-zinc-100 flex flex-col min-h-screen overflow-x-clip transition-colors duration-700`}>
+      <body className={`${acorn.variable} ${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#F8F9FA] dark:bg-[#0A0A0B] text-zinc-950 dark:text-white flex flex-col min-h-screen overflow-x-clip transition-colors duration-1000`}>
         <Providers>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-zinc-950 dark:bg-white focus:text-white rounded-br-lg">
             Skip to main content

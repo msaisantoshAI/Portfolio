@@ -37,7 +37,7 @@ export default function CaseStudyFooter({ currentSlug }: { currentSlug: string }
   return (
     <section className="py-32 bg-[#0a0a0b] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-8">
-        <h2 className="text-3xl font-sans font-bold text-white mb-16 text-center">Explore More</h2>
+        <h2 className="text-3xl font-serif font-bold text-white mb-16 text-center italic">Explore More</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, i) => (
@@ -68,7 +68,7 @@ export default function CaseStudyFooter({ currentSlug }: { currentSlug: string }
                 
                 <div>
                   <span className="text-[10px] font-mono text-zinc-950 dark:text-white uppercase tracking-widest mb-2 block">{project.category}</span>
-                  <h3 className="text-xl font-sans font-bold text-white/90 group-hover:text-white transition-colors">{project.title}</h3>
+                  <h3 className="text-xl font-serif font-bold text-white/90 group-hover:text-white transition-colors">{project.title}</h3>
                 </div>
               </Link>
             </motion.div>

@@ -10,8 +10,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-ibm-sans)', 'var(--font-plus)', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['var(--font-space)', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'monospace'],
+        sans: ['var(--font-plus)', 'sans-serif'],
+        serif: ['var(--font-outfit)', 'serif'],
       },
       colors: {
         background: "var(--color-background)",

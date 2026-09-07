@@ -35,7 +35,7 @@ export default function Preloader() {
           y: '-100%',
           transition: { duration: 0.85, ease: [0.77, 0, 0.175, 1] } 
         }}
-        className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#F7F5EC] dark:bg-[#060913] select-none overflow-hidden font-sans"
+        className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#F8F9FA] dark:bg-[#0A0A0B] select-none overflow-hidden font-sans"
       >
         {/* Content Container */}
         <motion.div
@@ -62,7 +62,7 @@ export default function Preloader() {
             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-3 sm:gap-4 my-2"
           >
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-900 dark:text-white uppercase" style={{ fontFamily: 'var(--font-display)' }}>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 dark:text-white uppercase" style={{ fontFamily: 'var(--font-display)' }}>
               SAI
             </h1>
 
@@ -71,21 +71,21 @@ export default function Preloader() {
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white"
               />
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0.2 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white"
               />
               <motion.span
                 animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 1.2, repeat: Infinity, delay: 0.4 }}
-                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950/10 dark:bg-white/10 dark:bg-zinc-950/10 dark:bg-white/10 shadow-[0_0_8px_rgba(255, 255, 255, 0.2)]"
+                className="w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-zinc-950 dark:bg-white"
               />
             </div>
 
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-900 dark:text-white uppercase" style={{ fontFamily: 'var(--font-display)' }}>
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight text-zinc-950 dark:text-white uppercase" style={{ fontFamily: 'var(--font-display)' }}>
               SANTOSH
             </h1>
           </motion.div>
@@ -106,7 +106,7 @@ export default function Preloader() {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+              className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-transparent via-zinc-950 dark:via-white to-transparent"
             />
           </motion.div>
         </motion.div>
