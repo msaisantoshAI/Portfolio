@@ -20,6 +20,17 @@ export default function ThemeSelector() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleSelectMode = (newMode: ThemeMode) => {
+    if (newMode === 'system' && themeMode !== 'system') {
+      // Trigger small welcome popup when switching to Auto mode
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('open-auto-welcome-modal'));
+      }
+    }
+    setThemeMode(newMode);
+    setIsOpen(false);
+  };
+
   const options: { 
     id: ThemeMode; 
     label: string; 
@@ -66,7 +77,7 @@ export default function ThemeSelector() {
         </svg>
       </button>
 
-      {/* Dropdown Menu with Radio Button Options */}
+      {/* Dropdown Menu with Precision Radio Button Alignment */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -74,38 +85,35 @@ export default function ThemeSelector() {
             animate={{ opacity: 1, scale: 1, y: 4 }}
             exit={{ opacity: 0, scale: 0.95, y: -6 }}
             transition={{ duration: 0.16, ease: 'easeOut' }}
-            className="absolute right-0 top-full mt-1.5 w-52 sm:w-56 rounded-2xl bg-white/95 dark:bg-[#121214]/98 backdrop-blur-3xl border border-black/10 dark:border-white/15 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 overflow-hidden font-sans"
+            className="absolute right-0 top-full mt-2 w-56 sm:w-60 rounded-2xl bg-white/98 dark:bg-[#121214]/98 backdrop-blur-3xl border border-black/10 dark:border-white/15 p-2 shadow-2xl z-50 overflow-hidden font-sans"
             role="listbox"
           >
-            <div className="px-2.5 py-1.5 border-b border-black/5 dark:border-white/10 mb-1">
+            <div className="px-3 py-1.5 border-b border-black/5 dark:border-white/10 mb-1">
               <span className="text-[10px] uppercase font-bold tracking-widest text-zinc-400 dark:text-zinc-500 font-mono">
                 Environment Mode
               </span>
             </div>
 
-            <div className="space-y-1">
+            <div className="flex flex-col gap-1">
               {options.map((opt) => {
                 const isSelected = themeMode === opt.id;
                 return (
                   <button
                     key={opt.id}
                     type="button"
-                    onClick={() => {
-                      setThemeMode(opt.id);
-                      setIsOpen(false);
-                    }}
+                    onClick={() => handleSelectMode(opt.id)}
                     role="option"
                     aria-selected={isSelected}
-                    className={`w-full touch-target text-left px-3 py-2 rounded-xl transition-all duration-150 flex items-center gap-3 text-xs cursor-pointer ${
+                    className={`w-full touch-target text-left px-3 py-2.5 rounded-xl transition-all duration-150 flex items-center gap-3 text-xs cursor-pointer ${
                       isSelected
-                        ? 'bg-black/10 dark:bg-white/15 text-zinc-950 dark:text-white font-semibold'
-                        : 'text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white'
+                        ? 'bg-black/5 dark:bg-white/10 text-zinc-950 dark:text-white font-semibold'
+                        : 'text-zinc-700 dark:text-zinc-300 hover:bg-black/5 dark:hover:bg-white/5 hover:text-zinc-950 dark:hover:text-white'
                     }`}
                   >
-                    {/* Radio Button Circle */}
+                    {/* Radio Button Circle - Perfectly Centered & Aligned */}
                     <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
                       isSelected
-                        ? 'border-zinc-950 dark:border-white bg-white dark:bg-[#121214]'
+                        ? 'border-zinc-950 dark:border-white bg-transparent'
                         : 'border-zinc-400 dark:border-zinc-600 bg-transparent'
                     }`}>
                       {isSelected && (
@@ -114,11 +122,11 @@ export default function ThemeSelector() {
                     </div>
 
                     {/* Text Label & Description */}
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <p className="font-semibold text-xs leading-tight text-zinc-950 dark:text-white">
                         {opt.label}
                       </p>
-                      <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight">
+                      <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-tight mt-0.5 truncate">
                         {opt.description}
                       </p>
                     </div>

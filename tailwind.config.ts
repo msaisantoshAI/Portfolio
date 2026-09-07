@@ -10,8 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-plus)', 'sans-serif'],
-        serif: ['var(--font-outfit)', 'serif'],
+        sans: ['var(--font-ibm-sans)', 'var(--font-plus)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-ibm-serif)', 'Georgia', 'serif'],
+        mono: ['var(--font-space)', 'ui-monospace', 'monospace'],
       },
       colors: {
         background: "var(--color-background)",
