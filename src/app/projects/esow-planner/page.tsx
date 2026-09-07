@@ -49,10 +49,10 @@ export default function EsowPlannerCaseStudy() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#03050C] text-zinc-900 dark:text-slate-100 font-sans transition-colors duration-300">
+    <div className="min-h-screen bg-[#F8FAFC] dark:bg-[#0A0A0B] text-zinc-900 dark:text-zinc-100 font-sans transition-colors duration-300">
       
       {/* Top Fixed Header with Back Link & Project Meta */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-black/70 backdrop-blur-2xl border-b border-black/5 dark:border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-[#121214]/85 backdrop-blur-2xl border-b border-black/5 dark:border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between">
         <Link
           href="/#work"
           className="touch-target inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-zinc-900 dark:text-white font-medium text-xs transition-all hover:scale-105"
@@ -77,7 +77,7 @@ export default function EsowPlannerCaseStudy() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 pt-24 pb-20">
         
         {/* Case Study Header Banner */}
-        <div className="mb-10 sm:mb-14 rounded-3xl bg-white dark:bg-[#0c111e] border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-lg backdrop-blur-xl relative overflow-hidden">
+        <div className="mb-10 sm:mb-14 rounded-3xl bg-white dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-lg backdrop-blur-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 space-y-4 max-w-4xl">
@@ -125,7 +125,7 @@ export default function EsowPlannerCaseStudy() {
           {/* ========================================================================= */}
           {/* LEFT SIDEBAR: FIXED / STICKY TABLE OF CONTENTS NAVIGATION                */}
           {/* ========================================================================= */}
-          <aside className="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-24 self-start rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-5 shadow-md backdrop-blur-2xl">
+          <aside className="hidden lg:block w-64 xl:w-72 shrink-0 sticky top-24 self-start rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-5 shadow-md backdrop-blur-2xl">
             <div className="space-y-1 mb-4 pb-3 border-b border-black/5 dark:border-white/10">
               <span className="text-[11px] font-mono uppercase tracking-wider font-bold text-zinc-400 dark:text-zinc-500 block">
                 Case Study Index
@@ -168,7 +168,7 @@ export default function EsowPlannerCaseStudy() {
           <main className="flex-1 w-full space-y-10 sm:space-y-12">
             
             {/* 01. OVERVIEW & PROJECT SNAPSHOT */}
-            <section id="overview" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="overview" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   01 · Overview
@@ -222,7 +222,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 02. SITUATION & BLAST RADIUS */}
-            <section id="situation" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="situation" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   02 · Situation (S)
@@ -285,7 +285,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 03. TASK & MANDATE */}
-            <section id="task" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="task" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   03 · Task &amp; Mandate (T)
@@ -336,7 +336,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 04. DISCOVERY & RESEARCH */}
-            <section id="discovery" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="discovery" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   04 · Discovery &amp; Research
@@ -408,7 +408,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 05. DEFINE & PERSONAS */}
-            <section id="define" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="define" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   05 · Define &amp; Personas
@@ -474,7 +474,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 06. STRATEGY & ROADMAP */}
-            <section id="strategy" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="strategy" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   06 · Strategy &amp; Roadmap
@@ -533,7 +533,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 07. INFORMATION ARCHITECTURE */}
-            <section id="ia" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="ia" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   07 · Information Architecture
@@ -567,7 +567,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 08. UI DESIGN & DECISIONS + VISUAL SHOWCASE */}
-            <section id="ui-design" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="ui-design" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   08 · UI Design &amp; Key Decisions
@@ -653,7 +653,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 09. WHAT DIDN'T MAKE THE CUT (TRADEOFFS) */}
-            <section id="tradeoffs" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="tradeoffs" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
                   09 · Product Judgment
@@ -684,7 +684,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 10. USABILITY VALIDATION */}
-            <section id="validation" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="validation" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   10 · Usability Validation
@@ -721,7 +721,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 11. MEASURABLE IMPACT (R) */}
-            <section id="impact" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="impact" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   11 · Result: Measurable Impact (R)
@@ -767,7 +767,7 @@ export default function EsowPlannerCaseStudy() {
             </section>
 
             {/* 12. REFLECTION & KEY LEARNINGS */}
-            <section id="reflection" className="rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
+            <section id="reflection" className="rounded-3xl bg-white/95 dark:bg-[#121214] border border-black/10 dark:border-white/15 p-6 sm:p-10 shadow-sm backdrop-blur-xl space-y-6">
               <div className="space-y-1 border-b border-black/5 dark:border-white/10 pb-4">
                 <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
                   12 · Reflection &amp; Next Steps

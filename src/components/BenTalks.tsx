@@ -53,107 +53,113 @@ export default function BenTalks() {
 
   return (
     <section id="talks" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-7 sm:p-12 md:p-16 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-7 sm:p-12 md:p-16 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-3">
           <p className="eyebrow text-blue-600 dark:text-blue-400">
-            Speaking &amp; Mentorship
+            Speaking &amp; Masterclasses
           </p>
-          <h2 className="section-heading text-zinc-900 dark:text-white">
-            I do public talks &amp; workshops from time to time.
-          </h2>
-          <p className="body-lead text-zinc-600 dark:text-zinc-400">
-            Sharing knowledge on design systems, enterprise UX heuristics, and the emerging frontier of human-in-the-loop AI interfaces.
+          <div className="flex flex-wrap items-baseline gap-3">
+            <h2 className="section-heading text-zinc-950 dark:text-white">
+              Public Talks &amp; Workshops
+            </h2>
+            <span className="text-base sm:text-xl text-zinc-500 dark:text-zinc-400 font-light">
+              (Sharing what I learn)
+            </span>
+          </div>
+          <p className="body-lead text-zinc-600 dark:text-zinc-300">
+            I regularly speak about AI interaction models, enterprise design scaling, and building accessible products for global teams.
           </p>
         </div>
 
-        {/* Layout: Main Featured Talk Card + Secondary List */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* Bento Grid: 1 Featured Large Card (Left) + 2 Stacked Cards (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch pt-2">
           
-          {/* Main Featured Talk (Left 7 Cols) */}
-          <article className="lg:col-span-7 rounded-3xl border border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/50 p-6 sm:p-8 space-y-6 flex flex-col justify-between group shadow-sm hover:shadow-md transition-all">
+          {/* Featured Large Talk (7 Cols) */}
+          <div className="lg:col-span-7 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm hover:border-blue-500/40 transition-all group">
             <div className="space-y-4">
-              <div className="relative h-[220px] sm:h-[280px] w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900">
-                <Image
-                  src={mainTalk.image}
-                  alt={`${mainTalk.title} keynote session by Sai Santosh`}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" aria-hidden="true" />
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="text-xs font-mono font-bold text-white bg-blue-600 px-3 py-1 rounded-full shadow-md">
-                    {mainTalk.date} &bull; {mainTalk.location}
-                  </span>
-                  <span className="text-xs font-mono text-white bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                    {mainTalk.stats}
-                  </span>
-                </div>
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                  {mainTalk.date} &bull; {mainTalk.location}
+                </span>
+                <span className="text-xs font-mono font-bold bg-blue-50 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-800/60">
+                  {mainTalk.stats}
+                </span>
               </div>
 
-              <div className="space-y-2">
-                <span className="caption-meta font-mono text-zinc-500 dark:text-zinc-400 uppercase tracking-wider font-semibold">
-                  {mainTalk.event}
-                </span>
-                <h3 className="card-heading text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
-                  {mainTalk.title}
-                </h3>
-                <p className="body-copy text-zinc-600 dark:text-zinc-300">
-                  {mainTalk.description}
-                </p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                {mainTalk.title}
+              </h3>
+              
+              <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
+                {mainTalk.event}
+              </p>
+
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+                {mainTalk.description}
+              </p>
+
+              {/* Photo Frame */}
+              <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-black/10 dark:border-white/10 bg-zinc-900 shadow-sm mt-2">
+                <Image
+                  src={mainTalk.image}
+                  alt={mainTalk.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-1.5 pt-4 border-t border-black/5 dark:border-white/10">
-              {mainTalk.tags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-3 py-1 rounded-full shadow-sm"
-                >
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
+              {mainTalk.tags.map((tag, tIdx) => (
+                <span key={tIdx} className="text-xs font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2.5 py-0.5 rounded-full">
                   {tag}
                 </span>
               ))}
             </div>
-          </article>
+          </div>
 
-          {/* Secondary Talks (Right 5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
+          {/* 2 Stacked Secondary Talks (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             {secondaryTalks.map((talk, idx) => (
-              <article
+              <div
                 key={idx}
-                className="flex-1 rounded-3xl border border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/40 p-6 space-y-3.5 hover:border-black/15 dark:hover:border-white/20 transition-all flex flex-col justify-between group shadow-sm"
+                className="flex-1 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 flex flex-col justify-between space-y-4 shadow-sm hover:border-blue-500/40 transition-all group"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-semibold">
-                      {talk.date}
+                    <span className="text-[11px] font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                      {talk.date} &bull; {talk.location}
                     </span>
-                    <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
+                    <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
                       {talk.stats}
                     </span>
                   </div>
 
-                  <h4 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                  <h4 className="text-lg font-bold text-zinc-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
                     {talk.title}
                   </h4>
-                  
-                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
+
+                  <p className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
+                    {talk.event}
+                  </p>
+
+                  <p className="text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
                     {talk.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
+                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-black/5 dark:border-white/10">
                   {talk.tags.map((tag, tIdx) => (
-                    <span
-                      key={tIdx}
-                      className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-400 px-2.5 py-0.5 rounded-full shadow-sm"
-                    >
+                    <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded-full">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </article>
+              </div>
             ))}
           </div>
 

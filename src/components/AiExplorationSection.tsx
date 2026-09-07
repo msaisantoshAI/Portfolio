@@ -57,7 +57,7 @@ export default function AiExplorationSection() {
 
   return (
     <section id="ai-exploration" className="px-4 py-8 sm:py-12 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-black/5 dark:border-white/10 pb-5">
@@ -65,10 +65,10 @@ export default function AiExplorationSection() {
             <p className="eyebrow text-blue-600 dark:text-blue-400">
               Active Learning &bull; Prototyping
             </p>
-            <h2 className="section-heading text-zinc-900 dark:text-white">
+            <h2 className="section-heading text-zinc-950 dark:text-white">
               Exploring AI Through Products
             </h2>
-            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 font-normal leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-normal leading-relaxed">
               I explore how AI, automation, and intelligent systems can improve products, workflows, and business operations.
             </p>
           </div>
@@ -81,10 +81,10 @@ export default function AiExplorationSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
           
           {/* Card 1: LevelUp Designer (8 Cols) */}
-          <article className="lg:col-span-8 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/90 dark:bg-black/40 p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-8 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="px-3 py-1 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-3 py-1 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
                   {aiProjects[0].category}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
@@ -94,7 +94,7 @@ export default function AiExplorationSection() {
               </div>
 
               <div className="space-y-1.5">
-                <h3 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-white tracking-tight">
                   {aiProjects[0].title}
                 </h3>
                 <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
@@ -118,7 +118,7 @@ export default function AiExplorationSection() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
               <div className="flex flex-wrap gap-1.5">
                 {aiProjects[0].tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="text-xs font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2.5 py-0.5 rounded-full">
+                  <span key={tIdx} className="text-xs font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2.5 py-0.5 rounded-full">
                     {tag}
                   </span>
                 ))}
@@ -137,17 +137,17 @@ export default function AiExplorationSection() {
           </article>
 
           {/* Card 2: Prompt Flow OS (4 Cols) */}
-          <article className="lg:col-span-4 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/90 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
+          <article className="lg:col-span-4 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-3.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
                   {aiProjects[1].category}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">{aiProjects[1].status}</span>
               </div>
 
               <div className="space-y-1">
-                <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
+                <h3 className="text-xl font-bold text-zinc-950 dark:text-white">
                   {aiProjects[1].title}
                 </h3>
                 <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
@@ -155,7 +155,7 @@ export default function AiExplorationSection() {
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white dark:bg-black/40 border border-black/5 dark:border-white/10 space-y-1 text-xs">
+              <div className="p-3.5 rounded-xl bg-white dark:bg-[#121214] border border-black/5 dark:border-white/10 space-y-1 text-xs">
                 <span className="font-bold text-zinc-900 dark:text-white block">Focus Area:</span>
                 <p className="text-zinc-600 dark:text-zinc-400">&bull; Chaining multi-agent context trees</p>
                 <p className="text-zinc-600 dark:text-zinc-400">&bull; Spatial prompt versioning</p>
@@ -165,7 +165,7 @@ export default function AiExplorationSection() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
               <div className="flex flex-wrap gap-1.5">
                 {aiProjects[1].tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded-full">
                     {tag}
                   </span>
                 ))}
@@ -174,7 +174,7 @@ export default function AiExplorationSection() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 <span>{aiProjects[1].actionText}</span>
                 <span>&rarr;</span>
@@ -182,55 +182,17 @@ export default function AiExplorationSection() {
             </div>
           </article>
 
-          {/* Card 3: Agent Orchestration Workbench (6 Cols) */}
-          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/90 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
+          {/* Card 3: Dynamic Token Synthesizer (6 Cols) */}
+          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
-                  {aiProjects[2].category}
-                </span>
-                <span className="text-[11px] font-mono text-zinc-400">{aiProjects[2].status}</span>
-              </div>
-
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
-                {aiProjects[2].title}
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
-                {aiProjects[2].exploration}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
-              <div className="flex flex-wrap gap-1.5">
-                {aiProjects[2].tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
-              >
-                <span>{aiProjects[2].actionText}</span>
-                <span>&rarr;</span>
-              </button>
-            </div>
-          </article>
-
-          {/* Card 4: Dynamic Token Synthesizer (6 Cols) */}
-          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/90 dark:bg-black/40 p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
-            <div className="space-y-2.5">
-              <div className="flex items-center justify-between">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/40">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
                   {aiProjects[3].category}
                 </span>
                 <span className="text-[11px] font-mono text-zinc-400">{aiProjects[3].status}</span>
               </div>
 
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
+              <h3 className="text-xl font-bold text-zinc-950 dark:text-white">
                 {aiProjects[3].title}
               </h3>
               <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
@@ -241,7 +203,7 @@ export default function AiExplorationSection() {
             <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
               <div className="flex flex-wrap gap-1.5">
                 {aiProjects[3].tags.map((tag, tIdx) => (
-                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded-full">
                     {tag}
                   </span>
                 ))}
@@ -250,9 +212,47 @@ export default function AiExplorationSection() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
               >
                 <span>{aiProjects[3].actionText}</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+          </article>
+
+          {/* Card 4: Agent Orchestration Workbench (6 Cols) */}
+          <article className="lg:col-span-6 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-7 flex flex-col justify-between space-y-4 shadow-sm group hover:border-blue-500/40 transition-all">
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/70 border border-blue-200 dark:border-blue-800/60">
+                  {aiProjects[2].category}
+                </span>
+                <span className="text-[11px] font-mono text-zinc-400">{aiProjects[2].status}</span>
+              </div>
+
+              <h3 className="text-xl font-bold text-zinc-950 dark:text-white">
+                {aiProjects[2].title}
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+                {aiProjects[2].exploration}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-black/5 dark:border-white/10">
+              <div className="flex flex-wrap gap-1.5">
+                {aiProjects[2].tags.map((tag, tIdx) => (
+                  <span key={tIdx} className="text-[11px] font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2 py-0.5 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(true)}
+                className="touch-target inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-950 text-white dark:bg-white dark:text-black font-bold text-xs shadow-sm hover:opacity-90 transition-all cursor-pointer"
+              >
+                <span>{aiProjects[2].actionText}</span>
                 <span>&rarr;</span>
               </button>
             </div>

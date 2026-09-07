@@ -58,15 +58,15 @@ const artworks: Artwork[] = [
   {
     id: 'gallery',
     title: 'Fine Arts Studio & Exhibition',
-    category: 'Exhibitions · Studio Art',
-    image: '/images/gallery-main.jpg',
-    description: 'Studio curation exploring composition, color contrast theory, and aesthetic balance.'
+    category: 'Fine Arts · Traditional Media',
+    image: '/images/workshop_speak_2.jpg',
+    description: 'Visual study on color theory, balance, and classical proportions.'
   },
   {
-    id: 'podium',
-    title: 'Product Design Leadership Talk',
-    category: 'Conferences · Industry Talk',
-    image: '/images/about-podium.jpg',
+    id: 'talks',
+    title: 'UX Masterclass & Mentorship',
+    category: 'Community · Design Systems',
+    image: '/images/workshop_speak_3.jpg',
     description: 'Sharing insights on enterprise UX scaling, design systems, and design career growth.'
   },
 ];
@@ -76,7 +76,7 @@ export default function BenWritings() {
 
   return (
     <section id="drawings" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-7 sm:p-12 md:p-16 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-7 sm:p-12 md:p-16 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
@@ -84,7 +84,7 @@ export default function BenWritings() {
             <p className="eyebrow text-blue-600 dark:text-blue-400">
               Additional Works
             </p>
-            <h2 className="section-heading text-zinc-900 dark:text-white">
+            <h2 className="section-heading text-zinc-950 dark:text-white">
               I Draw. Quite a lot.
             </h2>
           </div>
@@ -101,7 +101,7 @@ export default function BenWritings() {
             <div
               key={art.id}
               onClick={() => setSelectedArtwork(art)}
-              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50/80 dark:bg-black/30 overflow-hidden shadow-sm hover:shadow-md hover:border-blue-500/40 transition-all flex flex-col justify-between"
+              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] overflow-hidden shadow-sm hover:shadow-md hover:border-blue-500/40 transition-all flex flex-col justify-between"
             >
               {/* Image Frame */}
               <div className="relative w-full aspect-[4/3] bg-zinc-900 overflow-hidden">
@@ -123,7 +123,7 @@ export default function BenWritings() {
                 <span className="text-[10px] font-mono uppercase tracking-wider text-blue-600 dark:text-blue-400 font-bold block">
                   {art.category}
                 </span>
-                <h3 className="text-sm font-bold text-zinc-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-sm font-bold text-zinc-950 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {art.title}
                 </h3>
               </div>
@@ -133,16 +133,24 @@ export default function BenWritings() {
 
       </div>
 
-      {/* Lightbox Popup Modal */}
+      {/* Lightbox Modal */}
       <AnimatePresence>
         {selectedArtwork && (
-          <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-xl">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedArtwork(null)}
+              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+            />
+
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.92 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="relative w-full max-w-3xl rounded-3xl bg-[#0b0f1a] border border-white/20 shadow-2xl overflow-hidden text-white"
+              className="relative w-full max-w-3xl rounded-3xl bg-[#121214] border border-white/15 shadow-2xl overflow-hidden text-white"
             >
               {/* Close Button */}
               <button
@@ -165,7 +173,7 @@ export default function BenWritings() {
               </div>
 
               {/* Description Footer */}
-              <div className="p-5 sm:p-6 bg-[#080d18] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-5 sm:p-6 bg-[#18181B] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1">
                   <span className="text-xs font-mono uppercase tracking-wider text-blue-400 font-bold">
                     {selectedArtwork.category}

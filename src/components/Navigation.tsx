@@ -54,7 +54,7 @@ export default function Navigation() {
           {/* Left: Brand Identity Pill */}
           <Link 
             href="/#home" 
-            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/20 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+            className="touch-target flex items-center gap-2.5 sm:gap-3 group bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] backdrop-blur-2xl px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-black/10 dark:border-white/15 shadow-md transition-all duration-200 hover:scale-105 shrink-0 focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
             aria-label="Sai Santosh Madhari Home"
           >
             <div className="relative h-7 w-7 sm:h-8 sm:w-8 overflow-hidden rounded-full border border-black/10 dark:border-white/30 shrink-0">
@@ -65,7 +65,7 @@ export default function Navigation() {
                 className="object-cover" 
               />
             </div>
-            <span className="text-xs sm:text-sm font-bold text-zinc-900 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
+            <span className="text-xs sm:text-sm font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors pr-1 whitespace-nowrap">
               Sai Santosh
             </span>
           </Link>
@@ -73,7 +73,7 @@ export default function Navigation() {
           {/* Center: Desktop Navigation Pills (Hidden on mobile) */}
           <nav 
             aria-label="Main Navigation"
-            className="hidden lg:flex items-center rounded-full px-3 py-1.5 bg-white/80 dark:bg-black/60 border border-black/10 dark:border-white/20 shadow-md backdrop-blur-2xl"
+            className="hidden lg:flex items-center rounded-full px-3 py-1.5 bg-white/90 dark:bg-[#121214]/90 border border-black/10 dark:border-white/15 shadow-md backdrop-blur-2xl"
           >
             <div className="flex items-center gap-1.5">
               {navLinks.map((item) => {
@@ -85,7 +85,7 @@ export default function Navigation() {
                     className={`touch-target px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-blue-600 text-white shadow-sm font-bold'
-                        : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
+                        : 'text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
                     }`}
                   >
                     {item.name}
@@ -113,7 +113,7 @@ export default function Navigation() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="touch-target lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 dark:bg-black/60 hover:bg-white/95 dark:hover:bg-black/80 border border-black/10 dark:border-white/20 text-zinc-900 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-md transition-all cursor-pointer"
+              className="touch-target lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 dark:bg-[#121214]/90 hover:bg-white dark:hover:bg-[#18181B] border border-black/10 dark:border-white/15 text-zinc-950 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-md transition-all cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -138,7 +138,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden fixed top-16 sm:top-20 left-4 right-4 z-50 rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 backdrop-blur-3xl border border-black/10 dark:border-white/20 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] font-sans"
+            className="lg:hidden fixed top-16 sm:top-20 left-4 right-4 z-50 rounded-3xl bg-white/95 dark:bg-[#121214]/98 backdrop-blur-3xl border border-black/10 dark:border-white/15 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] font-sans"
           >
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-3 mb-1">

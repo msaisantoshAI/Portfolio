@@ -48,7 +48,7 @@ export default function WeatherFeatureGuideModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 12 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-sm rounded-3xl bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/20 p-5 sm:p-6 shadow-[0_24px_60px_rgba(0,0,0,0.6)] backdrop-blur-2xl text-zinc-900 dark:text-white font-sans z-10 space-y-3"
+            className="relative w-full max-w-sm rounded-3xl bg-white/95 dark:bg-[#121214]/98 border border-black/10 dark:border-white/15 p-5 sm:p-6 shadow-[0_24px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl text-zinc-900 dark:text-white font-sans z-10 space-y-3"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-2.5">

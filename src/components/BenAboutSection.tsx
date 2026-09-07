@@ -6,14 +6,14 @@ import Image from 'next/image';
 export default function BenAboutSection() {
   return (
     <section id="about" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white/95 dark:bg-[#0c111e]/95 border border-black/10 dark:border-white/15 p-6 sm:p-10 md:p-14 shadow-[0_12px_40px_-8px_rgba(0,0,0,0.12)] dark:shadow-[0_16px_50px_-8px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
           <p className="eyebrow text-blue-600 dark:text-blue-400">
             A bit about me
           </p>
-          <h2 className="section-heading text-zinc-900 dark:text-white">
+          <h2 className="section-heading text-zinc-950 dark:text-white">
             Design is how I think.<br />
             <span className="text-zinc-500 dark:text-zinc-400 font-light italic">Building is how I prove it.</span>
           </h2>
@@ -22,7 +22,7 @@ export default function BenAboutSection() {
         <div className="mt-8 flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-between">
           
           {/* Studio Portrait Image */}
-          <div className="relative h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-[340px] sm:max-w-[380px] shrink-0 overflow-hidden rounded-3xl border border-black/10 dark:border-white/20 bg-[#090d19] shadow-xl group">
+          <div className="relative h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-[340px] sm:max-w-[380px] shrink-0 overflow-hidden rounded-3xl border border-black/10 dark:border-white/20 bg-[#18181B] shadow-xl group">
             <Image
               src="/images/about-portrait.png"
               alt="Sai Santosh Madhari"
@@ -56,13 +56,13 @@ export default function BenAboutSection() {
             {/* Concise Story Paragraphs */}
             <div className="space-y-3.5 text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
               <p>
-                My foundation started in <strong className="text-zinc-900 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, training me to observe patterns, human emotion, and systemic balance &mdash; which naturally led into <strong className="text-zinc-900 dark:text-white font-semibold">Product Design</strong>.
+                My foundation started in <strong className="text-zinc-950 dark:text-white font-semibold">Fine Arts &amp; Visual Thinking</strong>, training me to observe patterns, human emotion, and systemic balance &mdash; which naturally led into <strong className="text-zinc-950 dark:text-white font-semibold">Product Design</strong>.
               </p>
               <p>
-                At <strong className="text-zinc-900 dark:text-white font-semibold">Tata Consultancy Services</strong>, I design complex enterprise SaaS systems and <strong className="text-blue-600 dark:text-blue-400 font-semibold">human-in-the-loop AI workflows</strong>, turning dense requirements into calm, intuitive digital experiences.
+                Today at <strong className="text-zinc-950 dark:text-white font-semibold">Tata Consultancy Services</strong>, I work on complex enterprise SaaS products and the integration of AI workflows, turning complicated requirements into simple, intuitive user experiences.
               </p>
               <p>
-                Outside of work, I explore autonomous agent workflows, build experimental design tooling, and lead community workshops &mdash; always finding new ways to bring technology and human-centered craft together.
+                Outside of work, I explore AI, agentic workflows, design tooling, and community initiatives &mdash; bridging engineering pragmatism with human-centric design.
               </p>
             </div>
 
