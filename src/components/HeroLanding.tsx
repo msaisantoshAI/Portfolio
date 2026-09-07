@@ -49,7 +49,7 @@ export default function HeroLanding() {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       className={`relative min-h-[100dvh] h-[100dvh] w-full flex flex-col justify-between overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-6 sm:pb-8 px-4 sm:px-6 md:px-10 lg:px-12 select-none font-sans transition-colors duration-700 ${
-        isManualLight ? 'bg-[#F8F9FA]' : isManualDark ? 'bg-[#0A0A0B]' : 'bg-transparent'
+        isManualLight ? 'bg-[#F8F9FA]' : isManualDark ? 'bg-[#28282B]' : 'bg-transparent'
       }`}
     >
       {/* ========================================================================= */}
@@ -88,10 +88,10 @@ export default function HeroLanding() {
         </div>
 
         {/* ----------------------------------------------------------------------- */}
-        {/* B. MANUAL DARK MODE: Black & White Studio Portrait on Matte Black       */}
+        {/* B. MANUAL DARK MODE: Black & White Studio Portrait on Matte Charcoal    */}
         {/* ----------------------------------------------------------------------- */}
         <div className={`absolute inset-0 transition-opacity duration-700 ${isManualDark ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <div className="absolute inset-0 w-full h-full bg-[#0A0A0B]">
+          <div className="absolute inset-0 w-full h-full bg-[#28282B]">
             <Image
               src="/images/hero-portrait-bw.png"
               alt="Sai Santosh Madhari - Product Designer (B&W)"
@@ -99,11 +99,11 @@ export default function HeroLanding() {
               priority
               sizes="100vw"
               quality={95}
-              className="w-full h-full object-cover object-right md:object-center filter brightness-[0.88] contrast-[1.08] mix-blend-screen opacity-90"
+              className="w-full h-full object-cover object-right md:object-center filter brightness-[1.0] contrast-[1.04] opacity-95"
             />
           </div>
-          {/* Matte black gradient overlay on the left for maximum text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0B] via-[#0A0A0B]/80 sm:via-[#0A0A0B]/40 to-transparent pointer-events-none" />
+          {/* Soft matte charcoal gradient overlay on the left for maximum text contrast without hiding the portrait */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#28282B]/85 via-[#28282B]/35 to-transparent pointer-events-none" />
         </div>
 
         {/* ----------------------------------------------------------------------- */}
@@ -186,7 +186,7 @@ export default function HeroLanding() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-sm ${
+            className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-xs ${
               isManualLight 
                 ? 'bg-white/90 border-black/10 text-zinc-900' 
                 : 'bg-white/10 dark:bg-white/15 backdrop-blur-2xl border-white/20 text-white'
@@ -206,7 +206,7 @@ export default function HeroLanding() {
             className={`text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-bold leading-[1.12] tracking-tight ${
               isManualLight 
                 ? 'text-zinc-950' 
-                : 'text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)]'
+                : 'text-white'
             }`}
           >
             I design products that create value for people and growth for businesses.
@@ -220,13 +220,13 @@ export default function HeroLanding() {
             className={`text-sm sm:text-base md:text-lg font-normal max-w-2xl leading-relaxed font-sans ${
               isManualLight 
                 ? 'text-zinc-700' 
-                : 'text-zinc-100 drop-shadow-md'
+                : 'text-zinc-200'
             }`}
           >
             Product Designer combining design, technology, AI, and business thinking to solve complex problems across B2B and B2C products.
           </motion.p>
 
-          {/* Primary and Secondary Action CTAs - Pure Monochrome */}
+          {/* Primary and Secondary Action CTAs - Pure Monochrome with NO Arrows */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -236,23 +236,21 @@ export default function HeroLanding() {
             <button
               type="button"
               onClick={() => handleScrollTo('work')}
-              className="touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans"
+              className="touch-target inline-flex items-center justify-center px-6 py-3 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-xs hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans"
             >
-              <span>View My Work</span>
-              <span className="text-sm">&darr;</span>
+              View My Work
             </button>
 
             <button
               type="button"
               onClick={() => handleScrollTo('ai-exploration')}
-              className={`touch-target inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-xs sm:text-sm backdrop-blur-md border shadow-sm hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans ${
+              className={`touch-target inline-flex items-center justify-center px-6 py-3 rounded-full font-bold text-xs sm:text-sm backdrop-blur-md border shadow-xs hover:scale-105 active:scale-95 transition-all cursor-pointer font-sans ${
                 isManualLight 
                   ? 'bg-white/80 hover:bg-white text-zinc-950 border-black/15' 
                   : 'bg-white/10 hover:bg-white/20 text-white border-white/20'
               }`}
             >
-              <span>Explore AI Work</span>
-              <span className="text-sm">&rarr;</span>
+              Explore AI Work
             </button>
           </motion.div>
         </motion.div>
@@ -273,17 +271,6 @@ export default function HeroLanding() {
           aria-label="Scroll to explore"
         >
           <span className="tracking-widest uppercase text-[10px] sm:text-xs font-bold">Scroll to explore</span>
-          <motion.span
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-            className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors text-[10px] ${
-              isManualLight 
-                ? 'border-zinc-400 group-hover:border-black group-hover:text-black' 
-                : 'border-white/50 group-hover:border-white group-hover:text-white'
-            }`}
-          >
-            &darr;
-          </motion.span>
         </button>
       </div>
 

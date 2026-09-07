@@ -75,16 +75,16 @@ export default function BenWorkTimeline() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section id="work" className="px-4 py-12 sm:py-16 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[36px] bg-white/95 dark:bg-[#121214]/95 border border-black/[0.08] dark:border-white/[0.1] p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-3xl space-y-10 transition-colors duration-300">
+    <section id="work" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
+      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-12 shadow-sm dark:shadow-md backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Minimal Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-6">
-          <div className="space-y-1.5">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-5">
+          <div className="space-y-1">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block">
               Selected Work &bull; Case Studies
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
               Solving Complex Product Problems
             </h2>
           </div>
@@ -95,89 +95,20 @@ export default function BenWorkTimeline() {
           </div>
         </div>
 
-        {/* Minimalist Card Stack Layout */}
-        <div className="flex flex-col gap-6 sm:gap-8">
+        {/* Compact 2x2 Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, idx) => (
             <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="group rounded-3xl bg-zinc-50/80 dark:bg-[#18181B]/80 border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 md:p-10 hover:border-black/25 dark:hover:border-white/25 transition-all duration-300 shadow-2xs"
+              viewport={{ once: true }}
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              className="group rounded-2xl bg-zinc-50/90 dark:bg-[#333338]/60 border border-black/[0.06] dark:border-white/[0.08] p-5 sm:p-6 hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between space-y-4 shadow-xs"
             >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-                
-                {/* Left Side: Number, Metadata, Problem, Impact & Action (7 cols) */}
-                <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
-                  
-                  {/* Top Meta Bar */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
-                      {project.id}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/[0.06] dark:border-white/10">
-                      {project.role}
-                    </span>
-                  </div>
-
-                  {/* Title & Description */}
-                  <div className="space-y-2">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
-                      {project.problem}
-                    </p>
-                  </div>
-
-                  {/* Clean Impact Callout */}
-                  <div className="p-4 rounded-2xl bg-white dark:bg-[#121214] border border-black/[0.05] dark:border-white/[0.08] flex items-center gap-4">
-                    <div className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white shrink-0 font-mono">
-                      <CountUp
-                        value={project.impactMetric}
-                        prefix={project.impactPrefix}
-                        suffix={project.impactSuffix}
-                        decimals={project.impactDecimals || 0}
-                        duration={2.0}
-                      />
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-zinc-400 dark:text-zinc-500 block">
-                        Measurable Outcome
-                      </span>
-                      <p className="text-xs sm:text-sm text-zinc-800 dark:text-zinc-200 font-medium leading-snug">
-                        {project.impactLabel}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CTA Action */}
-                  <div className="pt-1">
-                    {project.link ? (
-                      <Link
-                        href={project.link}
-                        className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-sm transition-all hover:scale-105 active:scale-95"
-                      >
-                        <span>{project.actionText}</span>
-                        <span>&rarr;</span>
-                      </Link>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setIsModalOpen(true)}
-                        className="touch-target inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs sm:text-sm shadow-sm hover:opacity-90 transition-all hover:scale-105 active:scale-95 cursor-pointer"
-                      >
-                        <span>{project.actionText}</span>
-                        <span>&rarr;</span>
-                      </button>
-                    )}
-                  </div>
-
-                </div>
-
-                {/* Right Side: Media Frame (5 cols) */}
-                <div className="lg:col-span-5 relative aspect-[16/10] rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-zinc-950 shadow-sm">
+              <div className="space-y-4">
+                {/* Media Preview Thumbnail */}
+                <div className="relative aspect-[16/9] w-full rounded-xl overflow-hidden border border-black/[0.06] dark:border-white/[0.08] bg-zinc-950 shadow-inner">
                   {project.image.endsWith('.mp4') ? (
                     <video
                       src={project.image}
@@ -198,6 +129,66 @@ export default function BenWorkTimeline() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
                 </div>
 
+                {/* Number & Role Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-400">
+                    {project.id}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/[0.05] dark:border-white/10">
+                    {project.role}
+                  </span>
+                </div>
+
+                {/* Title & Description */}
+                <div className="space-y-1.5">
+                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
+                    {project.problem}
+                  </p>
+                </div>
+
+                {/* Compact Measurable Outcome Metric */}
+                <div className="p-3 rounded-xl bg-white dark:bg-[#28282B] border border-black/[0.05] dark:border-white/[0.08] flex items-center gap-3">
+                  <div className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white shrink-0 font-mono">
+                    <CountUp
+                      value={project.impactMetric}
+                      prefix={project.impactPrefix}
+                      suffix={project.impactSuffix}
+                      decimals={project.impactDecimals || 0}
+                      duration={1.8}
+                    />
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-zinc-400 dark:text-zinc-400 block">
+                      Outcome
+                    </span>
+                    <p className="text-xs text-zinc-700 dark:text-zinc-300 font-medium leading-tight">
+                      {project.impactLabel}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Button - Pure Text, NO ARROWS */}
+              <div className="pt-2 border-t border-black/[0.05] dark:border-white/[0.08]">
+                {project.link ? (
+                  <Link
+                    href={project.link}
+                    className="touch-target w-full inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98] text-center"
+                  >
+                    {project.actionText}
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(true)}
+                    className="touch-target w-full inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 font-bold text-xs shadow-xs transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer text-center"
+                  >
+                    {project.actionText}
+                  </button>
+                )}
               </div>
             </motion.article>
           ))}

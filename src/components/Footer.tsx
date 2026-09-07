@@ -57,11 +57,10 @@ export default function Footer() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="touch-target inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-zinc-800 dark:text-zinc-200 transition-all hover:scale-105 cursor-pointer"
+            className="touch-target inline-flex items-center justify-center px-3.5 py-1 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-zinc-800 dark:text-zinc-200 transition-all hover:scale-105 cursor-pointer text-xs"
             aria-label="Back to top"
           >
-            <span>Top</span>
-            <span>&uarr;</span>
+            Top
           </button>
         </div>
 

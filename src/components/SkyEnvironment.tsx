@@ -31,10 +31,10 @@ export default function SkyEnvironment() {
       />
 
       {/* ========================================================================= */}
-      {/* 2. MANUAL DARK MODE: Clean Matte Black Background (0 Sky Photos)         */}
+      {/* 2. MANUAL DARK MODE: Clean Matte Charcoal Background (#28282B)            */}
       {/* ========================================================================= */}
       <div 
-        className={`absolute inset-0 bg-[#0A0A0B] transition-opacity duration-700 ${
+        className={`absolute inset-0 bg-[#28282B] transition-opacity duration-700 ${
           isManualDark ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
       />

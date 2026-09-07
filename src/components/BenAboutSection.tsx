@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function BenAboutSection() {
   return (
     <section id="about" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-2xl transition-colors duration-300">
         
         {/* Section Header */}
         <div className="space-y-2 border-b border-black/5 dark:border-white/10 pb-5">
@@ -22,20 +22,20 @@ export default function BenAboutSection() {
         <div className="mt-8 flex flex-col items-center gap-8 lg:flex-row lg:items-center lg:justify-between">
           
           {/* Studio Portrait Image */}
-          <div className="relative h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-[340px] sm:max-w-[380px] shrink-0 overflow-hidden rounded-3xl border border-black/10 dark:border-white/20 bg-[#18181B] shadow-xl group">
+          <div className="relative h-[300px] sm:h-[360px] md:h-[400px] w-full max-w-[340px] sm:max-w-[380px] shrink-0 overflow-hidden rounded-3xl border border-black/10 dark:border-white/20 bg-zinc-100 dark:bg-[#333338] shadow-sm group">
             <Image
-              src="/images/about-portrait.png"
+              src="/images/hero-portrait-color.png"
               alt="Sai Santosh Madhari"
               fill
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs text-white/90 font-mono">
               <span className="bg-black/60 px-3 py-1 rounded-full border border-white/20 backdrop-blur-md font-semibold">
                 Sai Santosh Madhari
               </span>
-              <span className="text-zinc-300 text-[11px]">
-                Product Designer &bull; AI Builder
+              <span className="text-zinc-200 text-[11px]">
+                Product Designer
               </span>
             </div>
           </div>

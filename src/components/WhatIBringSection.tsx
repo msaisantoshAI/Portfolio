@@ -32,16 +32,16 @@ const strengths = [
 
 export default function WhatIBringSection() {
   return (
-    <section id="what-i-bring" className="px-4 py-12 sm:py-16 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[36px] bg-white/95 dark:bg-[#121214]/95 border border-black/[0.08] dark:border-white/[0.1] p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-3xl space-y-10 transition-colors duration-300">
+    <section id="what-i-bring" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
+      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-12 shadow-sm dark:shadow-md backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Minimal Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-6">
-          <div className="space-y-1.5 max-w-2xl">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-5">
+          <div className="space-y-1 max-w-2xl">
             <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block">
               Core Value &bull; Strengths
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-zinc-950 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
               What I Bring to the Table
             </h2>
           </div>
@@ -57,25 +57,25 @@ export default function WhatIBringSection() {
           {strengths.map((item, idx) => (
             <motion.article
               key={item.pillar}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="rounded-3xl bg-zinc-50/80 dark:bg-[#18181B]/80 border border-black/[0.06] dark:border-white/[0.08] p-8 md:p-10 hover:border-black/25 dark:hover:border-white/25 transition-all duration-200 flex flex-col justify-between space-y-6 shadow-2xs group"
+              transition={{ duration: 0.35, delay: idx * 0.05 }}
+              className="rounded-2xl bg-zinc-50/90 dark:bg-[#333338]/60 border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between space-y-4 shadow-xs group"
             >
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
+                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-400">
                     {item.id}
                   </span>
-                  <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 tracking-wider uppercase">
+                  <span className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 tracking-wider uppercase">
                     {item.tag}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight group-hover:text-black dark:group-hover:text-white transition-colors">
+                <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight">
                   {item.pillar}
                 </h3>
-                <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
+                <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>

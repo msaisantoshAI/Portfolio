@@ -76,7 +76,7 @@ export default function BenWritings() {
 
   return (
     <section id="drawings" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-7 sm:p-12 md:p-16 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
@@ -101,7 +101,7 @@ export default function BenWritings() {
             <div
               key={art.id}
               onClick={() => setSelectedArtwork(art)}
-              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] overflow-hidden shadow-sm hover:shadow-md hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
+              className="group cursor-pointer rounded-2xl border border-black/5 dark:border-white/10 bg-zinc-50/90 dark:bg-[#333338]/60 overflow-hidden shadow-xs hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between"
             >
               {/* Image Frame */}
               <div className="relative w-full aspect-[4/3] bg-zinc-900 overflow-hidden">
@@ -113,7 +113,7 @@ export default function BenWritings() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
                   <span className="text-[11px] font-mono text-white bg-black/60 px-2.5 py-1 rounded-full border border-white/20 backdrop-blur-sm">
-                    Click to view full ↗
+                    Click to view
                   </span>
                 </div>
               </div>
@@ -142,21 +142,21 @@ export default function BenWritings() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedArtwork(null)}
-              className="absolute inset-0 bg-black/85 backdrop-blur-md"
+              className="absolute inset-0 bg-black/80 backdrop-blur-xs"
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
+              initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
+              exit={{ opacity: 0, scale: 0.94 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="relative w-full max-w-3xl rounded-3xl bg-[#121214] border border-white/15 shadow-2xl overflow-hidden text-white"
+              className="relative w-full max-w-3xl rounded-3xl bg-[#28282B] border border-white/15 shadow-xl overflow-hidden text-white"
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setSelectedArtwork(null)}
-                className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/70 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-base transition-all cursor-pointer"
+                className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full bg-black/70 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white text-sm transition-all cursor-pointer"
                 aria-label="Close image popup"
               >
                 ✕
@@ -173,7 +173,7 @@ export default function BenWritings() {
               </div>
 
               {/* Description Footer */}
-              <div className="p-5 sm:p-6 bg-[#18181B] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="p-5 sm:p-6 bg-[#333338] border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="space-y-1">
                   <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-bold">
                     {selectedArtwork.category}
@@ -191,7 +191,7 @@ export default function BenWritings() {
                   onClick={() => setSelectedArtwork(null)}
                   className="touch-target px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold text-white border border-white/20 transition-all shrink-0 cursor-pointer self-start sm:self-auto"
                 >
-                  Close View
+                  Close
                 </button>
               </div>
             </motion.div>

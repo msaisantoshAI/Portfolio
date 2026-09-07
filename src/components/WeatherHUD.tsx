@@ -41,6 +41,7 @@ const CITY_PRESETS = [
 
 export default function WeatherHUD() {
   const { 
+    themeMode,
     location, 
     country,
     localTime, 
@@ -70,7 +71,8 @@ export default function WeatherHUD() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
-  if (!localTime) return null;
+  // Weather HUD only appears when user is in AUTO mode
+  if (themeMode !== 'system' || !localTime) return null;
 
   const icon = getWeatherIcon(weatherState, isDay);
   const displayLocation = country ? `${location}, ${country}` : location;
@@ -87,27 +89,27 @@ export default function WeatherHUD() {
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 font-sans pointer-events-auto select-none" ref={modalRef}>
       
-      {/* 1. Small Sleek Weather & Location Icon Button in Right Corner */}
+      {/* 1. Small Sleek Weather & Location Icon Button in Right Corner (Auto Mode only) */}
       <motion.button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.94 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="touch-target relative flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full bg-white/90 dark:bg-[#0a0f1d]/90 hover:bg-white dark:hover:bg-[#131e3d] text-zinc-900 dark:text-white font-sans text-xs font-semibold border border-black/10 dark:border-white/25 hover:border-zinc-950 dark:border-white/50 shadow-[0_10px_30px_rgba(0,0,0,0.25)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-2xl transition-all group focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white cursor-pointer"
+        className="touch-target relative flex items-center justify-center gap-1.5 px-3 py-2 sm:px-3.5 sm:py-2 rounded-full bg-white/90 dark:bg-[#28282B]/95 hover:bg-white dark:hover:bg-[#333338] text-zinc-900 dark:text-white font-sans text-xs font-semibold border border-black/10 dark:border-white/15 shadow-sm backdrop-blur-2xl transition-all group focus-visible:ring-2 focus-visible:ring-zinc-900 dark:focus-visible:ring-white cursor-pointer"
         aria-label="Open Worldwide Location & Weather Switcher"
         title={`Live Location: ${displayLocation} • Click to change cities & sky!`}
       >
-        <span className="text-base sm:text-lg group-hover:scale-110 transition-transform">
+        <span className="text-base group-hover:scale-110 transition-transform">
           {icon}
         </span>
         <span className="text-xs font-bold text-zinc-800 dark:text-white max-w-[80px] sm:max-w-[100px] truncate">
           {location}
         </span>
         {temperature !== null && (
-          <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-300">
+          <span className="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
             {temperature}°
           </span>
         )}
@@ -115,7 +117,7 @@ export default function WeatherHUD() {
         {/* Live indicator dot */}
         <span className="relative flex h-2 w-2 ml-0.5">
           {isSimulating ? (
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-zinc-400" />
           ) : (
             <>
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -129,26 +131,26 @@ export default function WeatherHUD() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.94 }}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.94 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-14 right-0 w-[300px] sm:w-[350px] max-h-[75vh] overflow-y-auto rounded-3xl bg-white/95 dark:bg-[#090d1c]/95 border border-black/10 dark:border-white/20 p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-3xl text-zinc-900 dark:text-white space-y-4"
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="absolute bottom-14 right-0 w-[280px] sm:w-[320px] max-h-[75vh] overflow-y-auto rounded-3xl bg-white/95 dark:bg-[#28282B]/98 border border-black/10 dark:border-white/15 p-4 shadow-lg backdrop-blur-3xl text-zinc-900 dark:text-white space-y-3.5"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-3">
+            <div className="flex items-center justify-between border-b border-black/5 dark:border-white/10 pb-2.5">
               <div>
-                <h4 className="text-sm font-bold flex items-center gap-1.5 text-zinc-900 dark:text-white">
+                <h4 className="text-xs font-bold flex items-center gap-1.5 text-zinc-900 dark:text-white">
                   <span>🌍</span> Worldwide Live Sky
                 </h4>
-                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
+                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
                   Switch city to adapt sky &amp; atmosphere live
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="w-6 h-6 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 flex items-center justify-center text-xs text-zinc-500 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer"
+                className="w-5 h-5 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 flex items-center justify-center text-[10px] text-zinc-500 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-white transition-colors cursor-pointer"
                 aria-label="Close modal"
               >
                 ✕
@@ -156,43 +158,43 @@ export default function WeatherHUD() {
             </div>
 
             {/* Current Active Station Box */}
-            <div className="p-3 rounded-2xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-between text-xs">
-              <span className="font-semibold text-zinc-950 dark:text-white dark:text-zinc-900 dark:text-white flex items-center gap-1.5">
+            <div className="p-2.5 rounded-xl bg-zinc-50 dark:bg-white/5 border border-black/5 dark:border-white/10 flex items-center justify-between text-xs">
+              <span className="font-semibold text-zinc-950 dark:text-white flex items-center gap-1.5">
                 <span>{icon}</span>
                 <span>{location}</span>
               </span>
-              <span className="font-mono font-bold text-zinc-800 dark:text-white">
+              <span className="font-mono font-bold text-zinc-800 dark:text-white text-[11px]">
                 {temperature !== null ? `${temperature}°C` : ''} &bull; {localTime}
               </span>
             </div>
 
             {/* Live Search Input */}
             <form onSubmit={handleSearchSubmit} className="space-y-1">
-              <label htmlFor="city-search-input" className="text-[10px] font-mono uppercase font-bold tracking-wider text-zinc-400 block">
-                Search Any Global City
+              <label htmlFor="city-search-input" className="text-[9px] font-mono uppercase font-bold tracking-wider text-zinc-400 block">
+                Search Global City
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <input
                   id="city-search-input"
                   type="text"
                   placeholder="e.g. Tokyo, London, Paris..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-950 dark:border-white font-sans"
+                  className="flex-1 px-3 py-1.5 rounded-xl bg-black/5 dark:bg-white/10 border border-black/10 dark:border-white/15 text-xs text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-zinc-950 dark:border-white font-sans"
                 />
                 <button
                   type="submit"
                   disabled={isSearching || !searchQuery.trim()}
-                  className="px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-950 dark:bg-white disabled:opacity-50 text-xs font-semibold text-white transition-colors cursor-pointer"
+                  className="px-3 py-1.5 rounded-xl bg-zinc-950 dark:bg-white hover:bg-zinc-800 dark:hover:bg-zinc-200 disabled:opacity-50 text-xs font-semibold text-white dark:text-zinc-950 transition-colors cursor-pointer"
                 >
                   {isSearching ? '...' : 'Apply'}
                 </button>
               </div>
             </form>
 
-            {/* Popular Worldwide Stations */}
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-zinc-400 block">
+            {/* Popular Worldwide Stations - NO ARROWS */}
+            <div className="space-y-1.5">
+              <span className="text-[9px] font-mono uppercase font-bold tracking-wider text-zinc-400 block">
                 Popular Stations
               </span>
               <div className="grid grid-cols-2 gap-1.5">
@@ -206,12 +208,11 @@ export default function WeatherHUD() {
                     }}
                     className={`touch-target px-2.5 py-1.5 rounded-xl text-xs font-medium text-left border flex items-center justify-between transition-all cursor-pointer ${
                       location.toLowerCase().includes(city.name.toLowerCase())
-                        ? 'bg-zinc-950 dark:bg-white text-white font-bold border-zinc-950 dark:border-white shadow-xs'
-                        : 'bg-black/5 dark:bg-white/5 border-black/5 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-black/10 dark:hover:bg-white/15 hover:text-zinc-900 dark:hover:text-white'
+                        ? 'bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 font-bold border-zinc-950 dark:border-white shadow-xs'
+                        : 'bg-black/5 dark:bg-white/5 border-black/5 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-black/10 dark:hover:bg-white/15 hover:text-zinc-950 dark:hover:text-white'
                     }`}
                   >
                     <span>{city.flag} {city.name}</span>
-                    <span className="text-[10px] text-zinc-400">&rarr;</span>
                   </button>
                 ))}
               </div>

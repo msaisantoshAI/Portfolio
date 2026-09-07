@@ -52,27 +52,27 @@
 }
 
 .dark {
-  /* Colors - Dark Theme: True Matte Black & Crisp White */
-  --color-background: #0A0A0B;
-  --color-surface: #121214;
-  --color-surface-elevated: #18181B;
-  --color-surface-glass: rgba(18, 18, 20, 0.95);
+  /* Colors - Dark Theme: Matte Charcoal (#28282B) & Crisp White */
+  --color-background: #28282B;
+  --color-surface: #28282B;
+  --color-surface-elevated: #333338;
+  --color-surface-glass: rgba(40, 40, 43, 0.95);
   
   --color-text-primary: #FFFFFF;   /* Pure crisp white */
   --color-text-secondary: #E4E4E7; /* Zinc-200 */
   --color-text-tertiary: #A1A1AA;  /* Zinc-400 */
   
-  --color-border: rgba(255, 255, 255, 0.12);
-  --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-hover: rgba(255, 255, 255, 0.35);
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-hover: rgba(255, 255, 255, 0.25);
   --color-accent: #FFFFFF;          /* Pure White Accent */
   --color-accent-hover: #E4E4E7;
 
-  /* Shadows Dark */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.8);
-  --shadow-md: 0 4px 20px -1px rgba(0, 0, 0, 0.85);
-  --shadow-lg: 0 16px 40px -4px rgba(0, 0, 0, 0.95);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.85);
+  /* Shadows Dark - Subtle & Non-Dominating */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Base resets & smooth transitions */

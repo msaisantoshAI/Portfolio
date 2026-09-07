@@ -44,7 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scrollbar-hide" suppressHydrationWarning>
-      <body className={`${acorn.variable} ${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#F8F9FA] dark:bg-[#0A0A0B] text-zinc-950 dark:text-white flex flex-col min-h-screen overflow-x-clip transition-colors duration-1000`}>
+      <body className={`${acorn.variable} ${outfit.variable} ${plusJakarta.variable} font-sans antialiased bg-[#F8F9FA] dark:bg-[#28282B] text-zinc-950 dark:text-white flex flex-col min-h-screen overflow-x-clip transition-colors duration-700`}>
         <Providers>
           <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:p-4 focus:bg-zinc-950 dark:bg-white focus:text-white rounded-br-lg">
             Skip to main content

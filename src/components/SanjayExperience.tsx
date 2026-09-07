@@ -36,7 +36,7 @@ export default function SanjayExperience() {
 
   return (
     <section id="experience" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white dark:bg-[#121214] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-md dark:shadow-[0_16px_50px_rgba(0,0,0,0.85)] backdrop-blur-2xl space-y-8 transition-colors duration-300">
+      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-14 shadow-sm dark:shadow-md backdrop-blur-2xl space-y-8 transition-colors duration-300">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-black/5 dark:border-white/10 pb-5">
@@ -59,7 +59,7 @@ export default function SanjayExperience() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Left Column: TCS Role & Concise Bullets (7 Cols) */}
-          <div className="lg:col-span-7 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50 dark:bg-[#18181B] p-6 sm:p-8 space-y-5 shadow-sm flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-2xl border border-black/10 dark:border-white/10 bg-zinc-50/90 dark:bg-[#333338]/60 p-6 sm:p-8 space-y-5 shadow-xs flex flex-col justify-between">
             <div className="space-y-2.5 border-b border-black/5 dark:border-white/10 pb-4">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
@@ -90,7 +90,7 @@ export default function SanjayExperience() {
             {/* Skill Tags */}
             <div className="flex flex-wrap gap-1.5 pt-3 border-t border-black/5 dark:border-white/10">
               {['Enterprise SaaS', 'Design Systems', 'Figma', 'UX Audits', 'TMS', 'Information Architecture', 'WCAG 2.2 AA', 'AI Prototyping'].map((tag, tIdx) => (
-                <span key={tIdx} className="text-xs font-mono bg-white dark:bg-[#121214] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2.5 py-0.5 rounded-full shadow-2xs">
+                <span key={tIdx} className="text-xs font-mono bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/10 text-zinc-700 dark:text-zinc-300 px-2.5 py-0.5 rounded-full shadow-2xs">
                   {tag}
                 </span>
               ))}
@@ -102,7 +102,7 @@ export default function SanjayExperience() {
             {highlights.map((item, idx) => (
               <div 
                 key={idx} 
-                className="flex-1 p-5 rounded-2xl bg-zinc-50 dark:bg-[#18181B] border border-black/10 dark:border-white/10 flex flex-col justify-center space-y-1 shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-all"
+                className="flex-1 p-5 rounded-2xl bg-zinc-50/90 dark:bg-[#333338]/60 border border-black/10 dark:border-white/10 flex flex-col justify-center space-y-1 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all"
               >
                 <div className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white font-mono">
                   <CountUp value={item.metric} suffix={item.suffix} duration={2.0} />
