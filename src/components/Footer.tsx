@@ -8,8 +8,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative z-20 py-8 sm:py-10 px-4 sm:px-6 md:px-10 lg:px-12 font-sans select-none border-t border-black/5 dark:border-white/10 bg-transparent transition-colors duration-300">
-      <div className="max-w-[1440px] mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+    <footer className="relative z-20 py-8 px-5 md:px-8 lg:px-[120px] font-sans select-none bg-transparent transition-colors duration-300">
+      <div className="section-surface-shadow mx-auto w-full max-w-[1200px] rounded-[20px] bg-white/60 dark:bg-[#28282B]/60 border border-black/5 dark:border-white/10 p-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400 backdrop-blur-sm">
         
         {/* Left: Brand / Copyright */}
         <div className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export default function Footer() {
             Resume
           </a>
           <a
-            href="mailto:saisantoshmadhari@gmail.com"
+            href="mailto:msaisantosh99@gmail.com"
             className="hover:text-zinc-950 dark:hover:text-white transition-colors"
           >
             Email
@@ -57,7 +57,7 @@ export default function Footer() {
           <button
             type="button"
             onClick={scrollToTop}
-            className="touch-target inline-flex items-center justify-center px-3.5 py-1 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-zinc-800 dark:text-zinc-200 transition-all hover:scale-105 cursor-pointer text-xs"
+            className="touch-target inline-flex items-center justify-center px-3.5 py-1.5 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-zinc-800 dark:text-zinc-200 transition-all hover:scale-105 cursor-pointer text-xs font-medium"
             aria-label="Back to top"
           >
             Top

@@ -32,24 +32,17 @@ const strengths = [
 
 export default function WhatIBringSection() {
   return (
-    <section id="what-i-bring" className="px-4 py-10 sm:py-14 sm:px-8 md:px-12 max-w-[1440px] mx-auto w-full font-sans">
-      <div className="rounded-[32px] bg-white dark:bg-[#28282B] border border-black/10 dark:border-white/12 p-6 sm:p-10 md:p-12 shadow-sm dark:shadow-md backdrop-blur-2xl space-y-8 transition-colors duration-300">
+    <section id="what-i-bring" className="px-5 py-8 md:px-8 lg:px-[120px] max-w-[1440px] mx-auto w-full font-sans">
+      <div className="section-surface-shadow mx-auto w-full max-w-[1200px] rounded-[20px] bg-white/80 dark:bg-[#28282B] border border-black/5 dark:border-white/10 p-6 sm:p-10 md:p-12 space-y-10 transition-colors duration-300">
         
         {/* Minimal Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-black/[0.06] dark:border-white/[0.08] pb-5">
-          <div className="space-y-1 max-w-2xl">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 block">
-              Core Value &bull; Strengths
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-white">
-              What I Bring to the Table
-            </h2>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-black/5 dark:bg-white/10 text-zinc-900 dark:text-white border border-black/[0.06] dark:border-white/10">
-              Design &times; Business &times; Technology &times; AI
-            </span>
-          </div>
+        <div className="space-y-1">
+          <h2 className="text-[34px] sm:text-[44px] lg:text-[54px] font-bold leading-[1.02] tracking-[-1px] text-zinc-950 dark:text-white">
+            What I bring to the table
+          </h2>
+          <p className="text-[17px] sm:text-[19px] lg:text-xl font-medium leading-[1.35] text-zinc-500 dark:text-zinc-400">
+            Design &times; Business &times; Technology &times; AI
+          </p>
         </div>
 
         {/* 4 Clean Minimal Architectural Cards */}
@@ -61,11 +54,11 @@ export default function WhatIBringSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: idx * 0.05 }}
-              className="rounded-2xl bg-zinc-50/90 dark:bg-[#333338]/60 border border-black/[0.06] dark:border-white/[0.08] p-6 sm:p-8 hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between space-y-4 shadow-xs group"
+              className="rounded-2xl bg-zinc-50 dark:bg-[#333338]/60 border border-black/5 dark:border-white/10 p-6 sm:p-8 hover:border-black/20 dark:hover:border-white/20 transition-all flex flex-col justify-between space-y-4 shadow-xs group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-400">
+                  <span className="text-xs font-mono font-bold text-zinc-400 dark:text-zinc-500">
                     {item.id}
                   </span>
                   <span className="text-[11px] font-mono font-bold text-zinc-500 dark:text-zinc-400 tracking-wider uppercase">
@@ -75,7 +68,7 @@ export default function WhatIBringSection() {
                 <h3 className="text-xl sm:text-2xl font-bold text-zinc-950 dark:text-white tracking-tight">
                   {item.pillar}
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
+                <p className="text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
                   {item.description}
                 </p>
               </div>

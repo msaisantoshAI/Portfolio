@@ -95,8 +95,33 @@ export default function Navigation() {
             </div>
           </nav>
 
-          {/* Right Controls: Theme Selector + Resume Button + Mobile Hamburger */}
+          {/* Right Controls: Say Hello + LinkedIn + Theme Selector + Resume */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+            {/* Say Hello Button */}
+            <a
+              href="mailto:msaisantosh99@gmail.com"
+              className="touch-target inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-semibold text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-xs transition-all hover:scale-105 active:scale-95"
+              aria-label="Email Sai Santosh"
+            >
+              <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z" />
+              </svg>
+              <span>Say Hello</span>
+            </a>
+
+            {/* LinkedIn Icon Button */}
+            <a
+              href="https://www.linkedin.com/in/sai-santosh-madhari/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="touch-target hidden sm:flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 dark:bg-[#28282B]/90 hover:bg-white dark:hover:bg-[#333338] border border-black/10 dark:border-white/15 text-zinc-950 dark:text-white backdrop-blur-2xl shadow-xs transition-all hover:scale-105 active:scale-95"
+              aria-label="LinkedIn Profile"
+            >
+              <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z" />
+              </svg>
+            </a>
+
             <ThemeSelector />
             
             {/* Resume Button */}
@@ -104,7 +129,7 @@ export default function Navigation() {
               href="/resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="touch-target hidden sm:inline-flex items-center px-4 py-2 rounded-full text-xs font-bold text-white bg-zinc-950 hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-xs transition-all hover:scale-105 active:scale-95"
+              className="touch-target hidden md:inline-flex items-center px-3.5 py-2 rounded-full text-xs font-semibold text-zinc-800 dark:text-zinc-200 bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 transition-all hover:scale-105 active:scale-95 border border-black/5 dark:border-white/10"
             >
               Resume
             </a>
@@ -113,7 +138,7 @@ export default function Navigation() {
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="touch-target lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 dark:bg-[#28282B]/90 hover:bg-white dark:hover:bg-[#333338] border border-black/10 dark:border-white/15 text-zinc-950 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-xs transition-all cursor-pointer"
+              className="touch-target lg:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/90 dark:bg-[#28282B]/90 hover:bg-white dark:hover:bg-[#333338] border border-black/10 dark:border-white/15 text-zinc-950 dark:text-white flex items-center justify-center backdrop-blur-2xl shadow-xs transition-all cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={isMobileMenuOpen}
             >
